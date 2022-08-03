@@ -8,9 +8,9 @@ services:
             MYSQL_ROOT_PASSWORD: root-test
             MYSQL_PASSWORD: root
             MYSQL_USER: cms-user
-            MYSQL_DATABASE: test_cms
+            MYSQL_DATABASE: air-creation-db
         ports:
-            - "3306:3306"
+            - "3307:3306"
         volumes:
             - dbdata:/var/lib/mysql
     
@@ -25,13 +25,13 @@ services:
             PMA_ARBITRARY: 1
         restart: always
         ports:
-            - 8100:80
+            - 8101:80
 
     web:
         container_name: air-creation-cms
         build: .
         ports:
-            - 8000:80
+            - 8001:80
 
 volumes:
     dbdata:
