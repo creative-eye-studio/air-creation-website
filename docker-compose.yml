@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
     db:
-        container_name: database
+        container_name: air-creation-db
         image: mysql:5.7
         environment:
             MYSQL_ROOT_PASSWORD: root-test
@@ -15,7 +15,7 @@ services:
             - dbdata:/var/lib/mysql
     
     phpmyadmin:
-        container_name: phpmyadmin
+        container_name: air-creation-phpmyadmin
         image: phpmyadmin/phpmyadmin
         links:
             - db
@@ -28,7 +28,7 @@ services:
             - 8100:80
 
     web:
-        container_name: cms
+        container_name: air-creation-cms
         build: .
         ports:
             - 8000:80
