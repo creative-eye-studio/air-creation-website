@@ -15,4 +15,12 @@ class AdminProductsController extends AbstractController
             'controller_name' => 'AdminProductsController',
         ]);
     }
+
+    #[Route('/admin/products/ajouter', name: 'app_admin_products_add')]
+    public function AddProduct(): Response
+    {
+        return $this->render('admin_products/add-product.html.twig', [
+            'controller_name' => 'AdminProductsController',
+        ]);
+    }
 }
