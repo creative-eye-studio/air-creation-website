@@ -1,3 +1,13 @@
+<<<<<<< Updated upstream
+=======
+# YARN
+#--------------------------------------------------------------------------
+FROM node:17
+RUN yarn install
+RUN yarn encore prod
+
+
+>>>>>>> Stashed changes
 # SYMFONY
 #--------------------------------------------------------------------------
 FROM php:8.1-apache
