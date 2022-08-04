@@ -1,7 +1,8 @@
 # YARN
 #--------------------------------------------------------------------------
-FROM node:6.7.0
-RUN npm install -g yarn
+FROM node:17
+RUN yarn install
+RUN yarn encore dev
 
 
 # SYMFONY
