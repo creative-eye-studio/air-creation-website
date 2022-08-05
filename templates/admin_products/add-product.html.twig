@@ -3,27 +3,55 @@
 {% block title %}Ajouter un produit{% endblock %}
 
 {% block body %}
-    <section class="block">
+    <section class="block tab-container">
         <h2>Ajouter un nouveau produit</h2>
-        <ul class="tabs-btn">
-            <li><a class="selected">Résumé</a></li>
-            <li><a>Description</a></li>
-            <li><a>Caractéristiques</a></li>
-            <li><a>Galerie d'images</a></li>
+        <ul class="tabs-btn tabs">
+            <li><a class="tab active">Résumé</a></li>
+            <li><a class="tab">Coloris et accessoires</a></li>
+            <li><a class="tab">Description</a></li>
+            <li><a class="tab">Caractéristiques</a></li>
+            <li><a class="tab">Galerie d'images</a></li>
         </ul>
-        {{ form_start(form) }}
-            <p>{{ form_label(form.product_name) }}<br />
-            {{ form_widget(form.product_name) }}</p>
-            <p>{{ form_label(form.product_desc) }}<br />
-            {{ form_widget(form.product_desc) }}</p>
-            <p>{{ form_label(form.product_shop_url) }}<br />
-            {{ form_widget(form.product_shop_url) }}</p>
-            <p>{{ form_label(form.product_doc_url) }}<br />
-            {{ form_widget(form.product_doc_url) }}</p>
-            <p>{{ form_label(form.product_long_desc) }}<br />
-            {{ form_widget(form.product_long_desc) }}</p>
-            <p>{{ form_label(form.product_carac) }}<br />
-            {{ form_widget(form.product_carac) }}</p>
+        {{ form_start(form, { 'attr' : {'class': 'tab-panes'} }) }}
+            <!-- Résumé -->
+            <div id="#resume" class="tab-pane active">
+                <p>{{ form_label(form.product_name) }}<br />
+                {{ form_widget(form.product_name) }}</p>
+                <p>{{ form_label(form.product_desc) }}<br />
+                {{ form_widget(form.product_desc) }}</p>
+                <p>{{ form_label(form.product_shop_url) }}<br />
+                {{ form_widget(form.product_shop_url) }}</p>
+                <p>{{ form_label(form.product_doc_url) }}<br />
+                {{ form_widget(form.product_doc_url) }}</p>
+            </div>
+
+            <!-- Coloris et accessoires -->
+            <div id="#coloris" class="tab-pane">
+                <p>{{ form_label(form.product_colors) }}<br />
+                {{ form_widget(form.product_colors) }}</p>
+                <p>{{ form_label(form.product_accessoiries) }}<br />
+                {{ form_widget(form.product_accessoiries) }}</p>
+            </div id="">
+
+            <!-- Description -->
+            <div id="#description" class="tab-pane">
+                <p>{{ form_label(form.product_long_desc) }}<br />
+                {{ form_widget(form.product_long_desc) }}</p>
+            </div>
+
+            <!-- Caractéristiques -->
+            <div id="#caracteristiques" class="tab-pane">
+                <p>{{ form_label(form.product_carac) }}<br />
+                {{ form_widget(form.product_carac) }}</p>
+            </div>
+
+            <!-- Galerie d'images -->
+            <div id="#images" class="tab-pane">
+                <p>{{ form_label(form.product_images) }}<br />
+                {{ form_widget(form.product_images) }}</p>
+
+                {{ form_widget(form.product_submit) }}
+            </div>
         {{ form_end(form) }}
     </section>
 {% endblock %}

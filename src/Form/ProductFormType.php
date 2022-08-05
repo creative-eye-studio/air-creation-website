@@ -6,6 +6,7 @@ use App\Entity\Products;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -29,11 +30,26 @@ class ProductFormType extends AbstractType
             ->add('product_doc_url', UrlType::class, [
                 'label' => 'Lien vers la documentation'
             ])
+            ->add('product_colors', FileType::class, [
+                'label' => 'Coloris',
+                'multiple' => true,
+                'data_class' => null,
+            ])
+            ->add('product_accessoiries', FileType::class, [
+                'label' => 'Accessoires',
+                'multiple' => true,
+                'data_class' => null,
+            ])
             ->add('product_long_desc', CKEditorType::class, [
                 'label' => 'Présentation du produit'
             ])
             ->add('product_carac', CKEditorType::class, [
                 'label' => 'Caractéristiques du produit (Utiliser le tableau pour la mise en page)',
+            ])
+            ->add('product_images', FileType::class, [
+                'label' => 'Images du produit',
+                'multiple' => true,
+                'data_class' => null,
             ])
             ->add('product_submit', SubmitType::class, [
                 'label' => 'Envoyer'
