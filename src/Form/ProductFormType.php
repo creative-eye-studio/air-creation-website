@@ -20,6 +20,7 @@ class ProductFormType extends AbstractType
             ->add('product_accessories')
             ->add('product_long_desc')
             ->add('product_carac')
+            ->add('product_submit')
         ;
     }
 

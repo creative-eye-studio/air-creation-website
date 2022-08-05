@@ -11,6 +11,23 @@
             <li><a>Caractéristiques</a></li>
             <li><a>Galerie d'images</a></li>
         </ul>
-        {{ form(form) }}
+        {{ form_start(form) }}
+            <p>{{ form_label(form.product_name) }}<br />
+            {{ form_widget(form.product_name) }}</p>
+            <p>{{ form_label(form.product_desc) }}<br />
+            {{ form_widget(form.product_desc) }}</p>
+            <p>{{ form_label(form.product_shop_url) }}<br />
+            {{ form_widget(form.product_shop_url) }}</p>
+            <p>{{ form_label(form.product_doc_url) }}<br />
+            {{ form_widget(form.product_doc_url) }}</p>
+            <p>{{ form_label(form.product_colors) }}<br />
+            {{ form_widget(form.product_colors) }}</p>
+            <p>{{ form_label(form.product_accessories) }}<br />
+            {{ form_widget(form.product_accessories) }}</p>
+            <p>{{ form_label(form.product_long_desc) }}<br />
+            {{ form_widget(form.product_long_desc) }}</p>
+            <p>{{ form_label(form.product_carac) }}<br />
+            {{ form_widget(form.product_carac) }}</p>
+        {{ form_end(form) }}
     </section>
 {% endblock %}
