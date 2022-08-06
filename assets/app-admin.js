@@ -11,9 +11,16 @@ import './styles/admin/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
+<<<<<<< HEAD
 
 /* TABS
 ----------------------*/
 var tabs = require('tabs');
+=======
+/* TABS
+--------------------------------------------*/
+var tabs = require('tabs');
+
+>>>>>>> e9c34bc8539e50e39f7cd3bd2ec1534f12b243d6
 var container=document.querySelector('.tab-container')
 tabs(container);
