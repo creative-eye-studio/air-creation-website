@@ -19,37 +19,42 @@ class ProductFormType extends AbstractType
     {
         $builder
             ->add('product_name', TextType::class, [
-                'label' => 'Nom du produit' 
+                'label' => 'Nom du produit *' 
             ])
             ->add('product_desc', CKEditorType::class, [
-                'label' => 'Présentation du produit'
+                'label' => 'Courte description *'
             ])
             ->add('product_shop_url', UrlType::class, [
-                'label' => 'Lien vers la page E-Commerce'
+                'label' => 'Lien vers la page E-Commerce',
+                'required' => false
             ])
             ->add('product_doc_url', UrlType::class, [
-                'label' => 'Lien vers la documentation'
+                'label' => 'Lien vers la documentation',
+                'required' => false
             ])
             ->add('product_colors', FileType::class, [
                 'label' => 'Coloris',
                 'multiple' => true,
                 'data_class' => null,
+                'required' => false
             ])
             ->add('product_accessoiries', FileType::class, [
                 'label' => 'Accessoires',
                 'multiple' => true,
                 'data_class' => null,
+                'required' => false
             ])
             ->add('product_long_desc', CKEditorType::class, [
-                'label' => 'Présentation du produit'
+                'label' => 'Présentation détaillée du produit *'
             ])
             ->add('product_carac', CKEditorType::class, [
-                'label' => 'Caractéristiques du produit (Utiliser le tableau pour la mise en page)',
+                'label' => 'Caractéristiques du produit (Utiliser le tableau pour la mise en page) *',
             ])
             ->add('product_images', FileType::class, [
                 'label' => 'Images du produit',
                 'multiple' => true,
                 'data_class' => null,
+                'required' => false
             ])
             ->add('product_submit', SubmitType::class, [
                 'label' => 'Envoyer'

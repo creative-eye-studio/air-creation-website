@@ -7,11 +7,15 @@
         <h2>Ajouter un nouveau produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Résumé</a></li>
-            <li><a class="tab">Coloris et accessoires</a></li>
+            <li><a class="tab">Coloris</a></li>
+            <li><a class="tab">Accessoires</a></li>
             <li><a class="tab">Description</a></li>
             <li><a class="tab">Caractéristiques</a></li>
             <li><a class="tab">Galerie d'images</a></li>
         </ul>
+        <p>
+            <em>* Champs obligatoires</em>
+        </p>
         {{ form_start(form, { 'attr' : {'class': 'tab-panes'} }) }}
             <!-- Résumé -->
             <div id="#resume" class="tab-pane active">
@@ -29,9 +33,12 @@
             <div id="#coloris" class="tab-pane">
                 <p>{{ form_label(form.product_colors) }}<br />
                 {{ form_widget(form.product_colors) }}</p>
+            </div>
+
+            <div id="#accessoires" class="tab-pane">
                 <p>{{ form_label(form.product_accessoiries) }}<br />
                 {{ form_widget(form.product_accessoiries) }}</p>
-            </div id="">
+            </div>
 
             <!-- Description -->
             <div id="#description" class="tab-pane">
@@ -49,9 +56,8 @@
             <div id="#images" class="tab-pane">
                 <p>{{ form_label(form.product_images) }}<br />
                 {{ form_widget(form.product_images) }}</p>
-
-                {{ form_widget(form.product_submit) }}
             </div>
+            <p>{{ form_widget(form.product_submit) }}</p>
         {{ form_end(form) }}
     </section>
 {% endblock %}
