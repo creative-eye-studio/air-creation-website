@@ -5,6 +5,26 @@
 {% block body %}
     <section class="block tab-container">
         <h2>Ajouter un partenaire</h2>
-        {{ form(form) }}
+        {{ form_start(form) }}
+            <p>{{ form_label(form.name) }}<br />
+                {{ form_widget(form.name) }}</p>
+            <p>{{ form_label(form.email) }}<br />
+                {{ form_widget(form.email) }}</p>
+            <p>{{ form_label(form.partner_cat) }}<br />
+                {{ form_widget(form.partner_cat) }}</p>
+            <p>{{ form_label(form.adress) }}<br />
+                {{ form_widget(form.adress) }}</p>
+            <p>{{ form_label(form.postcode) }}<br />
+                {{ form_widget(form.postcode) }}</p>
+            <p>{{ form_label(form.city) }}<br />
+                {{ form_widget(form.city) }}</p>
+            <p>{{ form_label(form.website) }}<br />
+                {{ form_widget(form.website) }}</p>
+            <p>{{ form_label(form.coord_long) }}<br />
+                {{ form_widget(form.coord_long) }}</p>
+            <p>{{ form_label(form.coord_lat) }}<br />
+                {{ form_widget(form.coord_lat) }}</p>
+            {{ form_row(form.submit) }}
+        {{ form_end(form) }}
     </section>
 {% endblock %}
