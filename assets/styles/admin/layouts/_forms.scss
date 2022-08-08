@@ -1,12 +1,17 @@
 input{
-    &[type=text]{
+    &[type=text],
+    &[type=email]{
         width: 100%;
         padding: .5rem;
     }
 }
 
+select{
+    padding: .5rem;
+}
+
 textarea{
-    height: 100px;
     width: 100%;
     padding: .5rem;
+    height: 100px;
 }

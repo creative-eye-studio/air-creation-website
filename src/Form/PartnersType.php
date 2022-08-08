@@ -6,6 +6,7 @@ use App\Entity\Partners;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -42,10 +43,10 @@ class PartnersType extends AbstractType
             ->add('website', UrlType::class, [
                 'label' => "Site Internet"
             ])
-            ->add('coord_long', TextType::class, [
+            ->add('coord_long', NumberType::class, [
                 'label' => "Coordonnées Longitude"
             ])
-            ->add('coord_lat', TextType::class, [
+            ->add('coord_lat', NumberType::class, [
                 'label' => "Coordonnées Latitude"
             ])
             ->add('submit', SubmitType::class, [
@@ -57,7 +58,7 @@ class PartnersType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Partners::class,
+            
         ]);
     }
 }
