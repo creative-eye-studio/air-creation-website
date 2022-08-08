@@ -12,6 +12,7 @@
         </ul>
         <div class="tab-panes">
             <div class="tab-pane active">
+            {% for revendeur in partnersRepoRevendeurs %}
                 <div class="line">
                     <p>Nom du revendeur</p>
                     <ul>
@@ -20,8 +21,10 @@
                         <li><a href="">Supprimer</a></li>
                     </ul>
                 </div>
+            {% endfor %}
             </div>
             <div class="tab-pane">
+            {% for formateur in partnersRepoFormateurs %}
                 <div class="line">
                     <p>Nom du formateur</p>
                     <ul>
@@ -30,6 +33,7 @@
                         <li><a href="">Supprimer</a></li>
                     </ul>
                 </div>
+            {% endfor %}
             </div>
         </div>
     </section>
