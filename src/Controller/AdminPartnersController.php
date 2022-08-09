@@ -26,6 +26,9 @@ class AdminPartnersController extends AbstractController
         ]);
     }
 
+
+    /* AJOUTER UN PARTENAIRE
+    ------------------------------------------------------- */
     #[Route('/admin/partners/ajouter', name: 'app_admin_partners_add')]
     public function add_partner(ManagerRegistry $doctrine, Request $request) {
         $form = $this->createForm(PartnersType::class);
@@ -69,5 +72,28 @@ class AdminPartnersController extends AbstractController
             'form' => $form->createView(),
             'controller_name' => 'AdminPartnersController',
         ]);
+    }
+
+    
+    /* SUPPRIMER UN PARTENAIRE
+    ------------------------------------------------------- */
+    #[Route('/admin/partners/supprimer/{partner_id}', name: 'app_admin_partners_delete')]
+    
+    public function delete_partner(ManagerRegistry $doctrine, String $partner_id)
+    {
+        $entityManager = $doctrine->getManager();
+        $partner = $entityManager->getRepository(Partners::class)->findOneBy(['id' => $partner_id]);
+
+        if (!$partner) {
+            throw $this->createNotFoundException(
+                "Aucune partenaire n'a été trouvé"
+            );
+        }
+
+        $entityManager->remove($partner);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_admin_partners');
+
     }
 }
