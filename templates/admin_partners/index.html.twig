@@ -14,7 +14,7 @@
             <div class="tab-pane active">
             {% for revendeur in partnersRepoRevendeurs %}
                 <div class="line">
-                    <p>Nom du revendeur</p>
+                    <p>{{ revendeur.name }}</p>
                     <ul>
                         <li><a href="" target="_blank" rel="noopener">Voir</a></li>
                         <li><a href="">Modifier</a></li>
@@ -26,7 +26,7 @@
             <div class="tab-pane">
             {% for formateur in partnersRepoFormateurs %}
                 <div class="line">
-                    <p>Nom du formateur</p>
+                    <p>{{ formateur.name }}</p>
                     <ul>
                         <li><a href="" target="_blank" rel="noopener">Voir</a></li>
                         <li><a href="">Modifier</a></li>
