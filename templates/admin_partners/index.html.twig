@@ -12,28 +12,36 @@
         </ul>
         <div class="tab-panes">
             <div class="tab-pane active">
-            {% for revendeur in partnersRepoRevendeurs %}
-                <div class="line">
-                    <p>{{ revendeur.name }}</p>
-                    <ul>
-                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
-                        <li><a href="">Modifier</a></li>
-                        <li><a href="{{ path('app_admin_partners_delete', {partner_id: revendeur.id}) }}">Supprimer</a></li>
-                    </ul>
-                </div>
-            {% endfor %}
+            {% if partnersRepoRevendeurs|length > 0 %}
+                {% for revendeur in partnersRepoRevendeurs %}
+                    <div class="line">
+                        <p>{{ revendeur.name }}</p>
+                        <ul>
+                            <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                            <li><a href="">Modifier</a></li>
+                            <li><a href="{{ path('app_admin_partners_delete', {partner_id: revendeur.id}) }}">Supprimer</a></li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Il n'y a pas de revendeurs dans la liste</p>
+            {% endif %}
             </div>
             <div class="tab-pane">
-            {% for formateur in partnersRepoFormateurs %}
-                <div class="line">
-                    <p>{{ formateur.name }}</p>
-                    <ul>
-                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
-                        <li><a href="">Modifier</a></li>
-                        <li><a href="">Supprimer</a></li>
-                    </ul>
-                </div>
-            {% endfor %}
+            {% if partnersRepoFormateurs|length > 0 %}
+                {% for formateur in partnersRepoFormateurs %}
+                    <div class="line">
+                        <p>{{ formateur.name }}</p>
+                        <ul>
+                            <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                            <li><a href="">Modifier</a></li>
+                            <li><a href="{{ path('app_admin_partners_delete', {partner_id: formateur.id}) }}">Supprimer</a></li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Il n'y a pas de formateurs dans la liste</p>
+            {% endif %}
             </div>
         </div>
     </section>
