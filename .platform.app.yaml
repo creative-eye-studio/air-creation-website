@@ -20,7 +20,7 @@ dependencies:
 variables:
     env:
         # Tell Symfony to always install in production-mode.
-        APP_ENV: 'prod'
+        APP_ENV: 'dev'
         APP_DEBUG: 0
 
 # The hooks that will be performed when the package is deployed.
