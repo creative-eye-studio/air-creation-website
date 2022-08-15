@@ -2,39 +2,38 @@ version: '3.8'
 
 services:
     db:
-        container_name: air-creation-db
         image: mysql:5.7
+        container_name: Database
         environment:
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_PASSWORD: root
-            MYSQL_USER: user
-            MYSQL_DATABASE: air-creation-db
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: main
+            MYSQL_USER: db_user
+            MYSQL_PASSWORD: db_user_pass
         ports:
-            - "3307:3306"
+            - "3308:3308"
         volumes:
             - dbdata:/var/lib/mysql
-    
+
     phpmyadmin:
-        container_name: air-creation-phpmyadmin
         image: phpmyadmin/phpmyadmin
-        links:
+        container_name: PhpMyAdmin
+        depends_on:
             - db
         environment:
-            PMA_HOST: database
-            PMA_PORT: 3306
-            PMA_ARBITRARY: 1
+            PMA_HOST: db
         restart: always
         ports:
-            - 8101:80
+            - 8090:80
 
     web:
-        container_name: air-creation-cms
+        container_name: Website
         build: .
+        depends_on:
+            - db
         ports:
             - 8001:80
         environment:
-            APP_ENV: dev
-            DATABASE_URL: mysql://cms-user:root@database:3306/air-creation-db?serverVersion=5.7&charset=utf8mb4
+            DATABASE_URL: mysql://db_user:db_user_pass@db:3306/main?serverVersion=5.7&charset=utf8mb4
 
 volumes:
     dbdata:
