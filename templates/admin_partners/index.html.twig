@@ -34,7 +34,7 @@
                         <p>{{ formateur.name }}</p>
                         <ul>
                             <li><a href="" target="_blank" rel="noopener">Voir</a></li>
-                            <li><a href="">Modifier</a></li>
+                            <li><a href="{{ path('app_admin_partners_update', {partner_id: formateur.id}) }}">Modifier</a></li>
                             <li><a href="{{ path('app_admin_partners_delete', {partner_id: formateur.id}) }}">Supprimer</a></li>
                         </ul>
                     </div>
