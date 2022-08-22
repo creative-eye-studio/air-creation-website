@@ -19,11 +19,11 @@ class ContactFormType extends AbstractType
         $builder
             ->add('gender', ChoiceType::class, [
                 'choices'  => [
-                    'Madame / Monsieur' => null,
                     'Monsieur' => 'Monsieur',
                     'Madame' => 'Madame',
                 ],
-                'label' => null
+                'label' => null,
+                'expanded' => true
             ])
             ->add('lname', TextType::class, [
                 'label' => null,
