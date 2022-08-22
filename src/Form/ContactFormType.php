@@ -20,8 +20,8 @@ class ContactFormType extends AbstractType
             ->add('gender', ChoiceType::class, [
                 'choices'  => [
                     'Madame / Monsieur' => null,
-                    'Monsieur' => 1,
-                    'Madame' => 2,
+                    'Monsieur' => 'Monsieur',
+                    'Madame' => 'Madame',
                 ],
                 'label' => null
             ])
@@ -65,8 +65,8 @@ class ContactFormType extends AbstractType
             ->add('subject', ChoiceType::class, [
                 'choices' => [
                     'Catégorie de la demande' => null,
-                    'Contacter le service commercial' => 1,
-                    'Déposer ma candidature' => 2,
+                    'Contacter le service commercial' => 'Contacter le service commercial',
+                    'Déposer ma candidature' => 'Déposer ma candidature',
                 ]
             ])
             ->add('message', TextareaType::class, [
