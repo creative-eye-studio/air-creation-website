@@ -22,32 +22,32 @@ class ContactFormType extends AbstractType
                     'Monsieur' => 'Monsieur',
                     'Madame' => 'Madame',
                 ],
-                'label' => null,
+                'label' => false,
                 'expanded' => true
             ])
             ->add('lname', TextType::class, [
-                'label' => null,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Nom',
                     'aria-label' => 'Nom'
                 ]
             ])
             ->add('fname', TextType::class, [
-                'label' => null,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Prénom',
                     'aria-label' => 'Prénom'
                 ]
             ])
             ->add('phone', TelType::class, [
-                'label' => null,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Téléphone',
                     'aria-label' => 'Téléphone'
                 ]
             ])
             ->add('email', EmailType::class, [
-                'label' => null,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Adresse E-Mail',
                     'aria-label' => 'Adresse E-Mail'
@@ -67,10 +67,11 @@ class ContactFormType extends AbstractType
                     'Catégorie de la demande' => null,
                     'Contacter le service commercial' => 'Contacter le service commercial',
                     'Déposer ma candidature' => 'Déposer ma candidature',
-                ]
+                ],
+                'label' => false
             ])
             ->add('message', TextareaType::class, [
-                'label' => null,
+                'label' => false,
                 'attr' => [
                     'placeholder' => 'Détails de la demande',
                     'aria-label' => 'Détails de la demande'
