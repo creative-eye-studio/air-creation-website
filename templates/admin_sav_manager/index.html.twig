@@ -1,20 +1,32 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Hello AdminSAVManagerController!{% endblock %}
+{% block title %}Service Après-Vente{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/kevinrifa/Documents/Creative_Eye_Studio/_Projets_COM/220701_Air_Creation_AGC_Web/air-creation-web/src/Controller/AdminSAVManagerController.php'|file_link(0) }}">src/Controller/AdminSAVManagerController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/kevinrifa/Documents/Creative_Eye_Studio/_Projets_COM/220701_Air_Creation_AGC_Web/air-creation-web/templates/admin_sav_manager/index.html.twig'|file_link(0) }}">templates/admin_sav_manager/index.html.twig</a></code></li>
+<section class="block tab-container">
+    <h2>Service après-vente</h2>
+    <ul class="tabs-btn tabs">
+        <li><a class="tab active">FAQ</a></li>
+        <li><a class="tab">Demandes en cours</a></li>
+        <li><a class="tab">Demandes finalisées</a></li>
+        <li><a class="tab">Demandes annulées</a></li>
     </ul>
-</div>
+    
+    <div class="tab-panes">
+        <article class="tab-pane active">
+            <h3>FAQ</h3>
+        </article>
+        <article class="tab-pane">
+            <h3>Demandes en cours</h3>
+        </article>
+        <article class="tab-pane">
+            <h3>Demandes finalisées</h3>
+        </article>
+        <article class="tab-pane">
+            <h3>Demandes annulées</h3>
+        </article>
+    </div>
+</section>
+
 {% endblock %}
