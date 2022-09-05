@@ -17,13 +17,16 @@
         <article class="tab-pane active">
             <a class="btn-link float-right" href="{{ path('app_admin_sav_manager_add_question') }}">Ajouter une question</a>
             <h3>FAQ</h3>
+            {% for question in faqList %}
             <div class="line">
-                <p>Accueil</p>
+                <p>{{ question.faqName }}</p>
                 <ul>
                     <li><a href="" target="_blank" rel="noopener">Voir</a></li>
-                    <li><a href="">Modifier</a></li>
+                    <li><a href="{{ path('app_admin_sav_manager_modify_question', {faq_id: question.faqId}) }}">Modifier</a></li>
+                    <li><a href="{{ path('app_admin_sav_manager_delete_question', {faq_id: question.faqId}) }}">Supprimer</a></li>
                 </ul>
             </div>
+            {% endfor %}
         </article>
         <article class="tab-pane">
             <h3>Demandes en cours</h3>

@@ -1,0 +1,20 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Service Après-Vente{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <h2>Modifier une question à la FAQ</h2>
+        {{ form_start(form) }}
+        <p>{{ form_label(form.faq_name) }}<br />
+            {{ form_widget(form.faq_name, {
+                'value': faqName
+            }) }}</p>
+        <p>{{ form_label(form.faq_content) }}<br />
+            {{ form_widget(form.faq_content, {
+                'value': faqContent
+            }) }}</p>
+        <p>{{ form_widget(form.faq_submit) }}</p>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}
