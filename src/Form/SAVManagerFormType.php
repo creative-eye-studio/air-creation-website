@@ -6,6 +6,7 @@ use App\Entity\Products;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -62,9 +63,16 @@ class SAVManagerFormType extends AbstractType
 
             /* ONGLET 2
             ------------------------------------------*/
-            ->add('sav_product', EntityType::class, [
+            /*->add('sav_product', EntityType::class, [
                 'class' => Products::class,
                 'choice_label' => 'Nom du produit'
+            ])*/
+            ->add('sav_product', ChoiceType::class, [
+                'choices'  => [
+                    'Maybe' => null,
+                    'Yes' => true,
+                    'No' => false,
+                ]
             ])
             ->add('sav_product_not_found', TextareaType::class, [
                 'label' => 'Si vous ne trouvez pas l\'article concerné, merci d\'indiquer la référence ci-dessous',
