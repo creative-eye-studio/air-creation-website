@@ -36,11 +36,11 @@
             {% for request in requestsSended %}
                 <div class="line">
                     <p> 
-                        {{ request.ticketnumber}}<br/>
+                        {{ request.ticketnumber }}<br/>
                         {{ request.lname }} {{ request.fname }}
                     </p>
                     <ul>
-                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                        <li><a href="{{ path('app_admin_sav_ticket', {ticket_number: request.ticketnumber}) }}">Voir</a></li>
                     </ul>
                 </div>
             {% endfor %}
@@ -55,7 +55,7 @@
                         {{ request.lname }} {{ request.fname }}
                     </p>
                     <ul>
-                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                        <li><a href="{{ path('app_admin_sav_ticket', {ticket_number: request.ticketnumber}) }}">Voir</a></li>
                     </ul>
                 </div>
             {% endfor %}
@@ -70,7 +70,7 @@
                         {{ request.lname }} {{ request.fname }}
                     </p>
                     <ul>
-                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                        <li><a href="{{ path('app_admin_sav_ticket', {ticket_number: request.ticketnumber}) }}">Voir</a></li>
                     </ul>
                 </div>
             {% endfor %}
@@ -85,7 +85,7 @@
                         {{ request.lname }} {{ request.fname }}
                     </p>
                     <ul>
-                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                        <li><a href="{{ path('app_admin_sav_ticket', {ticket_number: request.ticketnumber}) }}">Voir</a></li>
                     </ul>
                 </div>
             {% endfor %}
