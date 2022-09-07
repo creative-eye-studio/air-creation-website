@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\FAQList;
 use App\Entity\SAVManager;
 use App\Form\FAQManagerFormType;
+use App\Form\SAVTicketStatusType;
 use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -137,7 +138,7 @@ class AdminSAVManagerController extends AbstractController
 
     /* SUPPRIMER UNE QUESTION
     ------------------------------------------------------- */
-    #[Route('/admin/sav-manager/suppimer-question/{faq_id}', name: 'app_admin_sav_manager_delete_question')]
+    #[Route('/admin/sav-manager/supprimer-question/{faq_id}', name: 'app_admin_sav_manager_delete_question')]
     public function delete_question(ManagerRegistry $doctrine, String $faq_id)
     {
         // Suppression de la valeur dans la BDD
@@ -157,5 +158,43 @@ class AdminSAVManagerController extends AbstractController
         unlink("../templates/webpages/faq_questions/" . $faq_id . ".html.twig");
 
         return $this->redirectToRoute('app_admin_sav_manager');
+    }
+
+    /* VOIR UNE FICHE TICKET
+    ------------------------------------------------------- */
+    #[Route('/admin/sav-manager/ticket/{ticket_number}', name: 'app_admin_sav_ticket')]
+    public function ticket_card(ManagerRegistry $doctrine, Request $request, string $ticket_number)
+    {
+        $form = $this->createForm(SAVTicketStatusType::class);
+        $form->handleRequest($request);
+        $entityManager = $doctrine->getManager();
+        $ticketCard = $entityManager->getRepository(SAVManager::class)->findOneBy(['ticket_number' => $ticket_number]);
+
+        if(!$ticketCard) {
+            throw $this->createNotFoundException(
+                "Ce ticket n'existe pas"
+            );
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Récupération des données du form
+            $data = $form->getData();
+            $status = $data['status'];
+
+            // Envoi des données vers la BDD
+            $entityManager = $doctrine->getManager();
+            $ticketCard->setRepairStatus($status);
+            $entityManager->persist($ticketCard);
+            $entityManager->flush();
+
+            // Redirection vers la page crée
+            return $this->redirectToRoute('app_admin_sav_ticket', ['ticket_number' => $ticket_number]);
+        }
+
+        return $this->render('admin_sav_manager/ticket-card.html.twig', [
+            'form' => $form->createView(),
+            'ticket' => $ticketCard,
+            'controller_name' => 'AdminSAVManagerController'
+        ]);
     }
 }

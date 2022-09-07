@@ -1,0 +1,59 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Demande de ticket{% endblock %}
+
+{% block body %}
+
+        <section class="block">
+            <h2>Demande N°{{ ticket.ticketnumber }}</h2>
+            <article>
+                <h3>Description du problème</h3>
+                <ul>
+                    {% if ticket.productcustom != null %}
+                    <li>Nom du produit : {{ ticket.productcustom }}</li>
+                    {% else %}
+                    <li>Nom du produit : {{ ticket.product }}</li>
+                    {% endif %}
+                    <li>N° de série : {{ ticket.serialnumber }}</li>
+                    <li>N° de facturation : {{ ticket.invoicenumber }}</li>
+                    <li>Date de facturation : {{ ticket.invoicedate|date('d/m/Y') }}</li>
+                    {% if ticket.guarantee %}
+                        <li>Garantie : En cours</li>
+                    {% else %}
+                        <li>Garantie : Expirée</li>
+                    {% endif %}
+                </ul>
+                <p>{{ ticket.description }}</p>
+            </article>
+            <hr />
+            <article>
+                <h3>Coordonnées du client</h3>
+                <ul>
+                    <li>{{ ticket.fname }} {{ ticket.lname }}</li>
+                    {% if ticket.society != null %}
+                    <li>{{ ticket.society }}</li>
+                    {% endif %}
+                    <li>
+                        {{ ticket.adress1 }}<br/>
+                        {% if ticket.adress2 != null %}{{ ticket.adress2 }}<br />{% endif %}
+                        {{ ticket.postcode }} {{ ticket.city }} - {{ ticket.country }}
+                    </li>
+                    <li>
+                        {{ ticket.phone1 }}
+                        {% if ticket.phone2 != null %} - {{ ticket.phone2 }}{% endif %}
+                    </li>
+                    <li>{{ ticket.mailadress }}</li>
+                </ul>
+            </article>
+            <hr />
+            <article>
+                <h3>Mettre à jour le status de la demande</h3>
+                {{ form_start(form) }}
+                <p>{{ form_widget(form.status,  {
+                    'value': ticket.repairstatus
+                }) }}</p>
+                {{ form_end(form) }}
+            </article>
+        </section>
+
+{% endblock %}
