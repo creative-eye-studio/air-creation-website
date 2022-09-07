@@ -60,7 +60,7 @@ class WebAssistPageController extends AbstractController
             $savManager->setInvoiceNumber($numberInvoice);
             $savManager->setGuarantee($guarantee);
             $savManager->setDescription($description);
-            $savManager->setTicketNumber(bin2hex(random_bytes(6)));
+            $savManager->setTicketNumber(bin2hex(random_bytes(3)));
             $savManager->setRepairStatus(0);
 
             $entityManager = $doctrine->getManager();

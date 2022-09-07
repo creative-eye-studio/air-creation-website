@@ -8,12 +8,14 @@
     <h2>Service après-vente</h2>
     <ul class="tabs-btn tabs">
         <li><a class="tab active">FAQ</a></li>
+        <li><a class="tab">Demandes envoyées</a></li>
         <li><a class="tab">Demandes en cours</a></li>
         <li><a class="tab">Demandes finalisées</a></li>
         <li><a class="tab">Demandes annulées</a></li>
     </ul>
 
     <div class="tab-panes">
+
         <article class="tab-pane active">
             <a class="btn-link float-right" href="{{ path('app_admin_sav_manager_add_question') }}">Ajouter une question</a>
             <h3>FAQ</h3>
@@ -28,36 +30,67 @@
             </div>
             {% endfor %}
         </article>
+
+        <article class="tab-pane">
+            <h3>Demandes envoyées</h3>
+            {% for request in requestsSended %}
+                <div class="line">
+                    <p> 
+                        {{ request.ticketnumber}}<br/>
+                        {{ request.lname }} {{ request.fname }}
+                    </p>
+                    <ul>
+                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </article>
+
         <article class="tab-pane">
             <h3>Demandes en cours</h3>
-            <div class="line">
-                <p>Accueil</p>
-                <ul>
-                    <li><a href="" target="_blank" rel="noopener">Voir</a></li>
-                    <li><a href="">Modifier</a></li>
-                </ul>
-            </div>
+            {% for request in requestsInProgress %}
+                <div class="line">
+                    <p> 
+                        {{ request.ticketnumber}}<br/>
+                        {{ request.lname }} {{ request.fname }}
+                    </p>
+                    <ul>
+                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                    </ul>
+                </div>
+            {% endfor %}
         </article>
+
         <article class="tab-pane">
             <h3>Demandes finalisées</h3>
-            <div class="line">
-                <p>Accueil</p>
-                <ul>
-                    <li><a href="" target="_blank" rel="noopener">Voir</a></li>
-                    <li><a href="">Modifier</a></li>
-                </ul>
-            </div>
+            {% for request in requestsValidated %}
+                <div class="line">
+                    <p> 
+                        {{ request.ticketnumber}}<br/>
+                        {{ request.lname }} {{ request.fname }}
+                    </p>
+                    <ul>
+                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                    </ul>
+                </div>
+            {% endfor %}
         </article>
+
         <article class="tab-pane">
             <h3>Demandes annulées</h3>
-            <div class="line">
-                <p>Accueil</p>
-                <ul>
-                    <li><a href="" target="_blank" rel="noopener">Voir</a></li>
-                    <li><a href="/admin/pages/modifier/accueil">Modifier</a></li>
-                </ul>
-            </div>
+            {% for request in requestsCanceled %}
+                <div class="line">
+                    <p> 
+                        {{ request.ticketnumber}}<br/>
+                        {{ request.lname }} {{ request.fname }}
+                    </p>
+                    <ul>
+                        <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                    </ul>
+                </div>
+            {% endfor %}
         </article>
+
     </div>
 </section>
 

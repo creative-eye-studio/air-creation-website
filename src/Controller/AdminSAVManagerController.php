@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\FAQList;
+use App\Entity\SAVManager;
 use App\Form\FAQManagerFormType;
 use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
@@ -21,10 +22,18 @@ class AdminSAVManagerController extends AbstractController
     {
         $entityManager = $doctrine->getManager();
         $faqList = $entityManager->getRepository(FAQList::class)->findAll();
+        $requestsSended = $entityManager->getRepository(SAVManager::class)->findBy(['repair_status' => 0]);
+        $requestsInProgress = $entityManager->getRepository(SAVManager::class)->findBy(['repair_status' => 1]);
+        $requestsValidated = $entityManager->getRepository(SAVManager::class)->findBy(['repair_status' => 2]);
+        $requestsCanceled = $entityManager->getRepository(SAVManager::class)->findBy(['repair_status' => 3]);
 
         return $this->render('admin_sav_manager/index.html.twig', [
             'controller_name' => 'AdminSAVManagerController',
             'faqList' => $faqList,
+            'requestsSended' => $requestsSended,
+            'requestsInProgress' => $requestsInProgress,
+            'requestsValidated' => $requestsValidated,
+            'requestsCanceled' => $requestsCanceled,
         ]);
     }
 
