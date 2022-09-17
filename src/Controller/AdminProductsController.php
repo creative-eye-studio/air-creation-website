@@ -10,6 +10,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminProductsController extends AbstractController
 {
+    // LISTE DES PRODUITS
+    //-----------------------------------------------------
     #[Route('/admin/products', name: 'app_admin_products')]
     public function index(): Response
     {
@@ -18,6 +20,8 @@ class AdminProductsController extends AbstractController
         ]);
     }
 
+    // AJOUTER UN PRODUIT
+    //-----------------------------------------------------
     #[Route('/admin/products/ajouter', name: 'app_admin_products_add')]
     public function AddProduct(Request $request): Response
     {
