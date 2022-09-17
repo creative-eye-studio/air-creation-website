@@ -6,13 +6,16 @@
     <section class="block">
         <a class="btn-link float-right" href="{{ path('app_admin_products_add') }}">Créer un produit</a>
         <h2>Liste des produits</h2>
-        <div class="line">
-            <p>Nom du produit</p>
-            <ul>
-                <li><a href="" target="_blank" rel="noopener">Voir</a></li>
-                <li><a href="">Modifier</a></li>
-                <li><a href="">Supprimer</a></li>
-            </ul>
-        </div>
+        {% for product in products %}
+            <div class="line">
+                <p>{{ product.productname }}</p>
+                <ul>
+                    <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                    <li><a href="">Modifier</a></li>
+                    <li><a href="{{ path('app_admin_products_delete', {product_id: product.id}) }}">Supprimer</a></li>
+                </ul>
+            </div>
+        {% endfor %}
+        
     </section>
 {% endblock %}

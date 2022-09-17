@@ -8,11 +8,11 @@ use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-    
 
 
 class ProductForm extends AbstractController
 {
+    public $folderPath = "../templates/webpages/products/";
 
     // Initialisation du formulaire
     // --------------------------------------------
@@ -24,9 +24,8 @@ class ProductForm extends AbstractController
 
     // Création d'un produit
     // --------------------------------------------
-    public function createProduct(ManagerRegistry $doctrine, Request $request){
+    public function createProduct(ManagerRegistry $doctrine, Request $request, $folderId){
         $slugify = new Slugify();
-        $folderId = bin2hex(random_bytes(5));
         $productForm = $this->initForm($request);
 
         if ($productForm->isSubmitted() && $productForm->isValid()) {
@@ -51,16 +50,25 @@ class ProductForm extends AbstractController
             $this->addTab($folderId, 'desc', $productLongDesc);
             $this->addTab($folderId, 'carac', $productCarac);
             $this->addTab($folderId, 'pics', $productCarac);
+
+            // Redirection vers la page crée
+            return $this->redirectToRoute('app_admin_products_update', ['id' => $product->getId()]);
         }
 
         return $productForm;
     }
 
+    // Mise à jour d'un produit
+    // --------------------------------------------
+    public function updateProduct(){
+
+    }
+
     // Suppression d'un produit
     // --------------------------------------------
-    public function deleteProduct(ManagerRegistry $doctrine, $product_id){
+    public function deleteProduct(ManagerRegistry $doctrine, String $id){
         $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(Products::class)->findOneBy(['post_id' => $product_id]);
+        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $id]);
         
         if(!$product) {
             throw $this->createNotFoundException(
@@ -68,10 +76,15 @@ class ProductForm extends AbstractController
             );
         }
 
-        $this->removeTab($product->getFolderId(), 'intro');
-        $this->removeTab($product->getFolderId(), 'desc');
-        $this->removeTab($product->getFolderId(), 'carac');
-        $this->removeTab($product->getFolderId(), 'pics');
+        $this->removeTab($product->getProductFolderId(), 'intro');
+        $this->removeTab($product->getProductFolderId(), 'desc');
+        $this->removeTab($product->getProductFolderId(), 'carac');
+        $this->removeTab($product->getProductFolderId(), 'pics');
+
+        rmdir($this->folderPath . "/" . $product->getProductFolderId());
+
+        $entityManager->remove($product);
+        $entityManager->flush();
     }
 
     // Manipulation de la Database
@@ -99,7 +112,7 @@ class ProductForm extends AbstractController
         if (!file_exists($folderPath)){
             mkdir($folderPath, 0777, true);
         }
-        $file = fopen($folderPath . "/" . $folderId . "-" . $tabCat . ".html.twig", 'w');
+        $file = fopen($this->folderPath . "/" . $folderId . "/" . $folderId . "-" . $tabCat . ".html.twig", 'w');
         fwrite($file, $tabContent);
         fclose($file);
     }
@@ -107,7 +120,7 @@ class ProductForm extends AbstractController
     // Suppression d'un fichier d'onglet
     // --------------------------------------------
     public function removeTab($folderId, $tabCat){
-        $folderPath = "../templates/webpages/products/" . $folderId;
-        unlink($folderPath . "/" . $folderId . "-" . $tabCat . ".html.twig");
+        unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-" . $tabCat . ".html.twig");
+        
     }
 }
