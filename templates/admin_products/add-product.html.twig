@@ -12,6 +12,7 @@
             <li><a class="tab">Description</a></li>
             <li><a class="tab">Caractéristiques</a></li>
             <li><a class="tab">Galerie d'images</a></li>
+            <li><a class="tab">SEO</a></li>
         </ul>
         <p>
             <em>* Champs obligatoires</em>
@@ -29,15 +30,14 @@
                 {{ form_widget(form.product_doc_url) }}</p>
             </div>
 
-            <!-- Coloris et accessoires -->
+            <!-- Coloris -->
             <div id="#coloris" class="tab-pane">
-                <p>{{ form_label(form.product_colors) }}<br />
-                {{ form_widget(form.product_colors) }}</p>
+                
             </div>
 
+            <!-- Accessoires -->
             <div id="#accessoires" class="tab-pane">
-                <p>{{ form_label(form.product_accessoiries) }}<br />
-                {{ form_widget(form.product_accessoiries) }}</p>
+                
             </div>
 
             <!-- Description -->
@@ -54,9 +54,16 @@
 
             <!-- Galerie d'images -->
             <div id="#images" class="tab-pane">
-                <p>{{ form_label(form.product_images) }}<br />
-                {{ form_widget(form.product_images) }}</p>
             </div>
+
+            <!-- SEO -->
+            <div id="#images" class="tab-pane">
+                <p>{{ form_label(form.product_meta_title) }}<br />
+                {{ form_widget(form.product_meta_title) }}</p>
+                <p>{{ form_label(form.product_meta_desc) }}<br />
+                {{ form_widget(form.product_meta_desc) }}</p>
+            </div>
+
             <p>{{ form_widget(form.product_submit) }}</p>
         {{ form_end(form) }}
     </section>

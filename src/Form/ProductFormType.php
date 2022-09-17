@@ -5,10 +5,9 @@ namespace App\Form;
 use App\Entity\Products;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ColorType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -32,28 +31,18 @@ class ProductFormType extends AbstractType
                 'label' => 'Lien vers la documentation',
                 'required' => false
             ])
-            ->add('product_colors', FileType::class, [
-                'label' => 'Coloris',
-                'multiple' => true,
-                'data_class' => null,
-                'required' => false
-            ])
-            ->add('product_accessoiries', FileType::class, [
-                'label' => 'Accessoires',
-                'multiple' => true,
-                'data_class' => null,
-                'required' => false
-            ])
             ->add('product_long_desc', CKEditorType::class, [
                 'label' => 'Présentation détaillée du produit *'
             ])
             ->add('product_carac', CKEditorType::class, [
                 'label' => 'Caractéristiques du produit (Utiliser le tableau pour la mise en page) *',
             ])
-            ->add('product_images', FileType::class, [
-                'label' => 'Images du produit',
-                'multiple' => true,
-                'data_class' => null,
+            ->add('product_meta_title', TextType::class, [
+                'label' => 'Meta title du produit',
+                'required' => false
+            ])
+            ->add('product_meta_desc', TextareaType::class, [
+                'label' => 'Meta desc du produit',
                 'required' => false
             ])
             ->add('product_submit', SubmitType::class, [
@@ -65,7 +54,6 @@ class ProductFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Products::class,
         ]);
     }
 }

@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Form\ProductFormType;
+use App\Service\ProductForm;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,18 +21,15 @@ class AdminProductsController extends AbstractController
         ]);
     }
 
+
+
     // AJOUTER UN PRODUIT
     //-----------------------------------------------------
     #[Route('/admin/products/ajouter', name: 'app_admin_products_add')]
-    public function AddProduct(Request $request): Response
+    public function AddProduct(ProductForm $productForm, ManagerRegistry $doctrine, Request $request): Response
     {
-        $form = $this->createForm(ProductFormType::class);
-        $form->handleRequest($request);
+        $form = $productForm->createProduct($doctrine, $request);
         
-        if ($form->isSubmitted() && $form->isValid()) { 
-            
-        }
-
         return $this->render('admin_products/add-product.html.twig', [
             'form' => $form->createView(),
             'controller_name' => 'AdminProductsController',

@@ -37,8 +37,6 @@ class AdminPostsController extends AbstractController
             // Récupération des données du formulaire
             $slugify = new Slugify();
             $data = $form->getData();
-            $slugify = new Slugify();
-            $data = $form->getData();
             $postName = $data['page_name'];
             $postUrl = $data['page_url'];
             $postId = $slugify->slugify($postName);

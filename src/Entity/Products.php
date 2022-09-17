@@ -17,26 +17,23 @@ class Products
     #[ORM\Column(length: 255)]
     private ?string $product_name = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $product_desc = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $product_shop_url = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $product_doc_url = null;
 
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $product_colors = [];
+    #[ORM\Column(length: 255)]
+    private ?string $product_url = null;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private array $product_accessories = [];
-
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $product_long_desc = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_meta_title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $product_carac = null;
+    private ?string $product_meta_desc = null;
+
+    #[ORM\Column]
+    private ?string $product_folder_id = null;
 
     public function getId(): ?int
     {
@@ -51,18 +48,6 @@ class Products
     public function setProductName(string $product_name): self
     {
         $this->product_name = $product_name;
-
-        return $this;
-    }
-
-    public function getProductDesc(): ?string
-    {
-        return $this->product_desc;
-    }
-
-    public function setProductDesc(string $product_desc): self
-    {
-        $this->product_desc = $product_desc;
 
         return $this;
     }
@@ -91,50 +76,50 @@ class Products
         return $this;
     }
 
-    public function getProductColors(): array
+    public function getProductUrl(): ?string
     {
-        return $this->product_colors;
+        return $this->product_url;
     }
 
-    public function setProductColors(array $product_colors): self
+    public function setProductUrl(string $product_url): self
     {
-        $this->product_colors = $product_colors;
+        $this->product_url = $product_url;
 
         return $this;
     }
 
-    public function getProductAccessories(): array
+    public function getProductMetaTitle(): ?string
     {
-        return $this->product_accessories;
+        return $this->product_meta_title;
     }
 
-    public function setProductAccessories(?array $product_accessories): self
+    public function setProductMetaTitle(?string $product_meta_title): self
     {
-        $this->product_accessories = $product_accessories;
+        $this->product_meta_title = $product_meta_title;
 
         return $this;
     }
 
-    public function getProductLongDesc(): ?string
+    public function getProductMetaDesc(): ?string
     {
-        return $this->product_long_desc;
+        return $this->product_meta_desc;
     }
 
-    public function setProductLongDesc(string $product_long_desc): self
+    public function setProductMetaDesc(?string $product_meta_desc): self
     {
-        $this->product_long_desc = $product_long_desc;
+        $this->product_meta_desc = $product_meta_desc;
 
         return $this;
     }
 
-    public function getProductCarac(): ?string
+    public function getProductFolderId(): ?string
     {
-        return $this->product_carac;
+        return $this->product_folder_id;
     }
 
-    public function setProductCarac(?string $product_carac): self
+    public function setProductFolderId(?string $product_folder_id): self
     {
-        $this->product_carac = $product_carac;
+        $this->product_folder_id = $product_folder_id;
 
         return $this;
     }
