@@ -21,13 +21,24 @@
             <!-- Résumé -->
             <div id="#resume" class="tab-pane active">
                 <p>{{ form_label(form.product_name) }}<br />
-                {{ form_widget(form.product_name) }}</p>
+                {{ form_widget(form.product_name,  {
+                    'value': productName
+                }) }}</p>
+
                 <p>{{ form_label(form.product_desc) }}<br />
-                {{ form_widget(form.product_desc) }}</p>
+                {{ form_widget(form.product_desc,  {
+                    'value': productIntroFile
+                }) }}</p>
+
                 <p>{{ form_label(form.product_shop_url) }}<br />
-                {{ form_widget(form.product_shop_url) }}</p>
+                {{ form_widget(form.product_shop_url,  {
+                    'value': productShopUrl
+                }) }}</p>
+
                 <p>{{ form_label(form.product_doc_url) }}<br />
-                {{ form_widget(form.product_doc_url) }}</p>
+                {{ form_widget(form.product_doc_url,  {
+                    'value': productDocUrl
+                }) }}</p>
             </div>
 
             <!-- Coloris -->
@@ -43,13 +54,17 @@
             <!-- Description -->
             <div id="#description" class="tab-pane">
                 <p>{{ form_label(form.product_long_desc) }}<br />
-                {{ form_widget(form.product_long_desc) }}</p>
+                {{ form_widget(form.product_long_desc,  {
+                    'value': productDescFile
+                }) }}</p>
             </div>
 
             <!-- Caractéristiques -->
             <div id="#caracteristiques" class="tab-pane">
                 <p>{{ form_label(form.product_carac) }}<br />
-                {{ form_widget(form.product_carac) }}</p>
+                {{ form_widget(form.product_carac,  {
+                    'value': productCaracFile
+                }) }}</p>
             </div>
 
             <!-- Galerie d'images -->
@@ -57,11 +72,16 @@
             </div>
 
             <!-- SEO -->
-            <div id="#images" class="tab-pane">
+            <div id="#seo" class="tab-pane">
                 <p>{{ form_label(form.product_meta_title) }}<br />
-                {{ form_widget(form.product_meta_title) }}</p>
+                {{ form_widget(form.product_meta_title,  {
+                    'value': productMetaTitle
+                }) }}</p>
+
                 <p>{{ form_label(form.product_meta_desc) }}<br />
-                {{ form_widget(form.product_meta_desc) }}</p>
+                {{ form_widget(form.product_meta_desc,  {
+                    'value': productMetaDesc
+                }) }}</p>
             </div>
 
             <p>{{ form_widget(form.product_submit) }}</p>

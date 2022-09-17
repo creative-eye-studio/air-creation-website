@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Entity\Products;
 use App\Form\ProductFormType;
-use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,10 +33,7 @@ class ProductForm extends AbstractController
             );
         }
 
-        $this->removeTab($product->getProductFolderId(), 'intro');
-        $this->removeTab($product->getProductFolderId(), 'desc');
-        $this->removeTab($product->getProductFolderId(), 'carac');
-        $this->removeTab($product->getProductFolderId(), 'pics');
+        $this->removeTab($product->getProductFolderId());
 
         rmdir($this->folderPath . "/" . $product->getProductFolderId());
 
@@ -77,8 +73,10 @@ class ProductForm extends AbstractController
 
     // Suppression d'un fichier d'onglet
     // --------------------------------------------
-    public function removeTab($folderId, $tabCat){
-        unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-" . $tabCat . ".html.twig");
-        
+    public function removeTab($folderId){
+        unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-intro.html.twig");
+        unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-desc.html.twig");
+        unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-carac.html.twig");
+        unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-pics.html.twig");
     }
 }

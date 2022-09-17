@@ -31,7 +31,7 @@ class AdminProductsController extends AbstractController
 
     // AJOUTER UN PRODUIT
     //-----------------------------------------------------
-    #[Route('/admin/products/ajouter', name: 'app_admin_products_add')]
+    #[Route('/admin/products/add', name: 'app_admin_products_add')]
     public function AddProduct(ProductForm $productForm, ManagerRegistry $doctrine, Request $request)
     {
         $slugify = new Slugify();
@@ -50,10 +50,9 @@ class AdminProductsController extends AbstractController
             $productMetaDesc = $data['product_meta_desc'];
 
             $product = new Products();
-            $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
             $product->setProductFolderId($folderId);
             $product->setProductUrl($slugify->slugify($productName));
-
+            $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
             $productForm->entityFunction($doctrine, $product);
 
             $productForm->addTab($folderId, 'intro', $productDesc);
@@ -75,12 +74,59 @@ class AdminProductsController extends AbstractController
 
     // MODIFIER UN PRODUIT
     //-----------------------------------------------------
-    #[Route('/admin/products/modifier/{product_id}', name: 'app_admin_products_update')]
+    #[Route('/admin/products/update/{product_id}', name: 'app_admin_products_update')]
     public function UpdateProduct(ProductForm $productForm, ManagerRegistry $doctrine, Request $request, $product_id) {
         $form = $productForm->initForm($request);
+
+        $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
+        
+        if(!$product) {
+            throw $this->createNotFoundException(
+                "Aucune post n'a été trouvé"
+            );
+        }
+
+        $productIntroFile = file_get_contents("../templates/webpages/products/" . $product->getProductFolderId() . "/" . $product->getProductFolderId() . "-intro.html.twig");
+        $productDescFile = file_get_contents("../templates/webpages/products/" . $product->getProductFolderId() . "/" . $product->getProductFolderId() . "-desc.html.twig");
+        $productCaracFile = file_get_contents("../templates/webpages/products/" . $product->getProductFolderId() . "/" . $product->getProductFolderId() . "-carac.html.twig");
+        $productPics = file_get_contents("../templates/webpages/products/" . $product->getProductFolderId() . "/" . $product->getProductFolderId() . "-pics.html.twig");
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $productName = $data['product_name'];
+            $productDesc = $data['product_desc'];
+            $productShopUrl = $data['product_shop_url'];
+            $productDocUrl = $data['product_doc_url'];
+            $productLongDesc = $data['product_long_desc'];
+            $productCarac = $data['product_carac'];
+            $productMetaTitle = $data['product_meta_title'];
+            $productMetaDesc = $data['product_meta_desc'];
+
+            $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
+            $productForm->entityFunction($doctrine, $product);
+            $productForm->removeTab($product->getProductFolderId());
+
+            $productForm->addTab($product->getProductFolderId(), 'intro', $productDesc);
+            $productForm->addTab($product->getProductFolderId(), 'desc', $productLongDesc);
+            $productForm->addTab($product->getProductFolderId(), 'carac', $productCarac);
+            $productForm->addTab($product->getProductFolderId(), 'pics', $productCarac);
+
+            // Redirection vers la page crée
+            return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
+        }
         
         return $this->render('admin_products/update-product.html.twig', [
             'form' => $form->createView(),
+            'productName' => $product->getProductName(),
+            'productIntroFile' => $productIntroFile,
+            'productShopUrl' => $product->getProductShopUrl(),
+            'productDocUrl' => $product->getProductDocUrl(),
+            'productDescFile' => $productDescFile,
+            'productCaracFile' => $productCaracFile,
+            'productPics' => $productPics,
+            'productMetaTitle' => $product->getProductMetaTitle(),
+            'productMetaDesc' => $product->getProductMetaDesc(),
             'controller_name' => 'AdminProductsController',
         ]);
     }
@@ -89,7 +135,7 @@ class AdminProductsController extends AbstractController
 
     // SUPPRIMER UN PRODUIT
     //-----------------------------------------------------
-    #[Route('/admin/products/supprimer/{product_id}', name: 'app_admin_products_delete')]
+    #[Route('/admin/products/delete/{product_id}', name: 'app_admin_products_delete')]
     public function DeleteProduct(ProductForm $productForm, ManagerRegistry $doctrine, $product_id){
         $productForm->deleteProduct($doctrine, $product_id);
 
