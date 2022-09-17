@@ -22,48 +22,6 @@ class ProductForm extends AbstractController
         return $productForm;
     }
 
-    // Création d'un produit
-    // --------------------------------------------
-    public function createProduct(ManagerRegistry $doctrine, Request $request, $folderId){
-        $slugify = new Slugify();
-        $productForm = $this->initForm($request);
-
-        if ($productForm->isSubmitted() && $productForm->isValid()) {
-            $data = $productForm->getData();
-            $productName = $data['product_name'];
-            $productDesc = $data['product_desc'];
-            $productShopUrl = $data['product_shop_url'];
-            $productDocUrl = $data['product_doc_url'];
-            $productLongDesc = $data['product_long_desc'];
-            $productCarac = $data['product_carac'];
-            $productMetaTitle = $data['product_meta_title'];
-            $productMetaDesc = $data['product_meta_desc'];
-
-            $product = new Products();
-            $this->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
-            $product->setProductFolderId($folderId);
-            $product->setProductUrl($slugify->slugify($productName));
-
-            $this->entityFunction($doctrine, $product);
-
-            $this->addTab($folderId, 'intro', $productDesc);
-            $this->addTab($folderId, 'desc', $productLongDesc);
-            $this->addTab($folderId, 'carac', $productCarac);
-            $this->addTab($folderId, 'pics', $productCarac);
-
-            // Redirection vers la page crée
-            return $this->redirectToRoute('app_admin_products_update', ['id' => $product->getId()]);
-        }
-
-        return $productForm;
-    }
-
-    // Mise à jour d'un produit
-    // --------------------------------------------
-    public function updateProduct(){
-
-    }
-
     // Suppression d'un produit
     // --------------------------------------------
     public function deleteProduct(ManagerRegistry $doctrine, String $id){
