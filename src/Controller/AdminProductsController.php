@@ -96,7 +96,6 @@ class AdminProductsController extends AbstractController
         $productIntroFile = file_get_contents("../templates/webpages/products/" . $product->getProductFolderId() . "/" . $product->getProductFolderId() . "-intro.html.twig");
         $productDescFile = file_get_contents("../templates/webpages/products/" . $product->getProductFolderId() . "/" . $product->getProductFolderId() . "-desc.html.twig");
         $productCaracFile = file_get_contents("../templates/webpages/products/" . $product->getProductFolderId() . "/" . $product->getProductFolderId() . "-carac.html.twig");
-        $productPics = file_get_contents("../templates/webpages/products/" . $product->getProductFolderId() . "/" . $product->getProductFolderId() . "-pics.html.twig");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
