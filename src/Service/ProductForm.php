@@ -24,21 +24,7 @@ class ProductForm extends AbstractController
     // Suppression d'un produit
     // --------------------------------------------
     public function deleteProduct(ManagerRegistry $doctrine, String $id){
-        $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $id]);
         
-        if(!$product) {
-            throw $this->createNotFoundException(
-                "Aucune post n'a été trouvé"
-            );
-        }
-
-        $this->removeTab($product->getProductFolderId());
-
-        rmdir($this->folderPath . "/" . $product->getProductFolderId());
-
-        $entityManager->remove($product);
-        $entityManager->flush();
     }
 
     // Manipulation de la Database
@@ -71,12 +57,19 @@ class ProductForm extends AbstractController
         fclose($file);
     }
 
-    // Suppression d'un fichier d'onglet
+    // Ajout des onglets d'informations
+    // --------------------------------------------
+    public function createProductTabs($folderId, $productDesc, $productlongDesc, $productCarac){
+        $this->addTab($folderId, 'intro', $productDesc);
+        $this->addTab($folderId, 'desc', $productlongDesc);
+        $this->addTab($folderId, 'carac', $productCarac);
+    }
+
+    // Suppression des onglets d'informations
     // --------------------------------------------
     public function removeTab($folderId){
         unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-intro.html.twig");
         unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-desc.html.twig");
         unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-carac.html.twig");
-        unlink($this->folderPath . "/" . $folderId . "/" . $folderId . "-pics.html.twig");
     }
 }

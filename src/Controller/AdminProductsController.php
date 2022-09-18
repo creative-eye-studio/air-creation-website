@@ -55,14 +55,13 @@ class AdminProductsController extends AbstractController
             $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
             $productForm->entityFunction($doctrine, $product);
 
-            $productForm->addTab($folderId, 'intro', $productDesc);
-            $productForm->addTab($folderId, 'desc', $productLongDesc);
-            $productForm->addTab($folderId, 'carac', $productCarac);
-            $productForm->addTab($folderId, 'pics', $productCarac);
+            $productForm->createProductTabs($folderId, $productDesc, $productLongDesc, $productCarac);
+
             if (!file_exists('./uploads/images/produits/' . $folderId)) {
                 mkdir('./uploads/images/produits/' . $folderId, 0777, true);
                 mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
                 mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/images', 0777, true);
             }
             
 
@@ -111,11 +110,7 @@ class AdminProductsController extends AbstractController
             $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
             $productForm->entityFunction($doctrine, $product);
             $productForm->removeTab($product->getProductFolderId());
-
-            $productForm->addTab($product->getProductFolderId(), 'intro', $productDesc);
-            $productForm->addTab($product->getProductFolderId(), 'desc', $productLongDesc);
-            $productForm->addTab($product->getProductFolderId(), 'carac', $productCarac);
-            $productForm->addTab($product->getProductFolderId(), 'pics', $productCarac);
+            $productForm->createProductTabs($product->getProductFolderId(), $productDesc, $productLongDesc, $productCarac);
 
             // Redirection vers la page crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
@@ -142,7 +137,19 @@ class AdminProductsController extends AbstractController
     //-----------------------------------------------------
     #[Route('/admin/products/delete/{product_id}', name: 'app_admin_products_delete')]
     public function DeleteProduct(ProductForm $productForm, ManagerRegistry $doctrine, $product_id){
-        $productForm->deleteProduct($doctrine, $product_id);
+        $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
+        
+        if(!$product) {
+            throw $this->createNotFoundException(
+                "Aucune post n'a été trouvé"
+            );
+        }
+
+        $productForm->removeTab($product->getProductFolderId());
+        rmdir($this->folderPath . "/" . $product->getProductFolderId());
+        $entityManager->remove($product);
+        $entityManager->flush();
 
         // Redirection vers la liste des produits
         return $this->redirectToRoute('app_admin_products');
