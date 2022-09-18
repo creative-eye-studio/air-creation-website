@@ -47,11 +47,11 @@ class AdminProductsController extends AbstractController
             $productCarac = $data['product_carac'];
             $productMetaTitle = $data['product_meta_title'];
             $productMetaDesc = $data['product_meta_desc'];
-            $folderId = $slugify->slugify($productName);
+            $folderId = $slugify->slugify($productName) . '-'. bin2hex(random_bytes(4));
 
             $product = new Products();
             $product->setProductFolderId($folderId);
-            $product->setProductUrl($slugify->slugify($productName) . '-'. bin2hex(random_bytes(4)));
+            $product->setProductUrl($slugify->slugify($productName));
             $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
             $productForm->entityFunction($doctrine, $product);
 
