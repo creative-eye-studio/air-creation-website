@@ -59,10 +59,12 @@ class AdminProductsController extends AbstractController
             $productForm->addTab($folderId, 'desc', $productLongDesc);
             $productForm->addTab($folderId, 'carac', $productCarac);
             $productForm->addTab($folderId, 'pics', $productCarac);
-
-            mkdir('./uploads/images/produits/' . $folderId, 0777, true);
-            mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
-            mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
+            if (!file_exists('./uploads/images/produits/' . $folderId)) {
+                mkdir('./uploads/images/produits/' . $folderId, 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
+            }
+            
 
             // Redirection vers la page crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
