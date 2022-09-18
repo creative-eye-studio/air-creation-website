@@ -7,8 +7,7 @@
         <h2>Ajouter un nouveau produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Résumé</a></li>
-            <li><a class="tab">Coloris</a></li>
-            <li><a class="tab">Accessoires</a></li>
+            <li><a class="tab">Coloris et accessoires</a></li>
             <li><a class="tab">Description</a></li>
             <li><a class="tab">Caractéristiques</a></li>
             <li><a class="tab">Galerie d'images</a></li>
@@ -41,14 +40,15 @@
                 }) }}</p>
             </div>
 
-            <!-- Coloris -->
+            <!-- Coloris et accessoires -->
             <div id="#coloris" class="tab-pane">
-                
-            </div>
-
-            <!-- Accessoires -->
-            <div id="#accessoires" class="tab-pane">
-                
+                <p>Le dossier Image du produit se nomme {{ productFolderId }}</p>
+                <iframe id="inlineFrameExample"
+                    title="Inline Frame Example"
+                    width="100%"
+                    height="400"
+                    src="/manager/?conf=default">
+                </iframe>
             </div>
 
             <!-- Description -->

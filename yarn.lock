@@ -3042,6 +3042,11 @@
   dependencies:
     "schema-utils" "^4.0.0"
 
+"mini-file-manager@^2.1.1":
+  "integrity" "sha512-9ghUooX027vZUlzho03589J+0oSg0/sib3xp6Fm20pcK/WIHaWP6Mo2Zf1g6L0JZIM6ZEiz3/Xgphcxll4D0Ww=="
+  "resolved" "https://registry.npmjs.org/mini-file-manager/-/mini-file-manager-2.1.1.tgz"
+  "version" "2.1.1"
+
 "minimalistic-assert@^1.0.0":
   "integrity" "sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A=="
   "resolved" "https://registry.npmjs.org/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz"
@@ -4287,7 +4292,7 @@
     "escalade" "^3.1.1"
     "picocolors" "^1.0.0"
 
-"upload-js@^1.44.3":
+"upload-js@^1.48.21":
   "integrity" "sha512-5D7YU0wbQLZPdvypxHBRJ8OeuFkyMXTYMna+U88Xi0BZRgoSRhqvyoDfsSGwq2m0vMcGFC7gC/bHrnMztJBkUA=="
   "resolved" "https://registry.npmjs.org/upload-js/-/upload-js-1.48.21.tgz"
   "version" "1.48.21"
@@ -4295,14 +4300,14 @@
     "@upload-io/upload-api-client-upload-js" "1.13.0"
     "progress-smoother" "1.3.0"
 
-"uploader@^1.46.0":
-  "integrity" "sha512-7QCqoiWMF73WicPsrac1AYXTxDBnghMO4vgh7wXyCF0Qn9yQ8nL05MLO+9XFTCQWSEfeFsrEWo19Pr3CFae/0w=="
-  "resolved" "https://registry.npmjs.org/uploader/-/uploader-1.46.0.tgz"
-  "version" "1.46.0"
+"uploader@^1.48.0":
+  "integrity" "sha512-7eMcOyJth90NGEiUyLOaD/lhJ6DvN3e/7n622YoJTB5my05UqJpBAgEzM/cMPf9mQ9E9ngTcrApjiu5MIBVvPA=="
+  "resolved" "https://registry.npmjs.org/uploader/-/uploader-1.48.0.tgz"
+  "version" "1.48.0"
   dependencies:
     "classnames" "^2.2.6"
     "preact" "^10.6.5"
-    "upload-js" "^1.44.3"
+    "upload-js" "^1.48.21"
 
 "uri-js@^4.2.2":
   "integrity" "sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg=="

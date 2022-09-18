@@ -7,11 +7,8 @@
         <h2>Ajouter un nouveau produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Résumé</a></li>
-            <li><a class="tab">Coloris</a></li>
-            <li><a class="tab">Accessoires</a></li>
             <li><a class="tab">Description</a></li>
             <li><a class="tab">Caractéristiques</a></li>
-            <li><a class="tab">Galerie d'images</a></li>
             <li><a class="tab">SEO</a></li>
         </ul>
         <p>
@@ -30,16 +27,6 @@
                 {{ form_widget(form.product_doc_url) }}</p>
             </div>
 
-            <!-- Coloris -->
-            <div id="#coloris" class="tab-pane">
-                
-            </div>
-
-            <!-- Accessoires -->
-            <div id="#accessoires" class="tab-pane">
-                
-            </div>
-
             <!-- Description -->
             <div id="#description" class="tab-pane">
                 <p>{{ form_label(form.product_long_desc) }}<br />
@@ -50,10 +37,6 @@
             <div id="#caracteristiques" class="tab-pane">
                 <p>{{ form_label(form.product_carac) }}<br />
                 {{ form_widget(form.product_carac) }}</p>
-            </div>
-
-            <!-- Galerie d'images -->
-            <div id="#images" class="tab-pane">
             </div>
 
             <!-- SEO -->

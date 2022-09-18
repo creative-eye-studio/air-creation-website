@@ -23,7 +23,8 @@
     },
     "dependencies": {
         "dropzone": "^6.0.0-beta.2",
+        "mini-file-manager": "^2.1.1",
         "tabs": "^0.2.0",
-        "uploader": "^1.46.0"
+        "uploader": "^1.48.0"
     }
 }

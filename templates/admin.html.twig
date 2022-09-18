@@ -8,10 +8,6 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app-admin') }}
         {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app-admin') }}
-        {% endblock %}
     </head>
     <body>
         <header>
@@ -70,5 +66,9 @@
         <footer>
             <p>Conception et développement : Kévin R.</p>
         </footer>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app-admin') }}
+        {% endblock %}
     </body>
 </html>

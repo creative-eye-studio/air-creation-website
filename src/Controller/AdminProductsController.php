@@ -35,7 +35,6 @@ class AdminProductsController extends AbstractController
     public function AddProduct(ProductForm $productForm, ManagerRegistry $doctrine, Request $request)
     {
         $slugify = new Slugify();
-        $folderId = bin2hex(random_bytes(5));
         $form = $productForm->initForm($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -48,10 +47,11 @@ class AdminProductsController extends AbstractController
             $productCarac = $data['product_carac'];
             $productMetaTitle = $data['product_meta_title'];
             $productMetaDesc = $data['product_meta_desc'];
+            $folderId = $slugify->slugify($productName);
 
             $product = new Products();
             $product->setProductFolderId($folderId);
-            $product->setProductUrl($slugify->slugify($productName));
+            $product->setProductUrl($slugify->slugify($productName) . '-'. bin2hex(random_bytes(4)));
             $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
             $productForm->entityFunction($doctrine, $product);
 
@@ -59,6 +59,10 @@ class AdminProductsController extends AbstractController
             $productForm->addTab($folderId, 'desc', $productLongDesc);
             $productForm->addTab($folderId, 'carac', $productCarac);
             $productForm->addTab($folderId, 'pics', $productCarac);
+
+            mkdir('./uploads/images/produits/' . $folderId, 0777, true);
+            mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
+            mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
 
             // Redirection vers la page crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
@@ -118,13 +122,13 @@ class AdminProductsController extends AbstractController
         
         return $this->render('admin_products/update-product.html.twig', [
             'form' => $form->createView(),
+            'productFolderId' => $product->getProductFolderId(),
             'productName' => $product->getProductName(),
             'productIntroFile' => $productIntroFile,
             'productShopUrl' => $product->getProductShopUrl(),
             'productDocUrl' => $product->getProductDocUrl(),
             'productDescFile' => $productDescFile,
             'productCaracFile' => $productCaracFile,
-            'productPics' => $productPics,
             'productMetaTitle' => $product->getProductMetaTitle(),
             'productMetaDesc' => $product->getProductMetaDesc(),
             'controller_name' => 'AdminProductsController',

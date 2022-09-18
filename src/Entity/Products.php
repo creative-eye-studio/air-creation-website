@@ -32,7 +32,7 @@ class Products
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $product_meta_desc = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 255)]
     private ?string $product_folder_id = null;
 
     public function getId(): ?int
