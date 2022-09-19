@@ -47,23 +47,28 @@ class AdminProductsController extends AbstractController
             $productCarac = $data['product_carac'];
             $productMetaTitle = $data['product_meta_title'];
             $productMetaDesc = $data['product_meta_desc'];
-            $folderId = $slugify->slugify($productName) . '-'. bin2hex(random_bytes(4));
+            $folderId = $slugify->slugify($productName) . '-'. bin2hex(random_bytes(3));
 
+            // Création du produit dans la BDD
             $product = new Products();
             $product->setProductFolderId($folderId);
             $product->setProductUrl($slugify->slugify($productName));
             $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
             $productForm->entityFunction($doctrine, $product);
 
+            // Création des fichiers TWIG
             $productForm->createProductTabs($folderId, $productDesc, $productLongDesc, $productCarac);
 
+            // Création des fichiers Assets
             if (!file_exists('./uploads/images/produits/' . $folderId)) {
                 mkdir('./uploads/images/produits/' . $folderId, 0777, true);
                 mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
                 mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
                 mkdir('./uploads/images/produits/' . $folderId . '/images', 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/models-3d', 0777, true);
             }
-            
+
+            // Déploiement du modèle 3D
 
             // Redirection vers la page crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);

@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Products;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,6 +20,10 @@ class ProductFormType extends AbstractType
         $builder
             ->add('product_name', TextType::class, [
                 'label' => 'Nom du produit *' 
+            ])
+            ->add('product_3d_model', FileType::class, [
+                'label' => 'Modèle 3D',
+                'required' => false
             ])
             ->add('product_desc', CKEditorType::class, [
                 'label' => 'Courte description *'

@@ -19,6 +19,10 @@
             <div id="#resume" class="tab-pane active">
                 <p>{{ form_label(form.product_name) }}<br />
                 {{ form_widget(form.product_name) }}</p>
+                <p><label for="product_form_product_3d_model">Modèle 3D *</label><br />
+                {{ form_widget(form.product_3d_model, {
+                    required: true
+                }) }}</p>
                 <p>{{ form_label(form.product_desc) }}<br />
                 {{ form_widget(form.product_desc) }}</p>
                 <p>{{ form_label(form.product_shop_url) }}<br />

@@ -4,7 +4,7 @@
 
 {% block body %}
     <section class="block tab-container">
-        <h2>Ajouter un nouveau produit</h2>
+        <h2>Modifier un produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Résumé</a></li>
             <li><a class="tab">Coloris et accessoires</a></li>
@@ -23,6 +23,9 @@
                 {{ form_widget(form.product_name,  {
                     'value': productName
                 }) }}</p>
+
+                <p>{{ form_label(form.product_3d_model) }}<br />
+                {{ form_widget(form.product_3d_model) }}</p>
 
                 <p>{{ form_label(form.product_desc) }}<br />
                 {{ form_widget(form.product_desc,  {
@@ -69,6 +72,13 @@
 
             <!-- Galerie d'images -->
             <div id="#images" class="tab-pane">
+                <p>Le dossier Image du produit se nomme {{ productFolderId }}</p>
+                <iframe id="inlineFrameExample"
+                    title="Inline Frame Example"
+                    width="100%"
+                    height="400"
+                    src="/manager/?conf=default">
+                </iframe>
             </div>
 
             <!-- SEO -->
