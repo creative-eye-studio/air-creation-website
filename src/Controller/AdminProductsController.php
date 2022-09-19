@@ -152,7 +152,7 @@ class AdminProductsController extends AbstractController
         }
 
         $productForm->removeTab($product->getProductFolderId());
-        rmdir($this->folderPath . "/" . $product->getProductFolderId());
+        rmdir("../templates/webpages/products/" . $product->getProductFolderId());
         $entityManager->remove($product);
         $entityManager->flush();
 
