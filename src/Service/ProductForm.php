@@ -21,12 +21,6 @@ class ProductForm extends AbstractController
         return $productForm;
     }
 
-    // Suppression d'un produit
-    // --------------------------------------------
-    public function deleteProduct(ManagerRegistry $doctrine, String $id){
-        
-    }
-
     // Manipulation de la Database
     // --------------------------------------------
     public function manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc){
