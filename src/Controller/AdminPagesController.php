@@ -40,6 +40,7 @@ class AdminPagesController extends AbstractController
             $pageName = $data['page_name'];
             $pageUrl = $data['page_url'];
             $pageId = $slugify->slugify($pageName);
+            $pageModel = $data['page_model'];
             $pageContent = $data['page_content'];
             $pageMetaTitle = $data['page_meta_title'];
             $pageMetaDesc = $data['page_meta_desc'];
@@ -55,6 +56,7 @@ class AdminPagesController extends AbstractController
                 $page->setPageUrl($pageId);
             }
             $page->setPageId($pageId);
+            $page->setPageModel($pageModel);
             if ($pageMetaTitle != null) {
                 $page->setPageMetaTitle($pageMetaTitle);
             } else {
@@ -106,6 +108,7 @@ class AdminPagesController extends AbstractController
             $pageName = $data['page_name'];
             $pageUrl = $data['page_url'];
             $pageId = $page->getPageId();
+            $pageModel = $data['page_model'];
             $pageContent = $data['page_content'];
             $pageMetaTitle = $data['page_meta_title'];
             $pageMetaDesc = $data['page_meta_desc'];
@@ -119,6 +122,7 @@ class AdminPagesController extends AbstractController
             } else {
                 $page->setPageUrl($pageId);
             }
+            $page->setPageModel($pageModel);
             if ($pageMetaTitle != null) {
                 $page->setPageMetaTitle($pageMetaTitle);
             } else {
@@ -143,6 +147,7 @@ class AdminPagesController extends AbstractController
             'pageName' => $page->getPageName(),
             'pageUrl' => $page->getPageUrl(),
             'pageId' => $page->getPageId(),
+            'pageModel' => $page->getPageModel(),
             'pageContent' => $pageContent,
             'pageMetaTitle' => $page->getPageMetaTitle(),
             'pageMetaDesc' => $page->getPageMetaDesc(),

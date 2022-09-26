@@ -32,6 +32,9 @@ class PagesList
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $page_meta_desc = null;
 
+    #[ORM\Column]
+    private ?int $page_model = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class PagesList
     public function setPageMetaDesc(?string $page_meta_desc): self
     {
         $this->page_meta_desc = $page_meta_desc;
+
+        return $this;
+    }
+
+    public function getPageModel(): ?int
+    {
+        return $this->page_model;
+    }
+
+    public function setPageModel(int $page_model): self
+    {
+        $this->page_model = $page_model;
 
         return $this;
     }
