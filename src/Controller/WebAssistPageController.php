@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WebAssistPageController extends AbstractController
 {
-    #[Route('/fr/demande-assistance', name: 'app_web_assist_page')]
+    #[Route('/fr/demande-assistance', name: 'web_assist_page')]
     public function index(ManagerRegistry $doctrine, Request $request): Response
     {
         $form = $this->createForm(SAVManagerFormType::class);

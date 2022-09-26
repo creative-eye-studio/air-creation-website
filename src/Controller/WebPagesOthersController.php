@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\PagesList;
+use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,8 +11,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WebPagesOthersController extends AbstractController
 {
-    #[Route('/fr/{page_slug}', name: 'app_web_pages_others')]
-    public function index(ManagerRegistry $doctrine, string $page_slug): Response
+    #[Route('/fr/{page_slug}', name: 'web_pages')]
+    public function index(ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response
     {
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
 
