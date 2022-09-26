@@ -22,9 +22,14 @@ class WebPagesOthersController extends AbstractController
             );
         }
 
+        if($selected_page->getPageModel() == 1){
+            $products = $products_function->getProducts($doctrine);
+        }
+
         return $this->render('web_pages_others/index.html.twig', [
             'controller_name' => 'WebPagesOthersController',
-            'page_id' => $selected_page->getPageId()
+            'page_id' => $selected_page->getPageId(),
+            'products' => $products
         ]);
     }
 }
