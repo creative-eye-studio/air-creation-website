@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ productMetaTitle }}{% endblock %}
+
+{% block meta %}
+  <meta description="{{ productMetaDesc }}">
+{% endblock %}
+
+{% block body %}
+    <div class="product-block-1">
+        <!-- Modèle 3D -->
+        <div></div>
+        <!-- Intro Block -->
+        <section>
+            <!-- Intro Title -->
+            <h1>{{ productName }}</h1>
+            <!-- Intro Text -->
+            {% include "webpages/products/#{productFolderId}/#{productFolderId}-intro.html.twig" %}
+            <!-- Intro Buttons -->
+            <div class="btn-list">
+                <p>
+                    <a href="{{ productShopUrl }}"></a>
+                </p>
+                <p>
+                    <a href="{{ productDocUrl }}"></a>
+                </p>
+            </div>
+        </section>
+        <!-- Slider Coloris -->
+        <div>
+            {% for image in color_dir %}
+                <img src="" alt="" />
+            {% endfor %}
+        </div>
+        <!-- Slider Accessoires -->
+        <div></div>
+    </div>
+    <div class="product-block-2">
+        <ul>
+            <li>Description</li>
+            <li>Caractéristiques</li>
+            <li>Galerie d'images</li>
+        </ul>
+        <div class="tab">
+            {% include "webpages/products/#{productFolderId}/#{productFolderId}-desc.html.twig" %}
+        </div>
+        <div class="tab">
+            {% include "webpages/products/#{productFolderId}/#{productFolderId}-carac.html.twig" %}
+        </div>
+        <div class="tab"></div>
+    </div>
+{% endblock %}
