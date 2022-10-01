@@ -33,3 +33,24 @@
     padding: 1rem 2rem;
     text-transform: uppercase;
 }
+
+@mixin coverImage($size) {
+    $sizes: (
+        "16-9": 56.25%, 
+        "9-16": 156.25%,
+        "4-3": 75%, 
+        "3-4": 175%,
+    );
+    padding-top: map-get($sizes, $size);
+    position: relative;
+    img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
