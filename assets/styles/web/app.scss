@@ -5,7 +5,12 @@
 // BASE
 @import './base/_typography';
 @import './base/_reset';
+@import './base/_classes';
 
 // LAYOUT
+@import './layouts/_navigation';
 @import './layouts/_footer';
 @import './layouts/_form';
+
+// PAGES
+@import './pages/_home';

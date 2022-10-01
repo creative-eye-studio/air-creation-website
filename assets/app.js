@@ -10,3 +10,20 @@ import './styles/web/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+// Swiper
+import Swiper, { Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
+    modules: [Pagination],
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+});

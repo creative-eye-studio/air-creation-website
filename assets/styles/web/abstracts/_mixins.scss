@@ -25,3 +25,11 @@
              url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.svg#svgFontName') format('svg'); /* Legacy iOS */
     }
 }
+
+@mixin greenBtn() {
+    color: $bw-color-1;
+    background-color: $s-color;
+    display: inline-block;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+}

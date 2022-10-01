@@ -20,7 +20,7 @@ class NewsletterFormType extends AbstractType
                     "aria-label" => "Entrez votre adresse E-Mail"
                 ]
             ])
-            ->add('field_name', SubmitType::class, [
+            ->add('submit', SubmitType::class, [
                 "label" => "S'inscrire"
             ])
         ;
