@@ -27,3 +27,14 @@ const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
       clickable: true,
     },
 });
+
+// Navigation
+var navButton = document.querySelector('.toggle-nav');
+let navElements = ['.btn-nav', '.primary-menu'];
+
+navButton.onclick = function() {
+  console.log('clicked');
+  for (let i = 0; i < navElements.length; i++) {
+    document.querySelector(navElements[i]).classList.toggle('active');
+  }
+}

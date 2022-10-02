@@ -1,6 +1,6 @@
 .primary-menu{
     position: fixed;
-    top: 0;
+    top: $header-ht;
     right: 0;
     bottom: $navbar-ht;
     left: 0;
@@ -39,7 +39,7 @@
             }
         }
     }
-    .active{
+    &.active{
         opacity: 1;
         transform: translateX(0%);
     }
