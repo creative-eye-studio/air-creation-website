@@ -1,0 +1,22 @@
+.columns-text-container{
+    padding: $marges-m;
+    .text-block{
+        &:not(:last-child){
+            margin-bottom: $marges-m;
+        }
+    }
+    @media screen and (min-width:1024px) {
+        display: flex;
+        column-gap: $marges-m;
+        .text-block{
+            flex: 50%;
+            &:not(:last-child){
+                margin-bottom: 0;
+            }
+        }
+    }
+    @media screen and (min-width:1199px){
+        padding: $marges-d-y $marges-d-x;
+        column-gap: $marges-d-x;
+    }
+}

@@ -2,6 +2,9 @@
 @import './abstracts/_variables';
 @import './abstracts/_mixins';
 
+// VENDORS
+@import './vendors/tarteaucitron';
+
 // BASE
 @import './base/_typography';
 @import './base/_reset';
@@ -11,6 +14,7 @@
 @import './layouts/_navigation';
 @import './layouts/_footer';
 @import './layouts/_form';
+@import './layouts/_columns';
 
 // PAGES
 @import './pages/_home';

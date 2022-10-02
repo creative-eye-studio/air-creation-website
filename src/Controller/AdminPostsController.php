@@ -4,12 +4,16 @@ namespace App\Controller;
 
 use App\Entity\PostsList;
 use App\Form\PagesAdminFormType;
+use App\Form\PostsFormType;
 use Cocur\Slugify\Slugify;
+use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AdminPostsController extends AbstractController
 {
@@ -30,50 +34,61 @@ class AdminPostsController extends AbstractController
     ------------------------------------------------------- */
     #[Route('/admin/posts/ajouter', name: 'admin_posts_add')]
     public function add_post(ManagerRegistry $doctrine, Request $request) {
-        $form = $this->createForm(PagesAdminFormType::class);
+        $form = $this->createForm(PostsFormType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupération des données du formulaire
             $slugify = new Slugify();
             $data = $form->getData();
-            $postName = $data['page_name'];
-            $postUrl = $data['page_url'];
-            $postId = $slugify->slugify($postName);
-            $postContent = $data['page_content'];
-            $postMetaTitle = $data['page_meta_title'];
-            $postMetaDesc = $data['page_meta_desc'];
-            $postFileName = $postId . ".html.twig";
+            $postName = $data['post_name'];
+            $postUrl = $data['post_url'];
+            $postId = $slugify->slugify($data['post_name']);
+            $postFilename = $postId . '.html.twig';
+            $photoFilename = $data['photo_filename'];
+            $postContent = $data['post_content'];
+            $postMetaTitle = $data['post_meta_title'];
+            $postMetaDesc = $data['post_meta_desc'];
 
+            // Ajout de l'image
+            $uploadedImage = $photoFilename;
+            $directory = $this->getParameter('kernel.project_dir').'/public/uploads/images/posts';
+            $originalFilename = pathinfo($uploadedImage->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = $slugify->slugify($originalFilename).'-'.uniqid().'.'.$uploadedImage->guessExtension();
+            $uploadedImage->move(
+                $directory,
+                $newFilename
+            );
+            
             // Envoi des données vers la BDD
-            $entityManager = $doctrine->getManager();
             $post = new PostsList();
             $post->setPostName($postName);
-            $post->setPostId($postId);
-
-            if ($postUrl != null) {
-                $post->setPostUrl($postUrl);
-            } else {
+            if ($postUrl == null) {
                 $post->setPostUrl($postId);
-            }
-
-            if ($postMetaTitle != null) {
-                $post->setPostMetaTitle($postMetaTitle);
             } else {
-                $post->setPostMetaTitle($postName);
+                $post->setPostUrl($postUrl);
             }
-
+            $post->setPostId($postId);
+            $post->setPhotoFilename($newFilename);
+            if ($postMetaTitle == null) {
+                $post->setPostMetaTitle($postName);
+            } else {
+                $post->setPostMetaTitle($postMetaTitle);
+            }
             $post->setPostMetaDesc($postMetaDesc);
+            $post->setCreatedAt(DateTimeImmutable::createFromFormat('dd/mm/yyyy', date('dd/mm/yyyy')));
+            
+            $entityManager = $doctrine->getManager();
             $entityManager->persist($post);
             $entityManager->flush();
-
+            
             // Création du fichier
-            $file = fopen("../templates/webpages/posts/" . $postFileName, 'w');
+            $file = fopen("../templates/webpages/posts/" . $postFilename, 'w');
             fwrite($file, $postContent);
             fclose($file);
 
             // Redirection vers le post crée
-            return $this->redirectToRoute('admin_posts_modify', array('post_id' => $postId));
+            return $this->redirectToRoute('admin_posts_modify', ['post_id' => $postId]);
         }
 
         return $this->render('posts/add-post.html.twig', [
@@ -86,7 +101,7 @@ class AdminPostsController extends AbstractController
     ------------------------------------------------------- */
     #[Route('/admin/posts/modifier/{post_id}', name: 'admin_posts_modify')]
     public function modify_post(ManagerRegistry $doctrine, Request $request, String $post_id) {
-        $form = $this->createForm(PagesAdminFormType::class);
+        $form = $this->createForm(PostsFormType::class);
         $form->handleRequest($request);
 
         // Récupération du post souhaité
