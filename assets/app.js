@@ -29,6 +29,18 @@ const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
     },
 });
 
+const swiperInnovBlocks = new Swiper('.innov-container', {
+    modules: [Pagination],
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+});
+
 
 // Header
 // ------------------------------------------------------------------

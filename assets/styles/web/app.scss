@@ -10,6 +10,9 @@
 @import './base/_reset';
 @import './base/_classes';
 
+// COMPONENTS
+@import './components/_cover-page';
+
 // LAYOUT
 @import './layouts/_header';
 @import './layouts/_navigation';
@@ -19,3 +22,4 @@
 
 // PAGES
 @import './pages/_home';
+@import './pages/_innovation';
