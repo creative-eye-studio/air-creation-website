@@ -39,7 +39,19 @@ const swiperInnovBlocks = new Swiper('.innov-container', {
       el: ".swiper-pagination",
       clickable: true,
     },
+    breakpoints: {
+      768: {
+        slidesPerView: 3
+      },
+      1024: {
+        slidesPerView: 3
+      }
+    }
 });
+
+if (screen.width >= 1200) {
+  swiperInnovBlocks.destroy();
+}
 
 
 // Header

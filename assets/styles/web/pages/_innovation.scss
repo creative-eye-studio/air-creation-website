@@ -1,6 +1,17 @@
 // CONTAINER
 .innov-page-block-2{
     padding: $marges-m;
+    @media screen and (min-width: 1200px) {
+        padding: $marges-d-y $marges-d-x;
+    }
+}
+
+// SWIPER
+.swiper-wrapper{
+    @media screen and (min-width: 1200px) {
+        flex-wrap: wrap;
+        column-gap: $marges-d-x;
+    }
 }
 
 // BLOCK
@@ -28,5 +39,18 @@
         position: relative;
         z-index: 2;
         margin-bottom: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    @media screen and (min-width: 768px) {
+        padding-top: 33.33%;
+    }
+    @media screen and (min-width: 1024px) {
+        padding-top: 25%;
+    }
+    @media screen and (min-width: 1200px) {
+        flex-shrink: inherit;
+        flex: calc(25% - (#{$marges-d-x} / 2));
     }
 }
