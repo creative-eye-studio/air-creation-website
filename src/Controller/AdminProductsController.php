@@ -38,8 +38,10 @@ class AdminProductsController extends AbstractController
         $form = $productForm->initForm($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupération des données du formulaire
             $data = $form->getData();
             $productName = $data['product_name'];
+            $productThumbnail = $data['product_thumbnail'];
             $productDesc = $data['product_desc'];
             $productShopUrl = $data['product_shop_url'];
             $productDocUrl = $data['product_doc_url'];
@@ -49,10 +51,20 @@ class AdminProductsController extends AbstractController
             $productMetaDesc = $data['product_meta_desc'];
             $folderId = $slugify->slugify($productName) . '-'. bin2hex(random_bytes(3));
 
+            // Ajout de la vignette
+            $uploadedImage = $productThumbnail;
+            $directory = $this->getParameter('kernel.project_dir').'/public/uploads/images/product_thumbnails';
+            $newFilename = $slugify->slugify($productName) . '.' . $uploadedImage->guessExtension();
+            $uploadedImage->move(
+                $directory,
+                $newFilename
+            );
+
             // Création du produit dans la BDD
             $product = new Products();
             $product->setProductFolderId($folderId);
             $product->setProductUrl($slugify->slugify($productName));
+            $product->setProductThumb($newFilename);
             $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
             $productForm->entityFunction($doctrine, $product);
 

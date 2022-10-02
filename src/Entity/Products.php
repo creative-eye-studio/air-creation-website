@@ -35,6 +35,9 @@ class Products
     #[ORM\Column(length: 255)]
     private ?string $product_folder_id = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $product_thumb = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Products
     public function setProductFolderId(?string $product_folder_id): self
     {
         $this->product_folder_id = $product_folder_id;
+
+        return $this;
+    }
+
+    public function getProductThumb(): ?string
+    {
+        return $this->product_thumb;
+    }
+
+    public function setProductThumb(string $product_thumb): self
+    {
+        $this->product_thumb = $product_thumb;
 
         return $this;
     }

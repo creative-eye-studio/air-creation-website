@@ -1,20 +1,31 @@
 <!-- Cover Page -->
-<div class="cover-page">
-  
+<div class="cover-page-full">
+  <div class="text">
+    <img src="../uploads/images/logotype-white.png" alt="" />
+  </div>
+  <div class="image">
+    <img src="../uploads/images/pages/innovation/photo-test.jpeg" alt="" />
+  </div>
 </div>
 
 <!-- Fonctions filtrage -->
 <div class="filters">
-  
+
 </div>
 
 <!-- Liste des produits -->
 <section class="products-list">
-  <h1>Produits</h1>
+  <div class="show-title-block">
+    <h1>Showroom</h1>
+  </div>
+
   <div class="products-list-container">
     {% for product in products %}
     <article class="product-block">
-    	<h2>{{ product.productname }}</h2>
+      <div class="image">
+        <img src="../uploads/images/product_thumbnails/{{ product.productthumb }}" alt="{{ product.productname }}" />
+      </div>
+      <h2>{{ product.productname }}</h2>
     </article>
     {% endfor %}
   </div>

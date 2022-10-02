@@ -25,6 +25,10 @@ class ProductFormType extends AbstractType
                 'label' => 'Modèle 3D',
                 'required' => false
             ])
+            ->add('product_thumbnail', FileType::class, [
+                'label' => "Vignette d'image (Jpg, Jpeg, Png)",
+                'required' => false
+            ])
             ->add('product_desc', CKEditorType::class, [
                 'label' => 'Courte description *'
             ])
