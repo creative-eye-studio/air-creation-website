@@ -54,3 +54,12 @@
         left: 0;
     }
 }
+
+@mixin headerColored() {
+    background-color: rgba($color: $p-color, $alpha: 1.0);
+    .logo-container{
+        img{
+            opacity: 1;
+        }
+    }
+}

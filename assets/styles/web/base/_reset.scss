@@ -5,8 +5,11 @@
 body{
     margin: 0 0 $navbar-ht;
     font-family: $font;
-    font-weight: 300;
-    line-height: 1.75em;
+    font-weight: 300;    
+    line-height: 190%;
+    @media screen and (min-width: 1024px) {
+        margin: 0;
+    }
 }
 
 button{
@@ -27,6 +30,7 @@ img{
 p{
     margin-top: 0;
     margin-bottom: 1em;
+    font-size: 1.1em;
     &:last-child{
         margin-bottom: 0;
     }

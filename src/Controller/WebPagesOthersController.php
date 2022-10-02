@@ -25,6 +25,13 @@ class WebPagesOthersController extends AbstractController
             );
         }
 
+        if ($selected_page->getPageModel() == 0) {
+            $headerType = 'header-base';
+        } else {
+            $headerType = 'header-second';
+        }
+        
+
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);
 
@@ -32,7 +39,8 @@ class WebPagesOthersController extends AbstractController
             'controller_name' => 'WebPagesOthersController',
             'page_id' => $selected_page->getPageId(),
             'products' => $products,
-            'newsForm' => $newsForm->createView()
+            'newsForm' => $newsForm->createView(),
+            'headerType' => $headerType
         ]);
     }
 

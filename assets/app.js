@@ -12,6 +12,7 @@ import './styles/web/app.scss';
 import './bootstrap';
 
 // Swiper
+// ------------------------------------------------------------------
 import Swiper, { Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -28,7 +29,23 @@ const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
     },
 });
 
+
+// Header
+// ------------------------------------------------------------------
+window.addEventListener('scroll', function(){
+  var scrollPosition = window.scrollY;
+  var headerSite = document.getElementsByClassName('header-site')[0];
+
+  if (scrollPosition >= 50) {
+    headerSite.classList.add('scrolled');
+  } else {
+    headerSite.classList.remove('scrolled');
+  }
+})
+
+
 // Navigation
+// ------------------------------------------------------------------
 var navButton = document.querySelector('.toggle-nav');
 let navElements = ['.btn-nav', '.primary-menu'];
 

@@ -26,8 +26,7 @@ class PagesAdminFormType extends AbstractType
             ->add('page_model', ChoiceType::class, [
                 'choices' => [
                     'Page Standard' => 0,
-                    'Page Liste des produits' => 1,
-                    'Page Produit' => 2,
+                    'Page En-tête rouge' => 1,
                 ],
                 'label' => 'Type de page'
             ])

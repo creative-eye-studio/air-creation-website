@@ -18,6 +18,7 @@ class WebPagesIndexController extends AbstractController
     {
         $index_page = $doctrine->getRepository(PagesList::class)->findBy(["page_url" => "index"]);
         $lasts_posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC'], 3, 0);
+        $headerType = 'header-base';
 
         if (!$index_page) {
             throw $this->createNotFoundException(
@@ -31,7 +32,8 @@ class WebPagesIndexController extends AbstractController
         return $this->render('web_pages_index/index.html.twig', [
             'controller_name' => 'WebPagesIndexController',
             'newsForm' => $newsForm->createView(),
-            'posts' => $lasts_posts
+            'posts' => $lasts_posts,
+            'headerType' => $headerType
         ]);
     }
 

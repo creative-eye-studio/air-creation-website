@@ -1,16 +1,30 @@
 header{
+    // Style global
+    // ------------------------------------------------------------------
     background-color: white;
     position: sticky;
     top: 0;
     left: 0;
     z-index: 100;
     padding: 0 .625rem;
+    @media screen and (min-width: 1024px) {
+        background-color: rgba($color: #000000, $alpha: 0);
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
     .logo-container{
         display: flex;
         justify-content: space-between;
         img{
             width: auto;
             height: $header-ht;
+        }
+        @media screen and (min-width: 1024px) {
+            justify-content: flex-end;
+            flex-direction: row-reverse;
         }
     }
     .btn-nav{
@@ -22,7 +36,7 @@ header{
             &::before,
             &::after{
                 content: "";
-                border: .0625rem  solid black;
+                border: .0625rem solid black;
                 display: block;
                 transition-duration: .5s;
             }
@@ -51,6 +65,75 @@ header{
                     width: 100%;
                 }
             }
+        }
+        @media screen and (min-width: 1024px) {
+            display: flex;
+            align-items: center;
+            width: auto;
+            padding: 0 3rem;
+            .bar{
+                transition-duration: .5s;
+                &::before{
+                    width: 2.5rem;
+                }
+                &::after{
+                    width: 70%;
+                }
+            }
+            .label{
+                font-size: $header-font;
+                font-weight: 300;
+                margin: 0 0 0 1.5rem;
+                text-transform: lowercase;
+                &.open{
+                    display: block;
+                }
+            }
+            &:hover{
+                .bar{
+                    &::after{
+                        width: calc(100% - 2px);
+                    }
+                }
+            }
+        }
+    }
+
+    // Style Header 1
+    // ------------------------------------------------------------------
+    &.header-base{
+        @media screen and (min-width: 1024px) {
+            transition-duration: .5s;
+            position: fixed;
+            .logo-container{
+                img{
+                    opacity: 0;
+                    transition-duration: .5s;
+                }
+            }
+            .btn-nav{
+                .bar{
+                    &::before,
+                    &::after{
+                        border: 0.0625rem solid white;
+                    }
+                }
+                .label{
+                    color: white;
+                }
+            }
+            &.scrolled{
+                @include headerColored();
+            }
+        }
+    }
+
+    // Style Header 2
+    // ------------------------------------------------------------------
+    &.header-second{
+        @media screen and (min-width: 1024px) {
+            @include headerColored();
+            position: sticky;
         }
     }
 }
