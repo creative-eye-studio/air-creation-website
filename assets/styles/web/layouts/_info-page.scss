@@ -24,8 +24,13 @@
         .text, .image{
             flex: 50%;
         }
+        .text{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
         .image{
-            padding-top: inherit;
+            padding-top: calc(56.25% / 2);
         }
         &:nth-child(even){
             flex-direction: row-reverse;
