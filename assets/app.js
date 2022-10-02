@@ -49,7 +49,7 @@ const swiperInnovBlocks = new Swiper('.innov-container', {
     }
 });
 
-if (screen.width >= 1200) {
+if (screen.width >= 1200 && swiperInnovBlocks == true) {
   swiperInnovBlocks.destroy();
 }
 
