@@ -1,0 +1,38 @@
+.about-points{
+    padding: $marges-m;
+    color: white;
+    background-color: $grey-color;
+    text-align: center;
+    h2{
+        margin-bottom: 0;
+        font-size: 1.5em;
+        font-weight: 300;
+    }
+    .about-point-block{
+        &:not(:last-child){
+            margin-bottom: $marges-m;
+        }
+        svg{
+            margin-bottom: 1rem;
+        }
+    }
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+        padding: $marges-m $marges-m 0;
+        .about-point-block{
+            width: 50%;
+            margin-bottom: $marges-m;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        padding: $marges-d-y $marges-d-x;
+        .about-point-block{
+            width: 25%;
+            margin-bottom: 0;
+            &:not(:last-child){
+                margin-bottom: 0;
+            }
+        }
+    }
+}
