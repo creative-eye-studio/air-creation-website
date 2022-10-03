@@ -1,0 +1,18 @@
+<section class="posts-container">
+  <h1>Actualités</h1>
+  <div class="posts-list">
+    {% for post in posts %}
+    <article class="post-block">
+      <div class="image">
+        <img src="../uploads/images/posts/{{ post.photofilename }}" alt='{{ post.postname }}' />
+      </div>
+      <div class="content">
+        <h3>{{ post.postname }}</h3>
+        <p>
+          <a href="{{ post.posturl }}" class="btn">Lire l'article</a>
+        </p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

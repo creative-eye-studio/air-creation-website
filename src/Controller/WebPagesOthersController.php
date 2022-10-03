@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\PagesList;
+use App\Entity\PostsList;
 use App\Form\NewsletterFormType;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,6 +19,7 @@ class WebPagesOthersController extends AbstractController
     {
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
         $products = $products_function->getProducts($doctrine);
+        $posts = $doctrine->getRepository(PostsList::class)->findAll();
 
         if (!$selected_page) {
             throw $this->createNotFoundException(
@@ -39,6 +41,7 @@ class WebPagesOthersController extends AbstractController
             'controller_name' => 'WebPagesOthersController',
             'page_id' => $selected_page->getPageId(),
             'products' => $products,
+            'posts' => $posts,
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType
         ]);
