@@ -41,6 +41,7 @@ class AdminProductsController extends AbstractController
             // Récupération des données du formulaire
             $data = $form->getData();
             $productName = $data['product_name'];
+            $product3dModel = $data['product_3d_model'];
             $productThumbnail = $data['product_thumbnail'];
             $productDesc = $data['product_desc'];
             $productShopUrl = $data['product_shop_url'];
@@ -50,6 +51,23 @@ class AdminProductsController extends AbstractController
             $productMetaTitle = $data['product_meta_title'];
             $productMetaDesc = $data['product_meta_desc'];
             $folderId = $slugify->slugify($productName) . '-'. bin2hex(random_bytes(3));
+
+            // Création des fichiers Assets
+            if (!file_exists('./uploads/images/produits/' . $folderId)) {
+                mkdir('./uploads/images/produits/' . $folderId, 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/images', 0777, true);
+            }
+
+            // Déploiement du modèle 3D
+            $uploadedModel = $product3dModel;
+            $directory3D = $this->getParameter('kernel.project_dir').'/public/uploads/3d-models';
+            $newFilename = $slugify->slugify($productName) . '.' . $uploadedModel->guessExtension();
+            $uploadedModel->move(
+                $directory3D,
+                $newFilename
+            );
 
             // Ajout de la vignette
             $uploadedImage = $productThumbnail;
@@ -70,17 +88,6 @@ class AdminProductsController extends AbstractController
 
             // Création des fichiers TWIG
             $productForm->createProductTabs($folderId, $productDesc, $productLongDesc, $productCarac);
-
-            // Création des fichiers Assets
-            if (!file_exists('./uploads/images/produits/' . $folderId)) {
-                mkdir('./uploads/images/produits/' . $folderId, 0777, true);
-                mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
-                mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
-                mkdir('./uploads/images/produits/' . $folderId . '/images', 0777, true);
-                mkdir('./uploads/images/produits/' . $folderId . '/models-3d', 0777, true);
-            }
-
-            // Déploiement du modèle 3D
 
             // Redirection vers la page crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);

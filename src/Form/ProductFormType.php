@@ -19,39 +19,37 @@ class ProductFormType extends AbstractType
     {
         $builder
             ->add('product_name', TextType::class, [
-                'label' => 'Nom du produit *' 
+                'label' => 'Nom du produit' 
             ])
             ->add('product_3d_model', FileType::class, [
-                'label' => 'Modèle 3D',
-                'required' => false
+                'label' => 'Modèle 3D'
             ])
             ->add('product_thumbnail', FileType::class, [
-                'label' => "Vignette d'image (Jpg, Jpeg, Png)",
-                'required' => false
+                'label' => "Vignette d'image (Jpg, Jpeg, Png)"
             ])
             ->add('product_desc', CKEditorType::class, [
-                'label' => 'Courte description *'
+                'label' => 'Courte description'
             ])
             ->add('product_shop_url', UrlType::class, [
-                'label' => 'Lien vers la page E-Commerce',
+                'label' => 'Lien vers la page E-Commerce (Optionnel)',
                 'required' => false
             ])
             ->add('product_doc_url', UrlType::class, [
-                'label' => 'Lien vers la documentation',
+                'label' => 'Lien vers la documentation (Optionnel)',
                 'required' => false
             ])
             ->add('product_long_desc', CKEditorType::class, [
-                'label' => 'Présentation détaillée du produit *'
+                'label' => 'Présentation détaillée du produit'
             ])
             ->add('product_carac', CKEditorType::class, [
-                'label' => 'Caractéristiques du produit (Utiliser le tableau pour la mise en page) *',
+                'label' => 'Caractéristiques du produit (Utiliser le tableau pour la mise en page)',
             ])
             ->add('product_meta_title', TextType::class, [
-                'label' => 'Meta title du produit',
+                'label' => 'Meta title du produit (Optionnel)',
                 'required' => false
             ])
             ->add('product_meta_desc', TextareaType::class, [
-                'label' => 'Meta desc du produit',
+                'label' => 'Meta desc du produit (Optionnel)',
                 'required' => false
             ])
             ->add('product_submit', SubmitType::class, [

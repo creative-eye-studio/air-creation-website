@@ -11,9 +11,6 @@
             <li><a class="tab">Caractéristiques</a></li>
             <li><a class="tab">SEO</a></li>
         </ul>
-        <p>
-            <em>* Champs obligatoires</em>
-        </p>
         {{ form_start(form, { 'attr' : {'class': 'tab-panes'} }) }}
             <!-- Résumé -->
             <div id="#resume" class="tab-pane active">
@@ -21,10 +18,8 @@
                 <p>{{ form_label(form.product_name) }}<br />
                 {{ form_widget(form.product_name) }}</p>
 
-                <p><label for="product_form_product_3d_model">Modèle 3D *</label><br />
-                {{ form_widget(form.product_3d_model, {
-                    required: false
-                }) }}</p>
+                <p>{{ form_label(form.product_3d_model) }}<br />
+                {{ form_widget(form.product_3d_model) }}</p>
 
                 <p>{{ form_label(form.product_thumbnail) }}<br />
                 {{ form_widget(form.product_thumbnail) }}</p>
