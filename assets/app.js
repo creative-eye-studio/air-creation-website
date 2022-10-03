@@ -11,48 +11,6 @@ import './styles/web/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-// Swiper
-// ------------------------------------------------------------------
-import Swiper, { Pagination } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/pagination';
-
-const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
-    modules: [Pagination],
-    slidesPerView: "auto",
-    centeredSlides: true,
-    spaceBetween: 20,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-});
-
-const swiperInnovBlocks = new Swiper('.innov-container', {
-    modules: [Pagination],
-    slidesPerView: "auto",
-    centeredSlides: true,
-    spaceBetween: 20,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 3
-      },
-      1024: {
-        slidesPerView: 3
-      }
-    }
-});
-
-if (screen.width >= 1200 && swiperInnovBlocks == true) {
-  swiperInnovBlocks.destroy();
-}
-
 
 // Header
 // ------------------------------------------------------------------
@@ -74,8 +32,74 @@ var navButton = document.querySelector('.toggle-nav');
 let navElements = ['.btn-nav', '.primary-menu'];
 
 navButton.onclick = function() {
-  console.log('clicked');
   for (let i = 0; i < navElements.length; i++) {
     document.querySelector(navElements[i]).classList.toggle('active');
   }
+}
+
+
+// Swiper
+// ------------------------------------------------------------------
+import Swiper, { Pagination } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/pagination';
+
+const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
+    modules: [Pagination],
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+});
+
+const swiperLastsPosts = new Swiper('.posts', {
+    modules: [Pagination],
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      1024: {
+        slidesPerView: 2,
+        centeredSlides: false,
+        spaceBetween: 30,
+      },
+      1200: {
+        slidesPerView: 3,
+        centeredSlides: false,
+        spaceBetween: 30,
+      }
+    }
+})
+
+const swiperInnovBlocks = new Swiper('.innov-container', {
+    modules: [Pagination],
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 20,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 3
+      },
+      1024: {
+        slidesPerView: 3
+      }
+    }
+});
+
+if (screen.width >= 1200 && swiperInnovBlocks != undefined) {
+  swiperInnovBlocks.destroy();
 }

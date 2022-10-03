@@ -1,0 +1,13 @@
+.post-block{
+    background-color: rgba($color: $bw-color-2, $alpha: 1.0);
+    .image{
+        @include coverImage('1-1');
+    }
+    .content{
+        padding: $marges-m;
+        h2, h3{
+            font-size: 1.5em;
+            font-weight: 400;
+        }
+    }
+}

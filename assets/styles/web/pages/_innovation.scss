@@ -4,13 +4,13 @@
     @media screen and (min-width: 1200px) {
         padding: $marges-d-y $marges-d-x;
     }
-}
 
-// SWIPER
-.swiper-wrapper{
-    @media screen and (min-width: 1200px) {
-        flex-wrap: wrap;
-        column-gap: $marges-d-x;
+    // SWIPER
+    .swiper-wrapper{
+        @media screen and (min-width: 1200px) {
+            flex-wrap: wrap;
+            column-gap: $marges-d-x;
+        }
     }
 }
 

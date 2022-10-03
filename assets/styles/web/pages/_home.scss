@@ -212,3 +212,23 @@
         }
     }
 }
+
+.social{
+    padding: $marges-m;
+    .posts{
+        margin-bottom: $marges-m;
+    }
+    .instagram-media{
+        min-width: inherit !important;
+    }
+    @media screen and (min-width: 768px) {
+        display: flex;
+        column-gap: $marges-m;
+    }
+    @media screen and (min-width: 768px) {
+        padding: $marges-d-y $marges-d-x;
+        .post-block{
+            margin-bottom: 0;
+        }
+    }
+}

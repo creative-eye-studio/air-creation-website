@@ -20,6 +20,7 @@
     }
     a{
         color: white;
+        text-decoration: none;
     }
     ul{
         list-style-type: none;
@@ -90,7 +91,8 @@
     }
 }
 
-.header-base{
+.header-base,
+.header-second{
     .second-menu{
         @media screen and (min-width:1024px) {
             a{

@@ -36,7 +36,8 @@ header{
             &::before,
             &::after{
                 content: "";
-                border: .0625rem solid black;
+                background-color: black;
+                height: .125rem;
                 display: block;
                 transition-duration: .5s;
             }
@@ -73,6 +74,10 @@ header{
             padding: 0 3rem;
             .bar{
                 transition-duration: .5s;
+                &::before,
+                &::after{
+                    background-color: white;
+                }
                 &::before{
                     width: 2.5rem;
                 }
@@ -85,6 +90,7 @@ header{
                 font-weight: 300;
                 margin: 0 0 0 1.5rem;
                 text-transform: lowercase;
+                color: white;
                 &.open{
                     display: block;
                 }
@@ -92,7 +98,7 @@ header{
             &:hover{
                 .bar{
                     &::after{
-                        width: calc(100% - 2px);
+                        width: 100%;
                     }
                 }
             }
@@ -109,17 +115,6 @@ header{
                 img{
                     opacity: 0;
                     transition-duration: .5s;
-                }
-            }
-            .btn-nav{
-                .bar{
-                    &::before,
-                    &::after{
-                        border: 0.0625rem solid white;
-                    }
-                }
-                .label{
-                    color: white;
                 }
             }
             &.scrolled{
