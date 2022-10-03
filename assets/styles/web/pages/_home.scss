@@ -225,8 +225,14 @@
         display: flex;
         column-gap: $marges-m;
     }
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1200px) {
         padding: $marges-d-y $marges-d-x;
+        .posts{
+            flex: 75%;
+        }
+        .instagram-container{
+            flex: 25%;
+        }
         .post-block{
             margin-bottom: 0;
         }

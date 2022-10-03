@@ -17,7 +17,7 @@ class WebPagesIndexController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
         $index_page = $doctrine->getRepository(PagesList::class)->findBy(["page_url" => "index"]);
-        $lasts_posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC'], 3, 0);
+        $lasts_posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC'], 3, null);
         $headerType = 'header-base';
 
         if (!$index_page) {
