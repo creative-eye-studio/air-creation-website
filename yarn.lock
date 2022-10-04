@@ -1069,6 +1069,13 @@
     "webpack-dev-server" "^4.8.0"
     "yargs-parser" "^21.0.0"
 
+"@three-ts/orbit-controls@^1.4.7":
+  "integrity" "sha512-1OVZnc2VTHCoHberL50LBbltjnqVpOBhmuJwKPqzn6sThQwvVU1E13cpuJ2SWWOMoMLF+4hE3ICi4KHsZA/CJw=="
+  "resolved" "https://registry.npmjs.org/@three-ts/orbit-controls/-/orbit-controls-1.4.7.tgz"
+  "version" "1.4.7"
+  dependencies:
+    "three" "^0.126.1"
+
 "@trysound/sax@0.2.0":
   "integrity" "sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA=="
   "resolved" "https://registry.npmjs.org/@trysound/sax/-/sax-0.2.0.tgz"
@@ -4327,6 +4334,11 @@
     "acorn" "^8.5.0"
     "commander" "^2.20.0"
     "source-map-support" "~0.5.20"
+
+"three@^0.126.1":
+  "integrity" "sha512-eOEXnZeE1FDV0XgL1u08auIP13jxdN9LQBAEmlErYzMxtIIfuGIAZbijOyookALUhqVzVOx0Tywj6n192VM+nQ=="
+  "resolved" "https://registry.npmjs.org/three/-/three-0.126.1.tgz"
+  "version" "0.126.1"
 
 "thunky@^1.0.2":
   "integrity" "sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA=="

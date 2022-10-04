@@ -23,6 +23,7 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('app-admin', './assets/app-admin.js')
     .addEntry('fontawesome', './assets/fontawesome.min.js')
+    .addEntry('viewer3d', './assets/viewer3d.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')

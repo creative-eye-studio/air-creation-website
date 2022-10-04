@@ -52,18 +52,10 @@ class AdminProductsController extends AbstractController
             $productMetaDesc = $data['product_meta_desc'];
             $folderId = $slugify->slugify($productName) . '-'. bin2hex(random_bytes(3));
 
-            // Création des fichiers Assets
-            if (!file_exists('./uploads/images/produits/' . $folderId)) {
-                mkdir('./uploads/images/produits/' . $folderId, 0777, true);
-                mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
-                mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
-                mkdir('./uploads/images/produits/' . $folderId . '/images', 0777, true);
-            }
-
             // Déploiement du modèle 3D
             $uploadedModel = $product3dModel;
             $directory3D = $this->getParameter('kernel.project_dir').'/public/uploads/3d-models';
-            $newFilename = $slugify->slugify($productName) . '.' . $uploadedModel->guessExtension();
+            $newFilename = $slugify->slugify($productName) . '.obj';
             $uploadedModel->move(
                 $directory3D,
                 $newFilename
@@ -71,12 +63,20 @@ class AdminProductsController extends AbstractController
 
             // Ajout de la vignette
             $uploadedImage = $productThumbnail;
-            $directory = $this->getParameter('kernel.project_dir').'/public/uploads/images/product_thumbnails';
+            $directory = $this->getParameter('kernel.project_dir') . '/public/uploads/images/product_thumbnails';
             $newFilename = $slugify->slugify($productName) . '.' . $uploadedImage->guessExtension();
             $uploadedImage->move(
                 $directory,
                 $newFilename
             );
+
+            // Création des fichiers Assets
+            if (!file_exists('./uploads/images/produits/' . $folderId)) {
+                mkdir('./uploads/images/produits/' . $folderId, 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
+                mkdir('./uploads/images/produits/' . $folderId . '/images', 0777, true);
+            }
 
             // Création du produit dans la BDD
             $product = new Products();

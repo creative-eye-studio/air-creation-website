@@ -38,9 +38,16 @@ navButton.onclick = function() {
 }
 
 
+// Tabs
+// ------------------------------------------------------------------
+var tabs = require('tabs');
+var container = document.querySelector('.tab-container')
+tabs(container);
+
+
 // Swiper
 // ------------------------------------------------------------------
-import Swiper, { Pagination } from 'swiper';
+import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -98,6 +105,28 @@ const swiperInnovBlocks = new Swiper('.innov-container', {
         slidesPerView: 3
       }
     }
+});
+
+const swiperProductsColoris = new Swiper('.slider-coloris', {
+    modules: [Navigation],
+    slidesPerView: "auto",
+    centeredSlides: true,
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+});
+
+const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
+    modules: [Pagination],
+    slidesPerView: "auto",
+    centeredSlides: true,
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
 });
 
 if (screen.width >= 1200 && swiperInnovBlocks != undefined) {
