@@ -47,6 +47,7 @@
 }
 
 .product-block-2{
+
     .product-tab-list{
         margin: 0;
         padding: 0;
@@ -61,6 +62,12 @@
                 background-color: $p-color-d;
             }
         }
+        @media screen and (min-width: 768px) {
+            display: flex;
+            li{
+                flex: 33.33%;
+            }
+        }
     }
 
     .tab-pane{
@@ -72,20 +79,11 @@
             padding: $marges-d-y $marges-d-x;
         }
     }
-    
-    @media screen and (min-width: 768px) {
-        .product-tab-list{
-            display: flex;
-            li{
-                flex: 33.33%;
-            }
-        }
-    }
-}
 
-.carac-pane{
-    table{
-        width: 100%;
+    .carac-pane{
+        table{
+            width: 100%;
+        }
     }
 }
 

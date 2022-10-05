@@ -35,6 +35,7 @@ navButton.onclick = function() {
   for (let i = 0; i < navElements.length; i++) {
     document.querySelector(navElements[i]).classList.toggle('active');
   }
+  document.querySelector('.header-site').classList.toggle('nav-opened');
 }
 
 
@@ -53,6 +54,28 @@ if (document.querySelector('.tab') != undefined) {
 import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
+
+if (screen.width >= 1024) {
+
+  document.querySelector('.main-menu').classList.add('swiper-wrapper');
+  const btnsMainNav = document.querySelectorAll('.main-btn-bloc');
+  for(const btn of btnsMainNav){
+    btn.classList.add('swiper-slide');
+  }
+
+  const swiperPrimaryNav = new Swiper('.primary-menu', {
+    modules: [Navigation],
+    slidesPerView: "auto",
+    centeredSlides: true,
+    loop: true,
+    navigation: {
+      nextEl: '.swiper-nav-button-next',
+      prevEl: '.swiper-nav-button-prev',
+    },
+  });
+
+}
+
 
 const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
     modules: [Pagination],
