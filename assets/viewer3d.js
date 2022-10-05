@@ -4,19 +4,19 @@ function viewer3D() {
     const model3d = canvas.getAttribute('data-model');
     console.log(model3d);
 
-    const fov = 45;
+    const fov = 150;
     const aspect = 2;  // the canvas default
-    const near = 0.1;
+    const near = 0.;
     const far = 100;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 10, 20);
+    camera.position.set(0, 0, 0);
 
     const controls = new THREE.OrbitControls(camera, canvas);
     controls.target.set(0, 0, 0);
     controls.update();
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color('lightgray');
+    scene.background = new THREE.Color('darkgray');
 
     {
         const skyColor = 0xB1E1FF;  // light blue
@@ -38,7 +38,7 @@ function viewer3D() {
 
     {
         const objLoader = new THREE.OBJLoader2();
-        objLoader.load('../../uploads/3d-models/test.obj', (event) => {
+        objLoader.load('../../uploads/3d-models/' + model3d, (event) => {
             const root = event.detail.loaderRootNode;
             scene.add(root);
         });
@@ -48,7 +48,7 @@ function viewer3D() {
         const canvas = renderer.domElement;
         const width = canvas.clientWidth;
         const height = canvas.clientHeight;
-        const needResize = canvas.width !== (width / 2) || canvas.height !== height;
+        const needResize = canvas.width !== (width) || canvas.height !== height;
         if (needResize) {
             renderer.setSize(width, height, false);
         }

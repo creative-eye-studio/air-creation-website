@@ -24,8 +24,10 @@
                     'value': productName
                 }) }}</p>
 
-                <p>{{ form_label(form.product_3d_model) }}<br />
-                {{ form_widget(form.product_3d_model) }}</p>
+                <p>{{ form_label(form.product_thumbnail) }}<br />
+                {{ form_widget(form.product_thumbnail, {
+                    'required': false
+                }) }}</p>
 
                 <p>{{ form_label(form.product_desc) }}<br />
                 {{ form_widget(form.product_desc,  {

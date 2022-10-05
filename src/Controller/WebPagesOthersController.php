@@ -74,6 +74,7 @@ class WebPagesOthersController extends AbstractController
         return $this->render('web_pages_others/product.html.twig', [
             'controller_name' => 'WebPagesOthersController',
             'productName' => $product->getProductName(),
+            'productThumb' => $product->getProductThumb(),
             'productShopUrl' => $product->getProductShopUrl(),
             'productDocUrl' => $product->getProductDocUrl(),
             'productMetaTitle' => $product->getProductMetaTitle(),

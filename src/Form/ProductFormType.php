@@ -21,11 +21,8 @@ class ProductFormType extends AbstractType
             ->add('product_name', TextType::class, [
                 'label' => 'Nom du produit' 
             ])
-            ->add('product_3d_model', FileType::class, [
-                'label' => 'Modèle 3D'
-            ])
             ->add('product_thumbnail', FileType::class, [
-                'label' => "Vignette d'image (Jpg, Jpeg, Png)"
+                'label' => "Image du produit (Jpg, Jpeg, Png)"
             ])
             ->add('product_desc', CKEditorType::class, [
                 'label' => 'Courte description'

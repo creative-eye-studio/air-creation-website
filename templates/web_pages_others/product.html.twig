@@ -14,7 +14,9 @@
         <!-- Block 1 -->
         <div class="product-block-1">
             <!-- Modèle 3D -->
-            <canvas id="product-3d-viewer" data-model="Test"></canvas>
+            <div id="product-3d-viewer">
+                <img src="../../uploads/images/product_thumbnails/{{ productThumb }}" alt="{{ productName }}" />
+            </div>
             <!-- Intro Block -->
             <section class="product-intro">
                 <!-- Intro Title -->
@@ -66,29 +68,20 @@
             </ul>
             
             <div class="tab-panes">
-                <div class="tab-pane active">
+                <div class="tab-pane desc-pane active">
                     {% include "webpages/products/#{productFolderId}/#{productFolderId}-desc.html.twig" %}
                 </div>
-                <div class="tab-pane">
+                <div class="tab-pane carac-pane">
                     {% include "webpages/products/#{productFolderId}/#{productFolderId}-carac.html.twig" %}
                 </div>
-                <div class="tab-pane">
-                    {% for image in gallery_dir %}
-                        <img src="../.{{ image }}" alt="" />
-                    {% endfor %}
+                <div class="tab-pane gallery-container grid">
+                        {% for image in gallery_dir %}
+                            <div class="grid-item"><img src="../.{{ image }}" alt="" /></div>
+                        {% endfor %}
                 </div>
             </div>
         </div>
     </main>
     
     {% include "webpages/common_blocks/footer.html.twig" %}
-{% endblock %}
-
-{% block javascripts %}
-    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/three.min.js"></script>
-    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
-    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/LoaderSupport.js"></script>
-    <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/OBJLoader2.js"></script>
-    {{ encore_entry_script_tags('viewer3d') }}
-    {{ encore_entry_script_tags('app') }}
 {% endblock %}

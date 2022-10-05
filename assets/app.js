@@ -40,9 +40,12 @@ navButton.onclick = function() {
 
 // Tabs
 // ------------------------------------------------------------------
-var tabs = require('tabs');
-var container = document.querySelector('.tab-container')
-tabs(container);
+if (document.querySelector('.tab') != undefined) {
+  var tabs = require('tabs');
+  var container = document.querySelector('.tab-container')
+  tabs(container);
+}
+
 
 
 // Swiper
