@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\PostsList;
 use App\Form\NewsletterFormType;
@@ -37,8 +38,12 @@ class WebPagesOthersController extends AbstractController
             $headerType = 'header-second';
         }
 
+        $contactForm = $this->createForm(ContactFormType::class);
+        $contactForm->handleRequest($request);
+
         return $this->render('web_pages_others/index.html.twig', [
             'controller_name' => 'WebPagesOthersController',
+            'contactForm' => $contactForm->createView(),
             'page_id' => $selected_page->getPageId(),
             'products' => $products,
             'posts' => $posts,
@@ -65,6 +70,9 @@ class WebPagesOthersController extends AbstractController
             );
         }
 
+        $contactForm = $this->createForm(ContactFormType::class);
+        $contactForm->handleRequest($request);
+
         // Récupération des images
         $imagesDir = './uploads/images/produits/';
         $color_dir = glob($imagesDir . $product->getProductFolderId() . "/coloris/*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}", GLOB_BRACE);
@@ -73,6 +81,7 @@ class WebPagesOthersController extends AbstractController
 
         return $this->render('web_pages_others/product.html.twig', [
             'controller_name' => 'WebPagesOthersController',
+            'contactForm' => $contactForm->createView(),
             'productName' => $product->getProductName(),
             'productThumb' => $product->getProductThumb(),
             'productShopUrl' => $product->getProductShopUrl(),

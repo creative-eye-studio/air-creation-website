@@ -22,10 +22,12 @@
   <div class="products-list-container">
     {% for product in products %}
     <article class="product-block">
-      <div class="image">
-        <img src="../uploads/images/product_thumbnails/{{ product.productthumb }}" alt="{{ product.productname }}" />
-      </div>
-      <h2>{{ product.productname }}</h2>
+      <a href="{{ path('product_pages', {product_slug: product.producturl}) }}">
+        <div class="image">
+          <img src="../uploads/images/product_thumbnails/{{ product.productthumb }}" alt="{{ product.productname }}" />
+        </div>
+        <h2>{{ product.productname }}</h2>
+      </a>
     </article>
     {% endfor %}
   </div>

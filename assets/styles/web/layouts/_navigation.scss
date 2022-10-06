@@ -96,7 +96,7 @@
         .case{
             width: 60vw;
             height: 60%;
-            padding: calc(#{$marges-d-y});
+            padding: $marges-d-y;
             & > a{
                 display: block;
                 width: 100%;
@@ -110,7 +110,7 @@
             span{
                 display: block;
                 font-size: 4vw;
-                margin-bottom: calc(#{$marges-m} * 1.5);
+                margin-bottom: $marges-d-y;
             }
         }
     }

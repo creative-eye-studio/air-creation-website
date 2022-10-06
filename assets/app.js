@@ -47,12 +47,15 @@ contactButton.onclick = function() {
   contactBlock.classList.toggle('active');
 }
 
+
 // Tabs
 // ------------------------------------------------------------------
-if (document.querySelector('.tab') != undefined) {
-  var tabs = require('tabs');
-  var container = document.querySelector('.tab-container')
-  tabs(container);
+var tabs = require('tabs');
+var container = document.querySelector('.tab-container')
+tabs(container);
+if (document.querySelector('.product-block-2') != undefined) {
+  var productTabscontainer = document.querySelector('.product-block-2')
+  tabs(productTabscontainer);
 }
 
 

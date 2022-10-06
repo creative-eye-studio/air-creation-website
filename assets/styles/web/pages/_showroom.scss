@@ -18,6 +18,10 @@
     padding: calc(#{$marges-m} * 1.5);
     background-color: $bw-color-2;
     border-top: .0625rem solid $bw-color-4;
+    a{
+        color: black;
+        text-decoration: none;
+    }
     .image{
         margin-bottom: calc(#{$marges-m} * 1.5);
         padding-top: 100%;
@@ -25,8 +29,9 @@
         img{
             position: absolute;
             top: 0;
-            left: 0;
-            object-fit: contain;
+            left: 0;    
+            object-fit: cover;
+            height: 100%;
         }
     }
     h2{
@@ -34,12 +39,12 @@
         text-align: center;
     }
     @media screen and (min-width: 768px) {
-        flex: 50%;
+        width: 50%;
     }
     @media screen and (min-width: 1024px) {
-        padding: calc(#{$marges-d-x} * .75);
+        padding: calc(#{$marges-d-x} * .5);
         border: .0625rem solid $bw-color-4;
-        flex: 25%;
+        width: 25%;
     }
 }
 
