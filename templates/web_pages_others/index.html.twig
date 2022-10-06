@@ -4,6 +4,8 @@
 
 {% block body %}
     {% include "webpages/common_blocks/header.html.twig" %}
+    <main>
     {% include "webpages/pages/#{page_id}.html.twig" %}
+    </main>
     {% include "webpages/common_blocks/footer.html.twig" %}
 {% endblock %}
