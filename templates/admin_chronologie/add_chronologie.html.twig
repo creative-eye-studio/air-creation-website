@@ -1,0 +1,21 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Ajouter une chronologie{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <h2>Ajouter un nouveau produit</h2>
+        {{ form_start(form) }}
+            <p>{{ form_label(form.chronologie_date) }}<br />
+            {{ form_widget(form.chronologie_date) }}</p>
+
+            <p>{{ form_label(form.chronologie_type) }}<br />
+            {{ form_widget(form.chronologie_type) }}</p>
+
+            <p>{{ form_label(form.chronologie_text) }}<br />
+            {{ form_widget(form.chronologie_text) }}</p>
+
+            <p>{{ form_widget(form.submit) }}</p>
+        {{ form_end(form) }}
+    </section>
+{% endblock %}
