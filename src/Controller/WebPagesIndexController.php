@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\PostsList;
 use App\Form\NewsletterFormType;
@@ -16,6 +17,7 @@ class WebPagesIndexController extends AbstractController
     #[Route('/fr', name: 'web_index')]
     public function index(Request $request, ManagerRegistry $doctrine): Response
     {
+
         $index_page = $doctrine->getRepository(PagesList::class)->findBy(["page_url" => "index"]);
         $lasts_posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC'], 3, null);
         $headerType = 'header-base';
@@ -26,11 +28,14 @@ class WebPagesIndexController extends AbstractController
             );
         }
 
+        $contactForm = $this->createForm(ContactFormType::class);
+        $contactForm->handleRequest($request);
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);
 
         return $this->render('web_pages_index/index.html.twig', [
             'controller_name' => 'WebPagesIndexController',
+            'contactForm' => $contactForm->createView(),
             'newsForm' => $newsForm->createView(),
             'posts' => $lasts_posts,
             'headerType' => $headerType

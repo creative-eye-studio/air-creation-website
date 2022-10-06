@@ -39,6 +39,14 @@ navButton.onclick = function() {
 }
 
 
+// Contact Form
+// ------------------------------------------------------------------
+var contactButton = document.querySelector('.toggle-contact');
+var contactBlock = document.querySelector('.contact-block');
+contactButton.onclick = function() {
+  contactBlock.classList.toggle('active');
+}
+
 // Tabs
 // ------------------------------------------------------------------
 if (document.querySelector('.tab') != undefined) {
@@ -89,6 +97,7 @@ const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
     },
 });
 
+
 const swiperLastsPosts = new Swiper('.posts', {
     modules: [Pagination],
     slidesPerView: "auto",
@@ -113,6 +122,7 @@ const swiperLastsPosts = new Swiper('.posts', {
     }
 })
 
+
 const swiperInnovBlocks = new Swiper('.innov-container', {
     modules: [Pagination],
     slidesPerView: "auto",
@@ -133,6 +143,7 @@ const swiperInnovBlocks = new Swiper('.innov-container', {
     }
 });
 
+
 const swiperProductsColoris = new Swiper('.slider-coloris', {
     modules: [Navigation],
     slidesPerView: "auto",
@@ -144,6 +155,7 @@ const swiperProductsColoris = new Swiper('.slider-coloris', {
     },
 });
 
+
 const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     modules: [Pagination],
     slidesPerView: "auto",
@@ -154,6 +166,7 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
       prevEl: '.swiper-button-prev',
     },
 });
+
 
 if (screen.width >= 1200 && swiperInnovBlocks != undefined) {
   swiperInnovBlocks.destroy();

@@ -1,0 +1,114 @@
+.contact-block{
+    position: fixed;
+    top: $header-ht;
+    bottom: $navbar-ht;
+    z-index: 10;
+    background-color: white;
+    width: 100%;
+    overflow: scroll;
+    transform: translateX(-100%);
+    transition-duration: .5s;
+
+    &.active{
+        transform: translateX(0%);
+    }
+
+    .image{
+        display: none;
+    }
+
+    .form{
+        width: 100%;
+        height: 100%;
+        padding: $marges-m;
+        form{
+            position: relative;
+        }
+    }
+
+    h1{
+        font-size: 2rem;
+        font-weight: 300;
+    }
+
+    .tabs-btn{
+        display: flex;
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 2rem;
+        li{
+            margin-right: 30px;
+        }
+        a{
+            &::before{
+                content: "";
+                display: block;
+                float: left;
+                width: 20px;
+                height: 20px;
+                margin: 5px 1rem 0 0;
+                background-color: $p-color;
+                border-radius: 2rem;
+            }
+        }
+    }
+
+    .contact-tab{
+        position: absolute;
+        left: 0;
+        right: 0;
+        opacity: 1;
+        visibility: visible;
+        padding-bottom: $marges-m;
+        transition-duration: .5s;
+        strong{
+            font-weight: 400;
+        }
+        &:not(.active){
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+    .arrow-nav{
+        display: flex;
+        justify-content: space-between;
+        .tab-button{
+            padding-top: $marges-m;
+            position: relative;
+            &:not(.disabled){
+                cursor: pointer;
+            }
+            &.disabled{
+                opacity: .6;
+            }
+        }
+    }
+    @media screen and (min-width:1024px) {
+        bottom: 0;
+        .image{
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background-color: $bw-color-2;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .form{
+            width: 50%;
+            padding: $marges-d-y $marges-d-x;
+            margin-left: 50%;
+        }
+    }
+
+    @media screen and (min-width:1200px){
+        h1{
+            font-size: 2.5vw;
+        }
+    }
+}

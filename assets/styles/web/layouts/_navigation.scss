@@ -24,7 +24,7 @@
     }
     .main-btn-bloc{
         &:not(:last-child){
-            margin-bottom: $marges-m;
+            margin-bottom: calc(#{$marges-m} / 2);
         }
         &.sub-menu{
             ul{
@@ -96,7 +96,7 @@
         .case{
             width: 60vw;
             height: 60%;
-            padding: calc(#{$marges-m} * 1.5);
+            padding: calc(#{$marges-d-y});
             & > a{
                 display: block;
                 width: 100%;
@@ -109,7 +109,7 @@
             }
             span{
                 display: block;
-                font-size: 2em;
+                font-size: 4vw;
                 margin-bottom: calc(#{$marges-m} * 1.5);
             }
         }
@@ -140,7 +140,7 @@
             border-right: .0625rem solid $p-color-d;
         }
     }
-    a{
+    a, span{
         color: black;
         text-decoration: none;
     }
@@ -165,7 +165,7 @@
 .header-second{
     .second-menu{
         @media screen and (min-width:1024px) {
-            a{
+            a, span{
                 color: white;
             }
         }

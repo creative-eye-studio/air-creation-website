@@ -1,7 +1,29 @@
+label{
+    font-size: 1em;
+}
+
 input{
     &[type=text],
-    &[type=email]{
-        width: 100%;
-        padding: .75rem;
+    &[type=email],
+    &[type=tel]{
+        @include inputDesign();
     }
+}
+
+button[type=submit]{
+    @include greenBtn();
+}
+
+select{
+    @include inputDesign();
+}
+
+textarea{
+    @include inputDesign();
+}
+
+.horizontal-radio{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2rem;
 }

@@ -1,3 +1,4 @@
+<!-- En-Tête -->
 <header class="header-site {{ headerType }}">
   <div class="logo-container">
     <img src="../uploads/images/logotype.jpg" />
@@ -11,14 +12,15 @@
   <ul class="second-menu">
     <li><a>Le Showroom</a></li>
     <li><a>Documentation</a></li>
-    <li><a>Contact / Devis</a></li>
+    <li><span class="toggle-contact">Contact / Devis</span></li>
     <li><a>E-Commerce</a></li>
   </ul>
 </header>
 
+<!-- Navigation -->
 <nav class="swiper primary-menu">
   <ul class="main-menu">
-    
+
     <div class='main-btn-bloc bloc1'>
       <li class="case"><a href='../fr'><span>Bienvenue</span></a></li>
     </div>
@@ -54,11 +56,75 @@
       </li>
     </div>
   </ul>
-  
+
   <div class="swiper-nav-button-prev nav-arrow">
-  	<i class="fa-solid fa-chevron-left fa-2x"></i>
+    <i class="fa-solid fa-chevron-left fa-2x"></i>
   </div>
   <div class="swiper-nav-button-next nav-arrow">
-  	<i class="fa-solid fa-chevron-right fa-2x"></i>
+    <i class="fa-solid fa-chevron-right fa-2x"></i>
   </div>
 </nav>
+
+<!-- Contact Form -->
+<section class="contact-block">
+  <div class="image"></div>
+  <div class="form tab-container">
+    <h1>Faites nous part de votre demande</h1>
+    <ul class="tabs tabs-btn">
+      <li><a class="tab active">Étape 1</a></li>
+      <li><a class="tab">Étape 2</a></li>
+      <li><a class="tab">Étape 3</a></li>
+    </ul>
+    {{ form_start(contactForm, { 'attr' : {'class': 'tab-panes'} }) }}
+    <div class="contact-tab tab-pane active">
+      <p><strong>1. Votre identité et informations de contact</strong></p>
+      <div class="horizontal-radio">
+        {% for child in contactForm.gender %}
+      <p>
+        {{ form_widget(child) }}
+        {{ form_label(child, null) }}
+      </p>
+      {% endfor %}
+      </div>
+      
+      <p>
+        {{ form_label(contactForm.lname)}}
+        {{ form_widget(contactForm.lname)}}
+      </p>
+      <p>
+        {{ form_label(contactForm.fname)}}
+        {{ form_widget(contactForm.fname)}}
+      </p>
+      <p>
+        {{ form_label(contactForm.phone)}}
+        {{ form_widget(contactForm.phone)}}
+      </p>
+      <p>
+        {{ form_label(contactForm.email)}}
+        {{ form_widget(contactForm.email)}}
+      </p>
+    </div>
+    <div class="contact-tab tab-pane">
+      <p><strong>2. Vous êtes...</strong></p>
+      {% for child in contactForm.customer_type %}
+      <p>
+        {{ form_widget(child) }}
+        {{ form_label(child, null) }}
+      </p>
+      {% endfor %}
+    </div>
+    <div class="contact-tab tab-pane">
+      <p><strong>3. Comment pouvons nous vous aider <span class="gender"></span> <span class="lname"></span> ?</strong></p>
+      <p>
+        {{ form_label(contactForm.subject)}}
+        {{ form_widget(contactForm.subject)}}
+      </p>
+      <p>
+        {{ form_label(contactForm.message)}}
+        {{ form_widget(contactForm.message)}}
+      </p>
+      {{ form_widget(contactForm.submit_button)}}
+    </div>
+    {{ form_end(contactForm) }}
+  </div>
+</section>
