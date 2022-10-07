@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Chronologie;
 use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\PostsList;
@@ -20,6 +21,7 @@ class WebPagesIndexController extends AbstractController
 
         $index_page = $doctrine->getRepository(PagesList::class)->findBy(["page_url" => "index"]);
         $lasts_posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC'], 3, null);
+        $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
         $headerType = 'header-base';
 
         if (!$index_page) {
@@ -38,6 +40,7 @@ class WebPagesIndexController extends AbstractController
             'contactForm' => $contactForm->createView(),
             'newsForm' => $newsForm->createView(),
             'posts' => $lasts_posts,
+            'events' => $lasts_events,
             'headerType' => $headerType
         ]);
     }

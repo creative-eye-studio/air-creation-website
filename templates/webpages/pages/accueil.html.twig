@@ -130,31 +130,38 @@
 </section>
 
 <!-- Timeline Block -->
-<section class="timeline-container">
-  <div class="timeline-block"></div>
-  <div class="timeline-block"></div>
-  <div class="timeline-block"></div>
+<section class="swiper home-timeline-container">
+  <div class="swiper-wrapper">
+    {% for event in events %}
+    <div class="swiper-slide timeline-block">
+      <h2>{{ event.chronologiedate }}</h2>
+      <p>{{ event.chronologietext}}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="chrono-swiper-button-prev"></div>
+  <div class="chrono-swiper-button-next"></div>
 </section>
 
 <!-- Community Block -->
 <section class="social">
   <!-- Dernières actualités -->
   <div class="swiper posts">
-  	<h2>Dernières actualités</h2>
+    <h2>Dernières actualités</h2>
     <div class="swiper-wrapper">
-    {% for post in posts %}
-    	<article class="swiper-slide post-block">
-          	<div class="image">
-          		<img src="../uploads/images/posts/{{ post.photofilename }}" alt='{{ post.postname }}' />
-          	</div>
-          	<div class="content">
-          		<h3>{{ post.postname }}</h3>
-              <p>
-                <a href="{{ post.posturl }}" class="btn">Lire l'article</a>
-              </p>
-          	</div>
-      	</article>
-    {% endfor %}
+      {% for post in posts %}
+      <article class="swiper-slide post-block">
+        <div class="image">
+          <img src="../uploads/images/posts/{{ post.photofilename }}" alt='{{ post.postname }}' />
+        </div>
+        <div class="content">
+          <h3>{{ post.postname }}</h3>
+          <p>
+            <a href="{{ post.posturl }}" class="btn">Lire l'article</a>
+          </p>
+        </div>
+      </article>
+      {% endfor %}
     </div>
   </div>
   <!-- Instagram -->

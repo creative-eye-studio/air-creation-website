@@ -94,6 +94,25 @@ if (screen.width >= 1024) {
 
 }
 
+const swiperLastsEvents = new Swiper('.home-timeline-container', {
+  modules: [Navigation],
+  slidesPerView: "auto",
+  spaceBetween: 30,
+  navigation: {
+    nextEl: '.chrono-swiper-button-next',
+    prevEl: '.chrono-swiper-button-prev',
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 2,
+    },
+    1200: {
+      spaceBetween: 60,
+      slidesPerView: 3,
+    },
+  }
+});
+
 
 const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
     modules: [Pagination],
