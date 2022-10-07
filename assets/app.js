@@ -12,6 +12,13 @@ import './styles/web/app.scss';
 import './bootstrap';
 
 
+// AOS
+// ------------------------------------------------------------------
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
+
 // Header
 // ------------------------------------------------------------------
 window.addEventListener('scroll', function(){
