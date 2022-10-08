@@ -14,6 +14,8 @@
 @import './components/_cover-page';
 @import './components/_post-block';
 @import './components/_buttons';
+@import './components/_parallax';
+@import './components/_swup';
 
 // LAYOUT
 @import './layouts/_header';
@@ -23,6 +25,7 @@
 @import './layouts/_form';
 @import './layouts/_columns';
 @import './layouts/_info-page';
+@import './layouts/_map-list';
 
 // PAGES
 @import './pages/_home';

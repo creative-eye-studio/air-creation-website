@@ -105,10 +105,11 @@
                 padding-top: 35%;
             }
         }
-        @media screen and (min-width: 1199px) {
+        @media screen and (min-width: 1200px) {
             column-gap: $marges-d-x;
             .block-slider{
                 margin-bottom: calc(#{$marges-d-x} / 2);
+                padding-top: 30%;
                 overflow: hidden;
                 img{
                     transition-duration: .5s;

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ContactFormType;
 use App\Entity\PagesList;
+use App\Entity\Partners;
 use App\Entity\PostsList;
 use App\Form\NewsletterFormType;
 use App\Service\ProductsFunctions;
@@ -21,6 +22,8 @@ class WebPagesOthersController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response
     {
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
+        $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
+        $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
         $products = $products_function->getProducts($doctrine);
         $posts = $doctrine->getRepository(PostsList::class)->findAll();
         $newsForm = $this->createForm(NewsletterFormType::class);
@@ -48,6 +51,8 @@ class WebPagesOthersController extends AbstractController
             'products' => $products,
             'posts' => $posts,
             'newsForm' => $newsForm->createView(),
+            'resellers' => $resellers,
+            'trainers' => $trainers,
             'headerType' => $headerType
         ]);
     }

@@ -12,11 +12,50 @@ import './styles/web/app.scss';
 import './bootstrap';
 
 
+// SWUP
+// ------------------------------------------------------------------
+import Swup from 'swup';
+const swup = new Swup();
+
+
+// OPEN LAYERS
+// ------------------------------------------------------------------
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
+import {fromLonLat} from 'ol/proj';
+
+if (document.querySelector(".partners-map") != undefined) {
+  const aubLonLat = [4.389863, 44.620909];
+  const aubWebMercator = fromLonLat(aubLonLat);
+  
+  const map = new Map({
+    target: 'map',
+    layers: [
+      new TileLayer({
+        source: new OSM()
+      })
+    ],
+    view: new View({
+      center: aubWebMercator,
+      zoom: 15,
+    })
+  })
+    
+}
+
+
 // AOS
 // ------------------------------------------------------------------
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
+
+
+// Parallax
+// ------------------------------------------------------------------
+import 'parallax-image';
 
 
 // Header
@@ -60,9 +99,15 @@ contactButton.onclick = function() {
 var tabs = require('tabs');
 var container = document.querySelector('.tab-container')
 tabs(container);
+
 if (document.querySelector('.product-block-2') != undefined) {
   var productTabscontainer = document.querySelector('.product-block-2')
   tabs(productTabscontainer);
+}
+
+if (document.querySelector('.partners-container') != undefined) {
+  var partnersTabscontainer = document.querySelector('.partners-container')
+  tabs(partnersTabscontainer);
 }
 
 
