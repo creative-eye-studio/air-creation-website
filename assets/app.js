@@ -60,16 +60,19 @@ import 'parallax-image';
 
 // Header
 // ------------------------------------------------------------------
-window.addEventListener('scroll', function(){
-  var scrollPosition = window.scrollY;
-  var headerSite = document.getElementsByClassName('header-site')[0];
+if (document.querySelector('.header-base') != undefined) {
+  window.addEventListener('scroll', function(){
+    var scrollPosition = window.scrollY;
+    var headerSite = document.getElementsByClassName('header-base')[0];
 
-  if (scrollPosition >= 50) {
-    headerSite.classList.add('scrolled');
-  } else {
-    headerSite.classList.remove('scrolled');
-  }
-})
+    if (scrollPosition >= 50) {
+      headerSite.classList.add('scrolled');
+    } else {
+      headerSite.classList.remove('scrolled');
+    }
+  })
+}
+
 
 
 // Navigation
