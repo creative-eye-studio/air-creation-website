@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -37,6 +39,14 @@ class Products
 
     #[ORM\Column(length: 255)]
     private ?string $product_thumb = null;
+
+    #[ORM\OneToMany(mappedBy: 'doc_product_id', targetEntity: Documentation::class)]
+    private Collection $documentations;
+
+    public function __construct()
+    {
+        $this->documentations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -135,6 +145,36 @@ class Products
     public function setProductThumb(string $product_thumb): self
     {
         $this->product_thumb = $product_thumb;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Documentation>
+     */
+    public function getDocumentations(): Collection
+    {
+        return $this->documentations;
+    }
+
+    public function addDocumentation(Documentation $documentation): self
+    {
+        if (!$this->documentations->contains($documentation)) {
+            $this->documentations->add($documentation);
+            $documentation->setDocProductId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocumentation(Documentation $documentation): self
+    {
+        if ($this->documentations->removeElement($documentation)) {
+            // set the owning side to null (unless already changed)
+            if ($documentation->getDocProductId() === $this) {
+                $documentation->setDocProductId(null);
+            }
+        }
 
         return $this;
     }
