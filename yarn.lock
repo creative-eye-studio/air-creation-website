@@ -1132,6 +1132,13 @@
   "resolved" "https://registry.npmjs.org/@swc/helpers/-/helpers-0.2.14.tgz"
   "version" "0.2.14"
 
+"@swup/body-class-plugin@^1.0.2":
+  "integrity" "sha512-fzK/sY1QeDJje0mNgPuETRmdLOrdJZzoG96GTcTEjBATXAjDbcGvodCCRDE8eNYQMWayHD2Lks4avV9e5cvQ7A=="
+  "resolved" "https://registry.npmjs.org/@swup/body-class-plugin/-/body-class-plugin-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "@swup/plugin" "^1.0.0"
+
 "@swup/debug-plugin@^1.0":
   "integrity" "sha512-uSGrrI0Z4yLvUIYUNAzOGFgotJgjdXPGYCZ/WVGUdkBUWO8rWfSkDi+qCp2V8AdPGFc9TNq8bcR4zO0FPJ+C5g=="
   "resolved" "https://registry.npmjs.org/@swup/debug-plugin/-/debug-plugin-1.0.3.tgz"

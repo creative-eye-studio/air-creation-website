@@ -106,9 +106,20 @@ header{
         }
     }
 
-    // Style Header 1
+    // Style Header Contact Opened
     // ------------------------------------------------------------------
-    &.header-base{
+    &.contact-opened{
+        @include headerColored();
+        position: fixed;
+    }
+}
+
+
+
+// Style Header 1
+// ------------------------------------------------------------------
+.header-base{
+    header{
         @media screen and (min-width: 1024px) {
             transition-duration: .5s;
             position: fixed;
@@ -118,31 +129,32 @@ header{
                     transition-duration: .5s;
                 }
             }
-            &.scrolled{
-                @include headerColored();
-            }
         }
     }
+    &.scrolled{
+        header{
+            @include headerColored();
+        }
+    }
+}
 
-    // Style Header 2
-    // ------------------------------------------------------------------
-    &.header-second{
+
+
+// Style Header 2
+// ------------------------------------------------------------------
+.header-second{
+    header{
         @media screen and (min-width: 1024px) {
             @include headerColored();
             position: sticky;
         }
     }
+}
 
-    // Style Header Contact Opened
-    // ------------------------------------------------------------------
-    &.contact-opened{
-        @include headerColored();
-        position: fixed;
-    }
-
-    // Style Header Nav Opened
-    // ------------------------------------------------------------------
-    &.nav-opened{
+// Style Header Nav Opened
+// ------------------------------------------------------------------
+.nav-opened{
+    header{
         @media screen and (min-width:1024px) {
             z-index: 110;
             background-color: rgba($color: #000000, $alpha: 0);
@@ -171,4 +183,5 @@ header{
             }
         }
     }
+    
 }
