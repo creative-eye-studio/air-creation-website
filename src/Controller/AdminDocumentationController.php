@@ -83,11 +83,20 @@ class AdminDocumentationController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/documentation/delete/{doc_file}', name: 'app_admin_documentation_add')]
-    public function FunctionName(String $doc_file): Response
+    #[Route('/admin/documentation/delete/{doc_file}', name: 'app_admin_documentation_delete')]
+    public function FunctionName(ManagerRegistry $doctrine, String $doc_file): Response
     {
-        
+        // Récupération du fichier
+        $entityManager = $doctrine->getManager();
+        $doc = $entityManager->getRepository(Documentation::class)->findOneBy(['doc_file' => $doc_file]);
+        $docId = $entityManager->getRepository(Products::class)->findOneBy(['id' => $doc->getDocProductId()]);
 
-        return $this->render('$0.html.twig', []);
+        // Suppression du fichier
+        unlink($this->getParameter('kernel.project_dir').'/public/uploads/documentation/' . $doc->getDocFile());
+
+        $entityManager->remove($doc);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_admin_documentation_product', ['product_id' => $docId->getId()]);
     }
 }

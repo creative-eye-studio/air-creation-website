@@ -10,7 +10,7 @@
             <div class="line">
                 <p>{{ doc.docname }}</p>
                 <ul>
-                    <li><a>Supprimer</a></li>
+                    <li><a href="{{ path('app_admin_documentation_delete', {doc_file: doc.docfile}) }}">Supprimer</a></li>
                 </ul>
             </div>
         {% endfor %}
