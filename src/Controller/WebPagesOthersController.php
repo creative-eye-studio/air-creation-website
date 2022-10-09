@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Chronologie;
 use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\Partners;
@@ -28,6 +29,7 @@ class WebPagesOthersController extends AbstractController
         $posts = $doctrine->getRepository(PostsList::class)->findAll();
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);
+        $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
 
         if (!$selected_page) {
             throw $this->createNotFoundException(
@@ -50,6 +52,7 @@ class WebPagesOthersController extends AbstractController
             'page_id' => $selected_page->getPageId(),
             'products' => $products,
             'posts' => $posts,
+            'events' => $lasts_events,
             'newsForm' => $newsForm->createView(),
             'resellers' => $resellers,
             'trainers' => $trainers,

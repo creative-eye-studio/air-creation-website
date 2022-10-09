@@ -10,10 +10,10 @@
   </div>
 
   <ul class="second-menu">
-    <li><a>Le Showroom</a></li>
-    <li><a>Documentation</a></li>
+    <li><a href="{{ path('web_pages', {page_slug: 'showroom'}) }}">Le Showroom</a></li>
+    <li><a href="{{ path('web_pages', {page_slug: 'documentation-en-ligne'}) }}">Documentation</a></li>
     <li><span class="toggle-contact">Contact / Devis</span></li>
-    <li><a>E-Commerce</a></li>
+    <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">E-Commerce</a></li>
   </ul>
 </header>
 
@@ -22,24 +22,24 @@
   <ul class="main-menu">
 
     <div class='main-btn-bloc bloc1'>
-      <li class="case"><a href='../fr'><span>Bienvenue</span></a></li>
+      <li class="case"><a href="{{ path('web_index') }}"><span>Bienvenue</span></a></li>
     </div>
 
     <div class='main-btn-bloc bloc2'>
-      <li class="case"><a href='../fr/produits'><span>Voir notre showroom</span></a></li>
+      <li class="case"><a href="{{ path('web_pages', {page_slug: 'showroom'}) }}"><span>Voir notre showroom</span></a></li>
     </div>
 
     <div class='main-btn-bloc sub-menu bloc3'>
       <li class="case">
         <span>Consulter nos services :</span>
         <ul>
-          <li><a href='../fr/service-sur-mesure'>Sur-Mesure</a></li>
-          <li><a href='https://shop.aircreation.fr/' target="_blank" rel="noopener">Shop</a></li>
-          <li><a href='https://shop.aircreation.fr/-les-occasions-air-creation' target="_blank" rel="noopener">Complet et Occasion</a></li>
-          <li><a href='../fr/sous-traitance'>Notre offre de sous-traitance</a></li>
-          <li><a href='../fr/maintenance'>Maintenance</a></li>
-          <li><a href='../fr/documentation-en-ligne'>Documentation en ligne</a></li>
-          <li><a href='../fr/notre-histoire'>Service Après-Vente</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Sur-Mesure</a></li>
+          <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">Shop</a></li>
+          <li><a href="https://shop.aircreation.fr/-les-occasions-air-creation" target="_blank" rel="noopener">Complet et Occasion</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Notre offre de sous-traitance</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}">Maintenance</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'documentation-en-ligne'}) }}">Documentation en ligne</a></li>
+          <li><a href="">Service Après-Vente</a></li>
         </ul>
       </li>
     </div>
@@ -48,13 +48,13 @@
       <li class="case">
         <span>Découvrir Air Création :</span>
         <ul>
-          <li><a href='../fr/qui-sommes-nous'>Qui sommes nous ?</a></li>
-          <li><a href='../fr/notre-histoire'>Notre histoire</a></li>
-          <li><a href='../fr/innovation'>Notre innovation</a></li>
-          <li><a href='../fr/nos-valeurs'>Nos valeurs</a></li>
-          <li><a href='../fr/liste-des-revendeurs'>Liste des revendeurs</a></li>
-          <li><a href='../fr/liste-des-formateurs'>Centres de formations</a></li>
-          <li><a href='../fr/actualites'>Actualités</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'qui-sommes-nous'}) }}">Qui sommes nous ?</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'notre-histoire'}) }}">Notre histoire</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'innovation'}) }}">Notre innovation</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Nos valeurs</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'liste-des-revendeurs'}) }}">Liste des revendeurs</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'liste-des-formateurs'}) }}">Centres de formations</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'actualites'}) }}">Actualités</a></li>
         </ul>
       </li>
     </div>
