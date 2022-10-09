@@ -1,0 +1,43 @@
+.sav-container{
+    padding: $marges-m;
+    .sav-list{
+        margin-bottom: $marges-m;
+        ul{
+            list-style-type: none;
+            margin: 0;
+            padding-left: 0;
+            border: .0625rem solid $bw-color-4;
+        }
+        li{
+            padding: 1rem;
+            background-color: $bw-color-2;
+            &:not(:last-child){
+                border-bottom: .0625rem solid $bw-color-4;
+            }
+        }
+        a{
+            display: block;
+        }
+    }
+    .tab-pane{
+        &:not(.active){
+            display: none;
+        }
+    }
+    @media screen and (min-width:768px) {
+        display: flex;
+        justify-content: center;
+        column-gap: $marges-m;
+        .sav-list{
+            margin-bottom: 0;
+            flex: 30%;
+        }
+        .tab-panes{
+            flex: 70%;
+        }
+    }
+    @media screen and (min-width:1200px){
+        padding: $marges-d-y $marges-d-x;
+        column-gap: $marges-d-x;
+    }
+}

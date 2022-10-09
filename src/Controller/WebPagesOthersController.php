@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Chronologie;
+use App\Entity\FAQList;
 use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\Partners;
@@ -25,6 +26,7 @@ class WebPagesOthersController extends AbstractController
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
         $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
         $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
+        $questions = $doctrine->getRepository(FAQList::class)->findAll();
         $products = $products_function->getProducts($doctrine);
         $posts = $doctrine->getRepository(PostsList::class)->findAll();
         $newsForm = $this->createForm(NewsletterFormType::class);
@@ -56,6 +58,7 @@ class WebPagesOthersController extends AbstractController
             'newsForm' => $newsForm->createView(),
             'resellers' => $resellers,
             'trainers' => $trainers,
+            'questions' => $questions,
             'headerType' => $headerType
         ]);
     }

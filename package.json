@@ -14,7 +14,7 @@
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.54.4",
         "sass-loader": "^13.0.2",
-        "swup": "^2.0.19",
+        "swup": "^2.0",
         "vue": "^3.2.37",
         "vue-loader": "^17.0.0",
         "vue-template-compiler": "^2.7.8",
