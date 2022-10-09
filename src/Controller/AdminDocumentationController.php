@@ -26,6 +26,22 @@ class AdminDocumentationController extends AbstractController
         ]);
     }
 
+
+    #[Route('/admin/documentation/product/{product_id}', name: 'app_admin_documentation_product')]
+    public function productDocList(ManagerRegistry $doctrine, String $product_id): Response
+    {
+        // On récupère le produit
+        $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
+        $docList = $entityManager->getRepository(Documentation::class)->findBy(['doc_product_id' => $product_id]);
+
+        return $this->render('admin_documentation/product-doc-list.html.twig', [
+            "docs" => $docList,
+            "productname" => $product->getProductName(),
+        ]);
+    }
+
+
     #[Route('/admin/documentation/ajouter', name: 'app_admin_documentation_add')]
     public function addDocs(ManagerRegistry $doctrine, Request $request): Response
     {
@@ -53,19 +69,25 @@ class AdminDocumentationController extends AbstractController
 
                 $documentation = new Documentation();
                 $entityManager = $doctrine->getManager();
+                $documentation->setDocName($fileName);
                 $documentation->setDocFile($fileName . "." . $fileExtention);
                 $documentation->setDocProductId($docProduct);
             
                 $entityManager->persist($documentation);
                 $entityManager->flush();
             }
-            
-
-            
         }
 
         return $this->render('admin_documentation/add_docs.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    #[Route('/admin/documentation/delete/{doc_file}', name: 'app_admin_documentation_add')]
+    public function FunctionName(String $doc_file): Response
+    {
+        
+
+        return $this->render('$0.html.twig', []);
     }
 }
