@@ -142,6 +142,27 @@ if (screen.width >= 1024) {
 
 }
 
+const swiperDoc = new Swiper('.product-doc-list', {
+  modules: [Navigation],
+  slidesPerView: "auto",
+  centeredSlides: true,
+  loop: true,
+  navigation: {
+    nextEl: '.swiper-doc-button-next',
+    prevEl: '.swiper-doc-button-prev',
+  },
+  breakpoints: {
+    1024: {
+      centeredSlides: false,
+      slidesPerView: 2,
+    },
+    1200: {
+      centeredSlides: true,
+      slidesPerView: 3,
+    }
+  }
+});
+
 const swiperLastsEvents = new Swiper('.home-timeline-container', {
   modules: [Navigation],
   slidesPerView: "auto",
