@@ -105,13 +105,6 @@ header{
             }
         }
     }
-
-    // Style Header Contact Opened
-    // ------------------------------------------------------------------
-    &.contact-opened{
-        @include headerColored();
-        position: fixed;
-    }
 }
 
 
@@ -182,6 +175,15 @@ header{
                 }
             }
         }
+    }
+}
+
+// Style Header Contact Opened
+// ------------------------------------------------------------------
+.contact-opened{
+    header{
+        @include headerColored();
+        position: fixed;
     }
     
 }
