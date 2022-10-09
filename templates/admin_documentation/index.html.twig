@@ -1,0 +1,22 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Documentation{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <a class="btn-link float-right" href="{{ path('app_admin_products_add') }}">Ajouter des documents</a>
+        <h2>Produits</h2>
+        <div class="docs-list">
+            {% for product in products %}
+                <a>
+                    <div class="docs-block">
+                        <figure class="image">
+                        <img src="../uploads/images/product_thumbnails/{{ product.productThumb }}" alt="{{ product.productname }}" />
+                        </figure>
+                        <h3>{{ product.productname }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

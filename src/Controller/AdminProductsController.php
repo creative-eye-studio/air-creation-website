@@ -66,6 +66,7 @@ class AdminProductsController extends AbstractController
                 mkdir('./uploads/images/produits/' . $folderId . '/coloris', 0777, true);
                 mkdir('./uploads/images/produits/' . $folderId . '/accessoires', 0777, true);
                 mkdir('./uploads/images/produits/' . $folderId . '/images', 0777, true);
+                mkdir('./uploads/documentation/' . $folderId, 0777, true);
             }
 
             // Création du produit dans la BDD
