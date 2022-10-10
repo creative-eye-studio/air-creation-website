@@ -18,8 +18,10 @@ jobs:
         server: ftp.japet.bsi.fr
         username: gkyqrkn-aircreation
         password: yK3hiVqJowjSge
+        protocol: ftps
         exclude: |
           **/.git*
           **/.git*/**
+          **/assets/**
           **/node_modules/**
           **/var/**
