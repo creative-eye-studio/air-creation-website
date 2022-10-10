@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    {{ productMetaTitle }}
-{% endblock %}
+{% block title %}{{ meta_title }} - Air Création{% endblock %}
+{% block meta_description %}{{ meta_desc }}{% endblock %}
 
 {% block meta %}
   <meta description="{{ productMetaDesc }}">

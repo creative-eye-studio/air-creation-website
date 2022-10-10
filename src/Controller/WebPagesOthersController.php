@@ -59,7 +59,9 @@ class WebPagesOthersController extends AbstractController
             'resellers' => $resellers,
             'trainers' => $trainers,
             'questions' => $questions,
-            'headerType' => $headerType
+            'headerType' => $headerType,
+            'meta_title' => $selected_page->getPageMetaTitle(),
+            'meta_desc' => $selected_page->getPageMetaDesc(),
         ]);
     }
 
@@ -104,7 +106,9 @@ class WebPagesOthersController extends AbstractController
             'accessoiries_dir' => $accessoiries_dir,
             'gallery_dir' => $gallery_dir,
             'newsForm' => $newsForm->createView(),
-            'headerType' => $headerType
+            'headerType' => $headerType,
+            'meta_title' => $product->getProductMetaTitle(),
+            'meta_desc' => $product->getProductMetaDesc(),
         ]);
     }
 }

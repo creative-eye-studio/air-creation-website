@@ -20,7 +20,7 @@ class WebPagesIndexController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine, FormsManager $formsManager): Response
     {
 
-        $index_page = $doctrine->getRepository(PagesList::class)->findBy(["page_url" => "index"]);
+        $index_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => "index"]);
         $lasts_posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC'], 3, null);
         $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
         $headerType = 'header-base';
@@ -42,7 +42,9 @@ class WebPagesIndexController extends AbstractController
             'newsForm' => $newsForm->createView(),
             'posts' => $lasts_posts,
             'events' => $lasts_events,
-            'headerType' => $headerType
+            'headerType' => $headerType,
+            'meta_title' => $index_page->getPageMetaTitle(),
+            'meta_desc' => $index_page->getPageMetaDesc(),
         ]);
     }
 
