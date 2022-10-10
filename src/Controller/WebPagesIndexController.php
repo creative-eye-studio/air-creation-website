@@ -7,6 +7,7 @@ use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\PostsList;
 use App\Form\NewsletterFormType;
+use App\Service\FormsManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class WebPagesIndexController extends AbstractController
 {
     #[Route('/fr', name: 'web_index')]
-    public function index(Request $request, ManagerRegistry $doctrine): Response
+    public function index(Request $request, ManagerRegistry $doctrine, FormsManager $formsManager): Response
     {
 
         $index_page = $doctrine->getRepository(PagesList::class)->findBy(["page_url" => "index"]);
@@ -32,8 +33,8 @@ class WebPagesIndexController extends AbstractController
 
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
-        $newsForm = $this->createForm(NewsletterFormType::class);
-        $newsForm->handleRequest($request);
+        
+        $newsForm = $formsManager->NewsletterForm($request);
 
         return $this->render('web_pages_index/index.html.twig', [
             'controller_name' => 'WebPagesIndexController',

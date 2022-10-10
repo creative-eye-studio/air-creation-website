@@ -39,6 +39,7 @@
         "image-layout": "^0.4.1",
         "leaflet": "^1.9.2",
         "mini-file-manager": "^2.1.1",
+        "node-mailjet": "^5.1.1",
         "ol": "^7.1.0",
         "parallax-image": "^1.2.2",
         "photo-grid": "^1.0.0",
