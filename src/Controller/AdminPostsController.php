@@ -117,15 +117,17 @@ class AdminPostsController extends AbstractController
         $postContent = file_get_contents("../templates/webpages/posts/" . $post_id . ".html.twig");
         
         if ($form->isSubmitted() && $form->isValid()) { 
-             // Récupération des données du formulaire
-             $data = $form->getData();
-             $postName = $data['page_name'];
-             $postUrl = $data['page_url'];
-             $postId = $post->getPostId();
-             $postContent = $data['page_content'];
-             $postMetaTitle = $data['page_meta_title'];
-             $postMetaDesc = $data['page_meta_desc'];
-             $postFileName = $postId . ".html.twig";
+            // Récupération des données du formulaire
+            $slugify = new Slugify();
+            $data = $form->getData();
+            $postName = $data['post_name'];
+            $postUrl = $data['post_url'];
+            $postId = $slugify->slugify($data['post_name']);
+            $postFilename = $postId . '.html.twig';
+            $photoFilename = $data['photo_filename'];
+            $postContent = $data['post_content'];
+            $postMetaTitle = $data['post_meta_title'];
+            $postMetaDesc = $data['post_meta_desc'];
 
              // Modification des données de la page
              $entityManager = $doctrine->getManager();
@@ -146,7 +148,7 @@ class AdminPostsController extends AbstractController
             
              // Modification du contenu de la page
              unlink("../templates/webpages/posts/" . $post_id . ".html.twig");
-             $file = fopen("../templates/webpages/posts/" . $postFileName, 'w');
+             $file = fopen("../templates/webpages/posts/" . $postFilename, 'w');
              fwrite($file, $postContent);
              fclose($file);
 

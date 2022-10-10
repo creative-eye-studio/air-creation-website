@@ -24,26 +24,26 @@ De la révision aux opérations de maintenance nos équipes s’occupent de tout
   <div id="map" class="partners-map"></div>
 	<!-- List -->
   <article class="partners-list">
-    {% for reseller in resellers %}
+    {% for tech in techs %}
   	<div class="partner-block">
-      <h3>{{ reseller.name }}</h3>
-      <p>{{ reseller.adress }}<br />
-        {{ reseller.postcode }} - {{ reseller.city }}</p>
+      <h3>{{ tech.name }}</h3>
+      <p>{{ tech.adress }}<br />
+        {{ tech.postcode }} - {{ tech.city }}</p>
       <p>
         
-        {% if reseller.telfixe != null %}
-        	Téléphone : {{ reseller.telfixe }}<br />
+        {% if tech.telfixe != null %}
+        	Téléphone : {{ tech.telfixe }}<br />
         {% endif %}
-        {% if reseller.telport != null %}
-        	Portable : {{ reseller.telport }}<br />
+        {% if tech.telport != null %}
+        	Portable : {{ tech.telport }}<br />
         {% endif %}
-        {% if reseller.telfax != null %}
-        	Fax : {{ reseller.telfax }}<br />
+        {% if tech.telfax != null %}
+        	Fax : {{ tech.telfax }}<br />
         {% endif %}
         
-        Site web : {{ reseller.website }}
+        Site web : {{ tech.website }}
       </p>
-      <p><a target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=map&center={{ reseller.coordlong }},{{ reseller.coordlat }}">Voir sur Google Maps</a></p>
+      <p><a target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=map&center={{ tech.coordlong }},{{ tech.coordlat }}">Voir sur Google Maps</a></p>
     </div>
     {% endfor %}
   </article>

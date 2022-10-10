@@ -149,6 +149,28 @@ if (document.querySelector('.sav-container') != undefined) {
 
 
 
+
+// Post
+// ------------------------------------------------------------------
+var postArrow = document.querySelector('.scroll-down-post')
+if (postArrow != undefined) {
+  console.log("trouvé");
+  postArrow.addEventListener('click', clickHandler);
+}
+
+ 
+function clickHandler(e) {
+  e.preventDefault();
+  const headerHeight = document.querySelector("header").offsetHeight;
+  const offsetTop = document.querySelector("#post-content").offsetTop - headerHeight;
+  scroll({
+    top: offsetTop,
+    behavior: "smooth"
+  });
+}
+
+
+
 // Swiper
 // ------------------------------------------------------------------
 import Swiper, { Pagination, Navigation } from 'swiper';

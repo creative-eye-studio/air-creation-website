@@ -18,11 +18,13 @@ class AdminPartnersController extends AbstractController
         $entityManager = $doctrine->getManager();
         $partnersRepoRevendeurs = $entityManager->getRepository(Partners::class)->findBy(['partner_cat'=> 0]);
         $partnersRepoFormateurs = $entityManager->getRepository(Partners::class)->findBy(['partner_cat'=> 1]);
+        $partnersRepoTech = $entityManager->getRepository(Partners::class)->findBy(['partner_cat'=> 2]);
 
         return $this->render('admin_partners/index.html.twig', [
             'controller_name' => 'AdminPartnersController',
             "partnersRepoRevendeurs" => $partnersRepoRevendeurs,
-            "partnersRepoFormateurs" => $partnersRepoFormateurs
+            "partnersRepoFormateurs" => $partnersRepoFormateurs,
+            "partnersRepoTech" => $partnersRepoTech
         ]);
     }
 

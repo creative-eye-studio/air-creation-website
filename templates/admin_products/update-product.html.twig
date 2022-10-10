@@ -100,3 +100,21 @@
         {{ form_end(form) }}
     </section>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        CKEDITOR.instances["product_form_product_desc"].destroy();
+        CKEDITOR.replace( 'product_form_product_desc', {
+        	startupMode: 'wysiwyg'
+        });
+        CKEDITOR.instances["product_form_product_long_desc"].destroy();
+        CKEDITOR.replace( 'product_form_product_long_desc', {
+        	startupMode: 'wysiwyg'
+        });
+        CKEDITOR.instances["product_form_product_carac"].destroy();
+        CKEDITOR.replace( 'product_form_product_carac', {
+        	startupMode: 'wysiwyg'
+        });
+    </script>
+{% endblock %}

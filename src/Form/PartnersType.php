@@ -32,6 +32,7 @@ class PartnersType extends AbstractType
                 'choices'=> [
                     'Revendeur' => 0,
                     'Formateur' => 1,
+                    'Technicien en maintenance' => 2,
                 ],
                 'label' => "Catégorie du partenaire"
             ])

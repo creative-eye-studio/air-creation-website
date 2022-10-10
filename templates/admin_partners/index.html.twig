@@ -9,6 +9,7 @@
         <ul class="tabs tabs-btn">
             <li><a class="tab active">Revendeurs</a></li>
             <li><a class="tab">Formateurs</a></li>
+            <li><a class="tab">Techniciens</a></li>
         </ul>
         <div class="tab-panes">
             <div class="tab-pane active">
@@ -27,6 +28,7 @@
                 <p>Il n'y a pas de revendeurs dans la liste</p>
             {% endif %}
             </div>
+
             <div class="tab-pane">
             {% if partnersRepoFormateurs|length > 0 %}
                 {% for formateur in partnersRepoFormateurs %}
@@ -43,6 +45,24 @@
                 <p>Il n'y a pas de formateurs dans la liste</p>
             {% endif %}
             </div>
+
+            <div class="tab-pane">
+            {% if partnersRepoFormateurs|length > 0 %}
+                {% for technicien in partnersRepoTech %}
+                    <div class="line">
+                        <p>{{ technicien.name }}</p>
+                        <ul>
+                            <li><a href="" target="_blank" rel="noopener">Voir</a></li>
+                            <li><a href="{{ path('app_admin_partners_update', {partner_id: technicien.id}) }}">Modifier</a></li>
+                            <li><a href="{{ path('app_admin_partners_delete', {partner_id: technicien.id}) }}">Supprimer</a></li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>Il n'y a pas de techniciens dans la liste</p>
+            {% endif %}
+            </div>
+
         </div>
     </section>
 {% endblock %}

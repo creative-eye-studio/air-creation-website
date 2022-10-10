@@ -43,3 +43,13 @@
         {{ form_end(form) }}
     </section>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        CKEDITOR.instances["posts_form_post_content"].destroy();
+        CKEDITOR.replace( 'posts_form_post_content', {
+        	startupMode: 'wysiwyg'
+        });
+    </script>
+{% endblock %}

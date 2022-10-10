@@ -1,0 +1,53 @@
+.post-image{
+    @include coverImage("4-3");
+    @media screen and (min-width: 1024px) {
+        width: 50%;
+        height: calc(90vh - #{$header-ht});
+        padding-top: initial;
+        float: left;
+    }
+}
+
+.post-title{
+    padding: $marges-m;
+    h1{
+        font-weight: 400;
+    }
+    .date{
+        margin-bottom: 0;
+    }
+    .scroll-down-post{
+        display: none;
+    }
+    @media screen and (min-width: 1024px) {
+        width: 50%;
+        height: calc(90vh - #{$header-ht});
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        h1{
+            font-size: 5vw;
+            font-weight: 300;
+        }
+        .scroll-down-post{
+            display: block;
+            margin: auto;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            bottom: $marges-d-y;
+            left: 0;
+        }
+    }
+}
+
+#post-content{
+    padding: $marges-m;
+    background-color: $bw-color-2;
+    @media screen and (min-width:1024px) {
+        padding: $marges-d-y calc(#{$marges-d-x} * 2);
+    }
+}

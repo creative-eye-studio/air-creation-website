@@ -73,11 +73,6 @@
   <div class="image"></div>
   <div class="form tab-container">
     <h1>Faites nous part de votre demande</h1>
-    <ul class="tabs tabs-btn">
-      <li><a class="tab active">Étape 1</a></li>
-      <li><a class="tab">Étape 2</a></li>
-      <li><a class="tab">Étape 3</a></li>
-    </ul>
     {{ form_start(contactForm, { 'attr' : {'class': 'tab-panes'} }) }}
     <div class="contact-tab tab-pane active">
       <p><strong>1. Votre identité et informations de contact</strong></p>
@@ -128,6 +123,11 @@
       </p>
       {{ form_widget(contactForm.submit_button)}}
     </div>
+    <ul class="tabs tabs-btn">
+      <li><a class="tab active">Étape 1</a></li>
+      <li><a class="tab">Étape 2</a></li>
+      <li><a class="tab">Étape 3</a></li>
+    </ul>
     {{ form_end(contactForm) }}
   </div>
 </section>

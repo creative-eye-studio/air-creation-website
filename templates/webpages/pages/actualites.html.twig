@@ -9,7 +9,7 @@
       <div class="content">
         <h3>{{ post.postname }}</h3>
         <p>
-          <a href="{{ post.posturl }}" class="btn">Lire l'article</a>
+          <a href="{{ path('post_page', {post_slug: post.posturl }) }}" class="btn">Lire l'article</a>
         </p>
       </div>
     </article>

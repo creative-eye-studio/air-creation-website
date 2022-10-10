@@ -26,6 +26,7 @@ class WebPagesOthersController extends AbstractController
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
         $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
         $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
+        $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
         $questions = $doctrine->getRepository(FAQList::class)->findAll();
         $products = $products_function->getProducts($doctrine);
         $posts = $doctrine->getRepository(PostsList::class)->findAll();
@@ -58,6 +59,7 @@ class WebPagesOthersController extends AbstractController
             'newsForm' => $newsForm->createView(),
             'resellers' => $resellers,
             'trainers' => $trainers,
+            'techs' => $techs,
             'questions' => $questions,
             'headerType' => $headerType,
             'meta_title' => $selected_page->getPageMetaTitle(),
@@ -109,6 +111,35 @@ class WebPagesOthersController extends AbstractController
             'headerType' => $headerType,
             'meta_title' => $product->getProductMetaTitle(),
             'meta_desc' => $product->getProductMetaDesc(),
+        ]);
+    }
+
+    // Article de blog
+    // --------------------------------------------------------------------
+    #[Route('/fr/blog/{post_slug}', name: 'post_page')]
+    public function post_page(Request $request, ManagerRegistry $doctrine, string $post_slug): Response
+    {
+        $headerType = 'header-second';
+
+        // Récupération du post
+        $post = $doctrine->getRepository(PostsList::class)->findOneBy(["post_url" => $post_slug]);
+
+        $contactForm = $this->createForm(ContactFormType::class);
+        $contactForm->handleRequest($request);
+        $newsForm = $this->createForm(NewsletterFormType::class);
+        $newsForm->handleRequest($request);
+
+        return $this->render('web_pages_others/post.html.twig', [
+            'contactForm' => $contactForm->createView(),
+            'newsForm' => $newsForm->createView(),
+            'post_id' => $post->getPostId(),
+            'post_image' => $post->getPhotoFilename(),
+            'post_title' => $post->getPostName(),
+            'post_date' => $post->getCreatedAt(),
+            'meta_title' => $post->getPostMetaTitle(),
+            'meta_desc' => $post->getPostMetaDesc(),
+            'created_at' => $post->getCreatedAt(),
+            'headerType' => $headerType
         ]);
     }
 }

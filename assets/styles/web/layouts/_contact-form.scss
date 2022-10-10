@@ -40,6 +40,11 @@
             margin-right: 30px;
         }
         a{
+            &.active{
+                color: $p-color;
+                font-weight: 400;
+                border-bottom: .125rem solid $p-color;
+            }
             &::before{
                 content: "";
                 display: block;
@@ -54,11 +59,12 @@
     }
 
     .contact-tab{
-        position: absolute;
-        left: 0;
-        right: 0;
+        // position: absolute;
+        // left: 0;
+        // right: 0;
         opacity: 1;
         visibility: visible;
+        display: block;
         padding-bottom: $marges-m;
         transition-duration: .5s;
         strong{
@@ -67,22 +73,10 @@
         &:not(.active){
             opacity: 0;
             visibility: hidden;
+            display: none;
         }
     }
-    .arrow-nav{
-        display: flex;
-        justify-content: space-between;
-        .tab-button{
-            padding-top: $marges-m;
-            position: relative;
-            &:not(.disabled){
-                cursor: pointer;
-            }
-            &.disabled{
-                opacity: .6;
-            }
-        }
-    }
+    
     @media screen and (min-width:1024px) {
         bottom: 0;
         .image{

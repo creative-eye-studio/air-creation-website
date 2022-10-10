@@ -1,3 +1,7 @@
+form{
+    position: relative;
+}
+
 label{
     font-size: 1em;
 }
@@ -8,10 +12,24 @@ input{
     &[type=tel]{
         @include inputDesign();
     }
+    &#newsletter_form_email{
+        padding-right: 60px;
+    }
 }
 
 button[type=submit]{
     @include greenBtn();
+    &#newsletter_form_submit{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 45px;
+        padding: 1rem;
+        &:after{
+            font: var(--fa-font-solid);
+            content: '\f061';
+        }
+    }
 }
 
 select{
