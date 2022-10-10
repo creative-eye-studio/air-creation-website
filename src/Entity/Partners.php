@@ -40,6 +40,18 @@ class Partners
     #[ORM\Column(nullable: true)]
     private ?float $coord_lat = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tel_fixe = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tel_port = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tel_fax = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $manager = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +161,54 @@ class Partners
     public function setCoordLat(?float $coord_lat): self
     {
         $this->coord_lat = $coord_lat;
+
+        return $this;
+    }
+
+    public function getTelFixe(): ?string
+    {
+        return $this->tel_fixe;
+    }
+
+    public function setTelFixe(?string $tel_fixe): self
+    {
+        $this->tel_fixe = $tel_fixe;
+
+        return $this;
+    }
+
+    public function getTelPort(): ?string
+    {
+        return $this->tel_port;
+    }
+
+    public function setTelPort(?string $tel_port): self
+    {
+        $this->tel_port = $tel_port;
+
+        return $this;
+    }
+
+    public function getTelFax(): ?string
+    {
+        return $this->tel_fax;
+    }
+
+    public function setTelFax(?string $tel_fax): self
+    {
+        $this->tel_fax = $tel_fax;
+
+        return $this;
+    }
+
+    public function getManager(): ?string
+    {
+        return $this->manager;
+    }
+
+    public function setManager(string $manager): self
+    {
+        $this->manager = $manager;
 
         return $this;
     }

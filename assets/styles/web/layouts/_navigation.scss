@@ -1,0 +1,174 @@
+.primary-menu{
+    position: fixed;
+    top: $header-ht;
+    right: 0;
+    bottom: $navbar-ht;
+    left: 0;
+    z-index: 100;
+    background-color: $grey-color;
+    padding: $marges-nav-m;
+    overflow-y: scroll;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition-duration: .5s;
+    color: white;
+    font-size: 1.2em;
+    a{
+        color: white;
+        text-decoration: none;
+    }
+    ul{
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    .main-btn-bloc{
+        &:not(:last-child){
+            margin-bottom: calc(#{$marges-m} / 2);
+        }
+        &.sub-menu{
+            ul{
+                margin-left: $marges-m;
+                font-size: .9em;
+            }
+            li{
+                margin-top: calc(#{$marges-m} / 2.25)
+            }
+        }
+    }
+    .nav-arrow{
+        display: none;
+        @media screen and (min-width:1024px) {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            z-index: 1;
+            cursor: pointer;
+            &.swiper-nav-button-prev{
+                transform: translateX(-35vw)
+            }
+            &.swiper-nav-button-next{
+                transform: translateX(32vw);
+            }
+        }
+    }
+    &.active{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    @media screen and (min-width:1024px){
+        top: 0;
+        bottom: 0;
+        overflow-y: inherit;
+        .main-btn-bloc{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:not(:last-child){
+                margin-bottom: 0;
+            }
+            &.bloc1{
+                @include bgNavButton('nav-bloc-1.jpg');
+            }
+            &.bloc2{
+                @include bgNavButton('nav-bloc-3.jpg');
+            }
+            &.bloc3{
+                @include bgNavButton('nav-bloc-2.jpg');
+            }
+            &.bloc4{
+                @include bgNavButton('nav-bloc-4.jpg');
+            }
+            &.sub-menu{
+                ul{
+                    column-count: 2;
+                    margin-left: 0;
+                    li{
+                        margin-bottom: calc(#{$marges-m} / 2);
+                    }
+                }
+                li{
+                    margin-top: 0;
+                }
+            }
+        }
+        .case{
+            width: 60vw;
+            height: 60%;
+            padding: $marges-d-y;
+            & > a{
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+            ul{
+                a{
+                    font-size: 1.1em;
+                }
+            }
+            span{
+                display: block;
+                font-size: 3vw;
+                margin-bottom: calc(#{$marges-d-y} / 2);
+            }
+        }
+    }
+}
+
+.second-menu{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background-color: $p-color-l;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: $navbar-ht;
+    display: flex;
+    list-style-type: none;
+    font-size: .75em;
+    font-weight: 400;
+    text-align: center;
+    li{
+        width: 25%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:not(:last-child){
+            border-right: .0625rem solid $p-color-d;
+        }
+    }
+    a, span{
+        color: black;
+        text-decoration: none;
+    }
+    @media screen and (min-width:1024px) {
+        position: relative;
+        width: inherit;
+        background-color: rgba($color: #000000, $alpha: 0);
+        margin-right: 3rem;
+        justify-content: end;
+        li{
+            width: auto;
+            font-size: $header-font;
+            &:not(:last-child){
+                margin-right: 1.5rem;
+                border-right: none;
+            }
+        }
+    }
+}
+
+.header-base,
+.header-second{
+    .second-menu{
+        @media screen and (min-width:1024px) {
+            a, span{
+                color: white;
+            }
+        }
+    }
+    
+}

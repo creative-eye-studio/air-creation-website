@@ -1,0 +1,38 @@
+@include fontFace(200, 'Roboto-Thin');
+@include fontFace(200, 'Roboto-ThinItalic', italic);
+
+@include fontFace(300, 'Roboto-Light');
+@include fontFace(300, 'Roboto-LightItalic', italic);
+
+@include fontFace(400, 'Roboto-Regular');
+@include fontFace(400, 'Roboto-Italic', italic);
+
+@include fontFace(500, 'Roboto-Medium');
+@include fontFace(500, 'Roboto-MediumItalic', italic);
+
+@include fontFace(600, 'Roboto-Bold');
+@include fontFace(600, 'Roboto-BoldItalic', italic);
+
+@include fontFace(700, 'Roboto-Black');
+@include fontFace(700, 'Roboto-BlackItalic', italic);
+
+@include fontFaceTitle(300, 'RobotoCondensed-Light');
+@include fontFaceTitle(300, 'RobotoCondensed-Light', italic);
+
+@include fontFaceTitle(400, 'RobotoCondensed-Regular');
+@include fontFaceTitle(400, 'RobotoCondensed-Italic', italic);
+
+@include fontFaceTitle(600, 'RobotoCondensed-Bold');
+@include fontFaceTitle(600, 'RobotoCondensed-BoldItalic', italic);
+
+h1, h2, h3, h4, h4, h5, h6{
+    font-family: $font-title;
+    line-height: 1.2em;
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+h2{
+    font-size: 2em;
+    font-weight: 400;
+}

@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ productMetaTitle }}
+{% endblock %}
+
+{% block meta %}
+  <meta description="{{ productMetaDesc }}">
+{% endblock %}
+
+{% block body_class %}{{ headerType }}{% endblock %}
+
+{% block body %}
+
+    {% include "webpages/common_blocks/header.html.twig" %}
+    <main id="swup">
+        <!-- Block 1 -->
+        <div class="product-block-1">
+            <!-- Modèle 3D -->
+            <div id="product-3d-viewer">
+                <img src="../../uploads/images/product_thumbnails/{{ productThumb }}" alt="{{ productName }}" />
+            </div>
+            <!-- Intro Block -->
+            <section class="product-intro">
+                <!-- Intro Title -->
+                <h1>{{ productName }}</h1>
+                <!-- Intro Text -->
+                {% include "webpages/products/#{productFolderId}/#{productFolderId}-intro.html.twig" %}
+                <!-- Intro Buttons -->
+                <div class="btn-list">
+                    <p>
+                        <a class="btn" href="{{ productShopUrl }}">Acheter le produit en ligne</a>
+                    </p>
+                    <p>
+                        <a class="btn" href="{{ productDocUrl }}">Voir la documentation</a>
+                    </p>
+                </div>
+            </section>
+            <!-- Slider Coloris -->
+            <div class="swiper slider-images slider-coloris">
+                <div class="swiper-wrapper">
+                    {% for image in color_dir %}
+                        <figure class="swiper-slide slider-block">
+                            <img src="../.{{ image }}" alt="" />
+                        </figure>
+                    {% endfor %}
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+            <!-- Slider Accessoires -->
+            <div class="swiper slider-images slider-accessoiries">
+                <div class="swiper-wrapper">
+                    {% for image in accessoiries_dir %}
+                    <figure class="swiper-slide slider-block">
+                        <img src="../.{{ image }}" alt="" />
+                    </figure>
+                    {% endfor %}
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+        <!-- Block 2 -->
+        <div class="product-block-2 tab-container">
+
+            <ul class="product-tab-list tabs">
+                <li><a class="tab active">Description</a></li>
+                <li><a class="tab">Caractéristiques</a></li>
+                <li><a class="tab">Galerie d'images</a></li>
+            </ul>
+            
+            <div class="tab-panes">
+                <div class="tab-pane desc-pane active">
+                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-desc.html.twig" %}
+                </div>
+                <div class="tab-pane carac-pane">
+                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-carac.html.twig" %}
+                </div>
+                <div class="tab-pane gallery-container grid">
+                        {% for image in gallery_dir %}
+                            <div class="grid-item"><img src="../.{{ image }}" alt="" /></div>
+                        {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    {% include "webpages/common_blocks/footer.html.twig" %}
+
+{% endblock %}

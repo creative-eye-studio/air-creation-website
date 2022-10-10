@@ -1,0 +1,57 @@
+.partners-container{
+    .partners-map{
+        display: none;
+    }
+    padding: $marges-m;
+    @media screen and (min-width:1024px) {
+        &::after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        .partners-map,
+        .partners-list{
+            height: 600px;
+        }
+        .partners-map{
+            float: left;
+            width: 65%;
+            display: block;
+            background-color: $bw-color-4;
+            overflow: hidden;
+        }
+        .partners-list{
+            float: right;
+            width: 35%;
+            overflow-y: scroll;
+        }
+    }
+    @media screen and (min-width:1200px) {
+        padding: $marges-d-y $marges-d-x;
+    }
+}
+
+.partner-block{
+    padding: $marges-m;
+    background-color: $bw-color-2;
+    h3{
+        font-size: 1.5em;
+        font-weight: 400;
+    }
+    a{
+        color: black;
+    }
+    &:not(:last-child){
+        margin-bottom: $marges-m;
+    }
+    @media screen and (min-width:1024px){
+        &:not(:last-child){
+            border-bottom: .0625rem solid $bw-color-3;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.ol-attribution{
+    display: none;
+}

@@ -1,13 +1,20 @@
 {
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",
+        "@swup/debug-plugin": "^1.0",
+        "@swup/fade-theme": "^1.0",
+        "@swup/forms-plugin": "^1.0",
+        "@swup/slide-theme": "^1.0",
         "@symfony/stimulus-bridge": "^3.2.1",
         "@symfony/ux-dropzone": "file:vendor/symfony/ux-dropzone/Resources/assets",
+        "@symfony/ux-swup": "file:vendor/symfony/ux-swup/Resources/assets",
         "@symfony/webpack-encore": "^3.0.0",
         "core-js": "^3.24.1",
+        "exports-loader": "^4.0.0",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.54.4",
         "sass-loader": "^13.0.2",
+        "swup": "^2.0",
         "vue": "^3.2.37",
         "vue-loader": "^17.0.0",
         "vue-template-compiler": "^2.7.8",
@@ -22,8 +29,21 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.2.0",
+        "@swup/body-class-plugin": "^1.0.2",
+        "@three-ts/orbit-controls": "^1.4.7",
+        "aos": "^2.3.4",
+        "codemirror": "^6.0.1",
         "dropzone": "^6.0.0-beta.2",
+        "image-grid": "^1.0.1",
+        "image-layout": "^0.4.1",
+        "leaflet": "^1.9.2",
+        "mini-file-manager": "^2.1.1",
+        "ol": "^7.1.0",
+        "parallax-image": "^1.2.2",
+        "photo-grid": "^1.0.0",
+        "swiper": "^8.4.2",
         "tabs": "^0.2.0",
-        "uploader": "^1.46.0"
+        "uploader": "^1.48.0"
     }
 }

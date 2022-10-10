@@ -28,6 +28,12 @@ class PostsList
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $post_meta_desc;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $created_at = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $photo_filename = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +95,30 @@ class PostsList
     public function setPostMetaDesc(?string $post_meta_desc): self
     {
         $this->post_meta_desc = $post_meta_desc;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getPhotoFilename(): ?string
+    {
+        return $this->photo_filename;
+    }
+
+    public function setPhotoFilename(string $photo_filename): self
+    {
+        $this->photo_filename = $photo_filename;
 
         return $this;
     }

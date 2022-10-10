@@ -1,0 +1,18 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Documentation du produit{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <a class="btn-link float-right" href="{{ path('app_admin_documentation_add') }}">Ajouter des documents</a>
+        <h2>Documentation du produit {{ productname }}</h2>
+        {% for doc in docs %}
+            <div class="line">
+                <p>{{ doc.docname }}</p>
+                <ul>
+                    <li><a href="{{ path('app_admin_documentation_delete', {doc_file: doc.docfile}) }}">Supprimer</a></li>
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -8,10 +8,6 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app-admin') }}
         {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app-admin') }}
-        {% endblock %}
     </head>
     <body>
         <header>
@@ -27,7 +23,16 @@
                     <a>Voir le site</a>
                 </li>
                 <li>
+                    <a href="{{ path('app_admin_files') }}">Médias</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_admin_documentation') }}">Documentation</a>
+                </li>
+                <li>
                     <a href="{{ path('admin_pages') }}">Pages du site</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_admin_posts') }}">Actualités</a>
                 </li>
                 <li>
                     <a href="{{ path('app_admin_products') }}">Produits</a>
@@ -36,7 +41,7 @@
                     <a href="{{ path('app_admin_partners') }}">Partenaires</a>
                 </li>
                 <li>
-                    <a href="{{ path('app_admin_posts') }}">Actualités</a>
+                    <a href="{{ path('admin_chronologie') }}">Chronologie</a>
                 </li>
                 <li>
                     <a href="{{ path('add_admin_header') }}">En-tête du site</a>
@@ -45,7 +50,7 @@
                     <a href="{{ path('add_admin_footer') }}">Pied de page du site</a>
                 </li>
                 <li>
-                    <a href="{{ path('app_admin_files') }}">Médias</a>
+                    <a href="{{ path('app_admin_sav_manager') }}">Service Après-Vente</a>
                 </li>
                 <li>
                     <a>Utilisateurs</a>
@@ -67,5 +72,9 @@
         <footer>
             <p>Conception et développement : Creative Eye Studio</p>
         </footer>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app-admin') }}
+        {% endblock %}
     </body>
 </html>

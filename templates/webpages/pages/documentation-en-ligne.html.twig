@@ -1,0 +1,36 @@
+<!-- Cover Page -->
+<section class="cover-page">
+  <div class="text">
+    <h1>Documentation</h1>
+  </div>
+  <div class="image">
+    <img src="../uploads/images/pages/innovation/photo-test.jpeg" alt="" />
+  </div>
+</section>
+
+<section class="doc-container">
+  <h2 class="center">
+    Toute la documentation de nos produits
+  </h2>
+  {% for product in products %}
+  <div id="{{ product.productfolderid }}" class="product">
+    <div class="product-item">
+      <div class="image">
+        <img src="../uploads/images/product_thumbnails/{{ product.productthumb }}" alt="{{ product.productname }}" />
+      </div>
+      <h3 class="center">{{ product.productname }}</h3>
+    </div>
+    <div class="swiper product-doc-list">
+      <div class="swiper-wrapper">
+        {% for doc in product.documentations %}
+        <div class="swiper-slide product-doc-block">
+          <i class="fa-regular fa-file fa-6x"></i>
+          <p>{{ doc.docname }}</p>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+</section>

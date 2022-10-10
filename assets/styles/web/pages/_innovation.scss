@@ -1,0 +1,56 @@
+// CONTAINER
+.innov-page-block-2{
+    padding: $marges-m;
+    @media screen and (min-width: 1200px) {
+        padding: $marges-d-y $marges-d-x;
+    }
+
+    // SWIPER
+    .swiper-wrapper{
+        @media screen and (min-width: 1200px) {
+            flex-wrap: wrap;
+            column-gap: $marges-d-x;
+        }
+    }
+}
+
+// BLOCK
+.innov-block{
+    width: 100%;
+    padding-top: 100%;
+    background-color: rgba($color: #000000, $alpha: .15);
+    position: relative;
+    &:not(:last-child){
+        margin-bottom: $marges-m;
+    }
+    img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+    h3{
+        text-align: center;
+        color: white;
+        background-color: $p-color-d;
+        padding: 1.5rem 1rem;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 0;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+    @media screen and (min-width: 768px) {
+        padding-top: 33.33%;
+    }
+    @media screen and (min-width: 1024px) {
+        padding-top: 25%;
+    }
+    @media screen and (min-width: 1200px) {
+        flex-shrink: inherit;
+        flex: calc(25% - (#{$marges-d-x} / 2));
+    }
+}

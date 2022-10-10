@@ -6,13 +6,18 @@
     <section class="block">
         <a class="btn-link float-right" href="{{ path('admin_pages_add') }}">Créer une page</a>
         <h2>Liste des pages</h2>
-        {% for page in pages %}
+        {% for page in pages|sort((a, b) => a.pagename <=> b.pagename) %}
         <div class="line">
-            <p>{{ page.pagename }}</p>
+            <p>
+                {{ page.pagename }}<br />
+                <em>{{ page.pageurl }}</em>
+            </p>
             <ul>
                 <li><a href="" target="_blank" rel="noopener">Voir</a></li>
                 <li><a href="{{ path('admin_pages_modify', {page_id: page.pageid}) }}">Modifier</a></li>
+                {% if page.blockedpage == 0 %}
                 <li><a href="{{ path('admin_pages_delete', {page_id: page.pageid}) }}">Supprimer</a></li>
+                {% endif %}
             </ul>
         </div>
         {% endfor %}

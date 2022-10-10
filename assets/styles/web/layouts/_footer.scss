@@ -1,0 +1,95 @@
+footer{
+    background-color: $grey-color;
+    color: white;
+    padding: $marges-m;
+    a{
+        color: white;
+    }
+    p{
+        font-size: 1em;
+    }
+    .line1{
+        .footer-block{
+            margin-bottom: $marges-m;
+        }
+        h2{
+            font-size: 1.5em;
+            font-weight: 400;
+        }
+        ul{
+            display: flex;
+            list-style-type: none;
+            padding-left: 0;
+            li{
+                font-size: 1em;
+                &:not(:last-child){
+                    margin-right: 2.5rem;
+                }
+            }
+        }
+        .cci-block{
+            img{
+                max-width: 15.625rem;
+            }
+        }
+    }
+    hr{
+        margin: $marges-m 0;
+    }
+    .line2{
+        ul{
+            margin: 0 0 $marges-m;
+            padding-left: 0;
+            list-style-type: none;
+        }
+        li{
+            &:not(:last-child){
+                margin-bottom: .75rem;
+            }
+            a{
+                text-decoration: none;
+            }
+        }
+    }
+    @media screen and (min-width: 768px) {
+        .line1{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .footer-block{
+                width: 33%;
+            }
+        }
+        .line2{
+            text-align: center;
+            ul{
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            li{
+                &:not(:last-child){
+                    margin-right: 1rem;
+                    padding-right: 1rem;
+                    border-right: .0625rem solid white;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 1199px) {
+        padding: $marges-d-x;
+        hr{
+            margin: 3.75rem 0;
+        }
+        .line1{
+            flex-wrap: inherit;
+            column-gap: calc(#{$marges-d-x}/2);
+            .footer-block{
+                flex-grow: 1;
+                flex-basis: 0;
+                width: inherit;
+                margin-bottom: 0;
+            }
+        }
+    }
+}

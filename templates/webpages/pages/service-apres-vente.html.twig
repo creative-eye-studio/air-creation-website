@@ -1,0 +1,27 @@
+<!-- Cover Page -->
+<section class="cover-page">
+  <div class="text">
+    <h1>Service Après-Vente</h1>
+  </div>
+  <div class="image"></div>
+</section>
+
+<section class="sav-container">
+  <div class="sav-list">
+    <ul class="tabs">
+      {% for question in questions %}
+      	<li><a class="tab">{{ question.faqname }}</a></li>
+      {% endfor %}
+      	<li><a>Vous ne trouvez pas de réponses ? Faites nous part de votre demande !</a></li>
+    </ul>
+
+  </div>
+  <div class="tab-panes">
+	{% for question in questions %}
+    <div class="tab-pane">
+      <h2>{{ question.faqname }}</h2>
+      {% include "webpages/faq_questions/#{question.faqid}.html.twig" %}
+    </div>
+    {% endfor %}
+  </div>
+</section>

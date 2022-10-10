@@ -15,6 +15,11 @@
                 'value': pageUrl
             }) }}</p>
 
+            <p>{{ form_label(form.page_model) }}<br />
+            {{ form_widget(form.page_model, {
+                'value': pageModel
+            }) }}</p>
+
             <p>{{ form_label(form.page_content) }}<br />
             {{ form_widget(form.page_content, {
                 'value': pageContent

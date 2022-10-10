@@ -19,39 +19,23 @@ class ContactFormType extends AbstractType
         $builder
             ->add('gender', ChoiceType::class, [
                 'choices'  => [
-                    'Monsieur' => 'Monsieur',
                     'Madame' => 'Madame',
+                    'Monsieur' => 'Monsieur',
                 ],
-                'label' => false,
+                'label' => 'Civilité',
                 'expanded' => true
             ])
             ->add('lname', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Nom',
-                    'aria-label' => 'Nom'
-                ]
+                'label' => 'Nom',
             ])
             ->add('fname', TextType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Prénom',
-                    'aria-label' => 'Prénom'
-                ]
+                'label' => 'Prénom',
             ])
             ->add('phone', TelType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Téléphone',
-                    'aria-label' => 'Téléphone'
-                ]
+                'label' => 'Téléphone',
             ])
             ->add('email', EmailType::class, [
-                'label' => false,
-                'attr' => [
-                    'placeholder' => 'Adresse E-Mail',
-                    'aria-label' => 'Adresse E-Mail'
-                ]
+                'label' => 'Adresse E-Mail',
             ])
             ->add('customer_type', ChoiceType::class, [
                 'choices'  => [

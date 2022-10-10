@@ -1,0 +1,133 @@
+<!-- En-Tête -->
+<header class="header-site">
+  <div class="logo-container">
+    <img src="../uploads/images/logotype.jpg" />
+    <button class="btn-nav toggle-nav">
+      <span class="bar"></span>
+      <span class="label open">Menu</span>
+      <span class="label close">Fermer</span>
+    </button>
+  </div>
+
+  <ul class="second-menu">
+    <li><a href="{{ path('web_pages', {page_slug: 'showroom'}) }}">Le Showroom</a></li>
+    <li><a href="{{ path('web_pages', {page_slug: 'documentation-en-ligne'}) }}">Documentation</a></li>
+    <li><span class="toggle-contact">Contact / Devis</span></li>
+    <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">E-Commerce</a></li>
+  </ul>
+</header>
+
+<!-- Navigation -->
+<nav class="swiper primary-menu">
+  <ul class="main-menu">
+
+    <div class='main-btn-bloc bloc1'>
+      <li class="case"><a href="{{ path('web_index') }}"><span>Bienvenue</span></a></li>
+    </div>
+
+    <div class='main-btn-bloc bloc2'>
+      <li class="case"><a href="{{ path('web_pages', {page_slug: 'showroom'}) }}"><span>Voir notre showroom</span></a></li>
+    </div>
+
+    <div class='main-btn-bloc sub-menu bloc3'>
+      <li class="case">
+        <span>Consulter nos services :</span>
+        <ul>
+          <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Sur-Mesure</a></li>
+          <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">Shop</a></li>
+          <li><a href="https://shop.aircreation.fr/-les-occasions-air-creation" target="_blank" rel="noopener">Complet et Occasion</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Notre offre de sous-traitance</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}">Maintenance</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'documentation-en-ligne'}) }}">Documentation en ligne</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'service-apres-vente'}) }}">Service Après-Vente</a></li>
+        </ul>
+      </li>
+    </div>
+
+    <div class='main-btn-bloc sub-menu bloc4'>
+      <li class="case">
+        <span>Découvrir Air Création :</span>
+        <ul>
+          <li><a href="{{ path('web_pages', {page_slug: 'qui-sommes-nous'}) }}">Qui sommes nous ?</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'notre-histoire'}) }}">Notre histoire</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'innovation'}) }}">Notre innovation</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Nos valeurs</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'liste-des-revendeurs'}) }}">Liste des revendeurs</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'liste-des-formateurs'}) }}">Centres de formations</a></li>
+          <li><a href="{{ path('web_pages', {page_slug: 'actualites'}) }}">Actualités</a></li>
+        </ul>
+      </li>
+    </div>
+  </ul>
+
+  <div class="swiper-nav-button-prev nav-arrow">
+    <i class="fa-solid fa-chevron-left fa-2x"></i>
+  </div>
+  <div class="swiper-nav-button-next nav-arrow">
+    <i class="fa-solid fa-chevron-right fa-2x"></i>
+  </div>
+</nav>
+
+<!-- Contact Form -->
+<section class="contact-block">
+  <div class="image"></div>
+  <div class="form tab-container">
+    <h1>Faites nous part de votre demande</h1>
+    <ul class="tabs tabs-btn">
+      <li><a class="tab active">Étape 1</a></li>
+      <li><a class="tab">Étape 2</a></li>
+      <li><a class="tab">Étape 3</a></li>
+    </ul>
+    {{ form_start(contactForm, { 'attr' : {'class': 'tab-panes'} }) }}
+    <div class="contact-tab tab-pane active">
+      <p><strong>1. Votre identité et informations de contact</strong></p>
+      <div class="horizontal-radio">
+        {% for child in contactForm.gender %}
+      <p>
+        {{ form_widget(child) }}
+        {{ form_label(child, null) }}
+      </p>
+      {% endfor %}
+      </div>
+      
+      <p>
+        {{ form_label(contactForm.lname)}}
+        {{ form_widget(contactForm.lname)}}
+      </p>
+      <p>
+        {{ form_label(contactForm.fname)}}
+        {{ form_widget(contactForm.fname)}}
+      </p>
+      <p>
+        {{ form_label(contactForm.phone)}}
+        {{ form_widget(contactForm.phone)}}
+      </p>
+      <p>
+        {{ form_label(contactForm.email)}}
+        {{ form_widget(contactForm.email)}}
+      </p>
+    </div>
+    <div class="contact-tab tab-pane">
+      <p><strong>2. Vous êtes...</strong></p>
+      {% for child in contactForm.customer_type %}
+      <p>
+        {{ form_widget(child) }}
+        {{ form_label(child, null) }}
+      </p>
+      {% endfor %}
+    </div>
+    <div class="contact-tab tab-pane">
+      <p><strong>3. Comment pouvons nous vous aider <span class="gender"></span> <span class="lname"></span> ?</strong></p>
+      <p>
+        {{ form_label(contactForm.subject)}}
+        {{ form_widget(contactForm.subject)}}
+      </p>
+      <p>
+        {{ form_label(contactForm.message)}}
+        {{ form_widget(contactForm.message)}}
+      </p>
+      {{ form_widget(contactForm.submit_button)}}
+    </div>
+    {{ form_end(contactForm) }}
+  </div>
+</section>

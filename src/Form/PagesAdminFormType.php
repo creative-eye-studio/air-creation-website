@@ -4,6 +4,7 @@ namespace App\Form;
 
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,9 +23,17 @@ class PagesAdminFormType extends AbstractType
                 'label' => 'URL de la page',
                 'required' => false,
             ])
+            ->add('page_model', ChoiceType::class, [
+                'choices' => [
+                    'Page Standard' => 0,
+                    'Page En-tête rouge' => 1,
+                ],
+                'label' => 'Type de page'
+            ])
             ->add('page_content', CKEditorType::class, [
                 'label' => 'Contenu de la page'
             ])
+
             ->add('page_meta_title', TextType::class, [
                 'label' => 'Balise Meta Title',
                 'required' => false,

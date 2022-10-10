@@ -1,0 +1,12 @@
+.btn{
+    @include greenBtn();
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    &::before{
+        content: '\f061';
+        display: block;
+        margin-left: 2rem;
+        font: var(--fa-font-solid); 
+    }
+}

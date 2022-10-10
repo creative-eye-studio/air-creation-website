@@ -1,0 +1,96 @@
+@mixin fontFace($fontWeight, $fontFamily, $fontStyle: normal) {
+    @font-face {
+        font-family: $font;
+        font-style: $fontStyle;
+        font-weight: $fontWeight;
+        src: url('../../../../public/uploads/fonts/roboto/' + $fontFamily + '.eot');/* IE9 Compat Modes */
+        src: url('../../../../public/uploads/fonts/roboto/' + $fontFamily + '.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+             url('../../../../public/uploads/fonts/roboto/' + $fontFamily + '.woff2') format('woff2'), /* Super Modern Browsers */
+             url('../../../../public/uploads/fonts/roboto/' + $fontFamily + '.woff') format('woff'), /* Pretty Modern Browsers */
+             url('../../../../public/uploads/fonts/roboto/' + $fontFamily + '.ttf')  format('truetype'), /* Safari, Android, iOS */
+             url('../../../../public/uploads/fonts/roboto/' + $fontFamily + '.svg#svgFontName') format('svg'); /* Legacy iOS */
+    }
+}
+
+@mixin fontFaceTitle($fontWeight, $fontFamily, $fontStyle: normal) {
+    @font-face {
+        font-family: $font-title;
+        font-style: $fontStyle;
+        font-weight: $fontWeight;
+        src: url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.eot');/* IE9 Compat Modes */
+        src: url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+             url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.woff2') format('woff2'), /* Super Modern Browsers */
+             url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.woff') format('woff'), /* Pretty Modern Browsers */
+             url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.ttf')  format('truetype'), /* Safari, Android, iOS */
+             url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.svg#svgFontName') format('svg'); /* Legacy iOS */
+    }
+}
+
+@mixin greenBtn() {
+    color: $bw-color-5;
+    background-color: $s-color;
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-weight: 400;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+@mixin coverImage($size) {
+    $sizes: (
+        "16-9": 56.25%, 
+        "9-16": 156.25%,
+        "4-3": 75%, 
+        "3-4": 175%,
+        "1-1": 100%,
+    );
+    padding-top: map-get($sizes, $size);
+    position: relative;
+    img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+}
+
+@mixin headerColored() {
+    background-color: rgba($color: $p-color, $alpha: 1.0);
+    .logo-container{
+        img{
+            opacity: 1;
+        }
+    }
+    .btn-nav{
+        .bar{
+            &::before,
+            &::after{
+                background-color: white;
+            }
+        }
+        .label{
+            color: white;
+        }
+    }
+}
+
+@mixin bgNavButton($image){
+    .case{
+        background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.5) 100%), url('../../../../public/uploads/images/navigation/#{$image}'); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.5) 100%), url('../../../../public/uploads/images/navigation/#{$image}'); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.85) 100%), url('../../../../public/uploads/images/navigation/#{$image}'); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        background-size: cover;
+    }
+}
+
+@mixin inputDesign(){
+    width: 100%;
+    padding: .75rem;
+    font-size: 1em;
+    font-weight: 300;
+    font-family: $font;
+}

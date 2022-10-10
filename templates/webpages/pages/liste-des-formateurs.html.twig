@@ -1,0 +1,58 @@
+<!-- Cover Page -->
+<section class="cover-page">
+  <div class="text">
+    <h1>Les centres de formation</h1>
+  </div>
+  <figure class="image">
+    <img src="../uploads/images/pages/innovation/photo-test.jpeg" alt="" />
+  </figure>
+</section>
+
+<!-- Block Intro -->
+<section class="info-block-intro-container">
+  <div class="info-block-intro">
+    <p>Envie de devenir pilote ? Rien de plus simple !</p>
+    <p>
+     <strong>Le Brevet de pilote ULM Pendulaire se décompose en 2 étapes :</strong><br />
+Une phase théorique, pour cela il suffit de réussir un examen QCM organisé par des centres de formation agrée qui vous apportera un certificat délivré par la DGAC. La plupart des centres de formation proposent des sessions de cours théorique de préparation à cet examen.<br />
+      Une phase pratique, composé de plusieurs Lesson de pilotage afin d’apprendre à contrôler son appareil. À la suite de quoi l’instructeur fait passer une série d’épreuves permettant la délivrance du brevet de pilote par la DGAC.
+    </p>
+    <p>
+      <strong>Prérequis</strong><br />
+Avoir 15 ans révolu  <br />
+Être en possession d’un certificat médical de non-contre-indication à la pratique de l’ULM
+    </p>
+  </div>
+</section>
+
+<!-- Block Partenaires -->
+<section class="partners-container">
+  	<h2>Liste des centres de formation</h2>
+	<!-- Leaflet -->
+  <div id="map" class="partners-map"></div>
+	<!-- List -->
+  <article class="partners-list">
+    {% for trainer in trainers %}
+  	<div class="partner-block">
+      <h3>{{ trainer.name }}</h3>
+      <p>{{ trainer.adress }}<br />
+        {{ trainer.postcode }} - {{ trainer.city }}</p>
+      <p>
+        
+        {% if reseller.telfixe != null %}
+        	Téléphone : {{ trainer.telfixe }}<br />
+        {% endif %}
+        {% if reseller.telport != null %}
+        	Portable : {{ trainer.telport }}<br />
+        {% endif %}
+        {% if reseller.telfax != null %}
+        	Fax : {{ trainer.telfax }}<br />
+        {% endif %}
+        
+        Site web : {{ trainer.website }}
+      </p>
+      <p><a target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=map&center={{ reseller.coordlong }},{{ reseller.coordlat }}">Voir sur Google Maps</a></p>
+    </div>
+    {% endfor %}
+  </article>
+</section>

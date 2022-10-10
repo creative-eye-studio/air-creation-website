@@ -1,0 +1,22 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Hello AdminChronologieController!{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <a class="btn-link float-right" href="{{ path('admin_chronologie_add') }}">Ajouter une date</a>
+        <h2>Chronologie</h2>
+        {% for date in dates %}
+            <div class="line">
+                <p>
+                {{ date.chronologiedate }} - {{ date.chronologietype }}<br />
+                {{ date.chronologietext }}
+                </p>
+                <ul>
+                    <li><a href="{{ path('admin_chronologie_update', {date: date.chronologiedate}) }}">Modifier</a></li>
+                    <li><a href="{{ path('admin_chronologie_delete', {date: date.chronologiedate}) }}">Supprimer</a></li>
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
