@@ -1,18 +1,14 @@
 input{
     &[type=text],
-    &[type=tel],
-    &[type=email]{
+    &[type=email],
+    &[type=password]{
         width: 100%;
         padding: .5rem;
     }
 }
 
-select{
-    padding: .5rem;
-}
-
 textarea{
+    height: 100px;
     width: 100%;
     padding: .5rem;
-    height: 100px;
 }
