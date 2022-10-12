@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '30ed6c3e76a8cc4cce93453ad3d76aac9b43decd',
+        'reference' => '68407692d922888825f5fe24be5cac2a8c58ad83',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '30ed6c3e76a8cc4cce93453ad3d76aac9b43decd',
+            'reference' => '68407692d922888825f5fe24be5cac2a8c58ad83',
             'dev_requirement' => false,
         ),
         'artgris/filemanager-bundle' => array(
@@ -853,6 +853,15 @@
             'aliases' => array(),
             'reference' => '8cb4c6e6c8d30c26f70529ed5e50d79a09576c0c',
             'dev_requirement' => true,
+        ),
+        'symfony/dotenv' => array(
+            'pretty_version' => 'v6.1.0',
+            'version' => '6.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/dotenv',
+            'aliases' => array(),
+            'reference' => '568c11bcedf419e7e61f663912c3547b54de51df',
+            'dev_requirement' => false,
         ),
         'symfony/error-handler' => array(
             'pretty_version' => 'v6.1.3',
