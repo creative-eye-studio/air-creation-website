@@ -31,9 +31,11 @@
                 <li>
                     <a href="{{ path('app_admin_posts') }}">Actualités</a>
                 </li>
-                {% if is_granted('ROLE_ADMIN') %}
                 <li>
-                    <a href="{{ path('admin_pages') }}">Pages du site</a>
+                    <a href="{{ path('admin_chronologie') }}">Chronologie</a>
+                </li>
+                <li>
+                    <a href="{{ path('app_admin_sav_manager') }}">Service Après-Vente</a>
                 </li>
                 <li>
                     <a href="{{ path('app_admin_products') }}">Produits</a>
@@ -41,8 +43,10 @@
                 <li>
                     <a href="{{ path('app_admin_partners') }}">Partenaires</a>
                 </li>
+
+                {% if is_granted('ROLE_ADMIN') %}
                 <li>
-                    <a href="{{ path('admin_chronologie') }}">Chronologie</a>
+                    <a href="{{ path('admin_pages') }}">Pages du site</a>
                 </li>
                 <li>
                     <a href="{{ path('add_admin_header') }}">En-tête du site</a>
@@ -51,9 +55,7 @@
                     <a href="{{ path('add_admin_footer') }}">Pied de page du site</a>
                 </li>
                 {% endif %}
-                <li>
-                    <a href="{{ path('app_admin_sav_manager') }}">Service Après-Vente</a>
-                </li>
+                
                 <li>
                     <a href="{{ path('admin_users') }}">Utilisateurs</a>
                 </li>

@@ -1,116 +1,89 @@
 .primary-menu{
     position: fixed;
     top: $header-ht;
-    right: 0;
     bottom: $navbar-ht;
     left: 0;
     z-index: 100;
+    width: 100%;
     background-color: $grey-color;
-    padding: $marges-nav-m;
+    padding: $marges-m;
     overflow-y: scroll;
-    opacity: 0;
-    transform: translateX(-100%);
     transition-duration: .5s;
-    color: white;
-    font-size: 1.2em;
+    &:not(.active){
+        transform: translateX(-100%);
+    }
+    ul{
+        margin: 0;
+        padding-left: 0;
+        list-style-type: none;
+        font-size: 1.25em;
+        &.sub-menu{
+            font-size: 0.9em;
+            padding-left: $marges-m;
+            li{
+                margin-top: calc(#{$marges-m} / 2.5)
+            }
+        }
+    }
+    li{
+        color: white;
+        &.nav-item{
+            &:not(:last-child){
+                margin-bottom: calc(#{$marges-m} / 1.2);
+            }
+        }
+        &.sub-menu-btn{
+            .sub-menu{
+                display: none;
+            }
+            &.active{
+                .sub-menu{
+                    display: block;
+                }
+            }
+        }
+    }
     a{
         color: white;
         text-decoration: none;
     }
-    ul{
-        list-style-type: none;
+    @media screen and (min-width: 1024px) {
+        position: relative;
+        top: initial;
+        left: initial;
+        bottom: initial;
+        width: inherit;
+        background-color: rgba($color: #000000, $alpha: 0);
         padding: 0;
-        margin: 0;
-    }
-    .main-btn-bloc{
-        &:not(:last-child){
-            margin-bottom: calc(#{$marges-m} / 2);
+        overflow-y: initial;
+        &:not(.active){
+            transform: translateX(0);
         }
-        &.sub-menu{
-            ul{
-                margin-left: $marges-m;
-                font-size: .9em;
-            }
-            li{
-                margin-top: calc(#{$marges-m} / 2.25)
-            }
-        }
-    }
-    .nav-arrow{
-        display: none;
-        @media screen and (min-width:1024px) {
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            z-index: 1;
-            cursor: pointer;
-            &.swiper-nav-button-prev{
-                transform: translateX(-35vw)
-            }
-            &.swiper-nav-button-next{
-                transform: translateX(32vw);
-            }
-        }
-    }
-    &.active{
-        opacity: 1;
-        transform: translateX(0%);
-    }
-    @media screen and (min-width:1024px){
-        top: 0;
-        bottom: 0;
-        overflow-y: inherit;
-        .main-btn-bloc{
+        &>ul{
             display: flex;
-            justify-content: center;
-            align-items: center;
-            &:not(:last-child){
-                margin-bottom: 0;
-            }
-            &.bloc1{
-                @include bgNavButton('nav-bloc-1.jpg');
-            }
-            &.bloc2{
-                @include bgNavButton('nav-bloc-3.jpg');
-            }
-            &.bloc3{
-                @include bgNavButton('nav-bloc-2.jpg');
-            }
-            &.bloc4{
-                @include bgNavButton('nav-bloc-4.jpg');
-            }
+        }
+        ul{
+            font-size: 1em;
             &.sub-menu{
-                ul{
-                    column-count: 2;
-                    margin-left: 0;
-                    li{
-                        margin-bottom: calc(#{$marges-m} / 2);
-                    }
-                }
+                position: absolute;
+                top: 48px;
+                right: -1rem;
+                padding: .5rem 1rem;
+                width: 220px;
+                background-color: $p-color-d;
                 li{
-                    margin-top: 0;
+                    margin: .5rem 0;
+                    text-align: right;
                 }
             }
         }
-        .case{
-            width: 60vw;
-            height: 60%;
-            padding: $marges-d-y;
-            & > a{
-                display: block;
-                width: 100%;
-                height: 100%;
-            }
-            ul{
-                a{
-                    font-size: 1.1em;
+        li{
+            &.nav-item{
+                margin-right: 2rem;
+                position: relative;
+                &:not(:last-child){
+                    margin-bottom: 0;
                 }
-            }
-            span{
-                display: block;
-                font-size: 3vw;
-                margin-bottom: calc(#{$marges-d-y} / 2);
             }
         }
     }
@@ -145,19 +118,7 @@
         text-decoration: none;
     }
     @media screen and (min-width:1024px) {
-        position: relative;
-        width: inherit;
-        background-color: rgba($color: #000000, $alpha: 0);
-        margin-right: 3rem;
-        justify-content: end;
-        li{
-            width: auto;
-            font-size: $header-font;
-            &:not(:last-child){
-                margin-right: 1.5rem;
-                border-right: none;
-            }
-        }
+        display: none;
     }
 }
 

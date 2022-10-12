@@ -13,7 +13,7 @@ header{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        // width: 100%;
     }
     .logo-container{
         display: flex;
@@ -68,41 +68,7 @@ header{
             }
         }
         @media screen and (min-width: 1024px) {
-            display: flex;
-            align-items: center;
-            width: auto;
-            padding: 0 3rem;
-            .bar{
-                transition-duration: .5s;
-                &::before,
-                &::after{
-                    background-color: white;
-                }
-                &::before{
-                    width: 2.5rem;
-                }
-                &::after{
-                    width: 70%;
-                }
-            }
-            .label{
-                font-size: $header-font;
-                font-weight: 300;
-                margin: 0 0 0 1.5rem;
-                text-transform: lowercase;
-                color: white;
-                transition-duration: .5s;
-                &.open{
-                    display: block;
-                }
-            }
-            &:hover{
-                .bar{
-                    &::after{
-                        width: 100%;
-                    }
-                }
-            }
+            display: none;
         }
     }
 }
@@ -116,6 +82,7 @@ header{
         @media screen and (min-width: 1024px) {
             transition-duration: .5s;
             position: fixed;
+            right: 0;
             .logo-container{
                 img{
                     opacity: 0;

@@ -17,7 +17,6 @@
 .product-block{
     padding: calc(#{$marges-m} * 1.5);
     background-color: $bw-color-2;
-    border-top: .0625rem solid $bw-color-4;
     a{
         color: black;
         text-decoration: none;
@@ -43,7 +42,6 @@
     }
     @media screen and (min-width: 1024px) {
         padding: calc(#{$marges-d-x} * .5);
-        border: .0625rem solid $bw-color-4;
         width: 25%;
     }
 }
