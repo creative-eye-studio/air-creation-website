@@ -114,6 +114,29 @@ navLinks.forEach(navLink => {
 
 
 
+// Sous-Navigation
+// ------------------------------------------------------------------
+var subNavButtons = document.querySelectorAll('.sub-menu-btn');
+
+subNavButtons.forEach(subNavButton => {
+  subNavButton.onclick = function () {
+    if (subNavButton.classList.contains('active')) 
+    {
+      subNavButton.classList.remove('active');
+    } 
+    else 
+    {
+      subNavButtons.forEach(subNavButton => {
+        subNavButton.classList.remove('active');
+      });
+      subNavButton.classList.add('active');
+    }
+  }
+});
+
+
+
+
 // Contact Form
 // ------------------------------------------------------------------
 var contactButton = document.querySelector('.toggle-contact');
@@ -177,26 +200,6 @@ import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-
-if (screen.width >= 1024) {
-  document.querySelector('.main-menu').classList.add('swiper-wrapper');
-  const btnsMainNav = document.querySelectorAll('.main-btn-bloc');
-  for(const btn of btnsMainNav){
-    btn.classList.add('swiper-slide');
-  }
-
-  const swiperPrimaryNav = new Swiper('.primary-menu', {
-    modules: [Navigation],
-    slidesPerView: "auto",
-    centeredSlides: true,
-    loop: true,
-    navigation: {
-      nextEl: '.swiper-nav-button-next',
-      prevEl: '.swiper-nav-button-prev',
-    },
-  });
-}
-
 const swiperDoc = new Swiper('.product-doc-list', {
   modules: [Navigation],
   slidesPerView: "auto",
@@ -217,6 +220,7 @@ const swiperDoc = new Swiper('.product-doc-list', {
     }
   }
 });
+
 
 const swiperLastsEvents = new Swiper('.home-timeline-container', {
   modules: [Navigation],

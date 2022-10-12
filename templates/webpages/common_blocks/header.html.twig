@@ -1,53 +1,43 @@
 <!-- En-Tête -->
 <header class="header-site">
+  <!-- Logo & Bouton Nav Mobile -->
   <div class="logo-container">
-    <img src="../uploads/images/logotype.jpg" />
+    <a href="{{ path('web_index') }}">
+      <img src="https://127.0.0.1:8000/uploads/images/logotype.jpg" />
+    </a>
     <button class="btn-nav toggle-nav">
       <span class="bar"></span>
       <span class="label open">Menu</span>
       <span class="label close">Fermer</span>
     </button>
   </div>
-
+  <!-- Menu secondaire -->
   <ul class="second-menu">
     <li><a href="{{ path('web_pages', {page_slug: 'showroom'}) }}">Le Showroom</a></li>
     <li><a href="{{ path('web_pages', {page_slug: 'documentation-en-ligne'}) }}">Documentation</a></li>
     <li><span class="toggle-contact">Contact / Devis</span></li>
     <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">E-Commerce</a></li>
   </ul>
-</header>
-
-<!-- Navigation -->
-<nav class="swiper primary-menu">
-  <ul class="main-menu">
-
-    <div class='main-btn-bloc bloc1'>
-      <li class="case"><a href="{{ path('web_index') }}"><span>Bienvenue</span></a></li>
-    </div>
-
-    <div class='main-btn-bloc bloc2'>
-      <li class="case"><a href="{{ path('web_pages', {page_slug: 'showroom'}) }}"><span>Voir notre showroom</span></a></li>
-    </div>
-
-    <div class='main-btn-bloc sub-menu bloc3'>
-      <li class="case">
-        <span>Consulter nos services :</span>
-        <ul>
+  <!-- Menu principal -->
+  <nav class="primary-menu">
+    <ul>
+      <li class="nav-item"><a href="{{ path('web_index') }}">Bienvenue</a></li>
+      <li class="nav-item"><a href="{{ path('web_pages', {page_slug: 'showroom'}) }}">Voir notre showroom</a></li>
+      <li class="nav-item sub-menu-btn">
+        <span>Consultez nos services</span>
+        <ul class="sub-menu">
           <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Sur-Mesure</a></li>
           <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">Shop</a></li>
-          <li><a href="https://shop.aircreation.fr/-les-occasions-air-creation" target="_blank" rel="noopener">Complet et Occasion</a></li>
+          <li><a href="https://shop.aircreation.fr/-les-occasions-air-creation" target="_blank" rel="noopener">Nos occasions</a></li>
           <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Notre offre de sous-traitance</a></li>
           <li><a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}">Maintenance</a></li>
           <li><a href="{{ path('web_pages', {page_slug: 'documentation-en-ligne'}) }}">Documentation en ligne</a></li>
           <li><a href="{{ path('web_pages', {page_slug: 'service-apres-vente'}) }}">Service Après-Vente</a></li>
         </ul>
       </li>
-    </div>
-
-    <div class='main-btn-bloc sub-menu bloc4'>
-      <li class="case">
-        <span>Découvrir Air Création :</span>
-        <ul>
+      <li class="nav-item sub-menu-btn">
+        <span>Découvrir Air Création</span>
+        <ul class="sub-menu">
           <li><a href="{{ path('web_pages', {page_slug: 'qui-sommes-nous'}) }}">Qui sommes nous ?</a></li>
           <li><a href="{{ path('web_pages', {page_slug: 'notre-histoire'}) }}">Notre histoire</a></li>
           <li><a href="{{ path('web_pages', {page_slug: 'innovation'}) }}">Notre innovation</a></li>
@@ -57,16 +47,11 @@
           <li><a href="{{ path('web_pages', {page_slug: 'actualites'}) }}">Actualités</a></li>
         </ul>
       </li>
-    </div>
-  </ul>
+    </ul>
+  </nav>
+</header>
 
-  <div class="swiper-nav-button-prev nav-arrow">
-    <i class="fa-solid fa-chevron-left fa-2x"></i>
-  </div>
-  <div class="swiper-nav-button-next nav-arrow">
-    <i class="fa-solid fa-chevron-right fa-2x"></i>
-  </div>
-</nav>
+
 
 <!-- Contact Form -->
 <section class="contact-block">
@@ -78,13 +63,13 @@
       <p><strong>1. Votre identité et informations de contact</strong></p>
       <div class="horizontal-radio">
         {% for child in contactForm.gender %}
-      <p>
-        {{ form_widget(child) }}
-        {{ form_label(child, null) }}
-      </p>
-      {% endfor %}
+        <p>
+          {{ form_widget(child) }}
+          {{ form_label(child, null) }}
+        </p>
+        {% endfor %}
       </div>
-      
+
       <p>
         {{ form_label(contactForm.lname)}}
         {{ form_widget(contactForm.lname)}}
