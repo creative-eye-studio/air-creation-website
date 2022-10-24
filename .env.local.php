@@ -6,5 +6,5 @@ return array (
   'APP_ENV' => 'dev',
   'APP_SECRET' => 'cc7a0154a53b81ea3424bac835064c89',
   'MESSENGER_TRANSPORT_DSN' => 'doctrine://default?auto_setup=0',
-  'DATABASE_URL' => 'mysql://aircreation:GKVHhCy8VPqdm4@sb54548-007.eu.clouddb.ovh.net:35427/aircreation?serverVersion=5.7&charset=utf8mb4',
+  'DATABASE_URL' => 'mysql://root:root@127.0.0.1:8889/_air_creation?serverVersion=5.7&charset=utf8mb4',
 );
