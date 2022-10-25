@@ -299,8 +299,8 @@ class AdminProductsController extends AbstractController
             );
         }
 
-        $productForm->removeTab($product->getProductFolderId());
-        rmdir("../templates/webpages/products/" . $product->getProductFolderId());
+        $productForm->removeTab($product->getProductId());
+        rmdir("../templates/webpages/products/" . $product->getProductId());
         $entityManager->remove($product);
         $entityManager->flush();
 
