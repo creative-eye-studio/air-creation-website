@@ -73,7 +73,7 @@
                     <div class="line">
                         <p>{{ image.imagename }}</p>
                         <ul>
-                            <li><a href="">Supprimer</a></li>
+                            <li><a href="{{ path('app_admin_image_delete', {folder: 'accessoiries', image_file: image.imagename}) }}">Supprimer</a></li>
                         </ul>
                     </div>
                     {% endif %}
@@ -90,7 +90,7 @@
                     <div class="line">
                         <p>{{ image.imagename }}</p>
                         <ul>
-                            <li><a href="">Supprimer</a></li>
+                            <li><a href="{{ path('app_admin_image_delete', {folder: 'gallery', image_file: image.imagename}) }}">Supprimer</a></li>
                         </ul>
                     </div>
                     {% endif %}
