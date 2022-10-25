@@ -8,6 +8,7 @@ use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\Partners;
 use App\Entity\PostsList;
+use App\Entity\ProductsImages;
 use App\Form\NewsletterFormType;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
@@ -78,6 +79,10 @@ class WebPagesOthersController extends AbstractController
 
         // Récupération du produit
         $product = $products_function->getProduct($doctrine, $product_slug);
+        $entityManager = $doctrine->getManager();
+        $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product]);
+
+        dump($image);
 
         if (!$product) {
             throw $this->createNotFoundException(
@@ -89,10 +94,6 @@ class WebPagesOthersController extends AbstractController
         $contactForm->handleRequest($request);
 
         // Récupération des images
-        $imagesDir = './uploads/images/produits/';
-        $color_dir = glob($imagesDir . $product->getProductFolderId() . "/coloris/*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}", GLOB_BRACE);
-        $accessoiries_dir = glob($imagesDir . $product->getProductFolderId() . "/accessoires/*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}", GLOB_BRACE);
-        $gallery_dir = glob($imagesDir . $product->getProductFolderId() . "/images/*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}", GLOB_BRACE);
 
         return $this->render('web_pages_others/product.html.twig', [
             'controller_name' => 'WebPagesOthersController',
@@ -103,10 +104,8 @@ class WebPagesOthersController extends AbstractController
             'productDocUrl' => $product->getProductDocUrl(),
             'productMetaTitle' => $product->getProductMetaTitle(),
             'productMetaDesc' => $product->getProductMetaDesc(),
-            'productFolderId' => $product->getProductFolderId(),
-            'color_dir' => $color_dir,
-            'accessoiries_dir' => $accessoiries_dir,
-            'gallery_dir' => $gallery_dir,
+            'productFolderId' => $product->getProductId(),
+            'images' => $image,
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType,
             'meta_title' => $product->getProductMetaTitle(),
