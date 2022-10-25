@@ -139,12 +139,15 @@ subNavButtons.forEach(subNavButton => {
 
 // Contact Form
 // ------------------------------------------------------------------
-var contactButton = document.querySelector('.toggle-contact');
+var contactButton = document.querySelectorAll('.toggle-contact');
 var contactBlock = document.querySelector('.contact-block');
-contactButton.onclick = function() {
-  contactBlock.classList.toggle('active');
-  document.querySelector('body').classList.toggle('contact-opened');
-}
+contactButton.forEach(button => {
+  button.onclick = function() {
+    contactBlock.classList.toggle('active');
+    document.querySelector('body').classList.toggle('contact-opened');
+  }
+});
+
 
 
 
