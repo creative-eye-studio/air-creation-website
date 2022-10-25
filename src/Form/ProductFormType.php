@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class ProductFormType extends AbstractType
 {
@@ -35,6 +36,25 @@ class ProductFormType extends AbstractType
                 'label' => 'Lien vers la documentation (Optionnel)',
                 'required' => false
             ])
+
+            ->add('product_coloris', DropzoneType::class, [
+                'label' => "Couleurs",
+                'required' => false,
+                'multiple' => true
+            ])
+
+            ->add('product_accessoiries', DropzoneType::class, [
+                'label' => "Accessoires",
+                'required' => false,
+                'multiple' => true
+            ])
+
+            ->add('product_gallery', DropzoneType::class, [
+                'label' => "Galeries",
+                'required' => false,
+                'multiple' => true
+            ])
+
             ->add('product_long_desc', CKEditorType::class, [
                 'label' => 'Présentation détaillée du produit'
             ])

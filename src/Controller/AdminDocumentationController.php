@@ -50,7 +50,6 @@ class AdminDocumentationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $docName = null;
             $docFile = $form['doc_file']->getData();
             $docProduct = $form['doc_product_id']->getData();
 
@@ -84,7 +83,7 @@ class AdminDocumentationController extends AbstractController
     }
 
     #[Route('/admin/documentation/delete/{doc_file}', name: 'app_admin_documentation_delete')]
-    public function FunctionName(ManagerRegistry $doctrine, String $doc_file): Response
+    public function DeleteDoc(ManagerRegistry $doctrine, String $doc_file): Response
     {
         // Récupération du fichier
         $entityManager = $doctrine->getManager();

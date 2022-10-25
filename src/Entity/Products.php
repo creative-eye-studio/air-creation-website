@@ -35,17 +35,21 @@ class Products
     private ?string $product_meta_desc = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $product_folder_id = null;
-
-    #[ORM\Column(length: 255)]
     private ?string $product_thumb = null;
 
     #[ORM\OneToMany(mappedBy: 'doc_product_id', targetEntity: Documentation::class)]
     private Collection $documentations;
 
+    #[ORM\OneToMany(mappedBy: 'image_product', targetEntity: ProductsImages::class)]
+    private Collection $productsImages;
+
+    #[ORM\Column(length: 255)]
+    private ?string $product_id = null;
+
     public function __construct()
     {
         $this->documentations = new ArrayCollection();
+        $this->productsImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,18 +129,6 @@ class Products
         return $this;
     }
 
-    public function getProductFolderId(): ?string
-    {
-        return $this->product_folder_id;
-    }
-
-    public function setProductFolderId(?string $product_folder_id): self
-    {
-        $this->product_folder_id = $product_folder_id;
-
-        return $this;
-    }
-
     public function getProductThumb(): ?string
     {
         return $this->product_thumb;
@@ -175,6 +167,48 @@ class Products
                 $documentation->setDocProductId(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductsImages>
+     */
+    public function getProductsImages(): Collection
+    {
+        return $this->productsImages;
+    }
+
+    public function addProductsImage(ProductsImages $productsImage): self
+    {
+        if (!$this->productsImages->contains($productsImage)) {
+            $this->productsImages->add($productsImage);
+            $productsImage->setImageProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductsImage(ProductsImages $productsImage): self
+    {
+        if ($this->productsImages->removeElement($productsImage)) {
+            // set the owning side to null (unless already changed)
+            if ($productsImage->getImageProduct() === $this) {
+                $productsImage->setImageProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getProductId(): ?string
+    {
+        return $this->product_id;
+    }
+
+    public function setProductId(string $product_id): self
+    {
+        $this->product_id = $product_id;
 
         return $this;
     }

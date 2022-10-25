@@ -1,16 +1,17 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Ajouter un produit{% endblock %}
+{% block title %}Modifier un produit{% endblock %}
 
 {% block body %}
     <section class="block tab-container">
         <h2>Modifier un produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Résumé</a></li>
-            <li><a class="tab">Coloris et accessoires</a></li>
+            <li><a class="tab">Coloris</a></li>
+            <li><a class="tab">Accessoires</a></li>
+            <li><a class="tab">Galerie d'images</a></li>
             <li><a class="tab">Description</a></li>
             <li><a class="tab">Caractéristiques</a></li>
-            <li><a class="tab">Galerie d'images</a></li>
             <li><a class="tab">SEO</a></li>
         </ul>
         <p>
@@ -45,15 +46,55 @@
                 }) }}</p>
             </div>
 
-            <!-- Coloris et accessoires -->
-            <div id="#coloris" class="tab-pane">
-                <p>Le dossier Image du produit se nomme {{ productFolderId }}</p>
-                <iframe id="inlineFrameExample"
-                    title="Inline Frame Example"
-                    width="100%"
-                    height="400"
-                    src="/manager/?conf=default">
-                </iframe>
+            <!-- Coloris -->
+            <div class="tab-pane">
+                <h3>Ajouter de nouveaux coloris</h3>
+                <p>{{ form_widget(form.product_coloris) }}</p>
+                <h3>Coloris existants</h3>
+                {% for image in images %}
+                    {% if image.imagetype == 0 %}
+                    <div class="line">
+                        <p>{{ image.imagename }}</p>
+                        <ul>
+                            <li><a href="{{ path('app_admin_image_delete', {folder: 'coloris', image_file: image.imagename}) }}">Supprimer</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Accessoires -->
+            <div class="tab-pane">
+                <h3>Ajouter de nouveaux accessoires</h3>
+                <p>{{ form_widget(form.product_accessoiries) }}</p>
+                <h3>Accessoires existants</h3>
+                {% for image in images %}
+                    {% if image.imagetype == 1 %}
+                    <div class="line">
+                        <p>{{ image.imagename }}</p>
+                        <ul>
+                            <li><a href="">Supprimer</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Images -->
+            <div class="tab-pane">
+                <h3>Ajouter de nouvelles images</h3>
+                <p>{{ form_widget(form.product_gallery) }}</p>
+                <h3>Images actielles</h3>
+                {% for image in images %}
+                    {% if image.imagetype == 2 %}
+                    <div class="line">
+                        <p>{{ image.imagename }}</p>
+                        <ul>
+                            <li><a href="">Supprimer</a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                {% endfor %}
             </div>
 
             <!-- Description -->
@@ -70,17 +111,6 @@
                 {{ form_widget(form.product_carac,  {
                     'value': productCaracFile
                 }) }}</p>
-            </div>
-
-            <!-- Galerie d'images -->
-            <div id="#images" class="tab-pane">
-                <p>Le dossier Image du produit se nomme {{ productFolderId }}</p>
-                <iframe id="inlineFrameExample"
-                    title="Inline Frame Example"
-                    width="100%"
-                    height="400"
-                    src="/manager/?conf=default">
-                </iframe>
             </div>
 
             <!-- SEO -->

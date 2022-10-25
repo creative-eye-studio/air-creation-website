@@ -7,6 +7,7 @@
         <h2>Ajouter un nouveau produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Résumé</a></li>
+            <li><a class="tab">Images</a></li>
             <li><a class="tab">Description</a></li>
             <li><a class="tab">Caractéristiques</a></li>
             <li><a class="tab">SEO</a></li>
@@ -14,20 +15,26 @@
         {{ form_start(form, { 'attr' : {'class': 'tab-panes'} }) }}
             <!-- Résumé -->
             <div id="#resume" class="tab-pane active">
-
                 <p>{{ form_label(form.product_name) }}<br />
                 {{ form_widget(form.product_name) }}</p>
-
                 <p>{{ form_label(form.product_thumbnail) }}<br />
                 {{ form_widget(form.product_thumbnail) }}</p>
-
                 <p>{{ form_label(form.product_desc) }}<br />
                 {{ form_widget(form.product_desc) }}</p>
-
                 <p>{{ form_label(form.product_shop_url) }}<br />
                 {{ form_widget(form.product_shop_url) }}</p>
                 <p>{{ form_label(form.product_doc_url) }}<br />
                 {{ form_widget(form.product_doc_url) }}</p>
+            </div>
+
+            <!-- Images-->
+            <div class="tab-pane">
+                <p>{{ form_label(form.product_coloris) }}<br />
+                {{ form_widget(form.product_coloris) }}</p>
+                <p>{{ form_label(form.product_accessoiries) }}<br />
+                {{ form_widget(form.product_accessoiries) }}</p>
+                <p>{{ form_label(form.product_gallery) }}<br />
+                {{ form_widget(form.product_gallery) }}</p>
             </div>
 
             <!-- Description -->
