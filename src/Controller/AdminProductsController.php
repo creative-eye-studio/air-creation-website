@@ -299,30 +299,6 @@ class AdminProductsController extends AbstractController
 
 
 
-    // SUPPRIMER UN PRODUIT
-    //-----------------------------------------------------
-    #[Route('/admin/products/delete/{product_id}', name: 'app_admin_products_delete')]
-    public function DeleteProduct(ProductForm $productForm, ManagerRegistry $doctrine, $product_id){
-        $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
-        
-        if(!$product) {
-            throw $this->createNotFoundException(
-                "Aucune post n'a été trouvé"
-            );
-        }
-
-        $productForm->removeTab($product->getProductId());
-        rmdir("../templates/webpages/products/" . $product->getProductId());
-        $entityManager->remove($product);
-        $entityManager->flush();
-
-        // Redirection vers la liste des produits
-        return $this->redirectToRoute('app_admin_products');
-    }
-
-
-
     // SUPPRIMER UNE IMAGE
     //-----------------------------------------------------
     #[Route('/admin/products/delete_image/{folder}/{image_file}', name: 'app_admin_image_delete')]
