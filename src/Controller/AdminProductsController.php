@@ -161,8 +161,11 @@ class AdminProductsController extends AbstractController
         $slugify = new Slugify();
 
         $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
         $images = $entityManager->getRepository(ProductsImages::class)->findBy(['image_product' => $product_id]);
+        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
+        $productId = $product->getProductId();
+        $productUrl = $product->getProductUrl();
+        $productThumb = $product->getProductThumb();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         
@@ -172,31 +175,32 @@ class AdminProductsController extends AbstractController
             );
         }
 
-        $productIntroFile = file_get_contents("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . "-intro.html.twig");
-        $productDescFile = file_get_contents("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . "-desc.html.twig");
+        $productIntroFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-intro.html.twig");
+        $productDescFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-desc.html.twig");
         
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $doctrine->getManager();
 
+            // Création des TWIG
+            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-intro.html.twig', 'w');
+            fwrite($file, $form['product_intro']->getData());
+            fclose($file);
+
+            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-desc.html.twig', 'w');
+            fwrite($file, $form['product_desc']->getData());
+            fclose($file);
+
             // Envoi vers la Database
+            $slug = $slugify->slugify($form['product_name']->getData());
+            $product->setProductId($productId);
+            $product->setProductUrl($productUrl);
+
+            // Création des images
             $coloris = $form['product_color_imgs']->getData();
             $accessoiries = $form['product_access_imgs']->getData();
             $gallery = $form['product_gallery_imgs']->getData();
             $thumb = $form['product_thumb']->getData();
-            $slug = $slugify->slugify($form['product_name']->getData());
-            $product->setProductId($slug);
-            $product->setProductUrl($slug);
 
-            // Création des TWIG
-            $file = fopen("../templates/webpages/products/" . $slug . "/" . $slug . '-intro.html.twig', 'w');
-            fwrite($file, $form['product_intro']->getData());
-            fclose($file);
-
-            $file = fopen("../templates/webpages/products/" . $slug . "/" . $slug . '-desc.html.twig', 'w');
-            fwrite($file, $form['product_desc']->getData());
-            fclose($file);
-
-            // Création des images
             foreach($coloris as $file){
                 $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
                 $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
@@ -259,26 +263,25 @@ class AdminProductsController extends AbstractController
                 $entityManager->persist($image);
             }
 
-            if ($thumb != null) {
-                $product->setProductThumb(pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION));
-                foreach($thumb as $file){
-                    $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                    $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            if ($thumb) {
+                $uploadedFileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION);
+                $product->setProductThumb($uploadedFileName);
+                
+                $fileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION);
 
-                    // Ajout du fichier
-                    $uploadedFile = $file;
-                    $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
-                    $newFilename = $fileName . '.' . $fileExtention;
-                    $uploadedFile->move(
-                        $directory,
-                        $newFilename
-                    );
-                }
+                // Ajout du fichier
+                $uploadedFile = $thumb;
+                $directory = $this->getParameter('kernel.project_dir') . '/public/uploads/products/thumbs';
+                $newFilename = $fileName . '.' . $fileExtention;
+                $uploadedFile->move(
+                    $directory,
+                    $newFilename
+                );
             } else {
-                $product->setProductThumb($product->getProductThumb());
+                $product->setProductThumb($productThumb);
             }
             
-
             $entityManager->persist($product);
             $entityManager->flush();
 
@@ -290,6 +293,7 @@ class AdminProductsController extends AbstractController
             'form' => $form->createView(),
             'productIntroFile' => $productIntroFile,
             'productDescFile' => $productDescFile,
+            'productThumb' => $productThumb,
         ]);
     }
 

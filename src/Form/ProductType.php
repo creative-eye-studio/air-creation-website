@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Products;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,7 +26,18 @@ class ProductType extends AbstractType
             ])
             ->add('product_thumb', DropzoneType::class, [
                 'label' => 'Image du produit',
-                'data_class' => null
+                'mapped' => false,
+                'required' => false,
+                'empty_data' => '',
+            ])
+            ->add('product_type', ChoiceType::class, [
+                'choices' => [
+                    'ULM Complet' => 'ULM Complet',
+                    'Ailes' => 'Ailes',
+                    'Tricycles' => 'Tricycles',
+                    'Accessoires' => 'Accessoires',
+                ],
+                'label' => 'Type de produit',
             ])
             ->add('product_intro', CKEditorType::class, [
                 'label' => 'Présentation',
@@ -57,8 +69,12 @@ class ProductType extends AbstractType
             ->add('product_masse_max', NumberType::class, [
                 'label' => 'Masse maximum',
             ])
-            
-            ->add('product_motor_type')
+            ->add('product_motor_type', ChoiceType::class, [
+                'choices' => [
+                    'En attente de types de moteur' => 'En attente de types de moteur'
+                ],
+                'label' => 'Type de motorisation',
+            ])
 
             ->add('product_motor_pouls', NumberType::class, [
                 'label' => 'Puissance moteur',
@@ -85,24 +101,24 @@ class ProductType extends AbstractType
             // IMAGES
             ->add('product_color_imgs', DropzoneType::class, [
                 'label' => "Coloris",
+                'data_class' => null,
+                'required' => false,
                 'multiple' => true,
                 'mapped' => false,
-                'data_class' => null,
-                'required' => false
             ])
             ->add('product_access_imgs', DropzoneType::class, [
                 'label' => "Accessoires",
+                'data_class' => null,
+                'required' => false,
                 'multiple' => true,
                 'mapped' => false,
-                'data_class' => null,
-                'required' => false
             ])
             ->add('product_gallery_imgs', DropzoneType::class, [
                 'label' => "Galerie d'images",
+                'data_class' => null,
+                'required' => false,
                 'multiple' => true,
                 'mapped' => false,
-                'data_class' => null,
-                'required' => false
             ])
 
             // SEO

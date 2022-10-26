@@ -28,7 +28,7 @@ class Products
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $product_meta_desc = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $product_thumb = null;
 
     #[ORM\OneToMany(mappedBy: 'doc_product_id', targetEntity: Documentation::class)]
@@ -81,6 +81,9 @@ class Products
 
     #[ORM\Column]
     private ?float $product_fly_amount = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $product_type = null;
 
     public function __construct()
     {
@@ -389,6 +392,18 @@ class Products
     public function setProductFlyAmount(float $product_fly_amount): self
     {
         $this->product_fly_amount = $product_fly_amount;
+
+        return $this;
+    }
+
+    public function getProductType(): ?string
+    {
+        return $this->product_type;
+    }
+
+    public function setProductType(string $product_type): self
+    {
+        $this->product_type = $product_type;
 
         return $this;
     }
