@@ -186,7 +186,6 @@ class AdminProductsController extends AbstractController
             $slug = $slugify->slugify($form['product_name']->getData());
             $product->setProductId($slug);
             $product->setProductUrl($slug);
-            $product->setProductThumb(pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION));
 
             // Création des TWIG
             $file = fopen("../templates/webpages/products/" . $slug . "/" . $slug . '-intro.html.twig', 'w');
@@ -260,19 +259,25 @@ class AdminProductsController extends AbstractController
                 $entityManager->persist($image);
             }
 
-            foreach($thumb as $file){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            if ($thumb != null) {
+                $product->setProductThumb(pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION));
+                foreach($thumb as $file){
+                    $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
-                // Ajout du fichier
-                $uploadedFile = $file;
-                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
-                $newFilename = $fileName . '.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
-                    $newFilename
-                );
+                    // Ajout du fichier
+                    $uploadedFile = $file;
+                    $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
+                    $newFilename = $fileName . '.' . $fileExtention;
+                    $uploadedFile->move(
+                        $directory,
+                        $newFilename
+                    );
+                }
+            } else {
+                $product->setProductThumb($product->getProductThumb());
             }
+            
 
             $entityManager->persist($product);
             $entityManager->flush();
@@ -282,7 +287,9 @@ class AdminProductsController extends AbstractController
         }
 
         return $this->render('admin_products/update-product.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'productIntroFile' => $productIntroFile,
+            'productDescFile' => $productDescFile,
         ]);
     }
 
