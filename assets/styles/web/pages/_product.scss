@@ -2,9 +2,6 @@
     @media screen and (min-width:768px) {
         display: flex;
         flex-wrap: wrap;
-        .slider-images{
-            flex: 50%;
-        }
     }
     @media screen and (min-width:1024px) {
         #product-3d-viewer,
@@ -19,12 +16,10 @@
     width: 100%;
     @media screen and (min-width:1024px) {
         width: 50%;
-        padding-top: 0;
+        padding-top: calc(80% / 2);
         img{
-            height: calc(100vh - #{$header-ht});
-            position: sticky;
-            top: $header-ht;
-            bottom: 0;
+            width: 100%;
+            height: 100%;
         }
     }
 }
@@ -35,8 +30,14 @@
         font-size: 2em;
         font-weight: 400;
     }
+    .btn-list{
+        margin-top: $marges-m;
+    }
     @media screen and (min-width:1024px) {
         padding: $marges-d-y $marges-d-x;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
@@ -47,7 +48,6 @@
 }
 
 .product-block-2{
-
     .product-tab-list{
         margin: 0;
         padding: 0;
@@ -55,9 +55,10 @@
         a{
             text-align: center;
             display: block;
-            padding: .75rem 1.5rem;
+            padding: 1rem 2rem;
             color: white;
             background-color: $p-color;
+            font-size: 1.3em;
             &.active{
                 background-color: $p-color-d;
             }
@@ -87,33 +88,11 @@
     }
 }
 
-  
-/* clear fix */
-.grid:after {
-content: '';
-    display: block;
-    clear: both;
-}
-
-/* ---- .grid-item ---- */
-
-.grid-sizer,
-.grid-item {
-    width: 100%;
-    @media screen and (min-width: 768px){
-        width: 50%;
+.product-block-images{
+    @media screen and (min-width:1024px) {
+        display: flex;
+        .slider-images{
+            flex: 33%;
+        }
     }
-    @media screen and (min-width: 1025px){
-        width: 33.33%;
-    }
-}
-
-.grid-item {
-    float: left;
-    padding: $marges-m;
-}
-
-.grid-item img {
-    display: block;
-    max-width: 100%;
 }

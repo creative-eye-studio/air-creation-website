@@ -31,7 +31,9 @@
                 </p>
                 <p>
                     {{ form_label(form.product_intro) }}<br />
-                    {{ form_widget(form.product_intro) }}
+                    {{ form_widget(form.product_intro, {
+                        value: productIntroFile
+                    }) }}
                 </p>
             </div>
 
@@ -39,7 +41,9 @@
             <div class="tab-pane">
                 <p>
                     {{ form_label(form.product_desc) }}<br />
-                    {{ form_widget(form.product_desc) }}
+                    {{ form_widget(form.product_desc, {
+                        value: productDescFile
+                    }) }}
                 </p>
             </div>
 

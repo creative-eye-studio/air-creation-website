@@ -5,7 +5,7 @@
     z-index: 10;
     background-color: white;
     width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     transform: translateX(-100%);
     transition-duration: .5s;
 
@@ -35,7 +35,7 @@
         display: flex;
         list-style-type: none;
         padding-left: 0;
-        margin-bottom: 2rem;
+        margin-bottom: 0;
         li{
             margin-right: 30px;
         }
@@ -81,9 +81,10 @@
         bottom: 0;
         .image{
             display: block;
-            position: absolute;
+            position: sticky;
             top: 0;
             left: 0;
+            float: left;
             width: 50%;
             height: 100%;
             background-color: $bw-color-2;
@@ -95,6 +96,7 @@
         }
         .form{
             width: 50%;
+            height: auto;
             padding: $marges-d-y $marges-d-x;
             margin-left: 50%;
         }
