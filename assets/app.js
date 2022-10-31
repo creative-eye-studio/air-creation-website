@@ -283,27 +283,6 @@ const swiperLastsPosts = new Swiper('.posts', {
 })
 
 
-const swiperInnovBlocks = new Swiper('.innov-container', {
-    modules: [Pagination],
-    slidesPerView: "auto",
-    centeredSlides: true,
-    spaceBetween: 20,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 3
-      },
-      1024: {
-        slidesPerView: 3
-      }
-    }
-});
-
-
 const swiperProductsColoris = new Swiper('.slider-coloris', {
     modules: [Navigation],
     slidesPerView: "auto",
