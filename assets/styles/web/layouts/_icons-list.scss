@@ -1,0 +1,39 @@
+.icons-container{
+    padding: $marges-m;
+    @media screen and (min-width:768px) {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        column-gap: $marges-m;
+    }
+    @media screen and (min-width:1200px){
+        padding: $marges-d-y $marges-d-x;
+        justify-content: flex-start;
+        column-gap: $marges-d-x;
+    }
+}
+
+.icons-block{
+    &:not(:last-child){
+        margin-bottom: calc(#{$marges-m} + 1rem);
+    }
+    svg{
+        display: block;
+        margin: 0 auto $marges-m;
+        path{
+            fill: $p-color;
+        }
+    }
+    @media screen and (min-width:768px) {
+        width: calc(50% - #{$marges-m});
+    }
+    @media screen and (min-width:768px) {
+        width: calc(36% - #{$marges-d-x});
+        &:not(:last-child){
+            margin-bottom: $marges-d-y;
+        }
+        svg{
+            margin: 0 auto calc(#{$marges-d-y} / 2);
+        }
+    }
+}

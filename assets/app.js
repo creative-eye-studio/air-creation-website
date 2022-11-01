@@ -139,12 +139,15 @@ subNavButtons.forEach(subNavButton => {
 
 // Contact Form
 // ------------------------------------------------------------------
-var contactButton = document.querySelector('.toggle-contact');
+var contactButton = document.querySelectorAll('.toggle-contact');
 var contactBlock = document.querySelector('.contact-block');
-contactButton.onclick = function() {
-  contactBlock.classList.toggle('active');
-  document.querySelector('body').classList.toggle('contact-opened');
-}
+contactButton.forEach(button => {
+  button.onclick = function() {
+    contactBlock.classList.toggle('active');
+    document.querySelector('body').classList.toggle('contact-opened');
+  }
+});
+
 
 
 
@@ -278,27 +281,6 @@ const swiperLastsPosts = new Swiper('.posts', {
       }
     }
 })
-
-
-const swiperInnovBlocks = new Swiper('.innov-container', {
-    modules: [Pagination],
-    slidesPerView: "auto",
-    centeredSlides: true,
-    spaceBetween: 20,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 3
-      },
-      1024: {
-        slidesPerView: 3
-      }
-    }
-});
 
 
 const swiperProductsColoris = new Swiper('.slider-coloris', {

@@ -7,125 +7,133 @@
         <h2>Modifier un produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Résumé</a></li>
-            <li><a class="tab">Coloris</a></li>
-            <li><a class="tab">Accessoires</a></li>
-            <li><a class="tab">Galerie d'images</a></li>
             <li><a class="tab">Description</a></li>
             <li><a class="tab">Caractéristiques</a></li>
+            <li><a class="tab">Images</a></li>
             <li><a class="tab">SEO</a></li>
         </ul>
-        <p>
-            <em>* Champs obligatoires</em>
-        </p>
         {{ form_start(form, { 'attr' : {'class': 'tab-panes'} }) }}
             <!-- Résumé -->
-            <div id="#resume" class="tab-pane active">
-                <p>{{ form_label(form.product_name) }}<br />
-                {{ form_widget(form.product_name,  {
-                    'value': productName
-                }) }}</p>
-
-                <p>{{ form_label(form.product_thumbnail) }}<br />
-                {{ form_widget(form.product_thumbnail, {
-                    'required': false
-                }) }}</p>
-
-                <p>{{ form_label(form.product_desc) }}<br />
-                {{ form_widget(form.product_desc,  {
-                    'value': productIntroFile
-                }) }}</p>
-
-                <p>{{ form_label(form.product_shop_url) }}<br />
-                {{ form_widget(form.product_shop_url,  {
-                    'value': productShopUrl
-                }) }}</p>
-
-                <p>{{ form_label(form.product_doc_url) }}<br />
-                {{ form_widget(form.product_doc_url,  {
-                    'value': productDocUrl
-                }) }}</p>
-            </div>
-
-            <!-- Coloris -->
-            <div class="tab-pane">
-                <h3>Ajouter de nouveaux coloris</h3>
-                <p>{{ form_widget(form.product_coloris) }}</p>
-                <h3>Coloris existants</h3>
-                {% for image in images %}
-                    {% if image.imagetype == 0 %}
-                    <div class="line">
-                        <p>{{ image.imagename }}</p>
-                        <ul>
-                            <li><a href="{{ path('app_admin_image_delete', {folder: 'coloris', image_file: image.imagename}) }}">Supprimer</a></li>
-                        </ul>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <!-- Accessoires -->
-            <div class="tab-pane">
-                <h3>Ajouter de nouveaux accessoires</h3>
-                <p>{{ form_widget(form.product_accessoiries) }}</p>
-                <h3>Accessoires existants</h3>
-                {% for image in images %}
-                    {% if image.imagetype == 1 %}
-                    <div class="line">
-                        <p>{{ image.imagename }}</p>
-                        <ul>
-                            <li><a href="{{ path('app_admin_image_delete', {folder: 'accessoiries', image_file: image.imagename}) }}">Supprimer</a></li>
-                        </ul>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <!-- Images -->
-            <div class="tab-pane">
-                <h3>Ajouter de nouvelles images</h3>
-                <p>{{ form_widget(form.product_gallery) }}</p>
-                <h3>Images actielles</h3>
-                {% for image in images %}
-                    {% if image.imagetype == 2 %}
-                    <div class="line">
-                        <p>{{ image.imagename }}</p>
-                        <ul>
-                            <li><a href="{{ path('app_admin_image_delete', {folder: 'gallery', image_file: image.imagename}) }}">Supprimer</a></li>
-                        </ul>
-                    </div>
-                    {% endif %}
-                {% endfor %}
+            <div class="tab-pane active">
+                <p>
+                    {{ form_label(form.product_name) }}<br />
+                    {{ form_widget(form.product_name) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_type) }}<br />
+                    {{ form_widget(form.product_type) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_thumb) }}<br />
+                    {{ form_widget(form.product_thumb, {
+                        value: productThumb
+                    }) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_intro) }}<br />
+                    {{ form_widget(form.product_intro, {
+                        value: productIntroFile
+                    }) }}
+                </p>
             </div>
 
             <!-- Description -->
-            <div id="#description" class="tab-pane">
-                <p>{{ form_label(form.product_long_desc) }}<br />
-                {{ form_widget(form.product_long_desc,  {
-                    'value': productDescFile
-                }) }}</p>
+            <div class="tab-pane">
+                <p>
+                    {{ form_label(form.product_desc) }}<br />
+                    {{ form_widget(form.product_desc, {
+                        value: productDescFile
+                    }) }}
+                </p>
             </div>
 
             <!-- Caractéristiques -->
-            <div id="#caracteristiques" class="tab-pane">
-                <p>{{ form_label(form.product_carac) }}<br />
-                {{ form_widget(form.product_carac,  {
-                    'value': productCaracFile
-                }) }}</p>
+            <div class="tab-pane">
+                <p>
+                    {{ form_label(form.product_envergure) }}<br />
+                    {{ form_widget(form.product_envergure) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_surface_alaire) }}<br />
+                    {{ form_widget(form.product_surface_alaire) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_surface) }}<br />
+                    {{ form_widget(form.product_surface) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_charge) }}<br />
+                    {{ form_widget(form.product_charge) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_masse) }}<br />
+                    {{ form_widget(form.product_masse) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_masse_max) }}<br />
+                    {{ form_widget(form.product_masse_max) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_motor_type) }}<br />
+                    {{ form_widget(form.product_motor_type) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_motor_pouls) }}<br />
+                    {{ form_widget(form.product_motor_pouls) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_speed_min) }}<br />
+                    {{ form_widget(form.product_speed_min) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_speed_max) }}<br />
+                    {{ form_widget(form.product_speed_max) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_elec_conso) }}<br />
+                    {{ form_widget(form.product_elec_conso) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_fly_dist) }}<br />
+                    {{ form_widget(form.product_fly_dist) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_fly_amount) }}<br />
+                    {{ form_widget(form.product_fly_amount) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_color) }}<br />
+                    {{ form_widget(form.product_color) }}
+                </p>
+            </div>
+
+            <!-- Images-->
+            <div class="tab-pane">
+                <p>
+                    {{ form_label(form.product_color_imgs) }}<br />
+                    {{ form_widget(form.product_color_imgs) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_access_imgs) }}<br />
+                    {{ form_widget(form.product_access_imgs) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_gallery_imgs) }}<br />
+                    {{ form_widget(form.product_gallery_imgs) }}
+                </p>
             </div>
 
             <!-- SEO -->
-            <div id="#seo" class="tab-pane">
-                <p>{{ form_label(form.product_meta_title) }}<br />
-                {{ form_widget(form.product_meta_title,  {
-                    'value': productMetaTitle
-                }) }}</p>
-
-                <p>{{ form_label(form.product_meta_desc) }}<br />
-                {{ form_widget(form.product_meta_desc,  {
-                    'value': productMetaDesc
-                }) }}</p>
+            <div class="tab-pane">
+                <p>
+                    {{ form_label(form.product_meta_title) }}<br />
+                    {{ form_widget(form.product_meta_title) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_meta_desc) }}<br />
+                    {{ form_widget(form.product_meta_desc) }}
+                </p>
             </div>
-
             <p>{{ form_widget(form.product_submit) }}</p>
         {{ form_end(form) }}
     </section>
@@ -134,16 +142,12 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
-        CKEDITOR.instances["product_form_product_desc"].destroy();
-        CKEDITOR.replace( 'product_form_product_desc', {
+        CKEDITOR.instances["product_product_intro"].destroy();
+        CKEDITOR.replace( 'product_product_intro', {
         	startupMode: 'wysiwyg'
         });
-        CKEDITOR.instances["product_form_product_long_desc"].destroy();
-        CKEDITOR.replace( 'product_form_product_long_desc', {
-        	startupMode: 'wysiwyg'
-        });
-        CKEDITOR.instances["product_form_product_carac"].destroy();
-        CKEDITOR.replace( 'product_form_product_carac', {
+        CKEDITOR.instances["product_product_desc"].destroy();
+        CKEDITOR.replace( 'product_product_desc', {
         	startupMode: 'wysiwyg'
         });
     </script>

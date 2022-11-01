@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Products;
 use App\Entity\ProductsImages;
+use App\Form\ProductType;
 use App\Service\ProductForm;
 use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
@@ -33,81 +34,66 @@ class AdminProductsController extends AbstractController
     // AJOUTER UN PRODUIT
     //-----------------------------------------------------
     #[Route('/admin/products/add', name: 'app_admin_products_add')]
-    public function AddProduct(ProductForm $productForm, ManagerRegistry $doctrine, Request $request)
+    public function AddProduct(ManagerRegistry $doctrine, Request $request)
     {
         $slugify = new Slugify();
-        $form = $productForm->initForm($request);
+        $product = new Products();
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Récupération des données du formulaire
-            $data = $form->getData();
-            $productName = $data['product_name'];
-            $productThumbnail = $data['product_thumbnail'];
-            $productDesc = $data['product_desc'];
-            $productShopUrl = $data['product_shop_url'];
-            $productDocUrl = $data['product_doc_url'];
-            $productColoris = $data['product_coloris'];
-            $productAccessoiries = $data['product_accessoiries'];
-            $productGallery = $data['product_gallery'];
-            $productLongDesc = $data['product_long_desc'];
-            $productCarac = $data['product_carac'];
-            $productMetaTitle = $data['product_meta_title'];
-            $productMetaDesc = $data['product_meta_desc'];
-
-            // Ajout de la vignette
-            $uploadedImage = $productThumbnail;
-            $directory = $this->getParameter('kernel.project_dir') . '/public/uploads/images/product_thumbnails';
-            $thumbProduct = $slugify->slugify($productName) . '.' . $uploadedImage->guessExtension();
-            $uploadedImage->move(
-                $directory,
-                $thumbProduct
-            );
-
-            // Création du produit dans la BDD
             $entityManager = $doctrine->getManager();
-            $product = new Products();
-            $product->setProductName($productName);
-            $product->setProductShopUrl($productShopUrl);
-            $product->setProductDocUrl($productDocUrl);
-            $product->setProductUrl($slugify->slugify($productName));
-            $product->setProductMetaTitle($productMetaTitle);
-            $product->setProductMetaDesc($productMetaDesc);
-            $product->setProductThumb($thumbProduct);
-            $product->setProductId($slugify->slugify($productName));
 
-            $entityManager->persist($product);
-            $entityManager->flush();
+            // Envoi vers la Database
+            $coloris = $form['product_color_imgs']->getData();
+            $accessoiries = $form['product_access_imgs']->getData();
+            $gallery = $form['product_gallery_imgs']->getData();
+            $thumb = $form['product_thumb']->getData();
+            $slug = $slugify->slugify($form['product_name']->getData());
+            $product->setProductId($slug);
+            $product->setProductUrl($slug);
+            $product->setProductThumb(pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION));
 
-            foreach($productColoris as $coloris){
-                $fileName = pathinfo($coloris->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($coloris->getClientOriginalName(), PATHINFO_EXTENSION);
+            // Création des TWIG
+            $file = fopen("../templates/webpages/products/" . $slug . "/" . $slug . '-intro.html.twig', 'w');
+            fwrite($file, $form['product_intro']->getData());
+            fclose($file);
+
+            $file = fopen("../templates/webpages/products/" . $slug . "/" . $slug . '-desc.html.twig', 'w');
+            fwrite($file, $form['product_desc']->getData());
+            fclose($file);
+
+            // Création des images
+            foreach($coloris as $file){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
                 // Ajout du fichier
-                $uploadedFile = $coloris;
+                $uploadedFile = $file;
                 $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/coloris';
-                $newFilename = $fileName . '-color-.' . $fileExtention;
+                $newFilename = $fileName . '-color.' . $fileExtention;
                 $uploadedFile->move(
                     $directory,
                     $newFilename
                 );
 
                 $image = new ProductsImages();
+                $entityManager = $doctrine->getManager();
                 $image->setImageName($newFilename);
                 $image->setImageProduct($product);
                 $image->setImageType(0);
-
+                
                 $entityManager->persist($image);
-                $entityManager->flush();
             }
 
-            foreach($productAccessoiries as $access){
-                $fileName = pathinfo($access->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($access->getClientOriginalName(), PATHINFO_EXTENSION);
+            foreach($accessoiries as $file){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
                 // Ajout du fichier
-                $uploadedFile = $access;
+                $uploadedFile = $file;
                 $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/accessoiries';
-                $newFilename = $fileName . '-access-.' . $fileExtention;
+                $newFilename = $fileName . '-access.' . $fileExtention;
                 $uploadedFile->move(
                     $directory,
                     $newFilename
@@ -117,19 +103,17 @@ class AdminProductsController extends AbstractController
                 $image->setImageName($newFilename);
                 $image->setImageProduct($product);
                 $image->setImageType(1);
-
                 $entityManager->persist($image);
-                $entityManager->flush();
             }
 
-            foreach($productGallery as $image){
-                $fileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+            foreach($gallery as $file){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
                 // Ajout du fichier
-                $uploadedFile = $image;
+                $uploadedFile = $file;
                 $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/gallery';
-                $newFilename = $fileName . '-gallery-.' . $fileExtention;
+                $newFilename = $fileName . '-gallery.' . $fileExtention;
                 $uploadedFile->move(
                     $directory,
                     $newFilename
@@ -139,21 +123,32 @@ class AdminProductsController extends AbstractController
                 $image->setImageName($newFilename);
                 $image->setImageProduct($product);
                 $image->setImageType(2);
-
                 $entityManager->persist($image);
-                $entityManager->flush();
             }
 
-            // Création des fichiers TWIG
-            $productForm->createProductTabs($slugify->slugify($productName), $productDesc, $productLongDesc, $productCarac);
+            foreach($thumb as $file){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
-            // Redirection vers la page crée
+                // Ajout du fichier
+                $uploadedFile = $file;
+                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
+                $newFilename = $fileName . '.' . $fileExtention;
+                $uploadedFile->move(
+                    $directory,
+                    $newFilename
+                );
+            }
+
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            // Redirection vers le produit crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
         }
-        
+
         return $this->render('admin_products/add-product.html.twig', [
-            'form' => $form->createView(),
-            'controller_name' => 'AdminProductsController',
+            'form' => $form->createView()
         ]);
     }
 
@@ -162,12 +157,17 @@ class AdminProductsController extends AbstractController
     // MODIFIER UN PRODUIT
     //-----------------------------------------------------
     #[Route('/admin/products/update/{product_id}', name: 'app_admin_products_update')]
-    public function UpdateProduct(ProductForm $productForm, ManagerRegistry $doctrine, Request $request, $product_id) {
-        $form = $productForm->initForm($request);
+    public function UpdateProduct(ManagerRegistry $doctrine, Request $request, $product_id) {
+        $slugify = new Slugify();
 
         $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
         $images = $entityManager->getRepository(ProductsImages::class)->findBy(['image_product' => $product_id]);
+        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
+        $productId = $product->getProductId();
+        $productUrl = $product->getProductUrl();
+        $productThumb = $product->getProductThumb();
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
         
         if(!$product) {
             throw $this->createNotFoundException(
@@ -175,54 +175,62 @@ class AdminProductsController extends AbstractController
             );
         }
 
-        $productIntroFile = file_get_contents("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . "-intro.html.twig");
-        $productDescFile = file_get_contents("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . "-desc.html.twig");
-        $productCaracFile = file_get_contents("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . "-carac.html.twig");
-
+        $productIntroFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-intro.html.twig");
+        $productDescFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-desc.html.twig");
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $productName = $data['product_name'];
-            $productDesc = $data['product_desc'];
-            $productShopUrl = $data['product_shop_url'];
-            $productDocUrl = $data['product_doc_url'];
-            $productColoris = $data['product_coloris'];
-            $productAccessoiries = $data['product_accessoiries'];
-            $productGallery = $data['product_gallery'];
-            $productLongDesc = $data['product_long_desc'];
-            $productCarac = $data['product_carac'];
-            $productMetaTitle = $data['product_meta_title'];
-            $productMetaDesc = $data['product_meta_desc'];
+            $entityManager = $doctrine->getManager();
 
-            foreach($productColoris as $coloris){
-                $fileName = pathinfo($coloris->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($coloris->getClientOriginalName(), PATHINFO_EXTENSION);
+            // Création des TWIG
+            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-intro.html.twig', 'w');
+            fwrite($file, $form['product_intro']->getData());
+            fclose($file);
+
+            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-desc.html.twig', 'w');
+            fwrite($file, $form['product_desc']->getData());
+            fclose($file);
+
+            // Envoi vers la Database
+            $slug = $slugify->slugify($form['product_name']->getData());
+            $product->setProductId($productId);
+            $product->setProductUrl($productUrl);
+
+            // Création des images
+            $coloris = $form['product_color_imgs']->getData();
+            $accessoiries = $form['product_access_imgs']->getData();
+            $gallery = $form['product_gallery_imgs']->getData();
+            $thumb = $form['product_thumb']->getData();
+
+            foreach($coloris as $file){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
                 // Ajout du fichier
-                $uploadedFile = $coloris;
+                $uploadedFile = $file;
                 $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/coloris';
-                $newFilename = $fileName . '-color-.' . $fileExtention;
+                $newFilename = $fileName . '-color.' . $fileExtention;
                 $uploadedFile->move(
                     $directory,
                     $newFilename
                 );
 
                 $image = new ProductsImages();
+                $entityManager = $doctrine->getManager();
                 $image->setImageName($newFilename);
                 $image->setImageProduct($product);
                 $image->setImageType(0);
-
+                
                 $entityManager->persist($image);
-                $entityManager->flush();
             }
 
-            foreach($productAccessoiries as $access){
-                $fileName = pathinfo($access->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($access->getClientOriginalName(), PATHINFO_EXTENSION);
+            foreach($accessoiries as $file){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
                 // Ajout du fichier
-                $uploadedFile = $access;
+                $uploadedFile = $file;
                 $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/accessoiries';
-                $newFilename = $fileName . '-access-.' . $fileExtention;
+                $newFilename = $fileName . '-access.' . $fileExtention;
                 $uploadedFile->move(
                     $directory,
                     $newFilename
@@ -232,19 +240,17 @@ class AdminProductsController extends AbstractController
                 $image->setImageName($newFilename);
                 $image->setImageProduct($product);
                 $image->setImageType(1);
-
                 $entityManager->persist($image);
-                $entityManager->flush();
             }
 
-            foreach($productGallery as $image){
-                $fileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+            foreach($gallery as $file){
+                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
 
                 // Ajout du fichier
-                $uploadedFile = $image;
+                $uploadedFile = $file;
                 $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/gallery';
-                $newFilename = $fileName . '-gallery-.' . $fileExtention;
+                $newFilename = $fileName . '-gallery.' . $fileExtention;
                 $uploadedFile->move(
                     $directory,
                     $newFilename
@@ -254,58 +260,41 @@ class AdminProductsController extends AbstractController
                 $image->setImageName($newFilename);
                 $image->setImageProduct($product);
                 $image->setImageType(2);
-
                 $entityManager->persist($image);
-                $entityManager->flush();
             }
 
-            $productForm->manageDatabase($product, $productName, $productShopUrl, $productDocUrl, $productMetaTitle, $productMetaDesc);
-            $productForm->entityFunction($doctrine, $product);
-            $productForm->removeTab($product->getProductId());
-            $productForm->createProductTabs($product->getProductId(), $productDesc, $productLongDesc, $productCarac);
+            if ($thumb) {
+                $uploadedFileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION);
+                $product->setProductThumb($uploadedFileName);
+                
+                $fileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION);
 
-            // Redirection vers la page crée
+                // Ajout du fichier
+                $uploadedFile = $thumb;
+                $directory = $this->getParameter('kernel.project_dir') . '/public/uploads/products/thumbs';
+                $newFilename = $fileName . '.' . $fileExtention;
+                $uploadedFile->move(
+                    $directory,
+                    $newFilename
+                );
+            } else {
+                $product->setProductThumb($productThumb);
+            }
+            
+            $entityManager->persist($product);
+            $entityManager->flush();
+
+            // Redirection vers le produit crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
         }
-        
+
         return $this->render('admin_products/update-product.html.twig', [
             'form' => $form->createView(),
-            'images' => $images,
-            'productFolderId' => $product->getProductId(),
-            'productName' => $product->getProductName(),
             'productIntroFile' => $productIntroFile,
-            'productShopUrl' => $product->getProductShopUrl(),
-            'productDocUrl' => $product->getProductDocUrl(),
             'productDescFile' => $productDescFile,
-            'productCaracFile' => $productCaracFile,
-            'productMetaTitle' => $product->getProductMetaTitle(),
-            'productMetaDesc' => $product->getProductMetaDesc(),
-            'controller_name' => 'AdminProductsController',
+            'productThumb' => $productThumb,
         ]);
-    }
-
-
-
-    // SUPPRIMER UN PRODUIT
-    //-----------------------------------------------------
-    #[Route('/admin/products/delete/{product_id}', name: 'app_admin_products_delete')]
-    public function DeleteProduct(ProductForm $productForm, ManagerRegistry $doctrine, $product_id){
-        $entityManager = $doctrine->getManager();
-        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
-        
-        if(!$product) {
-            throw $this->createNotFoundException(
-                "Aucune post n'a été trouvé"
-            );
-        }
-
-        $productForm->removeTab($product->getProductId());
-        rmdir("../templates/webpages/products/" . $product->getProductId());
-        $entityManager->remove($product);
-        $entityManager->flush();
-
-        // Redirection vers la liste des produits
-        return $this->redirectToRoute('app_admin_products');
     }
 
 

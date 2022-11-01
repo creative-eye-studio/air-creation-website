@@ -17,7 +17,7 @@
         <div class="product-block-1">
             <!-- Modèle 3D -->
             <div id="product-3d-viewer">
-                <img src="../../uploads/images/product_thumbnails/{{ productThumb }}" alt="{{ productName }}" />
+                <img src="../../uploads/products/thumbs/{{ productThumb }}" alt="{{ productName }}" />
             </div>
             <!-- Intro Block -->
             <section class="product-intro">
@@ -28,14 +28,16 @@
                 <!-- Intro Buttons -->
                 <div class="btn-list">
                     <p>
-                        <a class="btn" href="{{ productShopUrl }}">Acheter le produit en ligne</a>
-                    </p>
-                    <p>
-                        <a class="btn" href="{{ productDocUrl }}">Voir la documentation</a>
+                        <a class="btn" href="">Voir la documentation</a>
                     </p>
                 </div>
             </section>
-            <!-- Slider Coloris -->
+        </div>
+
+
+        <!-- Block Images -->
+        <div class="product-block-images">
+        <!-- Slider Coloris -->
             <div class="swiper slider-images slider-coloris">
                 <div class="swiper-wrapper">
                     {% for image in images %}
@@ -63,24 +65,9 @@
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
             </div>
-        </div>
-        <!-- Block 2 -->
-        <div class="product-block-2 tab-container">
-
-            <ul class="product-tab-list tabs">
-                <li><a class="tab active">Description</a></li>
-                <li><a class="tab">Caractéristiques</a></li>
-                <li><a class="tab">Galerie d'images</a></li>
-            </ul>
-            
-            <div class="tab-panes">
-                <div class="tab-pane desc-pane active">
-                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-desc.html.twig" %}
-                </div>
-                <div class="tab-pane carac-pane">
-                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-carac.html.twig" %}
-                </div>
-                <div class="tab-pane gallery-container grid">
+            <!-- Slider Galerie -->
+            <div class="swiper slider-images slider-accessoiries">
+                <div class="swiper-wrapper">
                     {% for image in images %}
                         {% if image.imagetype == 2 %}
                             <figure class="swiper-slide slider-block">
@@ -88,6 +75,34 @@
                             </figure>
                         {% endif %}
                     {% endfor %}
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+
+
+        <!-- Block 2 -->
+        <div class="product-block-2 tab-container">
+
+            <ul class="product-tab-list tabs">
+                <li><a class="tab active">Description</a></li>
+                <li><a class="tab">Caractéristiques</a></li>
+                <li><a class="tab">Dimensions</a></li>
+            </ul>
+            
+            <div class="tab-panes">
+
+                <div class="tab-pane desc-pane active">
+                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-desc.html.twig" %}
+                </div>
+
+                <div class="tab-pane carac-pane">
+                    
+                </div>
+
+                <div class="tab-pane dim-pane">
+                    
                 </div>
             </div>
         </div>

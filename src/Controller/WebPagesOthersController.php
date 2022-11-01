@@ -100,16 +100,12 @@ class WebPagesOthersController extends AbstractController
             'contactForm' => $contactForm->createView(),
             'productName' => $product->getProductName(),
             'productThumb' => $product->getProductThumb(),
-            'productShopUrl' => $product->getProductShopUrl(),
-            'productDocUrl' => $product->getProductDocUrl(),
-            'productMetaTitle' => $product->getProductMetaTitle(),
-            'productMetaDesc' => $product->getProductMetaDesc(),
+            'meta_title' => $product->getProductMetaTitle(),
+            'meta_desc' => $product->getProductMetaDesc(),
             'productFolderId' => $product->getProductId(),
             'images' => $image,
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType,
-            'meta_title' => $product->getProductMetaTitle(),
-            'meta_desc' => $product->getProductMetaDesc(),
         ]);
     }
 

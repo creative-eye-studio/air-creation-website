@@ -53,10 +53,9 @@ class ProductForm extends AbstractController
 
     // Ajout des onglets d'informations
     // --------------------------------------------
-    public function createProductTabs($folderId, $productDesc, $productlongDesc, $productCarac){
+    public function createProductTabs($folderId, $productDesc, $productlongDesc){
         $this->addTab($folderId, 'intro', $productDesc);
         $this->addTab($folderId, 'desc', $productlongDesc);
-        $this->addTab($folderId, 'carac', $productCarac);
     }
 
     // Suppression des onglets d'informations
