@@ -21,26 +21,10 @@
 
   <div class="products-list-container">
     {% for product in products %}
-    <article 
-             class="product-block"
-             data-type="{{ product.producttype }}"
-             data-envergure="{{ product.productenvergure }}"
-             data-surface-alaire="{{ product.productsurfacealaire }}"
-             data-surface="{{ product.productsurface }}"
-             data-charge="{{ product.productcharge }}"
-             data-masse="{{ product.productmasse }}"
-             data-masse-max="{{ product.productmassemax }}"
-             data-motor-type="{{ product.productmotortype }}"
-             data-motor-pouls="{{ product.productmotorpouls }}"
-             data-speed-min="{{ product.productspeedmin }}"
-             data-speed-max="{{ product.productspeedmax }}"
-             data-elec-conso="{{ product.productelecconso }}"
-             data-fly-dist="{{ product.productflydist }}"
-             data-fly-amount="{{ product.productflyamount }}"
-             data-color="{{ product.productcolor }}">
+    <article class="product-block">
       <a href="{{ path('product_pages', {product_slug: product.producturl}) }}">
         <div class="image">
-          <img src="../uploads/images/product_thumbnails/{{ product.productthumb }}" alt="{{ product.productname }}" />
+          <img src="../uploads/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
         </div>
         <h2>{{ product.productname }}</h2>
       </a>
