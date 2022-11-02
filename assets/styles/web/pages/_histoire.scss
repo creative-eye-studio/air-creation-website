@@ -1,38 +1,22 @@
-.about-points{
+.chrono-swiper-container{
     padding: $marges-m;
-    color: white;
+    color: $bw-color-1;
     background-color: $grey-color;
-    text-align: center;
+    border-bottom: .0625rem solid $bw-color-4;
     h2{
-        margin-bottom: 0;
-        font-size: 1.5em;
-        font-weight: 300;
+        margin-bottom: $marges-m;
     }
-    .about-point-block{
-        &:not(:last-child){
-            margin-bottom: $marges-m;
-        }
-        svg{
-            margin-bottom: 1rem;
-        }
-    }
-    @media screen and (min-width: 768px) {
-        display: flex;
-        flex-wrap: wrap;
-        padding: $marges-m $marges-m 0;
-        .about-point-block{
-            width: 50%;
-            margin-bottom: $marges-m;
-        }
-    }
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width:1200px) {
         padding: $marges-d-y $marges-d-x;
-        .about-point-block{
-            width: 25%;
-            margin-bottom: 0;
-            &:not(:last-child){
-                margin-bottom: 0;
-            }
+        h2{
+            margin-bottom: calc(#{$marges-d-y} / 2);
+            font-size: 2.25vw;
+            font-weight: 300;
+        }
+        h3{
+            margin-bottom: calc(#{$marges-d-y} / 3);
+            font-size: 1.75vw;
+            font-weight: 400;
         }
     }
 }

@@ -245,6 +245,63 @@ const swiperLastsEvents = new Swiper('.home-timeline-container', {
 });
 
 
+const chrono1 = new Swiper('.chrono-swiper-1', {
+  modules: [Pagination],
+  spaceBetween: 30,
+  pagination: {
+    el: ".chrono-pagination-1",
+    clickable: true,
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 1,
+    },
+    1200: {
+      spaceBetween: 60,
+      slidesPerView: 3,
+    },
+  }
+});
+
+
+const chrono2 = new Swiper('.chrono-swiper-2', {
+  modules: [Pagination],
+  spaceBetween: 30,
+  pagination: {
+    el: ".chrono-pagination-2",
+    clickable: true,
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 1,
+    },
+    1200: {
+      spaceBetween: 60,
+      slidesPerView: 3,
+    },
+  }
+});
+
+
+const chrono3 = new Swiper('.chrono-swiper-3', {
+  modules: [Pagination],
+  spaceBetween: 30,
+  pagination: {
+    el: ".chrono-pagination-3",
+    clickable: true,
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 1,
+    },
+    1200: {
+      spaceBetween: 60,
+      slidesPerView: 3,
+    },
+  }
+});
+
+
 const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
     modules: [Pagination],
     slidesPerView: "auto",
@@ -288,10 +345,6 @@ const swiperProductsColoris = new Swiper('.slider-coloris', {
     slidesPerView: "auto",
     centeredSlides: true,
     loop: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
 });
 
 
@@ -300,10 +353,6 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     slidesPerView: "auto",
     centeredSlides: true,
     loop: true,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
 });
 
 

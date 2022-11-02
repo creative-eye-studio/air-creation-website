@@ -25,6 +25,9 @@ class WebPagesOthersController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response
     {
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
+        $chronoOrigines = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'origines']);
+        $chronoPionniers = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'pionniers']);
+        $chronoActual = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'air-creation']);
         $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
         $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
         $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
@@ -54,6 +57,9 @@ class WebPagesOthersController extends AbstractController
             'controller_name' => 'WebPagesOthersController',
             'contactForm' => $contactForm->createView(),
             'page_id' => $selected_page->getPageId(),
+            'chronoOrigines' => $chronoOrigines,
+            'chronoPionniers' => $chronoPionniers,
+            'chronoActual' => $chronoActual,
             'products' => $products,
             'posts' => $posts,
             'events' => $lasts_events,
