@@ -1,0 +1,38 @@
+.about-points{
+    color: white;
+    background-color: $grey-color;
+    padding: $marges-m;
+    @media screen and (min-width:768px) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $marges-m;
+    }
+    @media screen and (min-width:1025px) {
+        display: flex;
+        flex-wrap: wrap;
+        padding: $marges-d-y $marges-d-x;;
+        gap: $marges-d-y $marges-d-x;
+    }
+}
+
+.about-point-block{
+    text-align: center;
+    svg{
+        margin-bottom: 1rem;
+    }
+    h2{
+        margin-bottom: 0;
+    }
+    &:not(:last-child){
+        margin-bottom: $marges-m;
+    }
+    @media screen and (min-width:768px) {
+        width: calc(50% - (#{$marges-m} / 2));
+        &:not(:last-child){
+            margin-bottom: 0;
+        }
+    }
+    @media screen and (min-width:1024px) {
+        width: calc(25% - (#{$marges-d-x} / 1.25));
+    }
+}
