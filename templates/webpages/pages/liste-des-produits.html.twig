@@ -10,7 +10,11 @@
 
 <!-- Fonctions filtrage -->
 <div class="filters">
-
+	{{ form_start(filterForm) }}
+  		{{ form_row(filterForm.product_envergure) }}
+  		{{ form_row(filterForm.product_surface) }}
+  		<button>Rechercher</button>
+	{{ form_end(filterForm) }}
 </div>
 
 <!-- Liste des produits -->

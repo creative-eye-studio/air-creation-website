@@ -34,3 +34,17 @@
 .toggle-contact{
     cursor: pointer;
 }
+
+.form-container{
+    max-width: 1200px;
+    margin: $marges-d-y auto;
+    padding: $marges-m;
+    h1{
+        font-weight: 400;
+    }
+    @media screen and (min-width: 1200px) {
+        h1{
+            font-size: 2.5rem;
+        }
+    }
+}

@@ -3,12 +3,38 @@
 namespace App\Service;
 
 use App\Entity\Products;
+use App\Repository\ProductsRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class ProductsFunctions extends AbstractController
 {
     public $folderPath = "../templates/webpages/products/";
+
+    // Système de pagination
+    // --------------------------------------------
+    public function __construct(
+        private RequestStack $requestStack,
+        private ProductsRepository $productRepo,
+        private PaginatorInterface $paginator
+    )
+    {
+        
+    }
+
+    public function getPaginatedProducts()
+    {
+        $request = $this->requestStack->getMainRequest();
+        $page = $request->query->getInt('page', 1);
+        $limit = 9;
+
+        $productsQuery = $this->productRepo->findForPagination();
+
+        return $this->paginator->paginate($productsQuery, $page, $limit);
+    }
+
 
     // Récupération des produits
     // --------------------------------------------

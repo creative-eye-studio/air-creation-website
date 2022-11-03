@@ -14,7 +14,7 @@
       {% for question in questions %}
       	<li><a class="tab">{{ question.faqname }}</a></li>
       {% endfor %}
-      	<li><a>Vous ne trouvez pas de réponses ? Faites nous part de votre demande !</a></li>
+      	<li><a href="{{ path('web_pages', {page_slug: 'demande-assistance'}) }}">Vous ne trouvez pas de réponses ? Faites nous part de votre demande !</a></li>
     </ul>
 
   </div>
