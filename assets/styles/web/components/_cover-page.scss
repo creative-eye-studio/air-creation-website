@@ -37,6 +37,9 @@
         height: 25rem;
         .text{
             padding: $marges-d-y $marges-d-x;
+            h1{
+                font-size: 3vw;
+            }
         }
     }
 }

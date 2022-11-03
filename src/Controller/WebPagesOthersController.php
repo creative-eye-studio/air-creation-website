@@ -5,11 +5,14 @@ namespace App\Controller;
 use App\Entity\Chronologie;
 use App\Entity\FAQList;
 use App\Form\ContactFormType;
+use App\Form\SAVManagerFormType;
 use App\Entity\PagesList;
 use App\Entity\Partners;
 use App\Entity\PostsList;
 use App\Entity\ProductsImages;
+use App\Entity\PropertySearch;
 use App\Form\NewsletterFormType;
+use App\Form\PropertySearchType;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,14 +28,22 @@ class WebPagesOthersController extends AbstractController
     public function index(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response
     {
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
+        $chronoOrigines = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'origines']);
+        $chronoPionniers = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'pionniers']);
+        $chronoActual = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'air-creation']);
         $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
         $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
         $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
         $questions = $doctrine->getRepository(FAQList::class)->findAll();
-        $products = $products_function->getProducts($doctrine);
+        
+        // $products = $products_function->getProducts($doctrine);
+        $products = $products_function->getPaginatedProducts();
+        
         $posts = $doctrine->getRepository(PostsList::class)->findAll();
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);
+        $assistForm = $this->createForm(SAVManagerFormType::class);
+        $assistForm->handleRequest($request);
         $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
 
         if (!$selected_page) {
@@ -50,14 +61,23 @@ class WebPagesOthersController extends AbstractController
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
 
+        $search = new PropertySearch();
+        $filterForm = $this->createForm(PropertySearchType::class, $search);
+        $filterForm->handleRequest($request);
+
         return $this->render('web_pages_others/index.html.twig', [
             'controller_name' => 'WebPagesOthersController',
             'contactForm' => $contactForm->createView(),
             'page_id' => $selected_page->getPageId(),
+            'chronoOrigines' => $chronoOrigines,
+            'chronoPionniers' => $chronoPionniers,
+            'chronoActual' => $chronoActual,
             'products' => $products,
             'posts' => $posts,
             'events' => $lasts_events,
             'newsForm' => $newsForm->createView(),
+            'assistForm' => $assistForm->createView(),
+            'filterForm' => $filterForm->createView(),
             'resellers' => $resellers,
             'trainers' => $trainers,
             'techs' => $techs,

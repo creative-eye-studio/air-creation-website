@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Products;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,13 @@ class ProductsRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findForPagination()
+    {
+        $qb = $this->createQueryBuilder('a');
+        
+        return $qb->getQuery();
     }
 
 //    /**
