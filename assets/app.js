@@ -360,10 +360,3 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     centeredSlides: true,
     loop: true,
 });
-
-
-if (screen.width >= 1200 && swiperInnovBlocks != undefined) {
-  swiperInnovBlocks.destroy();
-}
-
-  
