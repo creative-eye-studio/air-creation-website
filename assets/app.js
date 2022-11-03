@@ -361,9 +361,4 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     loop: true,
 });
 
-
-if (screen.width >= 1200 && swiperInnovBlocks != undefined) {
-  swiperInnovBlocks.destroy();
-}
-
   
