@@ -1,0 +1,121 @@
+.options-container{
+    padding: $marges-m;
+    @media screen and (min-width:768px) {
+        .options-blocks{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            column-gap: $marges-m;
+            margin-bottom: $marges-m;
+        }
+    }
+    @media screen and (min-width:1024px) {
+        padding: $marges-d-y $marges-d-x;
+        .options-blocks{
+            column-gap: $marges-d-x;
+            margin-bottom: $marges-d-x;
+        }
+    }
+}
+
+.option-item{
+    @include coverImage('4-3');
+    a{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        min-height: 103px;
+        height: auto;
+        background-color: rgba($color: #000000, $alpha: .85);
+        margin-bottom: 0;
+        padding: 1rem;
+        color: $bw-color-1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition-duration: .5s;
+    }
+    &:not(:last-child){
+        margin-bottom: $marges-m;
+    }
+    @media screen and (min-width:768px) {
+        padding-top: calc(175% / 3);
+        width: calc(33.33% - (#{$marges-m} / 1.33));
+        a{
+            padding: 2rem;
+            font-size: 1.75em;
+            font-weight: 300;
+        }
+        &:not(:last-child){
+            margin-bottom: 0;
+        }
+    }
+    @media screen and (min-width:1024px) {
+        padding-top: calc(75% / 3);
+        width: calc(33.33% - (#{$marges-d-x} / 1.33));
+    }
+    @media screen and (min-width:1200px){
+        &:hover{
+            a{
+                min-height: 100%;
+            }
+        }
+    }
+}
+
+.container-products{
+    position: relative;
+    overflow: hidden;
+}
+
+.content-products{
+    margin-top: $marges-m;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .5s linear;
+    &:not(.active){
+        position: absolute;
+        float: left;
+        top: 0;
+        left: 0;
+        right: 0;
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s .5s, opacity .5s linear, top .5s linear;
+    }
+    .image{
+        @include coverImage("4-3");
+    }
+    .text{
+        padding: $marges-m;
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+    }
+}
+
+.options-block{
+    background-color: $bw-color-2;
+    &:not(:last-child){
+        margin-bottom: $marges-m;
+    }
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        .image, .text{
+            width: 50%;
+        }
+        .text{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: $marges-d-x;
+        }
+        .image{
+            padding-top: calc(56.25% / 2);
+        }
+    }
+}

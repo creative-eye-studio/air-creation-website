@@ -179,6 +179,11 @@ if (document.querySelector('.sav-container') != undefined) {
   tabs(partnersTabscontainer);
 }
 
+if (document.querySelector('.options-container') != undefined) {
+  var optionsContainer = document.querySelector('.options-container')
+  tabs(optionsContainer);
+}
+
 
 
 
