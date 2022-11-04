@@ -71,10 +71,9 @@
 }
 
 .content-products{
-    margin-top: $marges-m;
     visibility: visible;
     opacity: 1;
-    transition: opacity .5s linear;
+    transition: opacity $anims-duration $anims-duration linear;
     &:not(.active){
         position: absolute;
         float: left;
@@ -83,7 +82,7 @@
         right: 0;
         visibility: hidden;
         opacity: 0;
-        transition: visibility 0s .5s, opacity .5s linear, top .5s linear;
+        transition: visibility $anims-duration, opacity $anims-duration linear;
     }
     .image{
         @include coverImage("4-3");
