@@ -5,11 +5,13 @@ namespace App\Form;
 use App\Entity\Chronologie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class ChronologieType extends AbstractType
 {
@@ -18,6 +20,12 @@ class ChronologieType extends AbstractType
         $builder
             ->add('chronologie_date', TextType::class, [
                 'label' => 'Année'
+            ])
+            ->add('chronologie_img', DropzoneType::class, [
+                'label' => "Image",
+                'mapped' => false,
+                'required' => false,
+                'empty_data' => '',
             ])
             ->add('chronologie_type', ChoiceType::class, [
                 'choices' => [
