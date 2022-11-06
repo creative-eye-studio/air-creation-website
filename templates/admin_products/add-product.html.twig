@@ -101,6 +101,10 @@
         CKEDITOR.replace( 'product_product_intro', {
         	startupMode: 'wysiwyg'
         });
+        CKEDITOR.instances["product_product_carac"].destroy();
+        CKEDITOR.replace( 'product_product_carac', {
+        	startupMode: 'wysiwyg'
+        });
         CKEDITOR.instances["product_product_desc"].destroy();
         CKEDITOR.replace( 'product_product_desc', {
         	startupMode: 'wysiwyg'

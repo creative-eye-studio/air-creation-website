@@ -183,6 +183,7 @@ class AdminProductsController extends AbstractController
 
         $productIntroFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-intro.html.twig");
         $productDescFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-desc.html.twig");
+        $productCaracFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-carac.html.twig");
         
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $doctrine->getManager();
@@ -190,6 +191,10 @@ class AdminProductsController extends AbstractController
             // Création des TWIG
             $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-intro.html.twig', 'w');
             fwrite($file, $form['product_intro']->getData());
+            fclose($file);
+
+            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-carac.html.twig', 'w');
+            fwrite($file, $form['product_carac']->getData());
             fclose($file);
 
             $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-desc.html.twig', 'w');
@@ -299,6 +304,7 @@ class AdminProductsController extends AbstractController
             'form' => $form->createView(),
             'productIntroFile' => $productIntroFile,
             'productDescFile' => $productDescFile,
+            'productCaracFile' => $productCaracFile,
             'productThumb' => $productThumb,
         ]);
     }
