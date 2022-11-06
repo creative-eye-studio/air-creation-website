@@ -62,8 +62,8 @@
   </div>
   <div class="form tab-container">
     <h1>Faites nous part de votre demande</h1>
-    {{ form_start(contactForm, { 'attr' : {'class': 'tab-panes'} }) }}
-    <div class="contact-tab tab-pane active">
+    {{ form_start(contactForm) }}
+    <div id="contact-tab-1" class="contact-tab active">
       <p><strong>1. Votre identité et informations de contact</strong></p>
       <div class="horizontal-radio">
         {% for child in contactForm.gender %}
@@ -91,7 +91,7 @@
         {{ form_widget(contactForm.email)}}
       </p>
     </div>
-    <div class="contact-tab tab-pane">
+    <div id="contact-tab-2" class="contact-tab">
       <p><strong>2. Vous êtes...</strong></p>
       {% for child in contactForm.customer_type %}
       <p>
@@ -100,7 +100,7 @@
       </p>
       {% endfor %}
     </div>
-    <div class="contact-tab tab-pane">
+    <div id="contact-tab-3" class="contact-tab">
       <p><strong>3. Comment pouvons nous vous aider <span class="gender"></span> <span class="lname"></span> ?</strong></p>
       <p>
         {{ form_label(contactForm.subject)}}
@@ -113,9 +113,9 @@
       {{ form_widget(contactForm.submit_button)}}
     </div>
     <ul class="tabs tabs-btn">
-      <li><a class="tab active">Étape 1</a></li>
-      <li><a class="tab">Étape 2</a></li>
-      <li><a class="tab">Étape 3</a></li>
+      <li><a id="contactBtn1" class="tab-btn">Étape 1</a></li>
+      <li><a id="contactBtn2" class="tab-btn">Étape 2</a></li>
+      <li><a id="contactBtn3" class="tab-btn">Étape 3</a></li>
     </ul>
     {{ form_end(contactForm) }}
   </div>
