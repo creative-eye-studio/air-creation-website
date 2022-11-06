@@ -15,18 +15,23 @@
   <div class="swiper-wrapper">
     {% for date in chronoOrigines %}
     <div class="swiper-slide">
+      <figure class="image">
+        <img src="../uploads/images/chronologie/{{ date.chronologieimg }}" alt="{{ date.chronologiedate }}" />
+      </figure>
       <h3>{{ date.chronologiedate }}</h3>
       <p>{{ date.chronologietext }}</p>
     </div>
     {% endfor %}
     {% for date in chronoPionniers %}
     <div class="swiper-slide">
+      <img src="../uploads/images/chronologie/{{ date.chronologieimg }}" alt="{{ date.chronologiedate }}" />
       <h3>{{ date.chronologiedate }}</h3>
       <p>{{ date.chronologietext }}</p>
     </div>
     {% endfor %}
     {% for date in chronoActual %}
     <div class="swiper-slide">
+      <img src="../uploads/images/chronologie/{{ date.chronologieimg }}" alt="{{ date.chronologiedate }}" />
       <h3>{{ date.chronologiedate }}</h3>
       <p>{{ date.chronologietext }}</p>
     </div>

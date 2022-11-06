@@ -335,7 +335,7 @@ const chrono = new Swiper('.chrono-swiper-1', {
     },
     1200: {
       spaceBetween: 60,
-      slidesPerView: 2,
+      slidesPerView: 3,
     },
   }
 });

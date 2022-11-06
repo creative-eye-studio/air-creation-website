@@ -4,6 +4,21 @@
     background-color: $grey-color;
     border-bottom: .0625rem solid $bw-color-4;
     overflow: hidden;
+    .image{
+        width: 100%;
+        padding-top: 100%;
+        margin-bottom: $marges-m;
+        position: relative;
+        img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    
     h2{
         margin-bottom: $marges-m;
     }
@@ -13,6 +28,9 @@
             margin-bottom: calc(#{$marges-d-y} / 2);
             font-size: 2.25vw;
             font-weight: 300;
+        }
+        .image{
+            margin-bottom: calc(#{$marges-d-y} / 3);
         }
         h3{
             margin-bottom: calc(#{$marges-d-y} / 3);
