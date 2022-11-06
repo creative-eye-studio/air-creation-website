@@ -14,6 +14,34 @@
     }
 }
 
+.filters{
+    background-color: $p-color-d;
+    padding: $marges-m;
+    color: $bw-color-1;
+    #product_filter{
+        div{
+            &:not(:last-child){
+                margin-bottom: 1rem;
+            }
+        }
+    }
+    select{
+        border: 0;
+        color: $bw-color-1;
+        background-color: rgba($color: $bw-color-5, $alpha: 0.2);
+        padding: 1rem;
+    }
+    @media screen and (min-width:1024px) {
+        #product_filter{
+            display: flex;
+            column-gap: $marges-m;
+            div{
+                flex-grow: 1;
+            }
+        }
+    }
+}
+
 .product-block{
     padding: calc(#{$marges-m} * 1.5);
     background-color: $bw-color-2;

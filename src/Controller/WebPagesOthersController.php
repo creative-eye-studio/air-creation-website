@@ -12,6 +12,7 @@ use App\Entity\PostsList;
 use App\Entity\ProductsImages;
 use App\Entity\PropertySearch;
 use App\Form\NewsletterFormType;
+use App\Form\ProductFilterType;
 use App\Form\PropertySearchType;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
@@ -61,8 +62,7 @@ class WebPagesOthersController extends AbstractController
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
 
-        $search = new PropertySearch();
-        $filterForm = $this->createForm(PropertySearchType::class, $search);
+        $filterForm = $this->createForm(ProductFilterType::class);
         $filterForm->handleRequest($request);
 
         return $this->render('web_pages_others/index.html.twig', [
