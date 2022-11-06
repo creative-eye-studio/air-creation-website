@@ -114,7 +114,7 @@
   </div>
 
   <hr />
-  
+
   <!-- Icons Blocks -->
   <div class="icons-blocks-container">
     <article class="icons-block">
@@ -150,20 +150,19 @@
 <!-- Community Block -->
 <section class="social">
   <!-- Dernières actualités -->
-  <div class="swiper posts">
+  <div class="posts">
     <h2>Dernières actualités</h2>
-    <div class="swiper-wrapper">
+    <div class="container">
       {% for post in posts %}
-      <article class="swiper-slide post-block">
+      <article class="post-block">
         <div class="image">
           <img src="../uploads/images/posts/{{ post.photofilename }}" alt='{{ post.postname }}' />
         </div>
-        <div class="content">
-          <h3>{{ post.postname }}</h3>
-          <p>
-            <a href="{{ post.posturl }}" class="btn">Lire l'article</a>
-          </p>
-        </div>
+        <a class="text" href="{{ post.posturl }}">
+          <h3>
+            {{ post.postname }}
+          </h3>
+        </a>
       </article>
       {% endfor %}
     </div>

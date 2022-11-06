@@ -330,31 +330,6 @@ const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
 });
 
 
-const swiperLastsPosts = new Swiper('.posts', {
-    modules: [Pagination],
-    slidesPerView: "auto",
-    centeredSlides: true,
-    spaceBetween: 20,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      1024: {
-        slidesPerView: 2,
-        centeredSlides: false,
-        spaceBetween: 30,
-      },
-      1200: {
-        slidesPerView: 3,
-        centeredSlides: false,
-        spaceBetween: 30,
-      }
-    }
-})
-
-
 const swiperProductsColoris = new Swiper('.slider-coloris', {
     modules: [Navigation],
     slidesPerView: "auto",
