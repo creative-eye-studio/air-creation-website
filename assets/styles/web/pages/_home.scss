@@ -66,6 +66,9 @@
             font-weight: 300;
         }
     }
+    .btn{
+        margin-top: $marges-m;
+    }
     @media screen and (min-width:768px) {
         .icons-blocks-container{
             display: flex;
@@ -89,6 +92,9 @@
             h2{
                 margin-bottom: 0;
             }
+        }
+        .btn{
+            margin-top: calc(#{$marges-d-y} / 2);
         }
     }
 }

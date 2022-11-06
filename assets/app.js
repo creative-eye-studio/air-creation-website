@@ -298,7 +298,7 @@ const swiperLastsEvents = new Swiper('.home-timeline-container', {
 });
 
 
-const chrono1 = new Swiper('.chrono-swiper-1', {
+const chrono = new Swiper('.chrono-swiper-1', {
   modules: [Pagination],
   spaceBetween: 30,
   pagination: {
@@ -311,45 +311,7 @@ const chrono1 = new Swiper('.chrono-swiper-1', {
     },
     1200: {
       spaceBetween: 60,
-      slidesPerView: 3,
-    },
-  }
-});
-
-
-const chrono2 = new Swiper('.chrono-swiper-2', {
-  modules: [Pagination],
-  spaceBetween: 30,
-  pagination: {
-    el: ".chrono-pagination-2",
-    clickable: true,
-  },
-  breakpoints: {
-    768: {
-      slidesPerView: 1,
-    },
-    1200: {
-      spaceBetween: 60,
-      slidesPerView: 3,
-    },
-  }
-});
-
-
-const chrono3 = new Swiper('.chrono-swiper-3', {
-  modules: [Pagination],
-  spaceBetween: 30,
-  pagination: {
-    el: ".chrono-pagination-3",
-    clickable: true,
-  },
-  breakpoints: {
-    768: {
-      slidesPerView: 1,
-    },
-    1200: {
-      spaceBetween: 60,
-      slidesPerView: 3,
+      slidesPerView: 2,
     },
   }
 });
