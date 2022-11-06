@@ -43,40 +43,11 @@ document.addEventListener('swup:contentReplaced', function(){
 })*/
 
 
-// OPEN LAYERS
-// ------------------------------------------------------------------
-import Map from 'ol/Map';
-import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import {fromLonLat} from 'ol/proj';
-
-
-if (document.querySelector(".partners-map") != undefined) {
-  const aubLonLat = [4.389863, 44.620909];
-  const aubWebMercator = fromLonLat(aubLonLat);
-  
-  const map = new Map({
-    target: 'map',
-    layers: [
-      new TileLayer({
-        source: new OSM()
-      })
-    ],
-    view: new View({
-      center: aubWebMercator,
-      zoom: 15,
-    })
-  })
-}
-
-
-
-
 
 // Parallax
 // ------------------------------------------------------------------
 import 'parallax-image';
+
 
 
 // Header
@@ -142,7 +113,6 @@ subNavButtons.forEach(subNavButton => {
 
 
 
-
 // Contact Form
 // ------------------------------------------------------------------
 var contactButton = document.querySelectorAll('.toggle-contact');
@@ -195,11 +165,6 @@ contactBtn3.onclick = function () {
 
 
 
-
-
-
-
-
 // Tabs
 // ------------------------------------------------------------------
 var tabs = require('tabs');
@@ -225,7 +190,6 @@ if (document.querySelector('.options-container') != undefined) {
   var optionsContainer = document.querySelector('.options-container')
   tabs(optionsContainer);
 }
-
 
 
 
@@ -368,5 +332,3 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     centeredSlides: true,
     loop: true,
 });
-
-  
