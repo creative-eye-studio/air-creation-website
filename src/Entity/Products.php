@@ -40,50 +40,14 @@ class Products
     #[ORM\Column(length: 255)]
     private ?string $product_id = null;
 
-    #[ORM\Column]
-    private ?float $product_envergure = null;
-
-    #[ORM\Column]
-    private ?float $product_surface_alaire = null;
-
-    #[ORM\Column]
-    private ?float $product_surface = null;
-
-    #[ORM\Column]
-    private ?float $product_charge = null;
-
-    #[ORM\Column]
-    private ?float $product_masse = null;
-
-    #[ORM\Column]
-    private ?float $product_masse_max = null;
+    #[ORM\Column(length: 255)]
+    private ?string $product_capacity = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $product_motor_type = null;
-
-    #[ORM\Column]
-    private ?float $product_motor_pouls = null;
-
-    #[ORM\Column]
-    private ?float $product_speed_min = null;
-
-    #[ORM\Column]
-    private ?float $product_speed_max = null;
-
-    #[ORM\Column]
-    private ?float $product_elec_conso = null;
-
-    #[ORM\Column]
-    private ?float $product_fly_dist = null;
+    private ?string $product_wing = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $product_color = null;
-
-    #[ORM\Column]
-    private ?float $product_fly_amount = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $product_type = null;
+    private ?string $product_tricycle = null;
 
     public function __construct()
     {
@@ -228,182 +192,38 @@ class Products
         return $this;
     }
 
-    public function getProductEnvergure(): ?float
+    public function getProductCapacity(): ?string
     {
-        return $this->product_envergure;
+        return $this->product_capacity;
     }
 
-    public function setProductEnvergure(float $product_envergure): self
+    public function setProductCapacity(string $product_capacity): self
     {
-        $this->product_envergure = $product_envergure;
+        $this->product_capacity = $product_capacity;
 
         return $this;
     }
 
-    public function getProductSurfaceAlaire(): ?float
+    public function getProductWing(): ?string
     {
-        return $this->product_surface_alaire;
+        return $this->product_wing;
     }
 
-    public function setProductSurfaceAlaire(float $product_surface_alaire): self
+    public function setProductWing(string $product_wing): self
     {
-        $this->product_surface_alaire = $product_surface_alaire;
+        $this->product_wing = $product_wing;
 
         return $this;
     }
 
-    public function getProductSurface(): ?float
+    public function getProductTricycle(): ?string
     {
-        return $this->product_surface;
+        return $this->product_tricycle;
     }
 
-    public function setProductSurface(float $product_surface): self
+    public function setProductTricycle(string $product_tricycle): self
     {
-        $this->product_surface = $product_surface;
-
-        return $this;
-    }
-
-    public function getProductCharge(): ?float
-    {
-        return $this->product_charge;
-    }
-
-    public function setProductCharge(float $product_charge): self
-    {
-        $this->product_charge = $product_charge;
-
-        return $this;
-    }
-
-    public function getProductMasse(): ?float
-    {
-        return $this->product_masse;
-    }
-
-    public function setProductMasse(float $product_masse): self
-    {
-        $this->product_masse = $product_masse;
-
-        return $this;
-    }
-
-    public function getProductMasseMax(): ?float
-    {
-        return $this->product_masse_max;
-    }
-
-    public function setProductMasseMax(float $product_masse_max): self
-    {
-        $this->product_masse_max = $product_masse_max;
-
-        return $this;
-    }
-
-    public function getProductMotorType(): ?string
-    {
-        return $this->product_motor_type;
-    }
-
-    public function setProductMotorType(string $product_motor_type): self
-    {
-        $this->product_motor_type = $product_motor_type;
-
-        return $this;
-    }
-
-    public function getProductMotorPouls(): ?float
-    {
-        return $this->product_motor_pouls;
-    }
-
-    public function setProductMotorPouls(float $product_motor_pouls): self
-    {
-        $this->product_motor_pouls = $product_motor_pouls;
-
-        return $this;
-    }
-
-    public function getProductSpeedMin(): ?float
-    {
-        return $this->product_speed_min;
-    }
-
-    public function setProductSpeedMin(float $product_speed_min): self
-    {
-        $this->product_speed_min = $product_speed_min;
-
-        return $this;
-    }
-
-    public function getProductSpeedMax(): ?float
-    {
-        return $this->product_speed_max;
-    }
-
-    public function setProductSpeedMax(float $product_speed_max): self
-    {
-        $this->product_speed_max = $product_speed_max;
-
-        return $this;
-    }
-
-    public function getProductElecConso(): ?float
-    {
-        return $this->product_elec_conso;
-    }
-
-    public function setProductElecConso(float $product_elec_conso): self
-    {
-        $this->product_elec_conso = $product_elec_conso;
-
-        return $this;
-    }
-
-    public function getProductFlyDist(): ?float
-    {
-        return $this->product_fly_dist;
-    }
-
-    public function setProductFlyDist(float $product_fly_dist): self
-    {
-        $this->product_fly_dist = $product_fly_dist;
-
-        return $this;
-    }
-
-    public function getProductColor(): ?string
-    {
-        return $this->product_color;
-    }
-
-    public function setProductColor(string $product_color): self
-    {
-        $this->product_color = $product_color;
-
-        return $this;
-    }
-
-    public function getProductFlyAmount(): ?float
-    {
-        return $this->product_fly_amount;
-    }
-
-    public function setProductFlyAmount(float $product_fly_amount): self
-    {
-        $this->product_fly_amount = $product_fly_amount;
-
-        return $this;
-    }
-
-    public function getProductType(): ?string
-    {
-        return $this->product_type;
-    }
-
-    public function setProductType(string $product_type): self
-    {
-        $this->product_type = $product_type;
+        $this->product_tricycle = $product_tricycle;
 
         return $this;
     }

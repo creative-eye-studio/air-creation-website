@@ -55,12 +55,18 @@ class AdminProductsController extends AbstractController
             $product->setProductThumb(pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION));
 
             // Création des TWIG
-            $file = fopen("../templates/webpages/products/" . $slug . "/" . $slug . '-intro.html.twig', 'w');
+            mkdir($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug);
+            
+            $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-intro.html.twig', 'w');
             fwrite($file, $form['product_intro']->getData());
             fclose($file);
 
-            $file = fopen("../templates/webpages/products/" . $slug . "/" . $slug . '-desc.html.twig', 'w');
+            $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-desc.html.twig', 'w');
             fwrite($file, $form['product_desc']->getData());
+            fclose($file);
+
+            $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-carac.html.twig', 'w');
+            fwrite($file, $form['product_carac']->getData());
             fclose($file);
 
             // Création des images

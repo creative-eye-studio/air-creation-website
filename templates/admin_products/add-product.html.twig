@@ -7,9 +7,10 @@
         <h2>Ajouter un nouveau produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Résumé</a></li>
+            <li><a class="tab">Critères de recherche</a></li>
+            <li><a class="tab">Images</a></li>
             <li><a class="tab">Description</a></li>
             <li><a class="tab">Caractéristiques</a></li>
-            <li><a class="tab">Images</a></li>
             <li><a class="tab">SEO</a></li>
         </ul>
         {{ form_start(form, { 'attr' : {'class': 'tab-panes'} }) }}
@@ -18,10 +19,6 @@
                 <p>
                     {{ form_label(form.product_name) }}<br />
                     {{ form_widget(form.product_name) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_type) }}<br />
-                    {{ form_widget(form.product_type) }}
                 </p>
                 <p>
                     {{ form_label(form.product_thumb) }}<br />
@@ -33,71 +30,19 @@
                 </p>
             </div>
 
-            <!-- Description -->
+            <!-- Critères de recherche -->
             <div class="tab-pane">
                 <p>
-                    {{ form_label(form.product_desc) }}<br />
-                    {{ form_widget(form.product_desc) }}
-                </p>
-            </div>
-
-            <!-- Caractéristiques -->
-            <div class="tab-pane">
-                <p>
-                    {{ form_label(form.product_envergure) }}<br />
-                    {{ form_widget(form.product_envergure) }}
+                    {{ form_label(form.product_capacity) }}<br />
+                    {{ form_widget(form.product_capacity) }}
                 </p>
                 <p>
-                    {{ form_label(form.product_surface_alaire) }}<br />
-                    {{ form_widget(form.product_surface_alaire) }}
+                    {{ form_label(form.product_wing) }}<br />
+                    {{ form_widget(form.product_wing) }}
                 </p>
                 <p>
-                    {{ form_label(form.product_surface) }}<br />
-                    {{ form_widget(form.product_surface) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_charge) }}<br />
-                    {{ form_widget(form.product_charge) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_masse) }}<br />
-                    {{ form_widget(form.product_masse) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_masse_max) }}<br />
-                    {{ form_widget(form.product_masse_max) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_motor_type) }}<br />
-                    {{ form_widget(form.product_motor_type) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_motor_pouls) }}<br />
-                    {{ form_widget(form.product_motor_pouls) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_speed_min) }}<br />
-                    {{ form_widget(form.product_speed_min) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_speed_max) }}<br />
-                    {{ form_widget(form.product_speed_max) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_elec_conso) }}<br />
-                    {{ form_widget(form.product_elec_conso) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_fly_dist) }}<br />
-                    {{ form_widget(form.product_fly_dist) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_fly_amount) }}<br />
-                    {{ form_widget(form.product_fly_amount) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_color) }}<br />
-                    {{ form_widget(form.product_color) }}
+                    {{ form_label(form.product_tricycle) }}<br />
+                    {{ form_widget(form.product_tricycle) }}
                 </p>
             </div>
 
@@ -114,6 +59,22 @@
                 <p>
                     {{ form_label(form.product_gallery_imgs) }}<br />
                     {{ form_widget(form.product_gallery_imgs) }}
+                </p>
+            </div>
+
+            <!-- Description -->
+            <div class="tab-pane">
+                <p>
+                    {{ form_label(form.product_desc) }}<br />
+                    {{ form_widget(form.product_desc) }}
+                </p>
+            </div>
+
+            <!-- Caractéristiques -->
+            <div class="tab-pane">
+                <p>
+                    {{ form_label(form.product_carac) }}<br />
+                    {{ form_widget(form.product_carac) }}
                 </p>
             </div>
 
