@@ -32,6 +32,11 @@ footer{
                 max-width: 15.625rem;
             }
         }
+        .footer-sub-block{
+            &:not(:last-child){
+                margin-bottom: 2rem;
+            }
+        }
     }
     hr{
         margin: $marges-m 0;

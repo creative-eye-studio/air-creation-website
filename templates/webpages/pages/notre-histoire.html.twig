@@ -19,41 +19,12 @@
       <p>{{ date.chronologietext }}</p>
     </div>
     {% endfor %}
-  </div>
-  <!-- If we need pagination -->
-  <div class="chrono-pagination-1"></div>
-
-</section>
-
-<!-- Parallax -->
-<figure class="parallax">
-  <img class="parallax-image" data-height="75vh" data-speed="0.5" src="../uploads/images/pages/histoire/bg-origines.jpg" alt="Présentation de Air Création" />
-</figure>
-
-<!-- Pionniers -->
-<section class="chrono-swiper-2 chrono-swiper-container">
-  <h2>Pionniers de l'ULM</h2>
-  <div class="swiper-wrapper">
     {% for date in chronoPionniers %}
     <div class="swiper-slide">
       <h3>{{ date.chronologiedate }}</h3>
       <p>{{ date.chronologietext }}</p>
     </div>
     {% endfor %}
-  </div>
-  <!-- If we need pagination -->
-  <div class="chrono-pagination-2"></div>
-</section>
-
-<!-- Parallax -->
-<figure class="parallax">
-  <img class="parallax-image" data-height="75vh" data-speed="0.5" src="../uploads/images/pages/histoire/bg-pionners.jpg" alt="Présentation de Air Création" />
-</figure>
-
-<!-- Air Création -->
-<section class="chrono-swiper-3 chrono-swiper-container">
-  <h2>De nos jours</h2>
-  <div class="swiper-wrapper">
     {% for date in chronoActual %}
     <div class="swiper-slide">
       <h3>{{ date.chronologiedate }}</h3>
@@ -62,7 +33,7 @@
     {% endfor %}
   </div>
   <!-- If we need pagination -->
-  <div class="chrono-pagination-3"></div>
+  <div class="chrono-pagination-1"></div>
 </section>
 
 <!-- Parallax -->

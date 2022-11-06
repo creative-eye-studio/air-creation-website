@@ -55,6 +55,11 @@
                 background-color: $p-color;
                 border-radius: 2rem;
             }
+            &.full{
+                &::before{
+                    background-color: $bw-color-5;
+                }
+            }
         }
     }
 

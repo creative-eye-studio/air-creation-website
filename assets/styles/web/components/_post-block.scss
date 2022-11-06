@@ -1,13 +1,48 @@
 .post-block{
-    background-color: rgba($color: $bw-color-2, $alpha: 1.0);
-    .image{
-        @include coverImage('1-1');
+    position: relative;
+    padding-top: calc(75% / 3);
+    &:not(:last-child){
+        margin-bottom: 1rem;
     }
-    .content{
-        padding: $marges-m;
-        h2, h3{
-            font-size: 1.5em;
+    .image, .text{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .text{
+        text-align: center;
+        text-decoration: none;
+        color: $bw-color-1;
+        background-color: rgba($color: $bw-color-5, $alpha: .7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        h3{
+            line-height: 1.5em;
             font-weight: 400;
+            margin-bottom: 0;
+        }
+    }
+    @media screen and (min-width: 640px) {
+        &:not(:last-child){
+            margin-bottom: 0;
+        }
+    }
+    @media screen and (min-width:1200px) {
+        .text{
+            opacity: 0;
+            transition-duration: .5s;
+            &:hover{
+                opacity: 1;
+            }
         }
     }
 }

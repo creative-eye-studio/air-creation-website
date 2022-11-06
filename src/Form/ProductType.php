@@ -7,7 +7,6 @@ use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -30,72 +29,34 @@ class ProductType extends AbstractType
                 'required' => false,
                 'empty_data' => '',
             ])
-            ->add('product_type', ChoiceType::class, [
-                'choices' => [
-                    'ULM Complet' => 'ULM Complet',
-                    'Ailes' => 'Ailes',
-                    'Tricycles' => 'Tricycles',
-                    'Accessoires' => 'Accessoires',
-                ],
-                'label' => 'Type de produit',
-            ])
             ->add('product_intro', CKEditorType::class, [
                 'label' => 'Présentation',
                 'mapped' => false
             ])
 
-            // DESC
-            ->add('product_desc', CKEditorType::class, [
-                'label' => 'Description',
-                'mapped' => false
-            ])
-
-            // CARAC
-            ->add('product_envergure', NumberType::class, [
-                'label' => 'Envergure',
-            ])
-            ->add('product_surface_alaire', NumberType::class, [
-                'label' => 'Surface alaire',
-            ])
-            ->add('product_surface', NumberType::class, [
-                'label' => 'Hauteur',
-            ])
-            ->add('product_charge', NumberType::class, [
-                'label' => 'Charge utile',
-            ])
-            ->add('product_masse', NumberType::class, [
-                'label' => 'Masse à vide',
-            ])
-            ->add('product_masse_max', NumberType::class, [
-                'label' => 'Masse maximum',
-            ])
-            ->add('product_motor_type', ChoiceType::class, [
-                'choices' => [
-                    'En attente de types de moteur' => 'En attente de types de moteur'
+            // CRITERES DE RECHERCHE
+            ->add('product_capacity', ChoiceType::class, [
+                'choices'  => [
+                    'Monoplace' => 'Monoplace',
+                    'Biplace' => 'Biplace',
                 ],
-                'label' => 'Type de motorisation',
+                'label' => 'Capacité',
             ])
-
-            ->add('product_motor_pouls', NumberType::class, [
-                'label' => 'Puissance moteur',
+            ->add('product_wing', ChoiceType::class, [
+                'choices'  => [
+                    'IFun' => 'IFun',
+                    'Nuvix' => 'Nuvix',
+                    'BioniX' => 'BioniX',
+                ],
+                'label' => 'Aile',
             ])
-            ->add('product_speed_min', NumberType::class, [
-                'label' => 'Vitesse minimale',
-            ])
-            ->add('product_speed_max', NumberType::class, [
-                'label' => 'Vitesse maximale',
-            ])
-            ->add('product_elec_conso', NumberType::class, [
-                'label' => 'Consommation électrique',
-            ])
-            ->add('product_fly_dist', NumberType::class, [
-                'label' => 'Distance de roulement au décollage',
-            ])
-            ->add('product_fly_amount', NumberType::class, [
-                'label' => 'Taux de montée',
-            ])
-            ->add('product_color', TextType::class, [
-                'label' => 'Couleur',
+            ->add('product_tricycle', ChoiceType::class, [
+                'choices'  => [
+                    'Pixel' => 'Pixel',
+                    'Skypper Evo' => 'Skypper Evo',
+                    'Tanarg Néo' => 'Tanarg Néo',
+                ],
+                'label' => 'Tricycle',
             ])
 
             // IMAGES
@@ -119,6 +80,18 @@ class ProductType extends AbstractType
                 'required' => false,
                 'multiple' => true,
                 'mapped' => false,
+            ])
+
+            // DESC
+            ->add('product_desc', CKEditorType::class, [
+                'label' => 'Description',
+                'mapped' => false
+            ])
+
+            // CARAC
+            ->add('product_carac', CKEditorType::class, [
+                'label' => 'Caractéristiques',
+                'mapped' => false
             ])
 
             // SEO
