@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classes\ProductsSearch;
 use App\Entity\Products;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -45,6 +46,63 @@ class ProductsRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('a');
         
         return $qb->getQuery();
+    }
+
+    /**
+     * @return void
+     */
+    public function getPaginatedProducts($filters_capacity = null, $filter_wing = null, $filter_tricycle = null)
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if ($filters_capacity != null) {
+            $query->andWhere('a.product_capacity IN(:caps)')
+                ->setParameters(':caps', $filters_capacity)
+            ;
+        }
+
+        if ($filter_wing != null) {
+            $query->andWhere('a.product_wing IN(:wings)')
+                ->setParameters(':wings', $filter_wing)
+            ;
+        }
+
+        if ($filter_tricycle != null) {
+            $query->andWhere('a.product_tricycle IN(:tri)')
+                ->setParameters(':tri', $filter_tricycle)
+            ;
+        }
+
+        $query->orderBy('p.product_name', 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Requète pour récupérer les produits selon la recherche
+     */
+    public function findWithSearch(ProductsSearch $search)
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('p')
+        ;
+
+        if (!empty($search->filter_capacity)) {
+            $query = $query
+                ->andWhere('p.product_capacity IN (:filter_capacity)')
+                ->setParameter('filter_capacity', $search->filter_capacity)
+            ;
+        }
+
+        if (!empty($search->filter_wing)) {
+            $query = $query
+                ->andWhere('p.product_wing IN (:filter_wing)')
+                ->setParameter('filter_wing', $search->filter_wing)
+            ;
+        }
+
+        return $query->getQuery()->getResult();
     }
 
 //    /**

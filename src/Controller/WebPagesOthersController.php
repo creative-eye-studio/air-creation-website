@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\ProductsSearch;
 use App\Entity\Chronologie;
 use App\Entity\FAQList;
 use App\Form\ContactFormType;
@@ -9,14 +10,14 @@ use App\Form\SAVManagerFormType;
 use App\Entity\PagesList;
 use App\Entity\Partners;
 use App\Entity\PostsList;
+use App\Entity\Products;
 use App\Entity\ProductsImages;
-use App\Entity\PropertySearch;
 use App\Form\NewsletterFormType;
 use App\Form\ProductFilterType;
-use App\Form\PropertySearchType;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -37,8 +38,8 @@ class WebPagesOthersController extends AbstractController
         $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
         $questions = $doctrine->getRepository(FAQList::class)->findAll();
         
-        // $products = $products_function->getProducts($doctrine);
-        $products = $products_function->getPaginatedProducts();
+        $products = $products_function->getProducts($doctrine);
+        // $products = $products_function->getPaginatedProducts();
         
         $posts = $doctrine->getRepository(PostsList::class)->findAll();
         $newsForm = $this->createForm(NewsletterFormType::class);
@@ -62,12 +63,17 @@ class WebPagesOthersController extends AbstractController
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
 
-        $filterForm = $this->createForm(ProductFilterType::class);
+        $productFilter = new ProductsSearch();
+        $filterForm = $this->createForm(ProductFilterType::class, $productFilter);
         $filterForm->handleRequest($request);
+        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
+            $products = $doctrine->getRepository(Products::class)->findWithSearch($productFilter);
+        }
+
+
 
         return $this->render('web_pages_others/index.html.twig', [
             'controller_name' => 'WebPagesOthersController',
-            'contactForm' => $contactForm->createView(),
             'page_id' => $selected_page->getPageId(),
             'chronoOrigines' => $chronoOrigines,
             'chronoPionniers' => $chronoPionniers,
@@ -75,14 +81,15 @@ class WebPagesOthersController extends AbstractController
             'products' => $products,
             'posts' => $posts,
             'events' => $lasts_events,
-            'newsForm' => $newsForm->createView(),
-            'assistForm' => $assistForm->createView(),
-            'filterForm' => $filterForm->createView(),
             'resellers' => $resellers,
             'trainers' => $trainers,
             'techs' => $techs,
             'questions' => $questions,
             'headerType' => $headerType,
+            'contactForm' => $contactForm->createView(),
+            'newsForm' => $newsForm->createView(),
+            'assistForm' => $assistForm->createView(),
+            'filterForm' => $filterForm->createView(),
             'meta_title' => $selected_page->getPageMetaTitle(),
             'meta_desc' => $selected_page->getPageMetaDesc(),
         ]);
