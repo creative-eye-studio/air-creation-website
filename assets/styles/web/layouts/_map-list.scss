@@ -1,8 +1,10 @@
 .partners-container{
+    padding: $marges-m;
+    max-width: 1400px;
+    margin: auto;
     .partners-map{
         display: none;
     }
-    padding: $marges-m;
     @media screen and (min-width:1024px) {
         &::after{
             content: '';
@@ -15,14 +17,16 @@
         }
         .partners-map{
             float: left;
-            width: 65%;
+            width: 70%;
+            height: 600px;
             display: block;
             background-color: $bw-color-4;
             overflow: hidden;
+            position: relative;
         }
         .partners-list{
             float: right;
-            width: 35%;
+            width: 30%;
             overflow-y: scroll;
         }
     }

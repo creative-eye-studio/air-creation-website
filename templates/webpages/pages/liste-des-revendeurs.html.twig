@@ -17,28 +17,28 @@
 
 <!-- Block Partenaires -->
 <section class="partners-container">
-  	<h2>Liste des revendeurs</h2>
-	<!-- Leaflet -->
+  <h2>Liste des revendeurs</h2>
+  <!-- Leaflet -->
   <div id="map" class="partners-map"></div>
-	<!-- List -->
+  <!-- List -->
   <article class="partners-list">
     {% for reseller in resellers %}
-  	<div class="partner-block">
+    <div class="partner-block">
       <h3>{{ reseller.name }}</h3>
       <p>{{ reseller.adress }}<br />
         {{ reseller.postcode }} - {{ reseller.city }}</p>
       <p>
-        
+
         {% if reseller.telfixe != null %}
-        	Téléphone : {{ reseller.telfixe }}<br />
+        Téléphone : {{ reseller.telfixe }}<br />
         {% endif %}
         {% if reseller.telport != null %}
-        	Portable : {{ reseller.telport }}<br />
+        Portable : {{ reseller.telport }}<br />
         {% endif %}
         {% if reseller.telfax != null %}
-        	Fax : {{ reseller.telfax }}<br />
+        Fax : {{ reseller.telfax }}<br />
         {% endif %}
-        
+
         Site web : {{ reseller.website }}
       </p>
       <p><a target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=map&center={{ reseller.coordlong }},{{ reseller.coordlat }}">Voir sur Google Maps</a></p>
@@ -46,3 +46,21 @@
     {% endfor %}
   </article>
 </section>
+
+<!-- leaflet plugin -->
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+<script>
+  var mymap = L.map('map').setView([44.6197, 4.39028], 13);
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    maxZoom: 18,
+    attribution: 'Map data © OpenStreetMap contributors, ' +
+    'CC-BY-SA, ' +
+    'Imagery © Mapbox',
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1
+  }).addTo(mymap);
+  {% for reseller in resellers %}
+  L.marker([{{reseller.coordlat}}, {{reseller.coordlong}}]).addTo(mymap);
+   {% endfor %}
+</script>
