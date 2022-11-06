@@ -36,6 +36,16 @@
     text-decoration: none;
 }
 
+@mixin redBtn() {
+    color: $bw-color-1;
+    background-color: $p-color-d;
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-weight: 400;
+    font-size: 1em;
+    text-decoration: none;
+}
+
 @mixin coverImage($size) {
     $sizes: (
         "16-9": 56.25%, 
