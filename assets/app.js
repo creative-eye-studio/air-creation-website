@@ -180,7 +180,7 @@ contactBtn2.onclick = function () {
   document.querySelector("#contact-tab-3").classList.remove('active');
 
   contactBtn1.classList.add('full');
-  contactBtn3.classList.remove('full');
+  contactBtn2.classList.remove('full');
 };
 
 contactBtn3.onclick = function () {
