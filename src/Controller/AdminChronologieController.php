@@ -34,6 +34,20 @@ class AdminChronologieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $chronologie = $form->getData();
+            $image = $form['chronologie_img']->getData();
+
+            $fileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileExtention = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+
+            $uploadedFile = $image;
+            $directory = $this->getParameter('kernel.project_dir').'/public/uploads/images/chronologie';
+            $newFilename = $fileName . '.' . $fileExtention;
+            $uploadedFile->move(
+                $directory,
+                $newFilename
+            );
+
+            $chronologie->setChronologieImg($newFilename);
 
             $doctrine = $doctrine->getManager();
             $doctrine->persist($chronologie);
@@ -53,17 +67,37 @@ class AdminChronologieController extends AbstractController
     public function UpdateChronology(ManagerRegistry $doctrine, Request $request, String $date){
         $entityManager = $doctrine->getManager();
         $date = $entityManager->getRepository(Chronologie::class)->findOneBy(['chronologie_date' => $date]);
+        $thumb = $date->getChronologieImg();
         $form = $this->createForm(ChronologieType::class, $date);
         $form->handleRequest($request);
         
+        dump($thumb);
+
         if(!$date) {
             throw $this->createNotFoundException(
-                "Aucune post n'a été trouvé"
+                "Aucune date n'a été trouvée"
             );
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $date = $form->getData();
+            $image = $form['chronologie_img']->getData();
+
+            if ($image) {
+                $fileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
+
+                $uploadedFile = $image;
+                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/images/chronologie';
+                $newFilename = $fileName . '.' . $fileExtention;
+                $uploadedFile->move(
+                    $directory,
+                    $newFilename
+                );
+                $date->setChronologieImg($newFilename);
+            } else {
+                $date->setChronologieImg($thumb);
+            }
 
             $doctrine = $doctrine->getManager();
             $doctrine->persist($date);
@@ -74,6 +108,7 @@ class AdminChronologieController extends AbstractController
 
         return $this->render('admin_chronologie/update_chronologie.html.twig', [
             'form' => $form->createView(),
+            'thumb' => $thumb,
             'controller_name' => 'AdminChronologieController',
         ]);
     }

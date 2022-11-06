@@ -23,6 +23,9 @@ class Chronologie
     #[ORM\Column(type: Types::TEXT)]
     private ?string $chronologie_text = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $chronologie_img = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Chronologie
     public function setChronologieText(string $chronologie_text): self
     {
         $this->chronologie_text = $chronologie_text;
+
+        return $this;
+    }
+
+    public function getChronologieImg(): ?string
+    {
+        return $this->chronologie_img;
+    }
+
+    public function setChronologieImg(string $chronologie_img): self
+    {
+        $this->chronologie_img = $chronologie_img;
 
         return $this;
     }

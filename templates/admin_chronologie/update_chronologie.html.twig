@@ -9,6 +9,11 @@
             <p>{{ form_label(form.chronologie_date) }}<br />
             {{ form_widget(form.chronologie_date) }}</p>
 
+            <p>{{ form_label(form.chronologie_img) }}<br />
+            {{ form_widget(form.chronologie_img, {
+                value: thumb
+            }) }}</p>
+
             <p>{{ form_label(form.chronologie_type) }}<br />
             {{ form_widget(form.chronologie_type) }}</p>
 
