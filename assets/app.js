@@ -256,15 +256,11 @@ import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const swiperDoc = new Swiper('.product-doc-list', {
-  modules: [Navigation],
+const swiperLastNews = new Swiper('.posts', {
   slidesPerView: "auto",
   centeredSlides: true,
   loop: true,
-  navigation: {
-    nextEl: '.swiper-doc-button-next',
-    prevEl: '.swiper-doc-button-prev',
-  },
+  spaceBetween: 20,
   breakpoints: {
     1024: {
       centeredSlides: false,
@@ -273,6 +269,34 @@ const swiperDoc = new Swiper('.product-doc-list', {
     1200: {
       centeredSlides: true,
       slidesPerView: 3,
+    }
+  }
+})
+
+const swiperDoc = new Swiper('.product-doc-list', {
+  modules: [Navigation],
+  slidesPerView: 1,
+  centeredSlides: true,
+  loop: true,
+  navigation: {
+    nextEl: '.swiper-doc-button-next',
+    prevEl: '.swiper-doc-button-prev',
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+      centeredSlides: false,
+      loop: true,
+    },
+    768: {
+      slidesPerView: 2,
+      centeredSlides: false,
+      loop: true,
+    },
+    1200: {
+      slidesPerView: 3,
+      centeredSlides: true,
+      loop: true,
     }
   }
 });

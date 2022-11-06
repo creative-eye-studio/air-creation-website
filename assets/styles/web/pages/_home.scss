@@ -68,8 +68,10 @@
 
 .home-block-infos-0{
     padding: $marges-m;
+    background-color: $grey-color;
     .icons-blocks-container{
         .icons-block{
+            color: $bw-color-1;
             text-align: center;
         }
         h2{
@@ -94,11 +96,9 @@
         }
     }
     @media screen and (min-width: 1200px) {
-        background-color: $grey-color;
         padding: $marges-d-x;
         .icons-blocks-container{
             .icons-block{
-                color: $bw-color-1;
                 width: 20%;
             }
             h2{
@@ -284,24 +284,27 @@
     padding: $marges-m;
     .posts{
         margin-bottom: $marges-m;
+        .post-block{
+            padding-top: 75%;
+        }
     }
     .instagram-media{
         min-width: inherit !important;
     }
-    @media screen and (min-width:640px) {
-        .container{
-            display: flex;
-            flex-wrap: wrap;
-            gap: $marges-m;
-        }
-        .post-block{
-            flex-grow: 1;
+    @media screen and (min-width: 1024px) {
+        .posts{
+            .post-block{
+                padding-top: calc(75% / 2);
+            }
         }
     }
     @media screen and (min-width: 1200px) {
         padding: $marges-d-y $marges-d-x;
         .posts{
             margin-bottom: $marges-d-y;
+            .post-block{
+                padding-top: calc(75% / 3);
+            }
         }
     }
 }

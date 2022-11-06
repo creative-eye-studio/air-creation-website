@@ -157,15 +157,15 @@
 <!-- Community Block -->
 <section class="social">
   <!-- Dernières actualités -->
-  <div class="posts">
+  <div class="posts swiper">
     <h2>Dernières actualités</h2>
-    <div class="container">
+    <div class="container swiper-wrapper">
       {% for post in posts %}
-      <article class="post-block">
+      <article class="post-block swiper-slide">
         <div class="image">
           <img src="../uploads/images/posts/{{ post.photofilename }}" alt='{{ post.postname }}' />
         </div>
-        <a class="text" href="{{ post.posturl }}">
+        <a class="text" href="{{ path('post_page', {post_slug: post.posturl}) }}">
           <h3>
             {{ post.postname }}
           </h3>
