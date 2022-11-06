@@ -14,3 +14,12 @@
     {% include "webpages/common_blocks/footer.html.twig" %}
 
 {% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        {% for reseller in resellers %}
+            L.marker([{{reseller.coordlat}}, {{reseller.coordlong}}]).addTo(map);
+        {% endfor %}
+    </script>
+{% endblock %}

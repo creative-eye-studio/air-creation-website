@@ -158,6 +158,11 @@ contactButton.forEach(button => {
 
 
 
+
+
+
+
+
 // Tabs
 // ------------------------------------------------------------------
 var tabs = require('tabs');
@@ -178,6 +183,7 @@ if (document.querySelector('.sav-container') != undefined) {
   var partnersTabscontainer = document.querySelector('.sav-container')
   tabs(partnersTabscontainer);
 }
+
 
 
 
@@ -360,3 +366,5 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     centeredSlides: true,
     loop: true,
 });
+
+  
