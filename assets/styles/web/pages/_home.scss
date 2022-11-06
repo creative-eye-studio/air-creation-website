@@ -54,6 +54,18 @@
     }
 }
 
+.block-showroom{
+    background-color: $bw-color-2;
+    padding: $marges-m;
+    h2{
+        font-size: 1.75em;
+        font-weight: 300;
+    }
+    @media screen and (min-width: 1024px) {
+        padding: $marges-d-y $marges-d-x;
+    }
+}
+
 .home-block-infos-0{
     padding: $marges-m;
     .icons-blocks-container{
