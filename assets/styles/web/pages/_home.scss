@@ -3,6 +3,13 @@
         display: block;
         width: 100%;
     }
+    @media screen and (min-width:1024px) {
+        height: 100vh;
+        video{
+            object-fit: cover;
+            height: 100%;
+        }
+    }
 }
 
 .home-intro-block{
