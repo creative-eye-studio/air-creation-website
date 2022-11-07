@@ -21,15 +21,17 @@
             </div>
             <!-- Intro Block -->
             <section class="product-intro">
-                <!-- Intro Title -->
-                <h1>{{ productName }}</h1>
-                <!-- Intro Text -->
-                {% include "webpages/products/#{productFolderId}/#{productFolderId}-intro.html.twig" %}
-                <!-- Intro Buttons -->
-                <div class="btn-list">
-                    <p>
-                        <a class="btn" href="">Voir la documentation</a>
-                    </p>
+                <div class="product-intro-content">
+                    <!-- Intro Title -->
+                    <h1>{{ productName }}</h1>
+                    <!-- Intro Text -->
+                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-intro.html.twig" %}
+                    <!-- Intro Buttons -->
+                    <div class="btn-list">
+                        <p>
+                            <a class="btn" href="">Voir la documentation</a>
+                        </p>
+                    </div>
                 </div>
             </section>
         </div>
