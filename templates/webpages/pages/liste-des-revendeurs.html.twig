@@ -1,7 +1,7 @@
 <!-- Cover Page -->
 <section class="cover-page">
   <div class="text">
-    <h1>Liste des revendeurs</h1>
+    <h1>Liste des revendeurs, importateurs et distributeurs</h1>
   </div>
   <figure class="image">
     <img src="../uploads/images/pages/revendeurs/bg-page.jpg" alt="" />
@@ -17,14 +17,17 @@
 
 <!-- Block Partenaires -->
 <section class="partners-container">
-  <h2>Liste des revendeurs</h2>
+  <h2>Liste des revendeurs, importateurs et distributeurs</h2>
   <!-- Leaflet -->
   <div id="map" class="partners-map"></div>
   <!-- List -->
   <article class="partners-list">
     {% for reseller in resellers %}
     <div class="partner-block">
-      <h3>{{ reseller.name }}</h3>
+      <h3>
+        {{ reseller.name }} 
+        {% if reseller.import %}(Importateur){% endif %}
+      </h3>
       <p>{{ reseller.adress }}<br />
         {{ reseller.postcode }} - {{ reseller.city }}</p>
       <p>

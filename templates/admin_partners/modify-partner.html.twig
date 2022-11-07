@@ -7,69 +7,46 @@
         <h2>Modifier un partenaire</h2>
         {{ form_start(form) }}
             <p>{{ form_label(form.name) }}<br />
-                {{ form_widget(form.name,  {
-                'value': partner_name
-            }) }}</p>
+                {{ form_widget(form.name) }}</p>
 
             <p>{{ form_label(form.manager) }}<br />
-                {{ form_widget(form.manager,  {
-                'value': partner_manager
-            }) }}</p>
+                {{ form_widget(form.manager) }}</p>
+
+            <p>{{ form_widget(form.import) }}
+                {{ form_label(form.import) }}</p>
 
             <p>{{ form_label(form.email) }}<br />
-                {{ form_widget(form.email,  {
-                'value': partner_email
-            }) }}</p>
+                {{ form_widget(form.email) }}</p>
 
             <p>{{ form_label(form.partner_cat) }}<br />
-                {{ form_widget(form.partner_cat,  {
-                'value': partner_cat
-            }) }}</p>
+                {{ form_widget(form.partner_cat) }}</p>
 
             <p>{{ form_label(form.adress) }}<br />
-                {{ form_widget(form.adress,  {
-                'value': partner_adress
-            }) }}</p>
+                {{ form_widget(form.adress) }}</p>
 
             <p>{{ form_label(form.postcode) }}<br />
-                {{ form_widget(form.postcode,  {
-                'value': partner_postcode
-            }) }}</p>
+                {{ form_widget(form.postcode) }}</p>
 
             <p>{{ form_label(form.city) }}<br />
-                {{ form_widget(form.city,  {
-                'value': partner_city
-            }) }}</p>
+                {{ form_widget(form.city) }}</p>
 
             <p>{{ form_label(form.website) }}<br />
-                {{ form_widget(form.website,  {
-                'value': partner_website
-            }) }}</p>
+                {{ form_widget(form.website) }}</p>
 
             <p>{{ form_label(form.tel_fixe) }}<br />
-                {{ form_widget(form.tel_fixe,  {
-                'value': partner_tel_fixe
-            }) }}</p>
+                {{ form_widget(form.tel_fixe) }}</p>
 
             <p>{{ form_label(form.tel_port) }}<br />
-                {{ form_widget(form.tel_port,  {
-                'value': partner_tel_port
-            }) }}</p>
+                {{ form_widget(form.tel_port) }}</p>
 
             <p>{{ form_label(form.tel_fax) }}<br />
-                {{ form_widget(form.tel_fax,  {
-                'value': partner_tel_fax
-            }) }}</p>
+                {{ form_widget(form.tel_fax) }}</p>
 
             <p>{{ form_label(form.coord_long) }}<br />
-                {{ form_widget(form.coord_long,  {
-                'value': partner_coord_long
-            }) }}</p>
+                {{ form_widget(form.coord_long) }}</p>
 
             <p>{{ form_label(form.coord_lat) }}<br />
-                {{ form_widget(form.coord_lat,  {
-                'value': partner_coord_lat
-            }) }}</p>
+                {{ form_widget(form.coord_lat) }}</p>
 
             {{ form_row(form.submit) }}
         {{ form_end(form) }}
