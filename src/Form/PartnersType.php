@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Partners;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -24,6 +25,10 @@ class PartnersType extends AbstractType
             ])
             ->add('manager', TextType::class, [
                 'label' => 'Gérant'
+            ])
+            ->add('import', CheckboxType::class, [
+                'label' => 'Importateur (Optionnel)',
+                'required' => false
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email de la société'

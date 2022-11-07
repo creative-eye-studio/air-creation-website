@@ -52,6 +52,9 @@ class Partners
     #[ORM\Column(length: 255)]
     private ?string $manager = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $import = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -209,6 +212,18 @@ class Partners
     public function setManager(string $manager): self
     {
         $this->manager = $manager;
+
+        return $this;
+    }
+
+    public function isImport(): ?bool
+    {
+        return $this->import;
+    }
+
+    public function setImport(?bool $import): self
+    {
+        $this->import = $import;
 
         return $this;
     }
