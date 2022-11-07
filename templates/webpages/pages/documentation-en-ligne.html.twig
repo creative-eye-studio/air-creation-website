@@ -13,7 +13,7 @@
     Toute la documentation de nos produits
   </h2>
   {% for product in products %}
-  <div id="{{ product.productid }}" class="product">
+  <div id="{{ product.productid }}" class="product" data-aos="fade-up">
     <div class="product-item">
       <div class="image">
         <img src="../uploads/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
