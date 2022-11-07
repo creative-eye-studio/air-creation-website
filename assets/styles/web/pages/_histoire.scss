@@ -3,7 +3,11 @@
     color: $bw-color-1;
     background-color: $grey-color;
     border-bottom: .0625rem solid $bw-color-4;
+    position: relative;
     overflow: hidden;
+    .swiper-wrapper{
+        overflow: hidden;
+    }
     .image{
         width: 100%;
         padding-top: 100%;
@@ -18,9 +22,22 @@
             object-fit: cover;
         }
     }
-    
     h2{
         margin-bottom: $marges-m;
+    }
+    .swiper-button-next,
+    .swiper-button-prev{
+        position: absolute;
+        top: 50%;
+        z-index: 10;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .swiper-button-next{
+        right: 2rem;
+    }
+    .swiper-button-prev{
+        left: 2rem;
     }
     @media screen and (min-width:1200px) {
         padding: $marges-d-y $marges-d-x;

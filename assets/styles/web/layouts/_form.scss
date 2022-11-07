@@ -18,7 +18,7 @@ input{
 }
 
 button[type=submit]{
-    @include greenBtn();
+    @include redBtn();
     &#newsletter_form_submit{
         position: absolute;
         bottom: 0;

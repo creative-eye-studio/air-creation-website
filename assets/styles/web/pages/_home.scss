@@ -181,6 +181,9 @@
             .block-slider{
                 padding-top: 25%;
                 overflow: hidden;
+                a{
+                    text-decoration: none;
+                }
                 img{
                     transition-duration: .5s;
                 }
