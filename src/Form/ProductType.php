@@ -94,6 +94,12 @@ class ProductType extends AbstractType
                 'mapped' => false
             ])
 
+            // DIMS
+            ->add('product_dims', CKEditorType::class, [
+                'label' => 'Dimensions',
+                'mapped' => false
+            ])
+
             // SEO
             ->add('product_meta_title', TextType::class, [
                 'label' => 'Meta Title',
