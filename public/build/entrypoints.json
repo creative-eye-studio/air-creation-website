@@ -2,42 +2,42 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/405.0bda9f6e.js",
-        "/build/367.79ab2d0e.js",
-        "/build/582.c2040c04.js",
-        "/build/433.3e3487c2.js",
-        "/build/app.711cee94.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_modules_es_array-a24d23.js",
+        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-701958.js",
+        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_core-js_modules_es_array_for-each_js-node_m-ea97d2.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/582.2e580359.css",
-        "/build/app.edded155.css"
+        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_core-js_modules_es_array_for-each_js-node_m-ea97d2.css",
+        "/build/app.css"
       ]
     },
     "filters": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/filters.f3fcb61b.js"
+        "/build/runtime.js",
+        "/build/filters.js"
       ]
     },
     "app-admin": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/405.0bda9f6e.js",
-        "/build/367.79ab2d0e.js",
-        "/build/433.3e3487c2.js",
-        "/build/app-admin.ae38d160.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_modules_es_array-a24d23.js",
+        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-701958.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
+        "/build/app-admin.js"
       ],
       "css": [
-        "/build/app-admin.f553eb58.css"
+        "/build/app-admin.css"
       ]
     },
     "fontawesome": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/405.0bda9f6e.js",
-        "/build/731.1b2db620.js",
-        "/build/fontawesome.eb4a2cb8.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_modules_es_array-a24d23.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_fill_js-node_modules_core-js_modules_es_array_f-16b295.js",
+        "/build/fontawesome.js"
       ]
     }
   }

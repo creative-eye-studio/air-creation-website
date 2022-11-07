@@ -45,7 +45,7 @@ document.addEventListener('swup:contentReplaced', function(){
 
 // OPEN LAYERS
 // ------------------------------------------------------------------
-import Map from 'ol/Map';
+/*import Map from 'ol/Map';
 import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
@@ -68,8 +68,7 @@ if (document.querySelector(".partners-map") != undefined) {
       zoom: 15,
     })
   })
-}
-
+}*/
 
 
 
