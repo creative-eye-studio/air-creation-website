@@ -65,6 +65,10 @@ class AdminProductsController extends AbstractController
             fwrite($file, $form['product_desc']->getData());
             fclose($file);
 
+            $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-dims.html.twig', 'w');
+            fwrite($file, $form['product_dims']->getData());
+            fclose($file);
+
             $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-carac.html.twig', 'w');
             fwrite($file, $form['product_carac']->getData());
             fclose($file);
@@ -184,6 +188,7 @@ class AdminProductsController extends AbstractController
         $productIntroFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-intro.html.twig");
         $productDescFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-desc.html.twig");
         $productCaracFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-carac.html.twig");
+        $productDimsFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-dims.html.twig");
         
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $doctrine->getManager();
@@ -199,6 +204,10 @@ class AdminProductsController extends AbstractController
 
             $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-desc.html.twig', 'w');
             fwrite($file, $form['product_desc']->getData());
+            fclose($file);
+
+            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-dims.html.twig', 'w');
+            fwrite($file, $form['product_dims']->getData());
             fclose($file);
 
             // Envoi vers la Database
@@ -305,8 +314,35 @@ class AdminProductsController extends AbstractController
             'productIntroFile' => $productIntroFile,
             'productDescFile' => $productDescFile,
             'productCaracFile' => $productCaracFile,
+            'productDimsFile' => $productDimsFile,
             'productThumb' => $productThumb,
         ]);
+    }
+
+
+
+    // SUPPRIMER UN PRODUIT
+    //-----------------------------------------------------
+    #[Route('/admin/products/delete_product/{product_id}', name: 'app_admin_product_delete')]
+    public function DeleteProduct(ManagerRegistry $doctrine, String $product_id){
+        $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
+        $images = $entityManager->getRepository(ProductsImages::class)->findBy(['image_product' => $product_id]);
+
+        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '/' . $product->getProductId() . '-carac.html.twig');
+        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '/' . $product->getProductId() . '-desc.html.twig');
+        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '/' . $product->getProductId() . '-dims.html.twig');
+        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '/' . $product->getProductId() . '-intro.html.twig');
+        rmdir($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId());
+
+        foreach ($images as $image) {
+            $entityManager->remove($image);
+        }
+
+        $entityManager->remove($product);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_admin_products');
     }
 
 

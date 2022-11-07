@@ -10,6 +10,7 @@
             <li><a class="tab">Critères de recherche</a></li>
             <li><a class="tab">Images</a></li>
             <li><a class="tab">Description</a></li>
+            <li><a class="tab">Dimensions</a></li>
             <li><a class="tab">Caractéristiques</a></li>
             <li><a class="tab">SEO</a></li>
         </ul>
@@ -70,6 +71,14 @@
                 </p>
             </div>
 
+            <!-- Dimensions -->
+            <div class="tab-pane">
+                <p>
+                    {{ form_label(form.product_dims) }}<br />
+                    {{ form_widget(form.product_dims) }}
+                </p>
+            </div>
+
             <!-- Caractéristiques -->
             <div class="tab-pane">
                 <p>
@@ -99,6 +108,10 @@
     <script>
         CKEDITOR.instances["product_product_intro"].destroy();
         CKEDITOR.replace( 'product_product_intro', {
+        	startupMode: 'wysiwyg'
+        });
+        CKEDITOR.instances["product_product_dims"].destroy();
+        CKEDITOR.replace( 'product_product_dims', {
         	startupMode: 'wysiwyg'
         });
         CKEDITOR.instances["product_product_carac"].destroy();
