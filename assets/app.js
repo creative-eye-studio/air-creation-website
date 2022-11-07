@@ -43,34 +43,6 @@ document.addEventListener('swup:contentReplaced', function(){
 })*/
 
 
-// OPEN LAYERS
-// ------------------------------------------------------------------
-/*import Map from 'ol/Map';
-import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
-import {fromLonLat} from 'ol/proj';
-
-
-if (document.querySelector(".partners-map") != undefined) {
-  const aubLonLat = [4.389863, 44.620909];
-  const aubWebMercator = fromLonLat(aubLonLat);
-  
-  const map = new Map({
-    target: 'map',
-    layers: [
-      new TileLayer({
-        source: new OSM()
-      })
-    ],
-    view: new View({
-      center: aubWebMercator,
-      zoom: 15,
-    })
-  })
-}*/
-
-
 
 
 // Parallax
@@ -321,12 +293,12 @@ const swiperLastsEvents = new Swiper('.home-timeline-container', {
 });
 
 
-const chrono = new Swiper('.chrono-swiper-1', {
-  modules: [Pagination],
+const swiperChrono = new Swiper('.chrono-swiper-1', {
+  modules: [Navigation],
   spaceBetween: 30,
-  pagination: {
-    el: ".chrono-pagination-1",
-    clickable: true,
+  navigation: {
+    nextEl: '.chrono-swiper-button-next',
+    prevEl: '.chrono-swiper-button-prev',
   },
   breakpoints: {
     768: {
