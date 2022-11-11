@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Classes\\ProductsSearch' => $baseDir . '/src/Classes/ProductsSearch.php',
     'App\\Controller\\AdminChangePasswordController' => $baseDir . '/src/Controller/AdminChangePasswordController.php',
     'App\\Controller\\AdminChronologieController' => $baseDir . '/src/Controller/AdminChronologieController.php',
     'App\\Controller\\AdminCommonBlocksController' => $baseDir . '/src/Controller/AdminCommonBlocksController.php',
@@ -46,7 +47,9 @@ return array(
     'App\\Form\\NewsletterFormType' => $baseDir . '/src/Form/NewsletterFormType.php',
     'App\\Form\\PagesAdminFormType' => $baseDir . '/src/Form/PagesAdminFormType.php',
     'App\\Form\\PartnersType' => $baseDir . '/src/Form/PartnersType.php',
+    'App\\Form\\PostsAdminFormType' => $baseDir . '/src/Form/PostsAdminFormType.php',
     'App\\Form\\PostsFormType' => $baseDir . '/src/Form/PostsFormType.php',
+    'App\\Form\\ProductFilterType' => $baseDir . '/src/Form/ProductFilterType.php',
     'App\\Form\\ProductType' => $baseDir . '/src/Form/ProductType.php',
     'App\\Form\\PropertySearchType' => $baseDir . '/src/Form/PropertySearchType.php',
     'App\\Form\\RegisterType' => $baseDir . '/src/Form/RegisterType.php',
@@ -68,6 +71,9 @@ return array(
     'App\\Service\\FormsManager' => $baseDir . '/src/Service/FormsManager.php',
     'App\\Service\\ProductForm' => $baseDir . '/src/Service/ProductForm.php',
     'App\\Service\\ProductsFunctions' => $baseDir . '/src/Service/ProductsFunctions.php',
+    'App\\Services\\CommonBlocksService' => $baseDir . '/src/Services/CommonBlocksService.php',
+    'App\\Services\\PagesService' => $baseDir . '/src/Services/PagesService.php',
+    'App\\Services\\PostsService' => $baseDir . '/src/Services/PostsService.php',
     'Artgris\\Bundle\\FileManagerBundle\\ArtgrisFileManagerBundle' => $vendorDir . '/artgris/filemanager-bundle/ArtgrisFileManagerBundle.php',
     'Artgris\\Bundle\\FileManagerBundle\\Controller\\ManagerController' => $vendorDir . '/artgris/filemanager-bundle/Controller/ManagerController.php',
     'Artgris\\Bundle\\FileManagerBundle\\DependencyInjection\\ArtgrisFileManagerExtension' => $vendorDir . '/artgris/filemanager-bundle/DependencyInjection/ArtgrisFileManagerExtension.php',

@@ -689,6 +689,7 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
     );
 
     public static $classMap = array (
+        'App\\Classes\\ProductsSearch' => __DIR__ . '/../..' . '/src/Classes/ProductsSearch.php',
         'App\\Controller\\AdminChangePasswordController' => __DIR__ . '/../..' . '/src/Controller/AdminChangePasswordController.php',
         'App\\Controller\\AdminChronologieController' => __DIR__ . '/../..' . '/src/Controller/AdminChronologieController.php',
         'App\\Controller\\AdminCommonBlocksController' => __DIR__ . '/../..' . '/src/Controller/AdminCommonBlocksController.php',
@@ -729,7 +730,9 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         'App\\Form\\NewsletterFormType' => __DIR__ . '/../..' . '/src/Form/NewsletterFormType.php',
         'App\\Form\\PagesAdminFormType' => __DIR__ . '/../..' . '/src/Form/PagesAdminFormType.php',
         'App\\Form\\PartnersType' => __DIR__ . '/../..' . '/src/Form/PartnersType.php',
+        'App\\Form\\PostsAdminFormType' => __DIR__ . '/../..' . '/src/Form/PostsAdminFormType.php',
         'App\\Form\\PostsFormType' => __DIR__ . '/../..' . '/src/Form/PostsFormType.php',
+        'App\\Form\\ProductFilterType' => __DIR__ . '/../..' . '/src/Form/ProductFilterType.php',
         'App\\Form\\ProductType' => __DIR__ . '/../..' . '/src/Form/ProductType.php',
         'App\\Form\\PropertySearchType' => __DIR__ . '/../..' . '/src/Form/PropertySearchType.php',
         'App\\Form\\RegisterType' => __DIR__ . '/../..' . '/src/Form/RegisterType.php',
@@ -751,6 +754,9 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         'App\\Service\\FormsManager' => __DIR__ . '/../..' . '/src/Service/FormsManager.php',
         'App\\Service\\ProductForm' => __DIR__ . '/../..' . '/src/Service/ProductForm.php',
         'App\\Service\\ProductsFunctions' => __DIR__ . '/../..' . '/src/Service/ProductsFunctions.php',
+        'App\\Services\\CommonBlocksService' => __DIR__ . '/../..' . '/src/Services/CommonBlocksService.php',
+        'App\\Services\\PagesService' => __DIR__ . '/../..' . '/src/Services/PagesService.php',
+        'App\\Services\\PostsService' => __DIR__ . '/../..' . '/src/Services/PostsService.php',
         'Artgris\\Bundle\\FileManagerBundle\\ArtgrisFileManagerBundle' => __DIR__ . '/..' . '/artgris/filemanager-bundle/ArtgrisFileManagerBundle.php',
         'Artgris\\Bundle\\FileManagerBundle\\Controller\\ManagerController' => __DIR__ . '/..' . '/artgris/filemanager-bundle/Controller/ManagerController.php',
         'Artgris\\Bundle\\FileManagerBundle\\DependencyInjection\\ArtgrisFileManagerExtension' => __DIR__ . '/..' . '/artgris/filemanager-bundle/DependencyInjection/ArtgrisFileManagerExtension.php',
