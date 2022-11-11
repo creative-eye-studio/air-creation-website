@@ -12,32 +12,22 @@
         {{ form_start(form, { 'attr' : { 'class': 'tab-panes' } }) }}
             <div id="content-page" class="tab-pane active">
                 <p>{{ form_label(form.post_name) }}<br />
-                {{ form_widget(form.post_name, {
-                    'value': postName
-                }) }}</p>
+                {{ form_widget(form.post_name) }}</p>
 
                 <p>{{ form_label(form.post_url) }}<br />
-                {{ form_widget(form.post_url, {
-                    'value': postUrl
-                }) }}</p>
-
-                <p>{{ form_label(form.photo_filename) }}<br />
-                {{ form_widget(form.photo_filename) }}</p>
+                {{ form_widget(form.post_url) }}</p>
 
                 <p>{{ form_label(form.post_content) }}<br />
                 {{ form_widget(form.post_content, {
-                    'value': postContent
+                    'value': content
                 }) }}</p>
             </div>
             <div id="seo-page" class="tab-pane">
                 <p>{{ form_label(form.post_meta_title) }}<br />
-                {{ form_widget(form.post_meta_title, {
-                    'value': postMetaTitle
-                }) }}</p>
+                {{ form_widget(form.post_meta_title) }}</p>
+
                 <p>{{ form_label(form.post_meta_desc) }}<br />
-                {{ form_widget(form.post_meta_desc, {
-                    'value': postMetaDesc
-                }) }}</p>
+                {{ form_widget(form.post_meta_desc) }}</p>
             </div>
             {{ form_row(form.submit) }}
         {{ form_end(form) }}

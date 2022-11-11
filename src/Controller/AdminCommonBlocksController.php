@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\CommonBlockFormType;
+use App\Services\CommonBlocksService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,55 +13,37 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminCommonBlocksController extends AbstractController
 {
     #[Route('/admin/header', name: 'add_admin_header')]
-    public function header_manage(Request $request): Response
+    public function header_manage(CommonBlocksService $block, Request $request): Response
     {
-        $headerContent = file_get_contents('../templates/webpages/common_blocks/header.html.twig');
-
-        $form = $this->createForm(CommonBlockFormType::class);
-        $form->handleRequest($request);
+        $file = '../templates/webpages/blocks/header.html.twig';
+        $content = file_get_contents($file);
+        $form = $block->BlockManager($request, $file);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $filesystem = new Filesystem();
-            $filesystem->remove(['../templates/webpages/common_blocks/header.html.twig']);
-            $file = fopen('../templates/webpages/common_blocks/header.html.twig', 'w');
-            fwrite($file, $data['common_block']);
-
-            // Redirection vers la page crée
             return $this->redirectToRoute('add_admin_header');
         }
 
         return $this->render('common_blocks/header.html.twig', [
             'form' => $form->createView(),
-            'headerContent' => $headerContent,
+            'content' => $content,
             'controller_name' => 'AdminCommonBlocksController',
         ]);
     }
 
     #[Route('/admin/footer', name: 'add_admin_footer')]
-    public function footer_manage(Request $request): Response
+    public function footer_manage(CommonBlocksService $block, Request $request): Response
     {
-        $footerContent = file_get_contents('../templates/webpages/common_blocks/footer.html.twig');
-
-        $form = $this->createForm(CommonBlockFormType::class);
-        $form->handleRequest($request);
+        $file = '../templates/webpages/blocks/footer.html.twig';
+        $content = file_get_contents($file);
+        $form = $block->BlockManager($request, $file);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $filesystem = new Filesystem();
-            $filesystem->remove(['../templates/webpages/common_blocks/footer.html.twig']);
-            $file = fopen('../templates/webpages/common_blocks/footer.html.twig', 'w');
-            fwrite($file, $data['common_block']);
-
-            // Redirection vers la page crée
             return $this->redirectToRoute('add_admin_footer');
         }
 
         return $this->render('common_blocks/footer.html.twig', [
             'form' => $form->createView(),
-            'footerContent' => $footerContent,
+            'content' => $content,
             'controller_name' => 'AdminCommonBlocksController',
         ]);
     }

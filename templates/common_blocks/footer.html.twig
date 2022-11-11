@@ -7,9 +7,9 @@
         <h2>Modifier le pied de page du site</h2>
         {{ form_start(form) }}
             <p>{{ form_widget(form.common_block, {
-                'value': footerContent
+                'value': content
             }) }}</p>
-            
+
             {{ form_row(form.common_submit) }}
         {{ form_end(form) }}
     </section>

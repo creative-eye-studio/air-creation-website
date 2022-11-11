@@ -15,5 +15,8 @@ import './bootstrap';
 /* TABS
 --------------------------------------------*/
 var tabs = require('tabs');
-var container=document.querySelector('.tab-container')
-tabs(container);
+var container = document.querySelector('.tab-container');
+
+if (container != null) {
+    tabs(container);
+}
