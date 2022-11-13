@@ -18,8 +18,10 @@
       <figure class="image">
         <img src="../uploads/images/chronologie/{{ date.chronologieimg }}" alt="{{ date.chronologiedate }}" />
       </figure>
-      <h3>{{ date.chronologiedate }}</h3>
-      <p>{{ date.chronologietext }}</p>
+      <div class="text">
+        <h3>{{ date.chronologiedate }}</h3>
+        <p>{{ date.chronologietext }}</p>
+      </div>
     </div>
     {% endfor %}
     {% for date in chronoPionniers %}
@@ -48,8 +50,3 @@
     <i class="fa-solid fa-arrow-left fa-3x"></i>
   </div>
 </section>
-
-<!-- Parallax -->
-<figure class="parallax">
-  <img class="parallax-image" data-height="75vh" data-speed="0.5" src="../uploads/images/pages/histoire/bg-actual.jpg" alt="Présentation de Air Création" />
-</figure>
