@@ -31,6 +31,9 @@ class Products
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $product_thumb = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $product_thumb_hover = null;
+
     #[ORM\OneToMany(mappedBy: 'doc_product_id', targetEntity: Documentation::class)]
     private Collection $documentations;
 
@@ -224,6 +227,18 @@ class Products
     public function setProductTricycle(string $product_tricycle): self
     {
         $this->product_tricycle = $product_tricycle;
+
+        return $this;
+    }
+
+    public function getProductThumbHover(): ?string
+    {
+        return $this->product_thumb_hover;
+    }
+
+    public function setProductThumbHover(string $product_thumb_hover): self
+    {
+        $this->product_thumb_hover = $product_thumb_hover;
 
         return $this;
     }

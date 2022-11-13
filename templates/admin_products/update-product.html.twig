@@ -28,6 +28,12 @@
                     }) }}
                 </p>
                 <p>
+                    {{ form_label(form.product_thumb_hover) }}<br />
+                    {{ form_widget(form.product_thumb_hover, {
+                        value: productThumbHover
+                    }) }}
+                </p>
+                <p>
                     {{ form_label(form.product_intro) }}<br />
                     {{ form_widget(form.product_intro, {
                         value: productIntroFile

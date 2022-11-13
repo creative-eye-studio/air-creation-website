@@ -58,6 +58,9 @@
             left: 0;    
             object-fit: cover;
             height: 100%;
+            &.thumb-hover{
+                display: none;
+            }
         }
     }
     h2{
@@ -70,6 +73,25 @@
     @media screen and (min-width: 1024px) {
         padding: calc(#{$marges-d-x} * .5);
         width: 25%;
+    }
+    @media screen and (min-width:1200px) {
+        .image{
+            img{
+                &.thumb-hover{
+                    display: block;
+                    transition-duration: .5s;
+                }
+            }
+        }
+        &:hover{
+            .image{
+                img{
+                    &.thumb-hover{
+                        opacity: 0;
+                    }
+                }
+            }
+        }
     }
 }
 

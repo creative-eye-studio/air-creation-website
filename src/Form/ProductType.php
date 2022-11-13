@@ -29,6 +29,12 @@ class ProductType extends AbstractType
                 'required' => false,
                 'empty_data' => '',
             ])
+            ->add('product_thumb_hover', DropzoneType::class, [
+                'label' => 'Image du produit au survol',
+                'mapped' => false,
+                'required' => false,
+                'empty_data' => '',
+            ])
             ->add('product_intro', CKEditorType::class, [
                 'label' => 'Présentation',
                 'mapped' => false
