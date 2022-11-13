@@ -29,6 +29,16 @@
         padding: 1rem;
         margin-bottom: 1rem;
     }
+    @media screen and (min-width:1024px) {
+        form{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .input-block{
+                width: calc(33.33% - (#{$marges-m} / 2));
+            }
+        }
+    }
 }
 
 .product-block{

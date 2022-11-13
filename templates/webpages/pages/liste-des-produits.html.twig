@@ -10,7 +10,20 @@
 
 <!-- Fonctions filtrage -->
 <div class="filters">
-  {{ form(filterForm) }}
+  {{ form_start(filterForm) }}
+  	<div class="input-block">
+  		{{ form_row(filterForm.filter_capacity) }}
+  	</div>
+  	<div class="input-block">
+  		{{ form_row(filterForm.filter_wing) }}
+  	</div>
+  	<div class="input-block">
+  		{{ form_row(filterForm.filter_tricycle) }}
+  	</div>
+  	<div class="input-btn">
+  		{{ form_row(filterForm.submit) }}
+  	</div>
+  {{ form_end(filterForm) }}
 </div>
 
 <!-- Liste des produits -->

@@ -96,7 +96,5 @@
   "build/fonts/RobotoCondensed-Bold.woff2": "/build/fonts/RobotoCondensed-Bold.071f8dcb.woff2",
   "build/fonts/Roboto-Light.woff2": "/build/fonts/Roboto-Light.4ca61622.woff2",
   "build/fonts/RobotoCondensed-Light.woff2": "/build/fonts/RobotoCondensed-Light.14500063.woff2",
-  "build/fonts/Roboto-Thin.woff2": "/build/fonts/Roboto-Thin.8e9578cc.woff2",
-  "build/vendors-node_modules_aos_dist_aos_js-node_modules_core-js_modules_es_array_for-each_js-node_m-4dae5a.css": "/build/vendors-node_modules_aos_dist_aos_js-node_modules_core-js_modules_es_array_for-each_js-node_m-4dae5a.css",
-  "build/vendors-node_modules_aos_dist_aos_js-node_modules_core-js_modules_es_array_for-each_js-node_m-4dae5a.js": "/build/vendors-node_modules_aos_dist_aos_js-node_modules_core-js_modules_es_array_for-each_js-node_m-4dae5a.js"
+  "build/fonts/Roboto-Thin.woff2": "/build/fonts/Roboto-Thin.8e9578cc.woff2"
 }
