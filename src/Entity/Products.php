@@ -22,14 +22,20 @@ class Products
     #[ORM\Column(length: 255)]
     private ?string $product_url = null;
 
+    #[ORM\Column]
+    private ?bool $product_old = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_thumb = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $product_thumb_hover = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $product_meta_title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $product_meta_desc = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $product_thumb = null;
 
     #[ORM\OneToMany(mappedBy: 'doc_product_id', targetEntity: Documentation::class)]
     private Collection $documentations;
@@ -224,6 +230,30 @@ class Products
     public function setProductTricycle(string $product_tricycle): self
     {
         $this->product_tricycle = $product_tricycle;
+
+        return $this;
+    }
+
+    public function getProductThumbHover(): ?string
+    {
+        return $this->product_thumb_hover;
+    }
+
+    public function setProductThumbHover(string $product_thumb_hover): self
+    {
+        $this->product_thumb_hover = $product_thumb_hover;
+
+        return $this;
+    }
+
+    public function isProductOld(): ?bool
+    {
+        return $this->product_old;
+    }
+
+    public function setProductOld(bool $product_old): self
+    {
+        $this->product_old = $product_old;
 
         return $this;
     }

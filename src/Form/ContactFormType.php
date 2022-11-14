@@ -51,6 +51,8 @@ class ContactFormType extends AbstractType
                     'Catégorie de la demande' => null,
                     'Contacter le service commercial' => 'Contacter le service commercial',
                     'Déposer ma candidature' => 'Déposer ma candidature',
+                    'Contacter le SAV' => 'Contacter le SAV',
+                    'Autre' => 'Autre',
                 ],
                 'label' => false
             ])

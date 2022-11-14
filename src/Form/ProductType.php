@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Products;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,8 +24,18 @@ class ProductType extends AbstractType
             ->add('product_name', TextType::class, [
                 'label' => 'Nom du produit'
             ])
+            ->add('product_old', CheckboxType::class, [
+                'label' => 'Produit ancien',
+                'required' => false
+            ])
             ->add('product_thumb', DropzoneType::class, [
                 'label' => 'Image du produit',
+                'mapped' => false,
+                'required' => false,
+                'empty_data' => '',
+            ])
+            ->add('product_thumb_hover', DropzoneType::class, [
+                'label' => 'Image du produit au survol',
                 'mapped' => false,
                 'required' => false,
                 'empty_data' => '',

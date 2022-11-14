@@ -49,10 +49,12 @@ class AdminProductsController extends AbstractController
             $accessoiries = $form['product_access_imgs']->getData();
             $gallery = $form['product_gallery_imgs']->getData();
             $thumb = $form['product_thumb']->getData();
+            $thumbHover = $form['product_thumb_hover']->getData();
             $slug = $slugify->slugify($form['product_name']->getData());
             $product->setProductId($slug);
             $product->setProductUrl($slug);
             $product->setProductThumb(pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION));
+            $product->setProductThumbHover(pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumbHover->getClientOriginalName(), PATHINFO_EXTENSION));
 
             // Création des TWIG
             mkdir($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug);
@@ -136,19 +138,26 @@ class AdminProductsController extends AbstractController
                 $entityManager->persist($image);
             }
 
-            foreach($thumb as $file){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
+            $fileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileExtention = pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION);
+            $uploadedFile = $thumb;
+            $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
+            $newFilename = $fileName . '.' . $fileExtention;
+            $uploadedFile->move(
+                $directory,
+                $newFilename
+            );
 
-                // Ajout du fichier
-                $uploadedFile = $file;
-                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
-                $newFilename = $fileName . '.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
-                    $newFilename
-                );
-            }
+
+            $fileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
+            $fileExtention = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_EXTENSION);
+            $uploadedFile = $thumbHover;
+            $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
+            $newFilename = $fileName . '.' . $fileExtention;
+            $uploadedFile->move(
+                $directory,
+                $newFilename
+            );
 
             $entityManager->persist($product);
             $entityManager->flush();
@@ -176,6 +185,7 @@ class AdminProductsController extends AbstractController
         $productId = $product->getProductId();
         $productUrl = $product->getProductUrl();
         $productThumb = $product->getProductThumb();
+        $productThumbHover = $product->getProductThumbHover();
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
         
@@ -220,6 +230,7 @@ class AdminProductsController extends AbstractController
             $accessoiries = $form['product_access_imgs']->getData();
             $gallery = $form['product_gallery_imgs']->getData();
             $thumb = $form['product_thumb']->getData();
+            $thumbHover = $form['product_thumb_hover']->getData();
 
             foreach($coloris as $file){
                 $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -301,6 +312,25 @@ class AdminProductsController extends AbstractController
             } else {
                 $product->setProductThumb($productThumb);
             }
+
+            if ($thumbHover) {
+                $uploadedFileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumbHover->getClientOriginalName(), PATHINFO_EXTENSION);
+                $product->setProductThumbHover($uploadedFileName);
+                
+                $fileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
+                $fileExtention = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_EXTENSION);
+
+                // Ajout du fichier
+                $uploadedFile = $thumbHover;
+                $directory = $this->getParameter('kernel.project_dir') . '/public/uploads/products/thumbs';
+                $newFilename = $fileName . '.' . $fileExtention;
+                $uploadedFile->move(
+                    $directory,
+                    $newFilename
+                );
+            } else {
+                $product->setProductThumb($productThumbHover);
+            }
             
             $entityManager->persist($product);
             $entityManager->flush();
@@ -316,6 +346,7 @@ class AdminProductsController extends AbstractController
             'productCaracFile' => $productCaracFile,
             'productDimsFile' => $productDimsFile,
             'productThumb' => $productThumb,
+            'productThumbHover' => $productThumbHover,
         ]);
     }
 

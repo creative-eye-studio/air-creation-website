@@ -7,7 +7,7 @@
     overflow: hidden;
     .image{
         width: 100%;
-        padding-top: 100%;
+        padding-top: 75%;
         margin-bottom: $marges-m;
         position: relative;
         img{
@@ -50,6 +50,15 @@
             margin-bottom: calc(#{$marges-d-y} / 3);
             font-size: 1.75vw;
             font-weight: 400;
+        }
+        .swiper-slide{
+            &:nth-child(even){
+                display: flex;
+                flex-direction: column-reverse;
+                .text{
+                    margin-bottom: $marges-m;
+                }
+            }
         }
     }
 }

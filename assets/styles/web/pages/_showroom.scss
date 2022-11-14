@@ -29,6 +29,16 @@
         padding: 1rem;
         margin-bottom: 1rem;
     }
+    @media screen and (min-width:1024px) {
+        form{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            .input-block{
+                width: calc(33.33% - (#{$marges-m} / 2));
+            }
+        }
+    }
 }
 
 .product-block{
@@ -48,6 +58,9 @@
             left: 0;    
             object-fit: cover;
             height: 100%;
+            &.thumb-hover{
+                display: none;
+            }
         }
     }
     h2{
@@ -60,6 +73,25 @@
     @media screen and (min-width: 1024px) {
         padding: calc(#{$marges-d-x} * .5);
         width: 25%;
+    }
+    @media screen and (min-width:1200px) {
+        .image{
+            img{
+                &.thumb-hover{
+                    display: block;
+                    transition-duration: .5s;
+                }
+            }
+        }
+        &:hover{
+            .image{
+                img{
+                    &.thumb-hover{
+                        opacity: 0;
+                    }
+                }
+            }
+        }
     }
 }
 

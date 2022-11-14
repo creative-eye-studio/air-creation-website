@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PartnersRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PartnersRepository::class)]
@@ -52,8 +53,8 @@ class Partners
     #[ORM\Column(length: 255)]
     private ?string $manager = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $import = null;
+    #[ORM\Column(length: 255, type: "string", columnDefinition: "ENUM('Revendeur', 'Importateur', 'Station technique')", nullable: true)]
+    private ?string $partner_roles = null;
 
     public function getId(): ?int
     {
@@ -216,14 +217,14 @@ class Partners
         return $this;
     }
 
-    public function isImport(): ?bool
+    public function getPartnerRoles(): ?string
     {
-        return $this->import;
+        return $this->partner_roles;
     }
 
-    public function setImport(?bool $import): self
+    public function setPartnerRoles(?string $partner_roles): self
     {
-        $this->import = $import;
+        $this->partner_roles = $partner_roles;
 
         return $this;
     }

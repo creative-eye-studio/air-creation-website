@@ -1,6 +1,4 @@
 .partners-container{
-    padding: $marges-m;
-    max-width: 1400px;
     margin: auto;
     .partners-map{
         display: none;
@@ -29,9 +27,6 @@
             width: 30%;
             overflow-y: scroll;
         }
-    }
-    @media screen and (min-width:1200px) {
-        padding: $marges-d-y $marges-d-x;
     }
 }
 

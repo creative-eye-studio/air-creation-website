@@ -22,9 +22,19 @@
                     {{ form_widget(form.product_name) }}
                 </p>
                 <p>
+                    {{ form_widget(form.product_old) }}
+                    {{ form_label(form.product_old) }}
+                </p>
+                <p>
                     {{ form_label(form.product_thumb) }}<br />
                     {{ form_widget(form.product_thumb, {
                         value: productThumb
+                    }) }}
+                </p>
+                <p>
+                    {{ form_label(form.product_thumb_hover) }}<br />
+                    {{ form_widget(form.product_thumb_hover, {
+                        value: productThumbHover
                     }) }}
                 </p>
                 <p>
