@@ -13,11 +13,21 @@
 }
 
 .info-block-action{
+    overflow: hidden;
     .text{
         padding: $marges-m
     }
     .image{
         @include coverImage('4-3');
+        svg{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            path{
+                fill: $p-color;
+            }
+        }
     }
     @media screen and (min-width: 768px) {
         display: flex;
