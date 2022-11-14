@@ -53,9 +53,6 @@ class Partners
     #[ORM\Column(length: 255)]
     private ?string $manager = null;
 
-    #[ORM\Column(length: 255, type: "string", columnDefinition: "ENUM('Revendeur', 'Importateur', 'Station technique')", nullable: true)]
-    private ?string $partner_roles = null;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -213,18 +210,6 @@ class Partners
     public function setManager(string $manager): self
     {
         $this->manager = $manager;
-
-        return $this;
-    }
-
-    public function getPartnerRoles(): ?string
-    {
-        return $this->partner_roles;
-    }
-
-    public function setPartnerRoles(?string $partner_roles): self
-    {
-        $this->partner_roles = $partner_roles;
 
         return $this;
     }
