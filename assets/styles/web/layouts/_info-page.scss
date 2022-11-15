@@ -1,5 +1,8 @@
 .info-block-intro-container{
     background-color: $bw-color-2;
+    video{
+        width: 100%;
+    }
 }
 
 .info-block-intro{
@@ -9,6 +12,13 @@
         padding: $marges-d-y 0;
         margin: auto;
         max-width: 1200px;
+    }
+}
+
+.marge-block{
+    padding: $marges-m;
+    @media screen and (min-width:1024px) {
+        padding: $marges-d-y $marges-d-x;
     }
 }
 

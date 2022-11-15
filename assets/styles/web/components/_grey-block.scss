@@ -1,0 +1,6 @@
+.marge-block{
+    padding: $marges-m;
+    @media screen and (min-width:1024px) {
+        padding: $marges-d-y $marges-d-x;
+    }
+}
