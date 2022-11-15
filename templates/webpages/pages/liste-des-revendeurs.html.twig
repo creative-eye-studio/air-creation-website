@@ -24,8 +24,7 @@
     {% for reseller in resellers %}
     <div class="partner-block">
       <h3>
-        {{ reseller.name }} 
-        {% if reseller.import %}(Importateur){% endif %}
+        {{ reseller.name }}
       </h3>
       <p>{{ reseller.adress }}<br />
         {{ reseller.postcode }} - {{ reseller.city }}</p>
