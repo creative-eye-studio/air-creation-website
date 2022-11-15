@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Config\PartnerProfile;
 use App\Repository\PartnersRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -52,6 +53,9 @@ class Partners
 
     #[ORM\Column(length: 255)]
     private ?string $manager = null;
+
+    #[ORM\Column(length: 255, nullable: true, enumType: PartnerProfile::class)]
+    private ?array $partner_subcat = null;
 
     public function getId(): ?int
     {
@@ -210,6 +214,18 @@ class Partners
     public function setManager(string $manager): self
     {
         $this->manager = $manager;
+
+        return $this;
+    }
+
+    public function getPartnerSubcat(): ?array
+    {
+        return $this->partner_subcat;
+    }
+
+    public function setPartnerSubcat(?array $partner_subcat): self
+    {
+        $this->partner_subcat = $partner_subcat;
 
         return $this;
     }

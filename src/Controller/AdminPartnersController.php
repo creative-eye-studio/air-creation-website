@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminPartnersController extends AbstractController
 {
+
     #[Route('/admin/partners', name: 'app_admin_partners')]
     public function index(ManagerRegistry $doctrine): Response
     {
