@@ -54,3 +54,55 @@
         flex: calc(25% - (#{$marges-d-x} / 2));
     }
 }
+
+.innov-blocks-container{
+    padding: $marges-m;
+    .block{
+        background-color: $bw-color-2;
+        .image{
+            @include coverImage('4-3');
+        }
+        .text{
+            padding: $marges-m;
+            h2{
+                margin-bottom: 0;
+                font-size: 1.5em;
+                text-align: center;
+            }
+        }
+        &:not(:last-child){
+            margin-bottom: $marges-m;
+        }
+    }
+    @media screen and (min-width:768px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        row-gap: $marges-m;
+        .block{
+            width: calc(50% - #{$marges-m} / 2);
+            &:not(:last-child){
+                margin-bottom: 0;
+            }
+        }
+    }
+    @media screen and (min-width:1024px) {
+        padding: $marges-d-y $marges-d-x;
+        align-items: flex-start;
+        .block{
+            width: calc(25% - #{$marges-m} / 2);
+            &:not(:last-child){
+                margin-bottom: 0;
+            }
+        }
+    }
+    @media screen and (min-width:1200px){
+        column-gap: $marges-d-x;
+        .block{
+            width: calc(25% - #{$marges-d-x} / 1.25);
+            &:not(:last-child){
+                margin-bottom: 0;
+            }
+        }
+    }
+}
