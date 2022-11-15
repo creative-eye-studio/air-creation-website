@@ -41,8 +41,8 @@
         margin-bottom: $marges-m;
     }
     @media screen and (min-width:768px) {
-        padding-top: calc(175% / 3);
-        width: calc(33.33% - (#{$marges-m} / 1.33));
+        padding-top: calc(175% / 4);
+        width: calc(25% - (#{$marges-d-x} / 1.25));
         a{
             padding: 2rem;
             font-size: 1.75em;
@@ -53,8 +53,7 @@
         }
     }
     @media screen and (min-width:1024px) {
-        padding-top: calc(75% / 3);
-        width: calc(33.33% - (#{$marges-d-x} / 1.33));
+        padding-top: calc(75% / 4);
     }
     @media screen and (min-width:1200px){
         &:hover{
