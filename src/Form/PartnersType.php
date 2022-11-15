@@ -3,11 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Partners;
+use App\Config\PartnerProfile;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\ChoiceList\Factory\Cache\ChoiceAttr;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
@@ -27,18 +27,12 @@ class PartnersType extends AbstractType
             ->add('manager', TextType::class, [
                 'label' => 'Gérant'
             ])
-            ->add('partner_roles', ChoiceType::class, [
+            ->add('partner_subcat', EnumType::class, [
                 'label' => 'Sous catégorie (Optionnel)',
                 'multiple' => true,
                 'expanded' => true,
                 'required' => false,
-                'data_class' => null,
-                'empty_data' => "",
-                'choices' => [
-                    "Revendeur" => "Revendeur",
-                    "Importateur" => "Importateur",
-                    "Station technique" => "Station technique",
-                ]
+                'class' => PartnerProfile::class
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email de la société'
