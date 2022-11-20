@@ -6,93 +6,88 @@
     <section class="block tab-container">
         <h2>Ajouter un nouveau produit</h2>
         <ul class="tabs-btn tabs">
-            <li><a class="tab active">Résumé</a></li>
-            <li><a class="tab">Critères de recherche</a></li>
-            <li><a class="tab">Images</a></li>
+            <li><a class="tab active">Champs obligatoires</a></li>
+            <li><a class="tab">Blocks principaux</a></li>
+            <li><a class="tab">Galeries</a></li>
             <li><a class="tab">Description</a></li>
-            <li><a class="tab">Dimensions</a></li>
             <li><a class="tab">Caractéristiques</a></li>
+            <li><a class="tab">Dimensions</a></li>
+            <li><a class="tab">Critères de recherche</a></li>
             <li><a class="tab">SEO</a></li>
         </ul>
         {{ form_start(form, { 'attr' : {'class': 'tab-panes'} }) }}
-            <!-- Résumé -->
+            <!-- Champs obligatoires -->
             <div class="tab-pane active">
-                <p>
-                    {{ form_label(form.product_name) }}<br />
-                    {{ form_widget(form.product_name) }}
-                </p>
-                <p>
-                    {{ form_widget(form.product_old) }}
-                    {{ form_label(form.product_old) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_thumb) }}<br />
-                    {{ form_widget(form.product_thumb) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_thumb_hover) }}<br />
-                    {{ form_widget(form.product_thumb_hover) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_intro) }}<br />
-                    {{ form_widget(form.product_intro) }}
-                </p>
+                {{ form_row(form.product_name) }}
+                {{ form_row(form.product_motors) }}
+                {{ form_row(form.product_old) }}
+                {{ form_row(form.product_logo) }}
+                {{ form_row(form.product_thumb) }}
+                {{ form_row(form.product_thumb_hover) }}
+                {{ form_row(form.product_intro) }}
             </div>
 
-            <!-- Critères de recherche -->
+            <!-- Blocks principaux -->
             <div class="tab-pane">
-                <p>
-                    {{ form_label(form.product_capacity) }}<br />
-                    {{ form_widget(form.product_capacity) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_wing) }}<br />
-                    {{ form_widget(form.product_wing) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_tricycle) }}<br />
-                    {{ form_widget(form.product_tricycle) }}
-                </p>
+                {{ form_row(form.product_max_speed) }}
+                {{ form_row(form.product_stall_speed) }}
+                {{ form_row(form.product_mass_speed) }}
+                {{ form_row(form.product_consumption) }}
             </div>
 
-            <!-- Images-->
+            <!-- Galeries-->
             <div class="tab-pane">
-                <p>
-                    {{ form_label(form.product_color_imgs) }}<br />
-                    {{ form_widget(form.product_color_imgs) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_access_imgs) }}<br />
-                    {{ form_widget(form.product_access_imgs) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_gallery_imgs) }}<br />
-                    {{ form_widget(form.product_gallery_imgs) }}
-                </p>
+                {{ form_row(form.fly_gallery) }}
+                {{ form_row(form.lifestyle_gallery) }}
+                {{ form_row(form.workshop_gallery) }}
             </div>
 
             <!-- Description -->
             <div class="tab-pane">
-                <p>
-                    {{ form_label(form.product_desc) }}<br />
-                    {{ form_widget(form.product_desc) }}
-                </p>
-            </div>
-
-            <!-- Dimensions -->
-            <div class="tab-pane">
-                <p>
-                    {{ form_label(form.product_dims) }}<br />
-                    {{ form_widget(form.product_dims) }}
-                </p>
+                {{ form_row(form.product_desc) }}
             </div>
 
             <!-- Caractéristiques -->
             <div class="tab-pane">
-                <p>
-                    {{ form_label(form.product_carac) }}<br />
-                    {{ form_widget(form.product_carac) }}
-                </p>
+                {{ form_row(form.product_carac_1) }}
+                {{ form_row(form.product_carac_2) }}
+                {{ form_row(form.product_carac_3) }}
+                {{ form_row(form.product_carac_4) }}
+                {{ form_row(form.product_carac_5) }}
+                {{ form_row(form.product_carac_6) }}
+                {{ form_row(form.product_carac_7) }}
+                {{ form_row(form.product_carac_8) }}
+                {{ form_row(form.product_carac_9) }}
+                {{ form_row(form.product_carac_10) }}
+                {{ form_row(form.product_carac_11) }}
+                {{ form_row(form.product_carac_12) }}
+                {{ form_row(form.product_carac_13) }}
+                {{ form_row(form.product_carac_14) }}
+                {{ form_row(form.product_carac_15) }}
+                {{ form_row(form.product_carac_16) }}
+                {{ form_row(form.product_carac_17) }}
+                {{ form_row(form.product_carac_18) }}
+                {{ form_row(form.product_carac_19) }}
+                {{ form_row(form.product_carac_20) }}
+                {{ form_row(form.product_carac_21) }}
+                {{ form_row(form.product_carac_22) }}
+                {{ form_row(form.product_carac_23) }}
+                {{ form_row(form.product_carac_24) }}
+                {{ form_row(form.product_carac_25) }}
+                {{ form_row(form.product_carac_26) }}
+                {{ form_row(form.product_carac_27) }}
+            </div>
+
+            <!-- Dimensions -->
+            <div class="tab-pane">
+                {{ form_row(form.product_dim) }}
+            </div>
+
+            <!-- Critères de recherche -->
+            <div class="tab-pane">
+               {{ form_row(form.product_capacity) }}
+               {{ form_row(form.product_wing) }}
+               {{ form_row(form.product_tricycle) }}
             </div>
 
             <!-- SEO -->
@@ -106,6 +101,7 @@
                     {{ form_widget(form.product_meta_desc) }}
                 </p>
             </div>
+
             <p>{{ form_widget(form.product_submit) }}</p>
         {{ form_end(form) }}
     </section>
@@ -116,14 +112,6 @@
     <script>
         CKEDITOR.instances["product_product_intro"].destroy();
         CKEDITOR.replace( 'product_product_intro', {
-        	startupMode: 'wysiwyg'
-        });
-        CKEDITOR.instances["product_product_dims"].destroy();
-        CKEDITOR.replace( 'product_product_dims', {
-        	startupMode: 'wysiwyg'
-        });
-        CKEDITOR.instances["product_product_carac"].destroy();
-        CKEDITOR.replace( 'product_product_carac', {
         	startupMode: 'wysiwyg'
         });
         CKEDITOR.instances["product_product_desc"].destroy();

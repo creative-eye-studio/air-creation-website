@@ -20,3 +20,17 @@ var container = document.querySelector('.tab-container');
 if (container != null) {
     tabs(container);
 }
+
+
+/* CARACTERISTIQUES
+--------------------------------------------*/
+var caracBtn = document.querySelector('#add-carac-btn');
+var inputBlock = document.querySelector('.carac-panel:last-child');
+const containerCarac = document.querySelector('.carac-panel-container')
+
+caracBtn.onclick = function(){
+    var clone = inputBlock.cloneNode(true);
+    containerCarac.append(clone);
+    console.log("Cliqué");
+    return false;
+};

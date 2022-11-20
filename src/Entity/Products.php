@@ -55,10 +55,30 @@ class Products
     #[ORM\Column(length: 255)]
     private ?string $product_tricycle = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_max_speed = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_stall_speed = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_mass_speed = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_consumption = null;
+
+    #[ORM\OneToMany(mappedBy: 'carac_id', targetEntity: ProductsCarac::class)]
+    private Collection $productsCaracs;
+
+    #[ORM\OneToMany(mappedBy: 'motor_product', targetEntity: ProductsMotors::class)]
+    private Collection $productsMotors;
+
     public function __construct()
     {
         $this->documentations = new ArrayCollection();
         $this->productsImages = new ArrayCollection();
+        $this->productsCaracs = new ArrayCollection();
+        $this->productsMotors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -254,6 +274,114 @@ class Products
     public function setProductOld(bool $product_old): self
     {
         $this->product_old = $product_old;
+
+        return $this;
+    }
+
+    public function getProductMaxSpeed(): ?string
+    {
+        return $this->product_max_speed;
+    }
+
+    public function setProductMaxSpeed(?string $product_max_speed): self
+    {
+        $this->product_max_speed = $product_max_speed;
+
+        return $this;
+    }
+
+    public function getProductStallSpeed(): ?string
+    {
+        return $this->product_stall_speed;
+    }
+
+    public function setProductStallSpeed(?string $product_stall_speed): self
+    {
+        $this->product_stall_speed = $product_stall_speed;
+
+        return $this;
+    }
+
+    public function getProductMassSpeed(): ?string
+    {
+        return $this->product_mass_speed;
+    }
+
+    public function setProductMassSpeed(?string $product_mass_speed): self
+    {
+        $this->product_mass_speed = $product_mass_speed;
+
+        return $this;
+    }
+
+    public function getProductConsumption(): ?string
+    {
+        return $this->product_consumption;
+    }
+
+    public function setProductConsumption(?string $product_consumption): self
+    {
+        $this->product_consumption = $product_consumption;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductsCarac>
+     */
+    public function getProductsCaracs(): Collection
+    {
+        return $this->productsCaracs;
+    }
+
+    public function addProductsCarac(ProductsCarac $productsCarac): self
+    {
+        if (!$this->productsCaracs->contains($productsCarac)) {
+            $this->productsCaracs->add($productsCarac);
+            $productsCarac->setCaracId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductsCarac(ProductsCarac $productsCarac): self
+    {
+        if ($this->productsCaracs->removeElement($productsCarac)) {
+            // set the owning side to null (unless already changed)
+            if ($productsCarac->getCaracId() === $this) {
+                $productsCarac->setCaracId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProductsMotors>
+     */
+    public function getProductsMotors(): Collection
+    {
+        return $this->productsMotors;
+    }
+
+    public function addProductsMotor(ProductsMotors $productsMotor): self
+    {
+        if (!$this->productsMotors->contains($productsMotor)) {
+            $this->productsMotors->add($productsMotor);
+            $productsMotor->setMotorProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductsMotor(ProductsMotors $productsMotor): self
+    {
+        if ($this->productsMotors->removeElement($productsMotor)) {
+            // set the owning side to null (unless already changed)
+            if ($productsMotor->getMotorProduct() === $this) {
+                $productsMotor->setMotorProduct(null);
+            }
+        }
 
         return $this;
     }

@@ -11,105 +11,204 @@
 
 {% block body %}
 
-    {% include "webpages/common_blocks/header.html.twig" %}
+    {% include "webpages/blocks/header.html.twig" %}
+
     <main id="swup">
-        <!-- Block 1 -->
-        <div class="product-block-1">
-            <!-- Modèle 3D -->
-            <div id="product-3d-viewer">
-                <img src="../../uploads/products/thumbs/{{ productThumb }}" alt="{{ productName }}" />
+        <!-- Main Image & Intro -->
+        <section class="product-main-block">
+            <div class="image">
+                <figure>
+                    <img src="../../uploads/images/products/thumbs/test.jpg" alt="" />
+                </figure>
+                <select>
+                    <option value="">Motorisation</option>
+                    {% for motor in motors %}
+                    <option value="">{{ motor.motorname }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            <!-- Intro Block -->
-            <section class="product-intro">
-                <div class="product-intro-content">
-                    <!-- Intro Title -->
-                    <h1>{{ productName }}</h1>
-                    <!-- Intro Text -->
-                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-intro.html.twig" %}
-                    <!-- Intro Buttons -->
-                    <div class="btn-list">
+            <div class="intro">
+                <!-- Logo -->
+                <img src="../../uploads/images/products/logos/test.jpg" alt="" />
+                <!-- Texte -->
+                {% include "webpages/products/#{product.productid}-intro.html.twig" %}
+                <!-- Blocks -->
+                <div class="main-blocks-container">
+                    <!-- Vitesse -->
+                    <div class="main-block">
+                        <p> 
+                            Vitesse max<br />
+                            {{ product.productmaxspeed }}
+                        </p>
+                    </div>
+                    <!-- Décrochage -->
+                    <div class="main-block">
                         <p>
-                            <a class="btn" href="">Voir la documentation</a>
+                            Vitesse de décrochage<br />
+                            {{ product.productstallspeed }}
+                        </p>
+                    </div>
+                    <!-- Masse max -->
+                    <div class="main-block">
+                        <p>
+                            Masse maximale<br />
+                            {{ product.productmassspeed }}
+                        </p>
+                    </div>
+                    <!-- Consommation -->
+                    <div class="main-block">
+                        <p>
+                            Consommation<br />
+                            {{ product.productconsumption }}
                         </p>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+
+        <!-- Tabs Images -->
+        <div class="images-tabs-container">
+
+            <!-- Buttons Tabs -->
+            <ul class="tabs">
+                <li><a class="tab active">Galerie « En vol »</a></li>
+                <li><a class="tab">Galerie « Lifestyle »</a></li>
+                <li><a class="tab">Galerie « L’atelier »</a></li>
+            </ul>
+
+            <!-- Tabs Blocks -->
+            <div class="tab-panes">
+                <div class="tab-pane active">
+                    <div class="swiper gallery-vol">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="../../uploads/images/products/carousels/fly/test.jpg" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://picsum.photos/390/260" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://picsum.photos/390/260" alt="" />
+                            </div>
+                        </div>
+                        <div class="vol-button-next swiper-btn next">
+                            <i class="fa-solid fa-chevron-right fa-3x"></i>
+                        </div>
+                        <div class="vol-button-prev swiper-btn prev">
+                            <i class="fa-solid fa-chevron-left fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane">
+                    <div class="swiper gallery-lifestyle">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="../../uploads/images/products/carousels/lifestyle/test.jpg" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://picsum.photos/390/260" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://picsum.photos/390/260" alt="" />
+                            </div>
+                        </div>
+                        <div class="lifestyle-button-next swiper-btn next">
+                            <i class="fa-solid fa-chevron-right fa-3x"></i>
+                        </div>
+                        <div class="lifestyle-button-prev swiper-btn prev">
+                            <i class="fa-solid fa-chevron-left fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane">
+                    <div class="swiper gallery-atelier">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="../../uploads/images/products/carousels/workshop/test.jpg" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://picsum.photos/390/260" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="https://picsum.photos/390/260" alt="" />
+                            </div>
+                        </div>
+                        <div class="atelier-button-next swiper-btn next">
+                            <i class="fa-solid fa-chevron-right fa-3x"></i>
+                        </div>
+                        <div class="atelier-button-prev swiper-btn prev">
+                            <i class="fa-solid fa-chevron-left fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
-        <!-- Block Images -->
-        <div class="product-block-images">
-        <!-- Slider Coloris -->
-            <div class="swiper slider-images slider-coloris">
-                <div class="swiper-wrapper">
-                    {% for image in images %}
-                        {% if image.imagetype == 0 %}
-                            <figure class="swiper-slide slider-block">
-                                <img src="../../uploads/products/coloris/{{ image.imagename }}" alt="" />
-                            </figure>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-            <!-- Slider Accessoires -->
-            <div class="swiper slider-images slider-accessoiries">
-                <div class="swiper-wrapper">
-                    {% for image in images %}
-                        {% if image.imagetype == 1 %}
-                            <figure class="swiper-slide slider-block">
-                                <img src="../../uploads/products/accessoiries/{{ image.imagename }}" alt="" />
-                            </figure>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-            <!-- Slider Galerie -->
-            <div class="swiper slider-images slider-accessoiries">
-                <div class="swiper-wrapper">
-                    {% for image in images %}
-                        {% if image.imagetype == 2 %}
-                            <figure class="swiper-slide slider-block">
-                                <img src="../../uploads/products/gallery/{{ image.imagename }}" alt="" />
-                            </figure>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-        </div>
+        <!-- Tabs Content -->
+        <div class="content-tabs-container">
 
-
-        <!-- Block 2 -->
-        <div class="product-block-2 tab-container">
-
-            <ul class="product-tab-list tabs">
+            <!-- Buttons Tabs -->
+            <ul class="tabs">
                 <li><a class="tab active">Description</a></li>
                 <li><a class="tab">Caractéristiques</a></li>
                 <li><a class="tab">Dimensions</a></li>
             </ul>
-            
+
+            <!-- Tabs Blocks -->
             <div class="tab-panes">
-
-                <div class="tab-pane desc-pane active">
-                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-desc.html.twig" %}
+                <!-- Tab Description -->
+                <div class="tab-pane active">
+                    <section class="desc-container">
+                        {% include "webpages/products/#{product.productid}-desc.html.twig" %}
+                    </section>
                 </div>
-
-                <div class="tab-pane carac-pane">
-                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-carac.html.twig" %}
+                <!-- Tab Caractéristiques -->
+                <div class="tab-pane">
+                    <div class="carac-block-container">
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Test</p>
+                        </div>
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Test</p>
+                        </div>
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Test</p>
+                        </div>
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Test</p>
+                        </div>
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Test</p>
+                        </div>
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Test</p>
+                        </div>
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Test</p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="tab-pane dim-pane">
-                    {% include "webpages/products/#{productFolderId}/#{productFolderId}-dims.html.twig" %}
+                <!-- Tab Dimensions -->
+                <div class="tab-pane">
+                    <div class="dims-container">
+                        <h2>Dimensions</h2>
+                        <img src="../../uploads/images/products/dimensions/test.jpg" alt="" />
+                    </div>
                 </div>
             </div>
         </div>
     </main>
     
-    {% include "webpages/common_blocks/footer.html.twig" %}
+    {% include "webpages/blocks/footer.html.twig" %}
 
 {% endblock %}

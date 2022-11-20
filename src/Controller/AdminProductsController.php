@@ -4,11 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Products;
 use App\Entity\ProductsImages;
+use App\Entity\ProductsMotors;
 use App\Form\ProductType;
-use App\Service\ProductForm;
 use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,125 +43,141 @@ class AdminProductsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
+            // Récupération des données du formulaire
+            $product = $form->getData();
 
-            // Envoi vers la Database
-            $coloris = $form['product_color_imgs']->getData();
-            $accessoiries = $form['product_access_imgs']->getData();
-            $gallery = $form['product_gallery_imgs']->getData();
-            $thumb = $form['product_thumb']->getData();
-            $thumbHover = $form['product_thumb_hover']->getData();
-            $slug = $slugify->slugify($form['product_name']->getData());
-            $product->setProductId($slug);
-            $product->setProductUrl($slug);
-            $product->setProductThumb(pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION));
-            $product->setProductThumbHover(pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumbHover->getClientOriginalName(), PATHINFO_EXTENSION));
+            // Création du slug
+            $slugify = new Slugify();
+            $slugName = $slugify->slugify($form->get('product_name')->getData());
+
+            // Création de l'ID Page
+            $product->setProductId($slugName);
+
+            // Création de l'URL
+            $product->setProductUrl($slugName);
+
+            // Création du Meta Title
+            if (!$form->get('product_meta_title')->getData()) {
+                $product->setProductMetaTitle($form->get('product_name')->getData());
+            } else {
+                $product->setProductMetaTitle($product->setPageMetaTitle($form->get('product_meta_title')->getData()));
+            }
 
             // Création des TWIG
-            mkdir($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug);
-            
-            $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-intro.html.twig', 'w');
-            fwrite($file, $form['product_intro']->getData());
-            fclose($file);
+            $fileIntro = fopen("../templates/webpages/products/" . $slugName . '-intro.html.twig', 'w');
+            fwrite($fileIntro, $form->get('product_intro')->getData());
+            fclose($fileIntro);
 
-            $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-desc.html.twig', 'w');
-            fwrite($file, $form['product_desc']->getData());
-            fclose($file);
-
-            $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-dims.html.twig', 'w');
-            fwrite($file, $form['product_dims']->getData());
-            fclose($file);
-
-            $file = fopen($this->getParameter('kernel.project_dir') . "/templates/webpages/products/" . $slug . "/" . $slug . '-carac.html.twig', 'w');
-            fwrite($file, $form['product_carac']->getData());
-            fclose($file);
+            $fileDesc = fopen("../templates/webpages/products/" . $slugName . '-desc.html.twig', 'w');
+            fwrite($fileDesc, $form->get('product_desc')->getData());
+            fclose($fileDesc);
 
             // Création des images
-            foreach($coloris as $file){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-
-                // Ajout du fichier
-                $uploadedFile = $file;
-                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/coloris';
-                $newFilename = $fileName . '-color.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
+            $file = $form->get('product_logo')->getData();
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFilename);
+            $newFilename = $safeFilename .'.'. $file->guessExtension();
+            try {
+                $file->move(
+                    $this->getParameter('logos_directory'),
                     $newFilename
                 );
-
-                $image = new ProductsImages();
-                $entityManager = $doctrine->getManager();
-                $image->setImageName($newFilename);
-                $image->setImageProduct($product);
-                $image->setImageType(0);
-                
-                $entityManager->persist($image);
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
             }
 
-            foreach($accessoiries as $file){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-
-                // Ajout du fichier
-                $uploadedFile = $file;
-                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/accessoiries';
-                $newFilename = $fileName . '-access.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
+            $file = $form->get('product_thumb')->getData();
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFilename);
+            $newFilename = $safeFilename . '.' . $file->guessExtension();
+            try {
+                $file->move(
+                    $this->getParameter('thumbs_directory'),
                     $newFilename
                 );
-
-                $image = new ProductsImages();
-                $image->setImageName($newFilename);
-                $image->setImageProduct($product);
-                $image->setImageType(1);
-                $entityManager->persist($image);
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
             }
 
-            foreach($gallery as $file){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-
-                // Ajout du fichier
-                $uploadedFile = $file;
-                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/gallery';
-                $newFilename = $fileName . '-gallery.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
+            $file = $form->get('product_thumb_hover')->getData();
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFilename);
+            $newFilename = $safeFilename . '-hover.' . $file->guessExtension();
+            try {
+                $file->move(
+                    $this->getParameter('thumbs_directory'),
                     $newFilename
                 );
-
-                $image = new ProductsImages();
-                $image->setImageName($newFilename);
-                $image->setImageProduct($product);
-                $image->setImageType(2);
-                $entityManager->persist($image);
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
             }
+            $product->setProductThumbHover($newFilename);
 
-            $fileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
-            $fileExtention = pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION);
-            $uploadedFile = $thumb;
-            $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
-            $newFilename = $fileName . '.' . $fileExtention;
-            $uploadedFile->move(
-                $directory,
-                $newFilename
-            );
+            if ($form->get('fly_gallery')->getData()) {
+                foreach($form->get('fly_gallery')->getData() as $image){
+                    $originalFilename = pathinfo($image, PATHINFO_FILENAME);
+                    $safeFilename = $slugify->slugify($originalFilename);
+                    $newFilename = $safeFilename . '.' . $image->guessExtension();
+                    try {
+                        $file->move(
+                            $this->getParameter('fly_gallery_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        // ... handle exception if something happens during file upload
+                    }
+                }
+            }
+            
+            if ($form->get('lifestyle_gallery')->getData()) {
+                foreach($form->get('lifestyle_gallery')->getData() as $image){
+                    $originalFilename = pathinfo($image, PATHINFO_FILENAME);
+                    $safeFilename = $slugify->slugify($originalFilename);
+                    $newFilename = $safeFilename . '.' . $image->guessExtension();
+                    try {
+                        $file->move(
+                            $this->getParameter('lifestyle_gallery_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        // ... handle exception if something happens during file upload
+                    }
+                }
+            }
+            
 
+            if ($form->get('workshop_gallery')->getData()) {
+                foreach($form->get('workshop_gallery')->getData() as $image){
+                    $originalFilename = pathinfo($image, PATHINFO_FILENAME);
+                    $safeFilename = $slugify->slugify($originalFilename);
+                    $newFilename = $safeFilename . '.' . $image->guessExtension();
+                    try {
+                        $file->move(
+                            $this->getParameter('workshop_gallery_directory'),
+                            $newFilename
+                        );
+                    } catch (FileException $e) {
+                        // ... handle exception if something happens during file upload
+                    }
+                }
+            }
+            
 
-            $fileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
-            $fileExtention = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_EXTENSION);
-            $uploadedFile = $thumbHover;
-            $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/thumbs';
-            $newFilename = $fileName . '.' . $fileExtention;
-            $uploadedFile->move(
-                $directory,
-                $newFilename
-            );
-
+            // Envoi vers la Database
+            $entityManager = $doctrine->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
+
+            // Création de la motorisation
+            $motors = explode(',', $form->get('product_motors')->getData(), -1);
+            foreach($motors as $motor){
+                $productMotor = new ProductsMotors();
+                $productMotor->setMotorName($motor);
+                $productMotor->setMotorProduct($product);
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($productMotor);
+                $entityManager->flush();
+            }
 
             // Redirection vers le produit crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
@@ -182,12 +199,6 @@ class AdminProductsController extends AbstractController
         $entityManager = $doctrine->getManager();
         $images = $entityManager->getRepository(ProductsImages::class)->findBy(['image_product' => $product_id]);
         $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
-        $productId = $product->getProductId();
-        $productUrl = $product->getProductUrl();
-        $productThumb = $product->getProductThumb();
-        $productThumbHover = $product->getProductThumbHover();
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
         
         if(!$product) {
             throw $this->createNotFoundException(
@@ -195,146 +206,24 @@ class AdminProductsController extends AbstractController
             );
         }
 
-        $productIntroFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-intro.html.twig");
-        $productDescFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-desc.html.twig");
-        $productCaracFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-carac.html.twig");
-        $productDimsFile = file_get_contents("../templates/webpages/products/" . $productId . "/" . $productId . "-dims.html.twig");
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+        
+        $productId = $product->getProductId();
+        $productUrl = $product->getProductUrl();
+        $productThumb = $product->getProductThumb();
+        $productThumbHover = $product->getProductThumbHover();
+
+        $productIntroFile = file_get_contents("../templates/webpages/products/" . $productId . "-intro.html.twig");
+        $productDescFile = file_get_contents("../templates/webpages/products/" . $productId . "-desc.html.twig");
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $doctrine->getManager();
-
-            // Création des TWIG
-            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-intro.html.twig', 'w');
-            fwrite($file, $form['product_intro']->getData());
-            fclose($file);
-
-            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-carac.html.twig', 'w');
-            fwrite($file, $form['product_carac']->getData());
-            fclose($file);
-
-            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-desc.html.twig', 'w');
-            fwrite($file, $form['product_desc']->getData());
-            fclose($file);
-
-            $file = fopen("../templates/webpages/products/" . $product->getProductId() . "/" . $product->getProductId() . '-dims.html.twig', 'w');
-            fwrite($file, $form['product_dims']->getData());
-            fclose($file);
-
-            // Envoi vers la Database
-            $slug = $slugify->slugify($form['product_name']->getData());
-            $product->setProductId($productId);
-            $product->setProductUrl($productUrl);
-
-            // Création des images
-            $coloris = $form['product_color_imgs']->getData();
-            $accessoiries = $form['product_access_imgs']->getData();
-            $gallery = $form['product_gallery_imgs']->getData();
-            $thumb = $form['product_thumb']->getData();
-            $thumbHover = $form['product_thumb_hover']->getData();
-
-            foreach($coloris as $file){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-
-                // Ajout du fichier
-                $uploadedFile = $file;
-                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/coloris';
-                $newFilename = $fileName . '-color.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
-                    $newFilename
-                );
-
-                $image = new ProductsImages();
-                $entityManager = $doctrine->getManager();
-                $image->setImageName($newFilename);
-                $image->setImageProduct($product);
-                $image->setImageType(0);
-                
-                $entityManager->persist($image);
-            }
-
-            foreach($accessoiries as $file){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-
-                // Ajout du fichier
-                $uploadedFile = $file;
-                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/accessoiries';
-                $newFilename = $fileName . '-access.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
-                    $newFilename
-                );
-
-                $image = new ProductsImages();
-                $image->setImageName($newFilename);
-                $image->setImageProduct($product);
-                $image->setImageType(1);
-                $entityManager->persist($image);
-            }
-
-            foreach($gallery as $file){
-                $fileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION);
-
-                // Ajout du fichier
-                $uploadedFile = $file;
-                $directory = $this->getParameter('kernel.project_dir').'/public/uploads/products/gallery';
-                $newFilename = $fileName . '-gallery.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
-                    $newFilename
-                );
-
-                $image = new ProductsImages();
-                $image->setImageName($newFilename);
-                $image->setImageProduct($product);
-                $image->setImageType(2);
-                $entityManager->persist($image);
-            }
-
-            if ($thumb) {
-                $uploadedFileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION);
-                $product->setProductThumb($uploadedFileName);
-                
-                $fileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($thumb->getClientOriginalName(), PATHINFO_EXTENSION);
-
-                // Ajout du fichier
-                $uploadedFile = $thumb;
-                $directory = $this->getParameter('kernel.project_dir') . '/public/uploads/products/thumbs';
-                $newFilename = $fileName . '.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
-                    $newFilename
-                );
-            } else {
-                $product->setProductThumb($productThumb);
-            }
-
-            if ($thumbHover) {
-                $uploadedFileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME) . '.' . pathinfo($thumbHover->getClientOriginalName(), PATHINFO_EXTENSION);
-                $product->setProductThumbHover($uploadedFileName);
-                
-                $fileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
-                $fileExtention = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_EXTENSION);
-
-                // Ajout du fichier
-                $uploadedFile = $thumbHover;
-                $directory = $this->getParameter('kernel.project_dir') . '/public/uploads/products/thumbs';
-                $newFilename = $fileName . '.' . $fileExtention;
-                $uploadedFile->move(
-                    $directory,
-                    $newFilename
-                );
-            } else {
-                $product->setProductThumb($productThumbHover);
-            }
             
+            // Envoi vers la Database
+            $entityManager = $doctrine->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
-
+            
             // Redirection vers le produit crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
         }
@@ -343,8 +232,6 @@ class AdminProductsController extends AbstractController
             'form' => $form->createView(),
             'productIntroFile' => $productIntroFile,
             'productDescFile' => $productDescFile,
-            'productCaracFile' => $productCaracFile,
-            'productDimsFile' => $productDimsFile,
             'productThumb' => $productThumb,
             'productThumbHover' => $productThumbHover,
         ]);

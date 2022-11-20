@@ -197,6 +197,16 @@ if (document.querySelector('.options-container') != undefined) {
   tabs(optionsContainer);
 }
 
+if (document.querySelector('.images-tabs-container') != undefined) {
+  var optionsContainer = document.querySelector('.images-tabs-container')
+  tabs(optionsContainer);
+}
+
+if (document.querySelector('.content-tabs-container') != undefined) {
+  var optionsContainer = document.querySelector('.content-tabs-container')
+  tabs(optionsContainer);
+}
+
 
 
 
@@ -340,4 +350,29 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     loop: true,
 });
 
-  
+const swiperGalleryVol = new Swiper('.gallery-vol', {
+  modules: [Navigation],
+  loop: true,
+  navigation: {
+    nextEl: ".vol-button-next",
+    prevEl: ".vol-button-prev",
+  },
+})
+
+const swiperGalleryLifestyle = new Swiper('.gallery-lifestyle', {
+  modules: [Navigation],
+  loop: true,
+  navigation: {
+    nextEl: ".lifestyle-button-next",
+    prevEl: ".lifestyle-button-prev",
+  },
+})
+
+const swiperGalleryAtelier = new Swiper('.gallery-atelier', {
+  modules: [Navigation],
+  loop: true,
+  navigation: {
+    nextEl: ".atelier-button-next",
+    prevEl: ".atelier-button-prev",
+  },
+})

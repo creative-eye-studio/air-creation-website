@@ -12,6 +12,7 @@ use App\Entity\Partners;
 use App\Entity\PostsList;
 use App\Entity\Products;
 use App\Entity\ProductsImages;
+use App\Entity\ProductsMotors;
 use App\Form\NewsletterFormType;
 use App\Form\ProductFilterType;
 use App\Service\ProductsFunctions;
@@ -107,6 +108,7 @@ class WebPagesOthersController extends AbstractController
         $product = $products_function->getProduct($doctrine, $product_slug);
         $entityManager = $doctrine->getManager();
         $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product]);
+        $motor = $entityManager->getRepository(ProductsMotors::class)->findBy(["motor_product" => $product]);
 
         dump($image);
 
@@ -123,6 +125,7 @@ class WebPagesOthersController extends AbstractController
 
         return $this->render('web_pages_others/product.html.twig', [
             'controller_name' => 'WebPagesOthersController',
+            'product' => $product,
             'contactForm' => $contactForm->createView(),
             'productName' => $product->getProductName(),
             'productThumb' => $product->getProductThumb(),
@@ -130,6 +133,7 @@ class WebPagesOthersController extends AbstractController
             'meta_desc' => $product->getProductMetaDesc(),
             'productFolderId' => $product->getProductId(),
             'images' => $image,
+            'motors' => $motor,
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType,
         ]);

@@ -1,98 +1,126 @@
-.product-block-1{
-    @media screen and (min-width:768px) {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    @media screen and (min-width:1024px) {
-        #product-3d-viewer,
-        .product-intro{
-            flex: 50%;
+// PRODUCT MAIN BLOCK
+// ------------------------------------------
+.product-main-block{
+    .image{
+        figure{
+            @include coverImage('16-9');
+        }
+        select{
+            background-color: $p-color;
+            border: none;
+            border-radius: 0;
+            padding: 1rem;
         }
     }
-}
-
-#product-3d-viewer{
-    @include coverImage('4-3');
-    width: 100%;
-    @media screen and (min-width:1024px) {
-        width: 50%;
-        padding-top: calc(80% / 2);
+    .intro{
+        padding: $marges-m;
         img{
             width: 100%;
-            height: 100%;
+            height: auto;
+            margin-bottom: $marges-m;
+        }
+        .main-blocks-container{
+            .main-block{
+                padding: $marges-m;
+                background-color: $p-color;
+                text-align: center;
+                font-weight: 400;
+                &:not(:last-child){
+                    margin-bottom: $marges-m;
+                }
+            }
         }
     }
 }
 
-.product-intro{
-    padding: $marges-m;
-    h1{
-        font-size: 2em;
-        font-weight: 400;
-    }
-    .btn-list{
-        margin-top: $marges-m;
-    }
-    @media screen and (min-width:1024px) {
-        padding: $marges-d-y $marges-d-x;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+
+// IMAGES TABS CONTAINER
+// ------------------------------------------
+.tabs{
+    margin: 0;
+    padding-left: 0;
+    a{
+        text-align: center;
+        display: block;
+        padding: 1rem 2rem;
+        background-color: $p-color;
+        &.active{
+            background-color: $p-color-d;
+            color: white;
+        }
     }
 }
 
-.slider-block{
-    @include coverImage('16-9');
-    border-bottom: .0625rem solid $bw-color-4;
+
+// DESCRIPTION
+// ------------------------------------------
+.desc-container{
+    padding: $marges-m;
     background-color: $bw-color-2;
 }
 
-.product-block-2{
-    .product-tab-list{
-        margin: 0;
-        padding: 0;
-        list-style-type: none;
-        a{
-            text-align: center;
-            display: block;
-            padding: 1rem 2rem;
-            color: white;
-            background-color: $p-color;
-            font-size: 1.3em;
-            &.active{
-                background-color: $p-color-d;
-            }
-        }
-        @media screen and (min-width: 768px) {
-            display: flex;
-            li{
-                flex: 33.33%;
-            }
-        }
-    }
 
-    .tab-pane{
+// CARACTERISTIQUES
+// ------------------------------------------
+.carac-block-container{
+    padding: $marges-m;
+    text-align: center;
+    .carac-block{
         padding: $marges-m;
-        &:not(.active){
-            display: none;
+        background-color: $bw-color-2;
+        img{
+            display: block;
+            margin: 0 auto $marges-m;
         }
-        @media screen and (min-width:1024px) {
-            padding: $marges-d-y $marges-d-x;
+        p{
+            font-size: 1.1em;
+            font-weight: 400;
         }
-    }
-
-    .carac-pane{
-        table{
-            width: 100%;
+        &:not(:last-child){
+            margin-bottom: $marges-m;
         }
     }
 }
 
-.product-block-images{
-    @media screen and (min-width:1024px) {
-        display: flex;
-        .slider-images{
-            flex: 33%;
+
+// DIMENSIONS
+// ------------------------------------------
+.dims-container{
+    padding: $marges-m;
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+// SWIPER
+// ------------------------------------------
+.swiper{
+    position: relative;
+    .swiper-btn{
+        position: absolute;
+        top: 50%;
+        z-index: 1;
+        transform: translateY(-50%);
+        cursor: pointer;
+        path{
+            fill: white;
         }
+        &.next{
+            right: 1rem;
+        }
+        &.prev{
+            left: 1rem;
+        }
+    }
+}
+
+
+// TABS
+// ------------------------------------------
+.tab-pane{
+    &:not(.active){
+        display: none;
     }
 }
