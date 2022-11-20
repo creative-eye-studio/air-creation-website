@@ -24,13 +24,6 @@ class ProductType extends AbstractType
             ->add('product_name', TextType::class, [
                 'label' => 'Nom du produit'
             ])
-            ->add('product_motors', TextType::class, [
-                'label' => 'Moteurs',
-                'mapped' => false,
-                'attr' => [
-                    'placeholder' => 'moteur1, moteur2, moteur3'
-                ]
-            ])
             ->add('product_old', CheckboxType::class, [
                 'label' => 'Produit ancien',
                 'required' => false
@@ -50,9 +43,40 @@ class ProductType extends AbstractType
                 'mapped' => false,
                 'empty_data' => '',
             ])
+
             ->add('product_intro', CKEditorType::class, [
                 'label' => 'Présentation',
                 'mapped' => false
+            ])
+
+
+            // MOTEURS
+            ->add('product_motor_1', TextType::class, [
+                'label' => "Moteur 1",
+                'required' => false
+            ])
+            ->add('product_motor_img_1', DropzoneType::class, [
+                'label' => "Image",
+                'required' => false,
+                'empty_data' => '',
+            ])
+            ->add('product_motor_2', TextType::class, [
+                'label' => "Moteur 2",
+                'required' => false
+            ])
+            ->add('product_motor_img_2', DropzoneType::class, [
+                'label' => "Image",
+                'required' => false,
+                'empty_data' => '',
+            ])
+            ->add('product_motor_3', TextType::class, [
+                'label' => "Moteur 3",
+                'required' => false
+            ])
+            ->add('product_motor_img_3', DropzoneType::class, [
+                'label' => "Image",
+                'required' => false,
+                'empty_data' => '',
             ])
 
 
@@ -112,138 +136,111 @@ class ProductType extends AbstractType
             // CARACTERISTIQUES
             ->add('product_carac_1', TextType::class, [
                 'label' => "Vitesse max (palier)",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_2', TextType::class, [
                 'label' => "Vitesse min (palier)",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_3', TextType::class, [
                 'label' => "Vitesse de croisière",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_4', TextType::class, [
                 'label' => "Vitesse de décrochage",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_5', TextType::class, [
                 'label' => "Vitesse à ne pas dépasser",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_6', TextType::class, [
                 'label' => "Vitesse Max (À ne pas dépasser en air très turbulent)",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_7', TextType::class, [
                 'label' => "Vitesse de finesse max",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_8', TextType::class, [
                 'label' => "Finesse max",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_9', TextType::class, [
                 'label' => "Taux de montée",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_10', TextType::class, [
                 'label' => "Distance de décollage",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_11', TextType::class, [
                 'label' => "Passage des 15m",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_12', TextType::class, [
                 'label' => "Masse à vide",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_13', TextType::class, [
                 'label' => "Masse maximale",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_14', TextType::class, [
                 'label' => "Charge utile",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_15', TextType::class, [
                 'label' => "Moteur",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_16', TextType::class, [
                 'label' => "Puissance",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_17', TextType::class, [
                 'label' => "Hélice",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_18', TextType::class, [
                 'label' => "Réduction",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_19', TextType::class, [
                 'label' => "Capacité du réservoir",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_20', TextType::class, [
                 'label' => "Consommation",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_21', TextType::class, [
                 'label' => "Autonomie",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_22', TextType::class, [
                 'label' => "Hauteur",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_23', TextType::class, [
                 'label' => "Envergure",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_24', TextType::class, [
                 'label' => "Longueur",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_25', TextType::class, [
                 'label' => "Surface alaire",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_26', TextType::class, [
                 'label' => "Type de profil",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
             ->add('product_carac_27', TextType::class, [
                 'label' => "Capacité",
-                'required' => false,
-                'mapped' => false
+                'required' => false
             ])
 
 

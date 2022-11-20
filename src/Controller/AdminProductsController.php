@@ -8,6 +8,7 @@ use App\Entity\ProductsMotors;
 use App\Form\ProductType;
 use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,12 +44,26 @@ class AdminProductsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Variables
+            $name = $form->get('product_name')->getData();
+            $metaTitle = $form->get('product_meta_title')->getData();
+            $logo = $form->get('product_logo')->getData();
+            $thumb = $form->get('product_thumb')->getData();
+            $thumbHover = $form->get('product_thumb_hover')->getData();
+            $motor1 = $form->get('product_motor_img_1')->getData();
+            $motor2 = $form->get('product_motor_img_2')->getData();
+            $motor3 = $form->get('product_motor_img_3')->getData();
+            $flyImages = $form->get('fly_gallery')->getData();
+            $lifestyleImages = $form->get('lifestyle_gallery')->getData();
+            $workshopImages = $form->get('workshop_gallery')->getData();
+            $dimImage = $form->get('product_dim')->getData();
+
             // Récupération des données du formulaire
             $product = $form->getData();
 
             // Création du slug
             $slugify = new Slugify();
-            $slugName = $slugify->slugify($form->get('product_name')->getData());
+            $slugName = $slugify->slugify($name);
 
             // Création de l'ID Page
             $product->setProductId($slugName);
@@ -57,127 +72,216 @@ class AdminProductsController extends AbstractController
             $product->setProductUrl($slugName);
 
             // Création du Meta Title
-            if (!$form->get('product_meta_title')->getData()) {
-                $product->setProductMetaTitle($form->get('product_name')->getData());
+            if ($metaTitle != null) {
+                $product->setProductMetaTitle($name);
             } else {
-                $product->setProductMetaTitle($product->setPageMetaTitle($form->get('product_meta_title')->getData()));
+                $product->setProductMetaTitle($metaTitle);
             }
 
-            // Création des TWIG
-            $fileIntro = fopen("../templates/webpages/products/" . $slugName . '-intro.html.twig', 'w');
-            fwrite($fileIntro, $form->get('product_intro')->getData());
-            fclose($fileIntro);
-
-            $fileDesc = fopen("../templates/webpages/products/" . $slugName . '-desc.html.twig', 'w');
-            fwrite($fileDesc, $form->get('product_desc')->getData());
-            fclose($fileDesc);
-
-            // Création des images
-            $file = $form->get('product_logo')->getData();
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugify->slugify($originalFilename);
-            $newFilename = $safeFilename .'.'. $file->guessExtension();
+            // Création de l'image Thumb
+            $originalFileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFileName);
+            $newFilename = $safeFilename . '.' . $thumb->guessExtension();
             try {
-                $file->move(
+                $thumb->move(
+                    $this->getParameter('thumbs_directory'),
+                    $newFilename
+                );
+                $product->setProductThumb($newFilename);
+            } catch (\Throwable $th) {
+                throw $this->createNotFoundException(
+                    $th
+                );
+            }
+
+            // Création de l'image Thumb Hover
+            $originalFileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFileName);
+            $newFilename = $safeFilename . '.' . $thumbHover->guessExtension();
+            try {
+                $thumbHover->move(
+                    $this->getParameter('thumbs_directory'),
+                    $newFilename
+                );
+                $product->setProductThumbHover($newFilename);
+            } catch (\Throwable $th) {
+                throw $this->createNotFoundException(
+                    $th
+                );
+            }
+
+            // Création de l'image Logo
+            $originalFileName = pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFileName);
+            $newFilename = $safeFilename . '.' . $logo->guessExtension();
+            try {
+                $logo->move(
                     $this->getParameter('logos_directory'),
                     $newFilename
                 );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
-            }
-
-            $file = $form->get('product_thumb')->getData();
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugify->slugify($originalFilename);
-            $newFilename = $safeFilename . '.' . $file->guessExtension();
-            try {
-                $file->move(
-                    $this->getParameter('thumbs_directory'),
-                    $newFilename
+                $product->setProductLogo($newFilename);
+            } catch (\Throwable $th) {
+                throw $this->createNotFoundException(
+                    $th
                 );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
             }
 
-            $file = $form->get('product_thumb_hover')->getData();
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugify->slugify($originalFilename);
-            $newFilename = $safeFilename . '-hover.' . $file->guessExtension();
-            try {
-                $file->move(
-                    $this->getParameter('thumbs_directory'),
-                    $newFilename
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
+            // Création des images de motorisation
+            if ($motor1) {
+                $originalFileName = pathinfo($motor1->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugify->slugify($originalFileName);
+                $newFilename = $safeFilename . '.' . $motor1->guessExtension();
+                try {
+                    $motor1->move(
+                        $this->getParameter('motors_directory'),
+                        $newFilename
+                    );
+                    $product->setProductMotor1($form->get('product_motor_1')->getData());
+                    $product->setProductMotorImg1($newFilename);
+                } catch (\Throwable $th) {
+                    throw $this->createNotFoundException(
+                        "L'image du moteur n'a pas été téléchargé"
+                    );
+                }
             }
-            $product->setProductThumbHover($newFilename);
 
-            if ($form->get('fly_gallery')->getData()) {
-                foreach($form->get('fly_gallery')->getData() as $image){
-                    $originalFilename = pathinfo($image, PATHINFO_FILENAME);
-                    $safeFilename = $slugify->slugify($originalFilename);
-                    $newFilename = $safeFilename . '.' . $image->guessExtension();
-                    try {
-                        $file->move(
-                            $this->getParameter('fly_gallery_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        // ... handle exception if something happens during file upload
-                    }
+            if ($motor2) {
+                $originalFileName = pathinfo($motor2->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugify->slugify($originalFileName);
+                $newFilename = $safeFilename . '.' . $motor2->guessExtension();
+                try {
+                    $motor2->move(
+                        $this->getParameter('motors_directory'),
+                        $newFilename
+                    );
+                    $product->setProductMotor2($form->get('product_motor_2')->getData());
+                    $product->setProductMotorImg2($newFilename);
+                } catch (\Throwable $th) {
+                    throw $this->createNotFoundException(
+                        "L'image du moteur n'a pas été téléchargé"
+                    );
+                }
+            }
+
+            if ($motor3) {
+                $originalFileName = pathinfo($motor3->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugify->slugify($originalFileName);
+                $newFilename = $safeFilename . '.' . $motor3->guessExtension();
+                try {
+                    $motor3->move(
+                        $this->getParameter('motors_directory'),
+                        $newFilename
+                    );
+                    $product->setProductMotor3($form->get('product_motor_3')->getData());
+                    $product->setProductMotorImg3($newFilename);
+                } catch (\Throwable $th) {
+                    throw $this->createNotFoundException(
+                        "L'image du moteur n'a pas été téléchargé"
+                    );
+                }
+            }
+
+            // Création des galeries
+            foreach ($flyImages as $image) {
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugify->slugify($originalFileName);
+                $newFilename = $safeFilename . '.' . $image->guessExtension();
+                try {
+                    $image->move(
+                        $this->getParameter('motors_directory'),
+                        $newFilename
+                    );
+                    $productImage = new ProductsImages();
+                    $productImage->setImageName($newFilename);
+                    $productImage->setImageProduct($product);
+                    $productImage->setImageType(0);
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($productImage);
+                    $entityManager->flush();
+                } catch (\Throwable $th) {
+                    throw $this->createNotFoundException(
+                        "L'image du moteur n'a pas été téléchargé"
+                    );
+                }
+            }
+
+            foreach ($lifestyleImages as $image) {
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugify->slugify($originalFileName);
+                $newFilename = $safeFilename . '.' . $image->guessExtension();
+                try {
+                    $image->move(
+                        $this->getParameter('motors_directory'),
+                        $newFilename
+                    );
+                    $productImage = new ProductsImages();
+                    $productImage->setImageName($newFilename);
+                    $productImage->setImageProduct($product);
+                    $productImage->setImageType(1);
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($productImage);
+                    $entityManager->flush();
+                } catch (\Throwable $th) {
+                    throw $this->createNotFoundException(
+                        "L'image du moteur n'a pas été téléchargé"
+                    );
                 }
             }
             
-            if ($form->get('lifestyle_gallery')->getData()) {
-                foreach($form->get('lifestyle_gallery')->getData() as $image){
-                    $originalFilename = pathinfo($image, PATHINFO_FILENAME);
-                    $safeFilename = $slugify->slugify($originalFilename);
-                    $newFilename = $safeFilename . '.' . $image->guessExtension();
-                    try {
-                        $file->move(
-                            $this->getParameter('lifestyle_gallery_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        // ... handle exception if something happens during file upload
-                    }
+            foreach ($workshopImages as $image) {
+                $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugify->slugify($originalFileName);
+                $newFilename = $safeFilename . '.' . $image->guessExtension();
+                try {
+                    $image->move(
+                        $this->getParameter('motors_directory'),
+                        $newFilename
+                    );
+                    $productImage = new ProductsImages();
+                    $productImage->setImageName($newFilename);
+                    $productImage->setImageProduct($product);
+                    $productImage->setImageType(2);
+                    $entityManager = $doctrine->getManager();
+                    $entityManager->persist($productImage);
+                    $entityManager->flush();
+                } catch (\Throwable $th) {
+                    throw $this->createNotFoundException(
+                        "L'image du moteur n'a pas été téléchargé"
+                    );
                 }
             }
-            
 
-            if ($form->get('workshop_gallery')->getData()) {
-                foreach($form->get('workshop_gallery')->getData() as $image){
-                    $originalFilename = pathinfo($image, PATHINFO_FILENAME);
-                    $safeFilename = $slugify->slugify($originalFilename);
-                    $newFilename = $safeFilename . '.' . $image->guessExtension();
-                    try {
-                        $file->move(
-                            $this->getParameter('workshop_gallery_directory'),
-                            $newFilename
-                        );
-                    } catch (FileException $e) {
-                        // ... handle exception if something happens during file upload
-                    }
+            // Création des TWIG
+            $file = fopen("../templates/webpages/products/" . $slugName . '-intro.html.twig', 'w');
+            fwrite($file, $form->get('product_intro')->getData());
+            fclose($file);
+
+            $file = fopen("../templates/webpages/products/" . $slugName . '-desc.html.twig', 'w');
+            fwrite($file, $form->get('product_desc')->getData());
+            fclose($file);
+
+            // Création de l'image Dimensions
+            if ($dimImage) {
+                $originalFileName = pathinfo($dimImage->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugify->slugify($originalFileName);
+                $newFilename = $safeFilename . '.' . $dimImage->guessExtension();
+                try {
+                    $motor1->move(
+                        $this->getParameter('dims_directory'),
+                        $newFilename
+                    );
+                    $product->setProductDimImage($newFilename);
+                } catch (\Throwable $th) {
+                    throw $this->createNotFoundException(
+                        "L'image du moteur n'a pas été téléchargé"
+                    );
                 }
             }
-            
 
             // Envoi vers la Database
             $entityManager = $doctrine->getManager();
             $entityManager->persist($product);
             $entityManager->flush();
-
-            // Création de la motorisation
-            $motors = explode(',', $form->get('product_motors')->getData(), -1);
-            foreach($motors as $motor){
-                $productMotor = new ProductsMotors();
-                $productMotor->setMotorName($motor);
-                $productMotor->setMotorProduct($product);
-                $entityManager = $doctrine->getManager();
-                $entityManager->persist($productMotor);
-                $entityManager->flush();
-            }
 
             // Redirection vers le produit crée
             return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);

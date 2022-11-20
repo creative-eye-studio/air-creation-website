@@ -7,6 +7,7 @@
         <h2>Ajouter un nouveau produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Champs obligatoires</a></li>
+            <li><a class="tab">Moteurs</a></li>
             <li><a class="tab">Blocks principaux</a></li>
             <li><a class="tab">Galeries</a></li>
             <li><a class="tab">Description</a></li>
@@ -19,12 +20,23 @@
             <!-- Champs obligatoires -->
             <div class="tab-pane active">
                 {{ form_row(form.product_name) }}
-                {{ form_row(form.product_motors) }}
                 {{ form_row(form.product_old) }}
                 {{ form_row(form.product_logo) }}
                 {{ form_row(form.product_thumb) }}
                 {{ form_row(form.product_thumb_hover) }}
                 {{ form_row(form.product_intro) }}
+            </div>
+
+            <!-- Moteurs -->
+            <div class="tab-pane">
+                {{ form_row(form.product_motor_1) }} 
+                {{ form_row(form.product_motor_img_1) }}
+                <hr />
+                {{ form_row(form.product_motor_2) }} 
+                {{ form_row(form.product_motor_img_2) }}
+                <hr />
+                {{ form_row(form.product_motor_3) }} 
+                {{ form_row(form.product_motor_img_3) }}
             </div>
 
             <!-- Blocks principaux -->
