@@ -7,6 +7,7 @@
         <h2>Modifier un produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Champs obligatoires</a></li>
+            <li><a class="tab">Moteurs</a></li>
             <li><a class="tab">Blocks principaux</a></li>
             <li><a class="tab">Galeries</a></li>
             <li><a class="tab">Description</a></li>
@@ -19,12 +20,31 @@
             <!-- Champs obligatoires -->
             <div class="tab-pane active">
                 {{ form_row(form.product_name) }}
-                {{ form_row(form.product_motors) }}
                 {{ form_row(form.product_old) }}
-                {{ form_row(form.product_logo) }}
-                {{ form_row(form.product_thumb) }}
-                {{ form_row(form.product_thumb_hover) }}
-                {{ form_row(form.product_intro) }}
+                {{ form_row(form.product_logo, {
+                    required: false
+                }) }}
+                {{ form_row(form.product_thumb, {
+                    required: false
+                }) }}
+                {{ form_row(form.product_thumb_hover, {
+                    required: false
+                }) }}
+                {{ form_row(form.product_intro, {
+                    value: productIntroFile
+                }) }}
+            </div>
+
+            <!-- Moteurs -->
+            <div class="tab-pane">
+                {{ form_row(form.product_motor_1) }} 
+                {{ form_row(form.product_motor_img_1) }}
+                <hr />
+                {{ form_row(form.product_motor_2) }} 
+                {{ form_row(form.product_motor_img_2) }}
+                <hr />
+                {{ form_row(form.product_motor_3) }} 
+                {{ form_row(form.product_motor_img_3) }}
             </div>
 
             <!-- Blocks principaux -->
@@ -44,20 +64,40 @@
 
             <!-- Description -->
             <div class="tab-pane">
-                {{ form_row(form.product_desc) }}
+                {{ form_row(form.product_desc, {
+                    value: productDescFile
+                }) }}
             </div>
 
             <!-- Caractéristiques -->
             <div class="tab-pane">
-                <div class="carac-panel-container">
-                    <div class="carac-panel">
-                        {{ form_row(form.product_carac_image) }}
-                        {{ form_row(form.product_carac_text) }}
-                    </div>
-                </div>
-                <p>
-                    <a href="#" class='btn-link' id="add-carac-btn">Ajouter une caractéristique</a>
-                </p>
+                {{ form_row(form.product_carac_1) }}
+                {{ form_row(form.product_carac_2) }}
+                {{ form_row(form.product_carac_3) }}
+                {{ form_row(form.product_carac_4) }}
+                {{ form_row(form.product_carac_5) }}
+                {{ form_row(form.product_carac_6) }}
+                {{ form_row(form.product_carac_7) }}
+                {{ form_row(form.product_carac_8) }}
+                {{ form_row(form.product_carac_9) }}
+                {{ form_row(form.product_carac_10) }}
+                {{ form_row(form.product_carac_11) }}
+                {{ form_row(form.product_carac_12) }}
+                {{ form_row(form.product_carac_13) }}
+                {{ form_row(form.product_carac_14) }}
+                {{ form_row(form.product_carac_15) }}
+                {{ form_row(form.product_carac_16) }}
+                {{ form_row(form.product_carac_17) }}
+                {{ form_row(form.product_carac_18) }}
+                {{ form_row(form.product_carac_19) }}
+                {{ form_row(form.product_carac_20) }}
+                {{ form_row(form.product_carac_21) }}
+                {{ form_row(form.product_carac_22) }}
+                {{ form_row(form.product_carac_23) }}
+                {{ form_row(form.product_carac_24) }}
+                {{ form_row(form.product_carac_25) }}
+                {{ form_row(form.product_carac_26) }}
+                {{ form_row(form.product_carac_27) }}
             </div>
 
             <!-- Dimensions -->
@@ -94,14 +134,6 @@
     <script>
         CKEDITOR.instances["product_product_intro"].destroy();
         CKEDITOR.replace( 'product_product_intro', {
-        	startupMode: 'wysiwyg'
-        });
-        CKEDITOR.instances["product_product_dims"].destroy();
-        CKEDITOR.replace( 'product_product_dims', {
-        	startupMode: 'wysiwyg'
-        });
-        CKEDITOR.instances["product_product_carac"].destroy();
-        CKEDITOR.replace( 'product_product_carac', {
         	startupMode: 'wysiwyg'
         });
         CKEDITOR.instances["product_product_desc"].destroy();

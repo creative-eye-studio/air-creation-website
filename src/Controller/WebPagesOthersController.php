@@ -108,7 +108,6 @@ class WebPagesOthersController extends AbstractController
         $product = $products_function->getProduct($doctrine, $product_slug);
         $entityManager = $doctrine->getManager();
         $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product]);
-        $motor = $entityManager->getRepository(ProductsMotors::class)->findBy(["motor_product" => $product]);
 
         dump($image);
 
@@ -133,7 +132,6 @@ class WebPagesOthersController extends AbstractController
             'meta_desc' => $product->getProductMetaDesc(),
             'productFolderId' => $product->getProductId(),
             'images' => $image,
-            'motors' => $motor,
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType,
         ]);

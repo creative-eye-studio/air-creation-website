@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ meta_title }} - Air Création{% endblock %}
+{% block title %}{{ product.productmetatitle }} - Air Création{% endblock %}
 {% block meta_description %}{{ meta_desc }}{% endblock %}
 
 {% block meta %}
@@ -18,50 +18,51 @@
         <section class="product-main-block">
             <div class="image">
                 <figure>
-                    <img src="../../uploads/images/products/thumbs/test.jpg" alt="" />
+                    <img src="../../uploads/images/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
                 </figure>
                 <select>
                     <option value="">Motorisation</option>
-                    {% for motor in motors %}
-                    <option value="">{{ motor.motorname }}</option>
-                    {% endfor %}
                 </select>
             </div>
             <div class="intro">
                 <!-- Logo -->
-                <img src="../../uploads/images/products/logos/test.jpg" alt="" />
+                <img src="../../uploads/images/products/logos/{{ product.productlogo }}" alt="" />
                 <!-- Texte -->
                 {% include "webpages/products/#{product.productid}-intro.html.twig" %}
                 <!-- Blocks -->
                 <div class="main-blocks-container">
                     <!-- Vitesse -->
+                    {% if product.productmaxspeed  %}
                     <div class="main-block">
                         <p> 
-                            Vitesse max<br />
                             {{ product.productmaxspeed }}
                         </p>
                     </div>
+                    {% endif %}
                     <!-- Décrochage -->
+                    {% if product.productstallspeed  %}
                     <div class="main-block">
                         <p>
-                            Vitesse de décrochage<br />
                             {{ product.productstallspeed }}
                         </p>
                     </div>
+                    {% endif %}
                     <!-- Masse max -->
+                    {% if product.productmassspeed  %}
                     <div class="main-block">
                         <p>
-                            Masse maximale<br />
                             {{ product.productmassspeed }}
                         </p>
                     </div>
+                    {% endif %}
                     <!-- Consommation -->
+                    {% if product.productconsumption  %}
                     <div class="main-block">
                         <p>
-                            Consommation<br />
                             {{ product.productconsumption }}
                         </p>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </section>
