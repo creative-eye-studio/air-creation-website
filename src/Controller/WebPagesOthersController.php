@@ -109,8 +109,6 @@ class WebPagesOthersController extends AbstractController
         $entityManager = $doctrine->getManager();
         $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product]);
 
-        dump($image);
-
         if (!$product) {
             throw $this->createNotFoundException(
                 'Le produit demandé est introuvable. Contactez le webmaster du site pour remédier au problème.'

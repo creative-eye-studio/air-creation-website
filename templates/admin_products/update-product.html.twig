@@ -38,13 +38,19 @@
             <!-- Moteurs -->
             <div class="tab-pane">
                 {{ form_row(form.product_motor_1) }} 
-                {{ form_row(form.product_motor_img_1) }}
+                {{ form_row(form.product_motor_img_1, {
+                    value: productMotorImg1
+                }) }}
                 <hr />
                 {{ form_row(form.product_motor_2) }} 
-                {{ form_row(form.product_motor_img_2) }}
+                {{ form_row(form.product_motor_img_2, {
+                    value: productMotorImg2
+                }) }}
                 <hr />
                 {{ form_row(form.product_motor_3) }} 
-                {{ form_row(form.product_motor_img_3) }}
+                {{ form_row(form.product_motor_img_3, {
+                    value: productMotorImg3
+                }) }}
             </div>
 
             <!-- Blocks principaux -->

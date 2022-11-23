@@ -57,8 +57,10 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_img_1', DropzoneType::class, [
                 'label' => "Image",
-                'required' => false,
                 'empty_data' => '',
+                'required' => false,
+                'data_class' => null,
+                'mapped' => false
             ])
             ->add('product_motor_2', TextType::class, [
                 'label' => "Moteur 2",
@@ -66,8 +68,10 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_img_2', DropzoneType::class, [
                 'label' => "Image",
-                'required' => false,
                 'empty_data' => '',
+                'required' => false,
+                'data_class' => null,
+                'mapped' => false
             ])
             ->add('product_motor_3', TextType::class, [
                 'label' => "Moteur 3",
@@ -75,8 +79,10 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_img_3', DropzoneType::class, [
                 'label' => "Image",
-                'required' => false,
                 'empty_data' => '',
+                'required' => false,
+                'data_class' => null,
+                'mapped' => false
             ])
 
 

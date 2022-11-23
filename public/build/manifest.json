@@ -96,11 +96,5 @@
   "build/fonts/RobotoCondensed-Bold.woff2": "/build/fonts/RobotoCondensed-Bold.071f8dcb.woff2",
   "build/fonts/Roboto-Light.woff2": "/build/fonts/Roboto-Light.4ca61622.woff2",
   "build/fonts/RobotoCondensed-Light.woff2": "/build/fonts/RobotoCondensed-Light.14500063.woff2",
-  "build/fonts/Roboto-Thin.woff2": "/build/fonts/Roboto-Thin.8e9578cc.woff2",
-  "build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_modules_es_array-aa01ca.js": "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_modules_es_array-aa01ca.js",
-  "build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-d8eee3.css": "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-d8eee3.css",
-  "build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-d8eee3.js": "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-d8eee3.js",
-  "build/vendors-node_modules_core-js_modules_es_array_fill_js-node_modules_core-js_modules_es_array_f-b95718.js": "/build/vendors-node_modules_core-js_modules_es_array_fill_js-node_modules_core-js_modules_es_array_f-b95718.js",
-  "build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_swiper_module-8a0bdf.css": "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_swiper_module-8a0bdf.css",
-  "build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_swiper_module-8a0bdf.js": "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_swiper_module-8a0bdf.js"
+  "build/fonts/Roboto-Thin.woff2": "/build/fonts/Roboto-Thin.8e9578cc.woff2"
 }

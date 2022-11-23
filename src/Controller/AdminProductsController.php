@@ -313,6 +313,9 @@ class AdminProductsController extends AbstractController
         $productId = $product->getProductId();
         $productThumb = $product->getProductThumb();
         $productThumbHover = $product->getProductThumbHover();
+        $productMotorImg1 = $product->getProductMotorImg1();
+        $productMotorImg2 = $product->getProductMotorImg2();
+        $productMotorImg3 = $product->getProductMotorImg3();
 
         $productIntroFile = file_get_contents("../templates/webpages/products/" . $productId . "-intro.html.twig");
         $productDescFile = file_get_contents("../templates/webpages/products/" . $productId . "-desc.html.twig");
@@ -404,7 +407,7 @@ class AdminProductsController extends AbstractController
                 $product->setProductThumbHover($product->getProductThumbHover());
             }
 
-            // Création des images de motorisation
+            // Modification des images de motorisation
             if ($motor1) {
                 $originalFileName = pathinfo($motor1->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugify->slugify($originalFileName);
@@ -459,14 +462,14 @@ class AdminProductsController extends AbstractController
                 }
             }
 
-            // Création des galeries
+            // Modification des galeries
             foreach ($flyImages as $image) {
                 $originalFileName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugify->slugify($originalFileName);
                 $newFilename = $safeFilename . '.' . $image->guessExtension();
                 try {
                     $image->move(
-                        $this->getParameter('motors_directory'),
+                        $this->getParameter('fly_gallery_directory'),
                         $newFilename
                     );
                     $productImage = new ProductsImages();
@@ -489,7 +492,7 @@ class AdminProductsController extends AbstractController
                 $newFilename = $safeFilename . '.' . $image->guessExtension();
                 try {
                     $image->move(
-                        $this->getParameter('motors_directory'),
+                        $this->getParameter('lifestyle_gallery_directory'),
                         $newFilename
                     );
                     $productImage = new ProductsImages();
@@ -512,7 +515,7 @@ class AdminProductsController extends AbstractController
                 $newFilename = $safeFilename . '.' . $image->guessExtension();
                 try {
                     $image->move(
-                        $this->getParameter('motors_directory'),
+                        $this->getParameter('workshop_gallery_directory'),
                         $newFilename
                     );
                     $productImage = new ProductsImages();
@@ -579,6 +582,9 @@ class AdminProductsController extends AbstractController
             'productDescFile' => $productDescFile,
             'productThumb' => $productThumb,
             'productThumbHover' => $productThumbHover,
+            'productMotorImg1' => $productMotorImg1,
+            'productMotorImg2' => $productMotorImg2,
+            'productMotorImg3' => $productMotorImg3,
         ]);
     }
 

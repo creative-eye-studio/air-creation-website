@@ -3,13 +3,19 @@
 .product-main-block{
     .image{
         figure{
-            @include coverImage('16-9');
+            @include coverImage('4-3');
+            &:not(.active){
+                display: none;
+            }
         }
         select{
-            background-color: $p-color;
+            font-weight: 400;
+            color: white;
+            background-color: $p-color-d;
             border: none;
             border-radius: 0;
             padding: 1rem;
+            text-transform: uppercase;
         }
     }
     .intro{
@@ -20,6 +26,7 @@
             margin-bottom: $marges-m;
         }
         .main-blocks-container{
+            margin-top: $marges-m;
             .main-block{
                 padding: $marges-m;
                 background-color: $p-color;
@@ -31,6 +38,51 @@
             }
         }
     }
+    @media screen and (min-width:1024px) {
+        &::after{
+            content: '';
+            display: table;
+            clear: both;
+        }
+        .image{
+            float: left;
+            width: 50%;
+            select{
+                padding: 2rem;
+            }
+        }
+        .intro{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            width: 50%;
+            margin-left: auto;
+            padding: $marges-d-y $marges-d-x;
+            img{
+                width: 300px;
+            }
+            .main-blocks-container{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: $marges-m;
+                .main-block{
+                    width: calc(50% - (#{$marges-m} / 2));
+                    &:not(:last-child){
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    @media screen and (min-width:1200px) {
+        .intro{
+            .main-blocks-container{
+                justify-content: flex-start;
+            }
+        }
+    }
 }
 
 
@@ -39,6 +91,7 @@
 .tabs{
     margin: 0;
     padding-left: 0;
+    list-style-type: none;
     a{
         text-align: center;
         display: block;
@@ -49,6 +102,13 @@
             color: white;
         }
     }
+    @media screen and (min-width:768px) {
+        display: flex;
+        > *{
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+    }
 }
 
 
@@ -57,6 +117,9 @@
 .desc-container{
     padding: $marges-m;
     background-color: $bw-color-2;
+    @media screen and (min-width: 1024px) {
+        padding: $marges-d-y $marges-d-x;
+    }
 }
 
 
@@ -80,6 +143,28 @@
             margin-bottom: $marges-m;
         }
     }
+    @media screen and (min-width:768px) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $marges-m;
+        .carac-block{
+            width: calc(50% - (#{$marges-m} / 2));
+            &:not(:last-child){
+                margin-bottom: 0;
+            }
+        }
+    }
+    @media screen and (min-width:1024px) {
+        padding: $marges-d-y $marges-d-x;
+        .carac-block{
+            width: calc(32.8% - (#{$marges-m} / 2));
+        }
+    }
+    @media screen and (min-width:1200px) {
+        .carac-block{
+            width: calc(24% - (#{$marges-m} / 2));
+        }
+    }
 }
 
 
@@ -90,6 +175,12 @@
     img{
         width: 100%;
         height: auto;
+    }
+    @media screen and (min-width:1024px) {
+        padding: $marges-d-y $marges-d-x;
+        img{
+            border: .0625rem solid $bw-color-2;
+        }
     }
 }
 
@@ -112,6 +203,16 @@
         }
         &.prev{
             left: 1rem;
+        }
+    }
+    
+}
+
+.images-tabs-container{
+    @media screen and (min-width: 1024px) {
+        .tab-panes{
+            padding: $marges-m;
+            background-color: $bw-color-2;
         }
     }
 }

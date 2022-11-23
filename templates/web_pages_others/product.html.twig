@@ -16,53 +16,84 @@
     <main id="swup">
         <!-- Main Image & Intro -->
         <section class="product-main-block">
-            <div class="image">
-                <figure>
-                    <img src="../../uploads/images/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
-                </figure>
-                <select>
-                    <option value="">Motorisation</option>
+            <div class="image swiper motors-images">
+                <div class="swiper-wrapper">
+                    {% if product.productmotorimg1 == null %}
+                        <figure>
+                            <img src="../../uploads/images/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
+                        </figure>
+                    {% else %}
+                        <figure class="swiper-slide motor-image active" data-slider="{{ product.productmotor1 }}">
+                            <img src="../../uploads/images/products/motors/{{ product.productmotorimg1 }}" alt="{{ product.productname }} Moteur 1" />
+                        </figure>
+                    {% endif %}
+                    {% if product.productmotorimg2 %}
+                        <figure class="swiper-slide motor-image" data-slider="{{ product.productmotor2 }}">
+                            <img src="../../uploads/images/products/motors/{{ product.productmotorimg2 }}" alt="{{ product.productname }} Moteur 2" />
+                        </figure>
+                    {% endif %}
+                    {% if product.productmotorimg3 %}
+                        <figure class="swiper-slide motor-image" data-slider="{{ product.productmotor3 }}">
+                            <img src="../../uploads/images/products/motors/{{ product.productmotorimg3 }}" alt="{{ product.productname }} Moteur 3" />
+                        </figure>
+                    {% endif %}
+                </div>
+
+                
+                <select class="motor-select">
+                    {% if product.productmotorimg1 %}
+                        <option value="{{ product.productmotor1 }}">{{ product.productmotor1 }}</option>
+                    {% endif %}
+                    {% if product.productmotorimg2 %}
+                        <option value="{{ product.productmotor2 }}">{{ product.productmotor2 }}</option>
+                    {% endif %}
+                    {% if product.productmotorimg3 %}
+                        <option value="{{ product.productmotor3 }}">{{ product.productmotor3 }}</option>
+                    {% endif %}
                 </select>
             </div>
+
             <div class="intro">
-                <!-- Logo -->
-                <img src="../../uploads/images/products/logos/{{ product.productlogo }}" alt="" />
-                <!-- Texte -->
-                {% include "webpages/products/#{product.productid}-intro.html.twig" %}
-                <!-- Blocks -->
-                <div class="main-blocks-container">
-                    <!-- Vitesse -->
-                    {% if product.productmaxspeed  %}
-                    <div class="main-block">
-                        <p> 
-                            {{ product.productmaxspeed }}
-                        </p>
+                <div class="intro-container">
+                    <!-- Logo -->
+                    <img src="../../uploads/images/products/logos/{{ product.productlogo }}" alt="" />
+                    <!-- Texte -->
+                    {% include "webpages/products/#{product.productid}-intro.html.twig" %}
+                    <!-- Blocks -->
+                    <div class="main-blocks-container">
+                        <!-- Vitesse -->
+                        {% if product.productmaxspeed  %}
+                        <div class="main-block">
+                            <p> 
+                                {{ product.productmaxspeed }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        <!-- Décrochage -->
+                        {% if product.productstallspeed  %}
+                        <div class="main-block">
+                            <p>
+                                {{ product.productstallspeed }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        <!-- Masse max -->
+                        {% if product.productmassspeed  %}
+                        <div class="main-block">
+                            <p>
+                                {{ product.productmassspeed }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        <!-- Consommation -->
+                        {% if product.productconsumption  %}
+                        <div class="main-block">
+                            <p>
+                                {{ product.productconsumption }}
+                            </p>
+                        </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
-                    <!-- Décrochage -->
-                    {% if product.productstallspeed  %}
-                    <div class="main-block">
-                        <p>
-                            {{ product.productstallspeed }}
-                        </p>
-                    </div>
-                    {% endif %}
-                    <!-- Masse max -->
-                    {% if product.productmassspeed  %}
-                    <div class="main-block">
-                        <p>
-                            {{ product.productmassspeed }}
-                        </p>
-                    </div>
-                    {% endif %}
-                    <!-- Consommation -->
-                    {% if product.productconsumption  %}
-                    <div class="main-block">
-                        <p>
-                            {{ product.productconsumption }}
-                        </p>
-                    </div>
-                    {% endif %}
                 </div>
             </div>
         </section>
@@ -79,18 +110,17 @@
 
             <!-- Tabs Blocks -->
             <div class="tab-panes">
+
                 <div class="tab-pane active">
                     <div class="swiper gallery-vol">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="../../uploads/images/products/carousels/fly/test.jpg" alt="" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://picsum.photos/390/260" alt="" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://picsum.photos/390/260" alt="" />
-                            </div>
+                            {% for image in product.productsimages %}
+                                {% if image.imagetype == 0 %}
+                                    <div class="swiper-slide">
+                                        <img src="../../uploads/images/products/carousels/fly/{{ image.imagename }}" alt="" />
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <div class="vol-button-next swiper-btn next">
                             <i class="fa-solid fa-chevron-right fa-3x"></i>
@@ -104,15 +134,13 @@
                 <div class="tab-pane">
                     <div class="swiper gallery-lifestyle">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="../../uploads/images/products/carousels/lifestyle/test.jpg" alt="" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://picsum.photos/390/260" alt="" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://picsum.photos/390/260" alt="" />
-                            </div>
+                            {% for image in product.productsimages %}
+                                {% if image.imagetype == 1 %}
+                                    <div class="swiper-slide">
+                                        <img src="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" alt="" />
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <div class="lifestyle-button-next swiper-btn next">
                             <i class="fa-solid fa-chevron-right fa-3x"></i>
@@ -126,15 +154,13 @@
                 <div class="tab-pane">
                     <div class="swiper gallery-atelier">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="../../uploads/images/products/carousels/workshop/test.jpg" alt="" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://picsum.photos/390/260" alt="" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="https://picsum.photos/390/260" alt="" />
-                            </div>
+                            {% for image in product.productsimages %}
+                                {% if image.imagetype == 2 %}
+                                    <div class="swiper-slide">
+                                        <img src="../../uploads/images/products/carousels/workshop/{{ image.imagename }}" alt="" />
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <div class="atelier-button-next swiper-btn next">
                             <i class="fa-solid fa-chevron-right fa-3x"></i>
@@ -169,34 +195,209 @@
                 <!-- Tab Caractéristiques -->
                 <div class="tab-pane">
                     <div class="carac-block-container">
+
+                    {% if product.productcarac1 %}
                         <div class="carac-block">
                             <img src="https://picsum.photos/100" alt="" />
-                            <p>Test</p>
+                            <p>Vitesse Max (palier)<br />
+                            {{ product.productcarac1 }}</p>
                         </div>
+                    {% endif %}
+
+                    {% if product.productcarac2 %}
                         <div class="carac-block">
                             <img src="https://picsum.photos/100" alt="" />
-                            <p>Test</p>
+                            <p>Vitesse Min (palier)<br />
+                            {{ product.productcarac2 }}</p>
                         </div>
+                    {% endif %}
+
+                    {% if product.productcarac3 %}
                         <div class="carac-block">
                             <img src="https://picsum.photos/100" alt="" />
-                            <p>Test</p>
+                            <p>Vitesse de croisière<br/>
+                            {{ product.productcarac3 }}</p>
                         </div>
+                    {% endif %}
+
+                    {% if product.productcarac4 %}
                         <div class="carac-block">
                             <img src="https://picsum.photos/100" alt="" />
-                            <p>Test</p>
+                            <p>Vitesse de décrochage<br/>
+                            {{ product.productcarac4 }}</p>
                         </div>
+                    {% endif %}
+
+                    {% if product.productcarac5 %}
                         <div class="carac-block">
                             <img src="https://picsum.photos/100" alt="" />
-                            <p>Test</p>
+                            <p>Vitesse à ne pas dépasser<br/>
+                            {{ product.productcarac5 }}</p>
                         </div>
+                    {% endif %}
+
+                    {% if product.productcarac6 %}
                         <div class="carac-block">
                             <img src="https://picsum.photos/100" alt="" />
-                            <p>Test</p>
+                            <p>Vitesse Max (À ne pas dépasser en air très turbulent)<br />
+                            {{ product.productcarac6 }}</p>
                         </div>
+                    {% endif %}
+
+                    {% if product.productcarac7 %}
                         <div class="carac-block">
                             <img src="https://picsum.photos/100" alt="" />
-                            <p>Test</p>
+                            <p>Vitesse de finesse Max<br />
+                            {{ product.productcarac7 }}</p>
                         </div>
+                    {% endif %}
+
+                    {% if product.productcarac8 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Finesse max<br/>
+                            {{ product.productcarac8 }}</p>
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac9 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Taux de montée<br/>
+                            {{ product.productcarac9 }}</p>
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac10 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            <p>Distance de décollage<br/>
+                            {{ product.productcarac10 }}</p>
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac11 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac11 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac12 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac12 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac13 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac13 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac14 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac14 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac15 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac15 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac16 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac16 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac17 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac17 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac18 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac18 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac19 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac19 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac20 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac20 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac21 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac21 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac22 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac22 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac23 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac23 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac24 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac24 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac25 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac25 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac26 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac26 }}
+                        </div>
+                    {% endif %}
+
+                    {% if product.productcarac27 %}
+                        <div class="carac-block">
+                            <img src="https://picsum.photos/100" alt="" />
+                            {{ product.productcarac27 }}
+                        </div>
+                    {% endif %}
+
+                    
+
+                        
                     </div>
                 </div>
                 <!-- Tab Dimensions -->

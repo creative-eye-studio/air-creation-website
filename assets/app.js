@@ -167,10 +167,6 @@ contactBtn3.onclick = function () {
 
 
 
-
-
-
-
 // Tabs
 // ------------------------------------------------------------------
 var tabs = require('tabs');
@@ -231,11 +227,33 @@ function clickHandler(e) {
 
 
 
+
+// Products
+// ------------------------------------------------------------------
+var motorSelect = document.querySelector('.motor-select');
+var motorsSlides = document.querySelectorAll('.motor-image');
+
+motorSelect.addEventListener('change', function(){
+  var valueSelected = motorSelect.value;
+  var slideSelected = document.querySelector('[data-slider="' + valueSelected + '"]')
+
+  motorsSlides.forEach(motorsSlide => {
+    motorsSlide.classList.remove('active');
+  });
+
+  slideSelected.classList.add('active');
+
+  console.log(valueSelected);
+});
+
+
+
 // Swiper
 // ------------------------------------------------------------------
 import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { add } from '@hotwired/stimulus';
 
 const swiperLastNews = new Swiper('.posts', {
   slidesPerView: "auto",
@@ -352,27 +370,48 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
 
 const swiperGalleryVol = new Swiper('.gallery-vol', {
   modules: [Navigation],
+  slidesPerView: 1,
   loop: true,
   navigation: {
     nextEl: ".vol-button-next",
     prevEl: ".vol-button-prev",
   },
+  breakpoints: {
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+    },
+  },
 })
 
 const swiperGalleryLifestyle = new Swiper('.gallery-lifestyle', {
   modules: [Navigation],
+  slidesPerView: 1,
   loop: true,
   navigation: {
     nextEl: ".lifestyle-button-next",
     prevEl: ".lifestyle-button-prev",
   },
+  breakpoints: {
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+    },
+  },
 })
 
 const swiperGalleryAtelier = new Swiper('.gallery-atelier', {
   modules: [Navigation],
+  slidesPerView: 1,
   loop: true,
   navigation: {
     nextEl: ".atelier-button-next",
     prevEl: ".atelier-button-prev",
+  },
+  breakpoints: {
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+    },
   },
 })
