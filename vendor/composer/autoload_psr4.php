@@ -14,6 +14,7 @@ return array(
     'Twig\\' => array($vendorDir . '/twig/twig/src'),
     'Symfony\\WebpackEncoreBundle\\' => array($vendorDir . '/symfony/webpack-encore-bundle/src'),
     'Symfony\\UX\\Dropzone\\' => array($vendorDir . '/symfony/ux-dropzone'),
+    'Symfony\\UX\\Autocomplete\\' => array($vendorDir . '/symfony/ux-autocomplete/src'),
     'Symfony\\Runtime\\Symfony\\Component\\' => array($vendorDir . '/symfony/runtime/Internal'),
     'Symfony\\Requirements\\' => array($vendorDir . '/symfony/requirements-checker/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '80c6263e751f6b97791cd190a547332bd41d217e',
+        'reference' => 'a30b6009ef025c890e47b1c701d933453bed9e8c',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '80c6263e751f6b97791cd190a547332bd41d217e',
+            'reference' => 'a30b6009ef025c890e47b1c701d933453bed9e8c',
             'dev_requirement' => false,
         ),
         'artgris/filemanager-bundle' => array(
@@ -1371,6 +1371,15 @@
             'install_path' => __DIR__ . '/../symfony/twig-bundle',
             'aliases' => array(),
             'reference' => 'a2abab10068525a7f5a879e40e411d369d688545',
+            'dev_requirement' => false,
+        ),
+        'symfony/ux-autocomplete' => array(
+            'pretty_version' => 'v2.5.0',
+            'version' => '2.5.0.0',
+            'type' => 'symfony-bundle',
+            'install_path' => __DIR__ . '/../symfony/ux-autocomplete',
+            'aliases' => array(),
+            'reference' => 'ac96b2511df293a122e762df73bd184f61ef16ec',
             'dev_requirement' => false,
         ),
         'symfony/ux-dropzone' => array(
