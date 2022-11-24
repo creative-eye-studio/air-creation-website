@@ -38,6 +38,13 @@
                 width: calc(33.33% - (#{$marges-m} / 2));
             }
         }
+        &.doc-form{
+            form{
+                .input-block{
+                    width: calc(50% - (#{$marges-m} / 2));
+                }
+            }
+        }
     }
 }
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classes\DocSearch;
 use App\Classes\ProductsSearch;
 use App\Entity\Chronologie;
 use App\Entity\FAQList;
@@ -13,6 +14,7 @@ use App\Entity\PostsList;
 use App\Entity\Products;
 use App\Entity\ProductsImages;
 use App\Entity\ProductsMotors;
+use App\Form\DocFilterType;
 use App\Form\NewsletterFormType;
 use App\Form\ProductFilterType;
 use App\Service\ProductsFunctions;
@@ -70,6 +72,13 @@ class WebPagesOthersController extends AbstractController
             $products = $doctrine->getRepository(Products::class)->findWithSearch($productFilter);
         }
 
+        $docFilter = new DocSearch();
+        $docFilterForm = $this->createForm(DocFilterType::class, $docFilter);
+        $docFilterForm->handleRequest($request);
+        if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) {
+            $products = $doctrine->getRepository(Products::class)->findDocWithSearch($docFilter);
+        }
+
 
 
         return $this->render('web_pages_others/index.html.twig', [
@@ -90,6 +99,7 @@ class WebPagesOthersController extends AbstractController
             'newsForm' => $newsForm->createView(),
             'assistForm' => $assistForm->createView(),
             'filterForm' => $filterForm->createView(),
+            'docFilterForm' => $docFilterForm->createView(),
             'meta_title' => $selected_page->getPageMetaTitle(),
             'meta_desc' => $selected_page->getPageMetaDesc(),
         ]);

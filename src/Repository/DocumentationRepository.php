@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classes\DocSearch;
 use App\Entity\Documentation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -37,6 +38,57 @@ class DocumentationRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @return void
+     */
+    public function getPaginatedProducts($filter_wing = null, $filter_name = null)
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if ($filter_wing != null) {
+            $query->andWhere('a.product_wing IN(:wings)')
+                ->setParameters(':wings', $filter_wing)
+            ;
+        }
+
+        if ($filter_name != null) {
+            $query->andWhere('a.product_name IN(:name)')
+                ->setParameters(':name', $filter_name)
+            ;
+        }
+
+        $query->orderBy('p.product_name', 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Requète pour récupérer les produits selon la recherche
+     */
+    public function findWithSearch(DocSearch $search)
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('p')
+        ;
+
+        if (!empty($search->filter_wing)) {
+            $query = $query
+                ->andWhere('p.product_wing IN (:filter_wing)')
+                ->setParameter('filter_wing', $search->filter_wing)
+            ;
+        }
+
+        if (!empty($search->filter_name)) {
+            $query = $query
+                ->andWhere('p.filter_name IN (:filter_name)')
+                ->setParameter('filter_name', $search->filter_name)
+            ;
+        }
+
+        return $query->getQuery()->getResult();
     }
 
 //    /**
