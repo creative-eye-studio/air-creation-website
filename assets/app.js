@@ -233,18 +233,21 @@ function clickHandler(e) {
 var motorSelect = document.querySelector('.motor-select');
 var motorsSlides = document.querySelectorAll('.motor-image');
 
-motorSelect.addEventListener('change', function(){
-  var valueSelected = motorSelect.value;
-  var slideSelected = document.querySelector('[data-slider="' + valueSelected + '"]')
+if (motorSelect) {
+  motorSelect.addEventListener('change', function(){
+    var valueSelected = motorSelect.value;
+    var slideSelected = document.querySelector('[data-slider="' + valueSelected + '"]')
 
-  motorsSlides.forEach(motorsSlide => {
-    motorsSlide.classList.remove('active');
+    motorsSlides.forEach(motorsSlide => {
+      motorsSlide.classList.remove('active');
+    });
+
+    slideSelected.classList.add('active');
+
+    console.log(valueSelected);
   });
+}
 
-  slideSelected.classList.add('active');
-
-  console.log(valueSelected);
-});
 
 
 
@@ -253,7 +256,6 @@ motorSelect.addEventListener('change', function(){
 import Swiper, { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { add } from '@hotwired/stimulus';
 
 const swiperLastNews = new Swiper('.posts', {
   slidesPerView: "auto",
