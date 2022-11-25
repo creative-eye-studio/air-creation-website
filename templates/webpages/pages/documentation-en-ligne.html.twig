@@ -8,6 +8,21 @@
   </div>
 </section>
 
+<!-- Fonctions filtrage -->
+<div class="filters doc-form">
+  {{ form_start(docFilterForm) }}
+  <div class="input-block">
+    {{ form_row(docFilterForm.filter_wing) }}
+  </div>
+  <div class="input-block">
+    {{ form_row(docFilterForm.filter_name) }}
+  </div>
+  <div class="input-btn">
+    {{ form_row(docFilterForm.submit) }}
+  </div>
+  {{ form_end(docFilterForm) }}
+</div>
+
 <section class="doc-container">
   <h2 class="center">
     Toute la documentation de nos produits
@@ -17,7 +32,7 @@
   <div id="{{ product.productid }}" class="product" data-aos="fade-up">
     <div class="product-item">
       <div class="image">
-        <img src="../uploads/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
+        <img src="../uploads/images/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
       </div>
       <h3 class="center">{{ product.productname }}</h3>
     </div>
@@ -34,4 +49,25 @@
   </div>
   {% endif %}
   {% endfor %}
+</section>
+<hr />
+<section class="doc-container">
+  <h2 class="center">
+    Produits anciens
+  </h2>
+  <div class="old-products-list">
+    {% for product in products %}
+    {% if product.productold == 1 %}
+    <div class="old-product">
+      <h3>{{ product.productname }}</h3>
+      <ul>
+        {% for doc in product.documentations %}
+        <li>{{ doc.docname }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+
 </section>

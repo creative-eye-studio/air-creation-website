@@ -48,6 +48,7 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         array (
             'Symfony\\WebpackEncoreBundle\\' => 28,
             'Symfony\\UX\\Dropzone\\' => 20,
+            'Symfony\\UX\\Autocomplete\\' => 24,
             'Symfony\\Runtime\\Symfony\\Component\\' => 34,
             'Symfony\\Requirements\\' => 21,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
@@ -229,6 +230,10 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         'Symfony\\UX\\Dropzone\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/ux-dropzone',
+        ),
+        'Symfony\\UX\\Autocomplete\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/ux-autocomplete/src',
         ),
         'Symfony\\Runtime\\Symfony\\Component\\' => 
         array (
@@ -689,7 +694,9 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
     );
 
     public static $classMap = array (
+        'App\\Classes\\DocSearch' => __DIR__ . '/../..' . '/src/Classes/DocSearch.php',
         'App\\Classes\\ProductsSearch' => __DIR__ . '/../..' . '/src/Classes/ProductsSearch.php',
+        'App\\Config\\PartnerProfile' => __DIR__ . '/../..' . '/src/Config/PartnerProfile.php',
         'App\\Controller\\AdminChangePasswordController' => __DIR__ . '/../..' . '/src/Controller/AdminChangePasswordController.php',
         'App\\Controller\\AdminChronologieController' => __DIR__ . '/../..' . '/src/Controller/AdminChronologieController.php',
         'App\\Controller\\AdminCommonBlocksController' => __DIR__ . '/../..' . '/src/Controller/AdminCommonBlocksController.php',
@@ -715,6 +722,7 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         'App\\Entity\\Partners' => __DIR__ . '/../..' . '/src/Entity/Partners.php',
         'App\\Entity\\PostsList' => __DIR__ . '/../..' . '/src/Entity/PostsList.php',
         'App\\Entity\\Products' => __DIR__ . '/../..' . '/src/Entity/Products.php',
+        'App\\Entity\\ProductsCarac' => __DIR__ . '/../..' . '/src/Entity/ProductsCarac.php',
         'App\\Entity\\ProductsColors' => __DIR__ . '/../..' . '/src/Entity/ProductsColors.php',
         'App\\Entity\\ProductsImages' => __DIR__ . '/../..' . '/src/Entity/ProductsImages.php',
         'App\\Entity\\PropertySearch' => __DIR__ . '/../..' . '/src/Entity/PropertySearch.php',
@@ -724,6 +732,7 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         'App\\Form\\ChronologieType' => __DIR__ . '/../..' . '/src/Form/ChronologieType.php',
         'App\\Form\\CommonBlockFormType' => __DIR__ . '/../..' . '/src/Form/CommonBlockFormType.php',
         'App\\Form\\ContactFormType' => __DIR__ . '/../..' . '/src/Form/ContactFormType.php',
+        'App\\Form\\DocFilterType' => __DIR__ . '/../..' . '/src/Form/DocFilterType.php',
         'App\\Form\\DocFormType' => __DIR__ . '/../..' . '/src/Form/DocFormType.php',
         'App\\Form\\FAQManagerFormType' => __DIR__ . '/../..' . '/src/Form/FAQManagerFormType.php',
         'App\\Form\\FileUploadFormType' => __DIR__ . '/../..' . '/src/Form/FileUploadFormType.php',
@@ -745,8 +754,10 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         'App\\Repository\\PagesListRepository' => __DIR__ . '/../..' . '/src/Repository/PagesListRepository.php',
         'App\\Repository\\PartnersRepository' => __DIR__ . '/../..' . '/src/Repository/PartnersRepository.php',
         'App\\Repository\\PostsListRepository' => __DIR__ . '/../..' . '/src/Repository/PostsListRepository.php',
+        'App\\Repository\\ProductsCaracRepository' => __DIR__ . '/../..' . '/src/Repository/ProductsCaracRepository.php',
         'App\\Repository\\ProductsColorsRepository' => __DIR__ . '/../..' . '/src/Repository/ProductsColorsRepository.php',
         'App\\Repository\\ProductsImagesRepository' => __DIR__ . '/../..' . '/src/Repository/ProductsImagesRepository.php',
+        'App\\Repository\\ProductsMotorsRepository' => __DIR__ . '/../..' . '/src/Repository/ProductsMotorsRepository.php',
         'App\\Repository\\ProductsRepository' => __DIR__ . '/../..' . '/src/Repository/ProductsRepository.php',
         'App\\Repository\\SAVManagerRepository' => __DIR__ . '/../..' . '/src/Repository/SAVManagerRepository.php',
         'App\\Repository\\UserRepository' => __DIR__ . '/../..' . '/src/Repository/UserRepository.php',
@@ -755,6 +766,7 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         'App\\Service\\ProductForm' => __DIR__ . '/../..' . '/src/Service/ProductForm.php',
         'App\\Service\\ProductsFunctions' => __DIR__ . '/../..' . '/src/Service/ProductsFunctions.php',
         'App\\Services\\CommonBlocksService' => __DIR__ . '/../..' . '/src/Services/CommonBlocksService.php',
+        'App\\Services\\FileUploaderService' => __DIR__ . '/../..' . '/src/Services/FileUploaderService.php',
         'App\\Services\\PagesService' => __DIR__ . '/../..' . '/src/Services/PagesService.php',
         'App\\Services\\PostsService' => __DIR__ . '/../..' . '/src/Services/PostsService.php',
         'Artgris\\Bundle\\FileManagerBundle\\ArtgrisFileManagerBundle' => __DIR__ . '/..' . '/artgris/filemanager-bundle/ArtgrisFileManagerBundle.php',
@@ -6586,6 +6598,26 @@ class ComposerStaticInitd630ba1459d227d3c79f30ecfc59fb6f
         'Symfony\\Runtime\\Symfony\\Component\\HttpFoundation\\RequestRuntime' => __DIR__ . '/..' . '/symfony/runtime/Internal/HttpFoundation/RequestRuntime.php',
         'Symfony\\Runtime\\Symfony\\Component\\HttpFoundation\\ResponseRuntime' => __DIR__ . '/..' . '/symfony/runtime/Internal/HttpFoundation/ResponseRuntime.php',
         'Symfony\\Runtime\\Symfony\\Component\\HttpKernel\\HttpKernelInterfaceRuntime' => __DIR__ . '/..' . '/symfony/runtime/Internal/HttpKernel/HttpKernelInterfaceRuntime.php',
+        'Symfony\\UX\\Autocomplete\\AutocompleteBundle' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/AutocompleteBundle.php',
+        'Symfony\\UX\\Autocomplete\\AutocompleteResults' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/AutocompleteResults.php',
+        'Symfony\\UX\\Autocomplete\\AutocompleteResultsExecutor' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/AutocompleteResultsExecutor.php',
+        'Symfony\\UX\\Autocomplete\\AutocompleterRegistry' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/AutocompleterRegistry.php',
+        'Symfony\\UX\\Autocomplete\\Controller\\EntityAutocompleteController' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Controller/EntityAutocompleteController.php',
+        'Symfony\\UX\\Autocomplete\\DependencyInjection\\AutocompleteExtension' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/DependencyInjection/AutocompleteExtension.php',
+        'Symfony\\UX\\Autocomplete\\DependencyInjection\\AutocompleteFormTypePass' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/DependencyInjection/AutocompleteFormTypePass.php',
+        'Symfony\\UX\\Autocomplete\\Doctrine\\DoctrineRegistryWrapper' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Doctrine/DoctrineRegistryWrapper.php',
+        'Symfony\\UX\\Autocomplete\\Doctrine\\EntityMetadata' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Doctrine/EntityMetadata.php',
+        'Symfony\\UX\\Autocomplete\\Doctrine\\EntityMetadataFactory' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Doctrine/EntityMetadataFactory.php',
+        'Symfony\\UX\\Autocomplete\\Doctrine\\EntitySearchUtil' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Doctrine/EntitySearchUtil.php',
+        'Symfony\\UX\\Autocomplete\\Doctrine\\SearchEscaper' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Doctrine/SearchEscaper.php',
+        'Symfony\\UX\\Autocomplete\\EntityAutocompleterInterface' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/EntityAutocompleterInterface.php',
+        'Symfony\\UX\\Autocomplete\\Form\\AsEntityAutocompleteField' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Form/AsEntityAutocompleteField.php',
+        'Symfony\\UX\\Autocomplete\\Form\\AutocompleteChoiceTypeExtension' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Form/AutocompleteChoiceTypeExtension.php',
+        'Symfony\\UX\\Autocomplete\\Form\\AutocompleteEntityTypeSubscriber' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Form/AutocompleteEntityTypeSubscriber.php',
+        'Symfony\\UX\\Autocomplete\\Form\\ParentEntityAutocompleteType' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Form/ParentEntityAutocompleteType.php',
+        'Symfony\\UX\\Autocomplete\\Form\\WrappedEntityTypeAutocompleter' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Form/WrappedEntityTypeAutocompleter.php',
+        'Symfony\\UX\\Autocomplete\\Maker\\MakeAutocompleteField' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Maker/MakeAutocompleteField.php',
+        'Symfony\\UX\\Autocomplete\\Maker\\MakerAutocompleteVariables' => __DIR__ . '/..' . '/symfony/ux-autocomplete/src/Maker/MakerAutocompleteVariables.php',
         'Symfony\\UX\\Dropzone\\DependencyInjection\\DropzoneExtension' => __DIR__ . '/..' . '/symfony/ux-dropzone/DependencyInjection/DropzoneExtension.php',
         'Symfony\\UX\\Dropzone\\DropzoneBundle' => __DIR__ . '/..' . '/symfony/ux-dropzone/DropzoneBundle.php',
         'Symfony\\UX\\Dropzone\\Form\\DropzoneType' => __DIR__ . '/..' . '/symfony/ux-dropzone/Form/DropzoneType.php',

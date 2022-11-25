@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classes\DocSearch;
 use App\Classes\ProductsSearch;
 use App\Entity\Products;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -51,7 +52,7 @@ class ProductsRepository extends ServiceEntityRepository
     /**
      * @return void
      */
-    public function getPaginatedProducts($filters_capacity = null, $filter_wing = null, $filter_tricycle = null)
+    public function getPaginatedProducts($filters_capacity = null, $filter_wing = null, $filter_tricycle = null, $filter_name = null)
     {
         $query = $this->createQueryBuilder('p');
 
@@ -70,6 +71,12 @@ class ProductsRepository extends ServiceEntityRepository
         if ($filter_tricycle != null) {
             $query->andWhere('a.product_tricycle IN(:tri)')
                 ->setParameters(':tri', $filter_tricycle)
+            ;
+        }
+
+        if ($filter_name != null) {
+            $query->andWhere('a.product_name IN(:name)')
+                ->setParameters(':name', $filter_name)
             ;
         }
 
@@ -99,6 +106,33 @@ class ProductsRepository extends ServiceEntityRepository
             $query = $query
                 ->andWhere('p.product_wing IN (:filter_wing)')
                 ->setParameter('filter_wing', $search->filter_wing)
+            ;
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Requète pour récupérer les produits selon la recherche
+     */
+    public function findDocWithSearch(DocSearch $search)
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('p')
+        ;
+
+        if (!empty($search->filter_wing)) {
+            $query = $query
+                ->andWhere('p.product_wing IN (:filter_wing)')
+                ->setParameter('filter_wing', $search->filter_wing)
+            ;
+        }
+
+        if (!empty($search->filter_name)) {
+            $query = $query
+                ->andWhere('p.product_name IN (:filter_name)')
+                ->setParameter('filter_name', $search->filter_name)
             ;
         }
 

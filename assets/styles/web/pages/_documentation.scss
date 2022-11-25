@@ -20,6 +20,11 @@
             }
         }
     }
+    .old-product{
+        &:not(:last-child){
+            margin-bottom: 2rem;
+        }
+    }
     .product-doc-block{
         svg{
             display: block;

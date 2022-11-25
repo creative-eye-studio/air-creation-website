@@ -167,10 +167,6 @@ contactBtn3.onclick = function () {
 
 
 
-
-
-
-
 // Tabs
 // ------------------------------------------------------------------
 var tabs = require('tabs');
@@ -197,6 +193,16 @@ if (document.querySelector('.options-container') != undefined) {
   tabs(optionsContainer);
 }
 
+if (document.querySelector('.images-tabs-container') != undefined) {
+  var optionsContainer = document.querySelector('.images-tabs-container')
+  tabs(optionsContainer);
+}
+
+if (document.querySelector('.content-tabs-container') != undefined) {
+  var optionsContainer = document.querySelector('.content-tabs-container')
+  tabs(optionsContainer);
+}
+
 
 
 
@@ -218,6 +224,30 @@ function clickHandler(e) {
     behavior: "smooth"
   });
 }
+
+
+
+
+// Products
+// ------------------------------------------------------------------
+var motorSelect = document.querySelector('.motor-select');
+var motorsSlides = document.querySelectorAll('.motor-image');
+
+if (motorSelect) {
+  motorSelect.addEventListener('change', function(){
+    var valueSelected = motorSelect.value;
+    var slideSelected = document.querySelector('[data-slider="' + valueSelected + '"]')
+
+    motorsSlides.forEach(motorsSlide => {
+      motorsSlide.classList.remove('active');
+    });
+
+    slideSelected.classList.add('active');
+
+    console.log(valueSelected);
+  });
+}
+
 
 
 
@@ -340,4 +370,50 @@ const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     loop: true,
 });
 
-  
+const swiperGalleryVol = new Swiper('.gallery-vol', {
+  modules: [Navigation],
+  slidesPerView: 1,
+  loop: true,
+  navigation: {
+    nextEl: ".vol-button-next",
+    prevEl: ".vol-button-prev",
+  },
+  breakpoints: {
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+    },
+  },
+})
+
+const swiperGalleryLifestyle = new Swiper('.gallery-lifestyle', {
+  modules: [Navigation],
+  slidesPerView: 1,
+  loop: true,
+  navigation: {
+    nextEl: ".lifestyle-button-next",
+    prevEl: ".lifestyle-button-prev",
+  },
+  breakpoints: {
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+    },
+  },
+})
+
+const swiperGalleryAtelier = new Swiper('.gallery-atelier', {
+  modules: [Navigation],
+  slidesPerView: 1,
+  loop: true,
+  navigation: {
+    nextEl: ".atelier-button-next",
+    prevEl: ".atelier-button-prev",
+  },
+  breakpoints: {
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 30,
+    },
+  },
+})
