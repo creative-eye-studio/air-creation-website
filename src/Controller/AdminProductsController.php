@@ -598,11 +598,8 @@ class AdminProductsController extends AbstractController
         $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
         $images = $entityManager->getRepository(ProductsImages::class)->findBy(['image_product' => $product_id]);
 
-        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '/' . $product->getProductId() . '-carac.html.twig');
-        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '/' . $product->getProductId() . '-desc.html.twig');
-        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '/' . $product->getProductId() . '-dims.html.twig');
-        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '/' . $product->getProductId() . '-intro.html.twig');
-        rmdir($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId());
+        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '-desc.html.twig');
+        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '-intro.html.twig');
 
         foreach ($images as $image) {
             $entityManager->remove($image);

@@ -19,7 +19,7 @@
             <div class="image swiper motors-images">
                 <div class="swiper-wrapper">
                     {% if product.productmotorimg1 == null %}
-                        <figure>
+                        <figure class="swiper-slide motor-image active">
                             <img src="../../uploads/images/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
                         </figure>
                     {% else %}
