@@ -28,9 +28,38 @@ var caracBtn = document.querySelector('#add-carac-btn');
 var inputBlock = document.querySelector('.carac-panel:last-child');
 const containerCarac = document.querySelector('.carac-panel-container')
 
-caracBtn.onclick = function(){
-    var clone = inputBlock.cloneNode(true);
-    containerCarac.append(clone);
-    console.log("Cliqué");
-    return false;
-};
+if (caracBtn) {
+    caracBtn.onclick = function(){
+        var clone = inputBlock.cloneNode(true);
+        containerCarac.append(clone);
+        console.log("Cliqué");
+        return false;
+    };
+}
+
+
+
+/* SUPPRESSION d'UNE IMAGE
+--------------------------------------------*/
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Page chargée");
+    var delImgBtn = document.querySelectorAll('.delImgBtn');
+    delImgBtn.forEach(btn => {
+        btn.onclick = function(e) {
+            e.preventDefault();
+            var httpRequest = new XMLHttpRequest();
+            var itemId = btn.getAttribute('imgId');
+            httpRequest.onreadystatechange = function(data, response){
+                if (response == 'good') {
+                    console.log("Demande envoyée");
+                } else {
+                    console.log("Demande refusée");
+                }
+            }
+            httpRequest.open("POST", window.location.href);
+            httpRequest.send({
+                'imgId':itemId
+            });
+        }
+    });
+})

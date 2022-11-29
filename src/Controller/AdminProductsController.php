@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Products;
 use App\Entity\ProductsImages;
 use App\Form\ProductType;
+use App\Services\FileUploaderService;
 use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,7 +35,7 @@ class AdminProductsController extends AbstractController
     // AJOUTER UN PRODUIT
     //-----------------------------------------------------
     #[Route('/admin/products/add', name: 'app_admin_products_add')]
-    public function AddProduct(ManagerRegistry $doctrine, Request $request)
+    public function AddProduct(ManagerRegistry $doctrine, Request $request, FileUploaderService $fileUploaderService)
     {
         $slugify = new Slugify();
         $product = new Products();
@@ -76,52 +78,22 @@ class AdminProductsController extends AbstractController
             }
 
             // Création de l'image Thumb
-            $originalFileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugify->slugify($originalFileName);
-            $newFilename = $safeFilename . '.' . $thumb->guessExtension();
-            try {
-                $thumb->move(
-                    $this->getParameter('thumbs_directory'),
-                    $newFilename
-                );
-                $product->setProductThumb($newFilename);
-            } catch (\Throwable $th) {
-                throw $this->createNotFoundException(
-                    $th
-                );
-            }
+            $slugImgName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
+            $slugImgExt = $thumb->guessExtension();
+            $fileUploaderService->ThumbUploader($thumb, $slugImgName, $slugImgExt);
+            $product->setProductThumb($slugImgName . '.' . $slugImgExt);
 
             // Création de l'image Thumb Hover
-            $originalFileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugify->slugify($originalFileName);
-            $newFilename = $safeFilename . '.' . $thumbHover->guessExtension();
-            try {
-                $thumbHover->move(
-                    $this->getParameter('thumbs_directory'),
-                    $newFilename
-                );
-                $product->setProductThumbHover($newFilename);
-            } catch (\Throwable $th) {
-                throw $this->createNotFoundException(
-                    $th
-                );
-            }
+            $slugImgName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
+            $slugImgExt = $thumbHover->guessExtension();
+            $fileUploaderService->ThumbUploader($thumbHover, $slugImgName, $slugImgExt);
+            $product->setProductThumbHover($slugImgName . '.' . $slugImgExt);
 
             // Création de l'image Logo
-            $originalFileName = pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugify->slugify($originalFileName);
-            $newFilename = $safeFilename . '.' . $logo->guessExtension();
-            try {
-                $logo->move(
-                    $this->getParameter('logos_directory'),
-                    $newFilename
-                );
-                $product->setProductLogo($newFilename);
-            } catch (\Throwable $th) {
-                throw $this->createNotFoundException(
-                    $th
-                );
-            }
+            $slugImgName = pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME);
+            $slugImgExt = $logo->guessExtension();
+            $fileUploaderService->LogoUploader($logo, $slugImgName, $slugImgExt);
+            $product->setProductLogo($slugImgName . '.' . $slugImgExt);
 
             // Création des images de motorisation
             if ($motor1) {
@@ -550,15 +522,16 @@ class AdminProductsController extends AbstractController
                 $originalFileName = pathinfo($dimImage->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugify->slugify($originalFileName);
                 $newFilename = $safeFilename . '.' . $dimImage->guessExtension();
+                dump($newFilename);
                 try {
-                    $motor1->move(
+                    $dimImage->move(
                         $this->getParameter('dims_directory'),
                         $newFilename
                     );
                     $product->setProductDimImage($newFilename);
                 } catch (\Throwable $th) {
                     throw $this->createNotFoundException(
-                        "L'image du moteur n'a pas été téléchargé"
+                        $th
                     );
                 }
             } else {
@@ -615,18 +588,17 @@ class AdminProductsController extends AbstractController
 
     // SUPPRIMER UNE IMAGE
     //-----------------------------------------------------
-    #[Route('/admin/products/delete_image/{folder}/{image_file}', name: 'app_admin_image_delete')]
-    public function DeleteImage(ManagerRegistry $doctrine, String $folder, String $image_file){
-        $entityManager = $doctrine->getManager();
-        $image = $entityManager->getRepository(ProductsImages::class)->findOneBy(["image_name" => $image_file]);
-        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $image->getImageProduct()]);
+    public function DeleteImage(ManagerRegistry $doctrine, Request $request)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $id = $request->get('imgId');
+            $entityManager = $doctrine->getManager();
+            $imgToDel = $entityManager->getRepository(ProductsImages::class)->findOneBy(['id' => $id]);
 
-        // Suppression du fichier
-        unlink($this->getParameter('kernel.project_dir').'/public/uploads/products/' . $folder . '/' . $image->getImageName());
+            $entityManager->remove($imgToDel);
+            $entityManager->flush();
 
-        $entityManager->remove($image);
-        $entityManager->flush();
-
-        return $this->redirectToRoute('app_admin_products_update', ['product_id' => $product->getId()]);
+            return new JsonResponse('good');
+        }
     }
 }

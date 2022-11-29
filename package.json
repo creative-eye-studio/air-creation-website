@@ -33,7 +33,10 @@
         "aos": "^2.3.4",
         "dropzone": "^6.0.0-beta.2",
         "loader-utils": "^3.2.1",
+        "mysql": "^2.18.1",
+        "mysql2": "^2.3.3",
         "parallax-image": "^1.2.2",
+        "sequelize": "^6.25.8",
         "swiper": "^8.4.5",
         "tabs": "^0.2.0"
     }

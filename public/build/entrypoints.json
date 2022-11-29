@@ -2,42 +2,44 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/753.04ca2497.js",
-        "/build/945.bda9a26b.js",
-        "/build/549.0751db46.js",
-        "/build/433.c3b48f6a.js",
-        "/build/app.9f9fe327.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_inherit-if-required_js-node_modules_core-js_internals_-ca0482.js",
+        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-8ddd4c.js",
+        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_swiper_module-8a0bdf.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/549.6de11c4c.css",
-        "/build/app.e3d159bf.css"
+        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-8ddd4c.css",
+        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_swiper_module-8a0bdf.css",
+        "/build/app.css"
       ]
     },
     "filters": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/filters.f3fcb61b.js"
+        "/build/runtime.js",
+        "/build/filters.js"
       ]
     },
     "app-admin": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/753.04ca2497.js",
-        "/build/945.bda9a26b.js",
-        "/build/433.c3b48f6a.js",
-        "/build/app-admin.11eda49c.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_inherit-if-required_js-node_modules_core-js_internals_-ca0482.js",
+        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-8ddd4c.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
+        "/build/app-admin.js"
       ],
       "css": [
-        "/build/app-admin.35807478.css"
+        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-8ddd4c.css",
+        "/build/app-admin.css"
       ]
     },
     "fontawesome": {
       "js": [
-        "/build/runtime.9a71ee5d.js",
-        "/build/753.04ca2497.js",
-        "/build/859.8ba00c59.js",
-        "/build/fontawesome.1802f02f.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_inherit-if-required_js-node_modules_core-js_internals_-ca0482.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_fill_js-node_modules_core-js_modules_es_array_f-09448a.js",
+        "/build/fontawesome.js"
       ]
     }
   }
