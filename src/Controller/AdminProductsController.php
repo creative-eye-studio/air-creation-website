@@ -234,15 +234,16 @@ class AdminProductsController extends AbstractController
                 $originalFileName = pathinfo($dimImage->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugify->slugify($originalFileName);
                 $newFilename = $safeFilename . '.' . $dimImage->guessExtension();
+                dump($newFilename);
                 try {
-                    $motor1->move(
+                    $dimImage->move(
                         $this->getParameter('dims_directory'),
                         $newFilename
                     );
                     $product->setProductDimImage($newFilename);
                 } catch (\Throwable $th) {
                     throw $this->createNotFoundException(
-                        "L'image du moteur n'a pas été téléchargé"
+                        $th
                     );
                 }
             }
