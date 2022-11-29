@@ -78,22 +78,52 @@ class AdminProductsController extends AbstractController
             }
 
             // Création de l'image Thumb
-            $slugImgName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
-            $slugImgExt = $thumb->guessExtension();
-            $fileUploaderService->ThumbUploader($thumb, $slugImgName, $slugImgExt);
-            $product->setProductThumb($slugImgName . '.' . $slugImgExt);
+            $originalFileName = pathinfo($thumb->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFileName);
+            $newFilename = $safeFilename . '.' . $thumb->guessExtension();
+            try {
+                $thumb->move(
+                    $this->getParameter('thumbs_directory'),
+                    $newFilename
+                );
+                $product->setProductThumb($newFilename);
+            } catch (\Throwable $th) {
+                throw $this->createNotFoundException(
+                    $th
+                );
+            }
 
             // Création de l'image Thumb Hover
-            $slugImgName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
-            $slugImgExt = $thumbHover->guessExtension();
-            $fileUploaderService->ThumbUploader($thumbHover, $slugImgName, $slugImgExt);
-            $product->setProductThumbHover($slugImgName . '.' . $slugImgExt);
+            $originalFileName = pathinfo($thumbHover->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFileName);
+            $newFilename = $safeFilename . '.' . $thumbHover->guessExtension();
+            try {
+                $thumbHover->move(
+                    $this->getParameter('thumbs_directory'),
+                    $newFilename
+                );
+                $product->setProductThumbHover($newFilename);
+            } catch (\Throwable $th) {
+                throw $this->createNotFoundException(
+                    $th
+                );
+            }
 
             // Création de l'image Logo
-            $slugImgName = pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME);
-            $slugImgExt = $logo->guessExtension();
-            $fileUploaderService->LogoUploader($logo, $slugImgName, $slugImgExt);
-            $product->setProductLogo($slugImgName . '.' . $slugImgExt);
+            $originalFileName = pathinfo($logo->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFileName);
+            $newFilename = $safeFilename . '.' . $logo->guessExtension();
+            try {
+                $logo->move(
+                    $this->getParameter('logos_directory'),
+                    $newFilename
+                );
+                $product->setProductLogo($newFilename);
+            } catch (\Throwable $th) {
+                throw $this->createNotFoundException(
+                    $th
+                );
+            }
 
             // Création des images de motorisation
             if ($motor1) {
