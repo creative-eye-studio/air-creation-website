@@ -180,8 +180,16 @@ class ProductType extends AbstractType
                 'label' => "Distance de décollage",
                 'required' => false
             ])
-            ->add('product_carac_11', TextType::class, [
+            ->add('product_carac_29', TextType::class, [
                 'label' => "Passage des 15m",
+                'required' => false
+            ])
+            ->add('product_carac_28', TextType::class, [
+                'label' => "Distance d'atterissage",
+                'required' => false
+            ])
+            ->add('product_carac_11', TextType::class, [
+                'label' => "Passage des 15m (2)",
                 'required' => false
             ])
             ->add('product_carac_12', TextType::class, [
@@ -232,12 +240,8 @@ class ProductType extends AbstractType
                 'label' => "Envergure",
                 'required' => false
             ])
-            ->add('product_carac_24', TextType::class, [
-                'label' => "Longueur",
-                'required' => false
-            ])
             ->add('product_carac_25', TextType::class, [
-                'label' => "Surface alaire",
+                'label' => "Surface allaire",
                 'required' => false
             ])
             ->add('product_carac_26', TextType::class, [
@@ -254,8 +258,8 @@ class ProductType extends AbstractType
             ->add('product_dim', DropzoneType::class, [
                 'label' => "Dimensions",
                 'data_class' => null,
+                'empty_data' => '',
                 'required' => false,
-                'multiple' => true,
                 'mapped' => false,
             ])
 

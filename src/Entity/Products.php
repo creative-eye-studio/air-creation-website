@@ -158,9 +158,6 @@ class Products
     private ?string $product_carac_23 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $product_carac_24 = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
     private ?string $product_carac_25 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -168,6 +165,12 @@ class Products
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $product_carac_27 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_carac_28 = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_carac_29 = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $product_dim_image = null;
@@ -838,18 +841,6 @@ class Products
         return $this;
     }
 
-    public function getProductCarac24(): ?string
-    {
-        return $this->product_carac_24;
-    }
-
-    public function setProductCarac24(?string $product_carac_24): self
-    {
-        $this->product_carac_24 = $product_carac_24;
-
-        return $this;
-    }
-
     public function getProductCarac25(): ?string
     {
         return $this->product_carac_25;
@@ -906,6 +897,30 @@ class Products
     public function setProductLogo(string $product_logo): self
     {
         $this->product_logo = $product_logo;
+
+        return $this;
+    }
+
+    public function getProductCarac28(): ?string
+    {
+        return $this->product_carac_28;
+    }
+
+    public function setProductCarac28(?string $product_carac_28): self
+    {
+        $this->product_carac_28 = $product_carac_28;
+
+        return $this;
+    }
+
+    public function getProductCarac29(): ?string
+    {
+        return $this->product_carac_29;
+    }
+
+    public function setProductCarac29(?string $product_carac_29): self
+    {
+        $this->product_carac_29 = $product_carac_29;
 
         return $this;
     }
