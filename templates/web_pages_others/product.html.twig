@@ -114,13 +114,20 @@
             <!-- Tabs Blocks -->
             <div class="tab-panes">
 
-                <div class="tab-pane active">
+                <div class="tab-pane active" id="product-galleries">
                     <div class="swiper gallery-vol">
                         <div class="swiper-wrapper">
                             {% for image in product.productsimages %}
                                 {% if image.imagetype == 0 %}
                                     <div class="swiper-slide">
-                                        <img src="../../uploads/images/products/carousels/fly/{{ image.imagename }}" alt="" />
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/fly/{{ image.imagename }}" alt="" />
+                                            </figure>
+                                        </a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -140,7 +147,16 @@
                             {% for image in product.productsimages %}
                                 {% if image.imagetype == 1 %}
                                     <div class="swiper-slide">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" alt="" />
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-pswp-width="1280" 
+                                            data-pswp-height="720" 
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" alt="" />
+                                            </figure>
+                                        </a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -160,7 +176,16 @@
                             {% for image in product.productsimages %}
                                 {% if image.imagetype == 2 %}
                                     <div class="swiper-slide">
-                                        <img src="../../uploads/images/products/carousels/workshop/{{ image.imagename }}" alt="" />
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-pswp-width="1280" 
+                                            data-pswp-height="720" 
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" alt="" />
+                                            </figure>
+                                        </a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -201,7 +226,7 @@
 
                     {% if product.productcarac1 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/vitesse-max-palier.png" alt="" />
                             <p>Vitesse Max (palier)<br />
                             {{ product.productcarac1 }}</p>
                         </div>
@@ -209,7 +234,7 @@
 
                     {% if product.productcarac2 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/vitesse-min-palier.png" alt="" />
                             <p>Vitesse Min (palier)<br />
                             {{ product.productcarac2 }}</p>
                         </div>
@@ -217,7 +242,7 @@
 
                     {% if product.productcarac3 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/vitesse-croisiere.png" alt="" />
                             <p>Vitesse de croisière<br/>
                             {{ product.productcarac3 }}</p>
                         </div>
@@ -225,7 +250,7 @@
 
                     {% if product.productcarac4 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/vitesse-decrochage.png" alt="" />
                             <p>Vitesse de décrochage<br/>
                             {{ product.productcarac4 }}</p>
                         </div>
@@ -233,7 +258,7 @@
 
                     {% if product.productcarac5 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/vitesse-ne-pas-depasser.png" alt="" />
                             <p>Vitesse à ne pas dépasser<br/>
                             {{ product.productcarac5 }}</p>
                         </div>
@@ -241,7 +266,7 @@
 
                     {% if product.productcarac6 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/.png" alt="" />
                             <p>Vitesse Max (À ne pas dépasser en air très turbulent)<br />
                             {{ product.productcarac6 }}</p>
                         </div>
@@ -249,7 +274,7 @@
 
                     {% if product.productcarac7 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/finesse-max.png" alt="" />
                             <p>Vitesse de finesse Max<br />
                             {{ product.productcarac7 }}</p>
                         </div>
@@ -257,7 +282,7 @@
 
                     {% if product.productcarac8 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/finesse-max.png" alt="" />
                             <p>Finesse max<br/>
                             {{ product.productcarac8 }}</p>
                         </div>
@@ -265,7 +290,7 @@
 
                     {% if product.productcarac9 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/taux-montee.png" alt="" />
                             <p>Taux de montée<br/>
                             {{ product.productcarac9 }}</p>
                         </div>
@@ -273,7 +298,7 @@
 
                     {% if product.productcarac10 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
+                            <img src="../../uploads/images/products/icons/distance-decollage.png" alt="" />
                             <p>Distance de décollage<br/>
                             {{ product.productcarac10 }}</p>
                         </div>
@@ -281,130 +306,145 @@
 
                     {% if product.productcarac29 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            <p>Passage des 15 m<br/>
+                            <img src="../../uploads/images/products/icons/passage-a-15m.png" alt="" />
+                            <p>Passage des 15m<br/>
                             {{ product.productcarac29 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac28 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            <p>Distance de décollage<br/>
+                            <img src="../../uploads/images/products/icons/distance-atterissage.png" alt="" />
+                            <p>Distance d'atterissage<br/>
                             {{ product.productcarac28 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac11 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            <p>Distance de décollage (2)<br/>
+                            <img src="../../uploads/images/products/icons/passage-a-15m.png" alt="" />
+                            <p>Passage des 15m (2)<br />
                             {{ product.productcarac11 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac12 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac12 }}
+                            <img src="../../uploads/images/products/icons/masse-a-vide.png" alt="" />
+                            <p>Masse à vide<br />
+                            {{ product.productcarac12 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac13 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac13 }}
+                            <img src="../../uploads/images/products/icons/masse-maximale.png" alt="" />
+                            <p>Masse maximale<br />
+                            {{ product.productcarac13 }}</>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac14 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac14 }}
+                            <img src="../../uploads/images/products/icons/charge-utile.png" alt="" />
+                            <p>Charge utile<br/>
+                            {{ product.productcarac14 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac15 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac15 }}
+                            <img src="../../uploads/images/products/icons/moteur.png" alt="" />
+                            <p>Moteur<br/>
+                            {{ product.productcarac15 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac16 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac16 }}
+                            <img src="../../uploads/images/products/icons/puissance.png" alt="" />
+                            <p>Puissance<br/>
+                            {{ product.productcarac16 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac17 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac17 }}
+                            <img src="../../uploads/images/products/icons/helice.png" alt="" />
+                            <p>Hélice<br/>
+                            {{ product.productcarac17 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac18 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac18 }}
+                            <img src="../../uploads/images/products/icons/reduction.png" alt="" />
+                            <p>Réduction<br/>
+                            {{ product.productcarac18 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac19 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac19 }}
+                            <img src="../../uploads/images/products/icons/capacite-reservoir.png" alt="" />
+                            <p>Capacité du réservoir<br/>
+                            {{ product.productcarac19 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac20 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac20 }}
+                            <img src="../../uploads/images/products/icons/consommation.png" alt="" />
+                            <p>Consommation<br/>
+                            {{ product.productcarac20 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac21 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac21 }}
+                            <img src="../../uploads/images/products/icons/autonomie.png" alt="" />
+                            <p>Autonomie<br/>
+                            {{ product.productcarac21 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac22 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac22 }}
+                            <img src="../../uploads/images/products/icons/hauteur.png" alt="" />
+                            <p>Hauteur<br/>
+                            {{ product.productcarac22 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac23 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac23 }}
+                            <img src="../../uploads/images/products/icons/envergure.png" alt="" />
+                            <p>Envergure<br/>
+                            {{ product.productcarac23 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac25 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac25 }}
+                            <img src="../../uploads/images/products/icons/.png" alt="" />
+                            <p>Surface allaire<br/>
+                            {{ product.productcarac25 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac26 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac26 }}
+                            <img src="../../uploads/images/products/icons/.png" alt="" />
+                            <p>Type de profil<br/>
+                            {{ product.productcarac26 }}</p>
                         </div>
                     {% endif %}
 
                     {% if product.productcarac27 %}
                         <div class="carac-block">
-                            <img src="https://picsum.photos/100" alt="" />
-                            {{ product.productcarac27 }}
+                            <img src="../../uploads/images/products/icons/capacite.png" alt="" />
+                            <p>Capacité<br/>
+                            {{ product.productcarac27 }}</p>
                         </div>
                     {% endif %}
 
