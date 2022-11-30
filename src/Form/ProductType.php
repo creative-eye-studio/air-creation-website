@@ -283,6 +283,7 @@ class ProductType extends AbstractType
             ->add('product_tricycle', ChoiceType::class, [
                 'choices'  => [
                     'Pixel' => 'Pixel',
+                    'Skypper Bush' => 'Skypper Bush',
                     'Skypper Evo' => 'Skypper Evo',
                     'Tanarg Néo' => 'Tanarg Néo',
                 ],

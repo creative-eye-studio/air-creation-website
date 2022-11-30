@@ -18,20 +18,22 @@
         <section class="product-main-block">
             <div class="image swiper motors-images">
                 <div class="swiper-wrapper">
-                    {% if product.productmotorimg1 == null %}
-                        <figure class="swiper-slide motor-image active">
-                            <img src="../../uploads/images/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
-                        </figure>
-                    {% else %}
-                        <figure class="swiper-slide motor-image active" data-slider="{{ product.productmotor1 }}">
+                    <figure class="swiper-slide motor-image active" data-slider="0">
+                        <img src="../../uploads/images/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" />
+                    </figure>
+
+                    {% if product.productmotorimg1 %}
+                        <figure class="swiper-slide motor-image" data-slider="{{ product.productmotor1 }}">
                             <img src="../../uploads/images/products/motors/{{ product.productmotorimg1 }}" alt="{{ product.productname }} Moteur 1" />
                         </figure>
                     {% endif %}
+
                     {% if product.productmotorimg2 %}
                         <figure class="swiper-slide motor-image" data-slider="{{ product.productmotor2 }}">
                             <img src="../../uploads/images/products/motors/{{ product.productmotorimg2 }}" alt="{{ product.productname }} Moteur 2" />
                         </figure>
                     {% endif %}
+
                     {% if product.productmotorimg3 %}
                         <figure class="swiper-slide motor-image" data-slider="{{ product.productmotor3 }}">
                             <img src="../../uploads/images/products/motors/{{ product.productmotorimg3 }}" alt="{{ product.productname }} Moteur 3" />
@@ -41,6 +43,9 @@
 
                 
                 <select class="motor-select">
+                    {% if product.productmotorimg1 %}
+                        <option value="0">Vue d'ensemble</option>
+                    {% endif %}
                     {% if product.productmotorimg1 %}
                         <option value="{{ product.productmotor1 }}">{{ product.productmotor1 }}</option>
                     {% endif %}
