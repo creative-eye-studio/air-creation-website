@@ -43,9 +43,7 @@
 
                 
                 <select class="motor-select">
-                    {% if product.productmotorimg1 %}
-                        <option value="0">Vue d'ensemble</option>
-                    {% endif %}
+                    <option value="0">Vue d'ensemble</option>
                     {% if product.productmotorimg1 %}
                         <option value="{{ product.productmotor1 }}">{{ product.productmotor1 }}</option>
                     {% endif %}
