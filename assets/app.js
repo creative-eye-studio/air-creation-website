@@ -206,6 +206,21 @@ if (document.querySelector('.content-tabs-container') != undefined) {
 
 
 
+// Lightbox
+// ------------------------------------------------------------------
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import 'photoswipe/style.css';
+const productLightbox = new PhotoSwipeLightbox({
+  gallery: '#product-galleries',
+  children: 'a',
+  showHideAnimationType: 'fade',
+  pswpModule: () => import('photoswipe'),
+});
+productLightbox.init();
+
+
+
+
 // Post
 // ------------------------------------------------------------------
 var postArrow = document.querySelector('.scroll-down-post')

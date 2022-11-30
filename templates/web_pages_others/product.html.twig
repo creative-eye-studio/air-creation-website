@@ -114,13 +114,20 @@
             <!-- Tabs Blocks -->
             <div class="tab-panes">
 
-                <div class="tab-pane active">
+                <div class="tab-pane active" id="product-galleries">
                     <div class="swiper gallery-vol">
                         <div class="swiper-wrapper">
                             {% for image in product.productsimages %}
                                 {% if image.imagetype == 0 %}
                                     <div class="swiper-slide">
-                                        <img src="../../uploads/images/products/carousels/fly/{{ image.imagename }}" alt="" />
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/fly/{{ image.imagename }}" alt="" />
+                                            </figure>
+                                        </a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -140,7 +147,16 @@
                             {% for image in product.productsimages %}
                                 {% if image.imagetype == 1 %}
                                     <div class="swiper-slide">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" alt="" />
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-pswp-width="1280" 
+                                            data-pswp-height="720" 
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" alt="" />
+                                            </figure>
+                                        </a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -160,7 +176,16 @@
                             {% for image in product.productsimages %}
                                 {% if image.imagetype == 2 %}
                                     <div class="swiper-slide">
-                                        <img src="../../uploads/images/products/carousels/workshop/{{ image.imagename }}" alt="" />
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-pswp-width="1280" 
+                                            data-pswp-height="720" 
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" alt="" />
+                                            </figure>
+                                        </a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
