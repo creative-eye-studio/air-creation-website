@@ -47,32 +47,24 @@
         .image{
             float: left;
             width: 50%;
+            height: calc(100vh - 4.5rem);
+            position: sticky;
+            top: 4.5rem;
             select{
                 padding: 2rem;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1;
             }
         }
         .intro{
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
             width: 50%;
             margin-left: auto;
             padding: $marges-d-y $marges-d-x;
             img{
                 width: 300px;
-            }
-            .main-blocks-container{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                gap: $marges-m;
-                .main-block{
-                    width: calc(50% - (#{$marges-m} / 2));
-                    &:not(:last-child){
-                        margin-bottom: 0;
-                    }
-                }
             }
         }
     }
