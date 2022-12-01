@@ -211,7 +211,7 @@ if (document.querySelector('.content-tabs-container') != undefined) {
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
 const productLightbox = new PhotoSwipeLightbox({
-  gallery: '#product-galleries',
+  gallery: '#product-galleries, #options-gallery',
   children: 'a',
   showHideAnimationType: 'fade',
   pswpModule: () => import('photoswipe'),
