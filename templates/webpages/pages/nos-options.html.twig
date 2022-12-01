@@ -34,16 +34,22 @@
 <!-- Options Container -->
 <section class="options-container">
   <h2 class="center">Nom du tricycle</h2>
-  <div class="images-list">
+  <div id="options-gallery" class="images-list">
     {% for i in 0..8 %}
     <figure>
-      <img src="https://picsum.photos/400/400" />
+      <a href="https://picsum.photos/400/400">
+        <img src="https://picsum.photos/400/400" />
+      </a>
     </figure>
     <figure>
-      <img src="https://picsum.photos/400/225" />
+      <a href="https://picsum.photos/400/225">
+        <img src="https://picsum.photos/400/225" />
+      </a>
     </figure>
     <figure>
-      <img src="https://picsum.photos/400/300" />
+      <a href="https://picsum.photos/400/300">
+        <img src="https://picsum.photos/400/300" />
+      </a>
     </figure>
     {% endfor %}  
   </div>
