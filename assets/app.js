@@ -298,7 +298,7 @@ const swiperDoc = new Swiper('.product-doc-list', {
   modules: [Navigation],
   slidesPerView: 1,
   centeredSlides: true,
-  loop: true,
+  // loop: true,
   navigation: {
     nextEl: '.swiper-doc-button-next',
     prevEl: '.swiper-doc-button-prev',
