@@ -297,7 +297,7 @@ const swiperLastNews = new Swiper('.posts', {
 const swiperDoc = new Swiper('.product-doc-list', {
   modules: [Navigation],
   slidesPerView: 1,
-  centeredSlides: true,
+  //centeredSlides: true,
   // loop: true,
   navigation: {
     nextEl: '.swiper-doc-button-next',
@@ -306,18 +306,18 @@ const swiperDoc = new Swiper('.product-doc-list', {
   breakpoints: {
     640: {
       slidesPerView: 2,
-      centeredSlides: false,
-      loop: true,
+      //centeredSlides: false,
+      //loop: true,
     },
     768: {
       slidesPerView: 2,
-      centeredSlides: false,
-      loop: true,
+      //centeredSlides: false,
+      //loop: true,
     },
     1200: {
       slidesPerView: 3,
-      centeredSlides: true,
-      loop: true,
+      //centeredSlides: true,
+      //loop: true,
     }
   }
 });

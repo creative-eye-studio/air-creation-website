@@ -19,6 +19,17 @@
                 font-weight: 400;
             }
         }
+        .arrow{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            &.next{
+                right: $marges-m;
+            }
+            &.prev{
+                left: $marges-m;;
+            }
+        }
     }
     .old-product{
         &:not(:last-child){
