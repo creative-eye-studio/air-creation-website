@@ -7,4 +7,5 @@ enum PartnerProfile: string
     case Revendeur = "Revendeur";
     case Importateur = "Importateur";
     case Technique = "Technique";
+    case Local = "Local";
 }
