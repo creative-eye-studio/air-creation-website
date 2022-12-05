@@ -16,6 +16,7 @@ use App\Entity\ProductsImages;
 use App\Entity\ProductsMotors;
 use App\Form\DocFilterType;
 use App\Form\NewsletterFormType;
+use App\Form\OptionsFilterType;
 use App\Form\ProductFilterType;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
@@ -48,6 +49,8 @@ class WebPagesOthersController extends AbstractController
         $newsForm->handleRequest($request);
         $assistForm = $this->createForm(SAVManagerFormType::class);
         $assistForm->handleRequest($request);
+        $optionsFilterForm = $this->createForm(OptionsFilterType::class);
+        $optionsFilterForm->handleRequest($request);
         $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
 
         if (!$selected_page) {
@@ -100,6 +103,7 @@ class WebPagesOthersController extends AbstractController
             'assistForm' => $assistForm->createView(),
             'filterForm' => $filterForm->createView(),
             'docFilterForm' => $docFilterForm->createView(),
+            'optionsFilterForm' => $optionsFilterForm->createView(),
             'meta_title' => $selected_page->getPageMetaTitle(),
             'meta_desc' => $selected_page->getPageMetaDesc(),
         ]);

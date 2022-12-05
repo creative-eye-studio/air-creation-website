@@ -38,6 +38,14 @@
                 width: calc(33.33% - (#{$marges-m} / 2));
             }
         }
+        &.no-flex{
+            form{
+                display: block;
+                .input-block{
+                    width: 100%;
+                }
+            }
+        }
         &.doc-form{
             form{
                 .input-block{

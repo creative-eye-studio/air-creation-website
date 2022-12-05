@@ -1,5 +1,21 @@
+.options-input-list{
+    margin: 1rem 0 $marges-m;
+    @media screen and (min-width:1024px) {
+        display: flex;
+        flex-wrap: wrap;
+        > *{
+            width: 33.33%;
+        }
+    }
+}
+
 .options-container{
     padding: $marges-m;
+    hr{
+        border: none;
+        border-top: .15rem solid $bw-color-3;
+        margin: $marges-m 0;
+    }
     .images-list{
         figure{
             &:not(:last-child){

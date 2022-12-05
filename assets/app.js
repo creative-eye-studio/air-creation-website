@@ -203,6 +203,11 @@ if (document.querySelector('.content-tabs-container') != undefined) {
   tabs(optionsContainer);
 }
 
+if (document.querySelector('.options-list') != undefined) {
+  var optionsContainer = document.querySelector('.options-list')
+  tabs(optionsContainer);
+}
+
 
 
 
