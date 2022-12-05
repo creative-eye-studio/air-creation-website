@@ -97,11 +97,11 @@ var subNavButtons = document.querySelectorAll('.sub-menu-btn');
 
 subNavButtons.forEach(subNavButton => {
   subNavButton.onclick = function () {
-    if (subNavButton.classList.contains('active')) 
+    if (subNavButton.classList.contains('active'))
     {
       subNavButton.classList.remove('active');
-    } 
-    else 
+    }
+    else
     {
       subNavButtons.forEach(subNavButton => {
         subNavButton.classList.remove('active');
@@ -234,7 +234,7 @@ if (postArrow != undefined) {
   postArrow.addEventListener('click', clickHandler);
 }
 
- 
+
 function clickHandler(e) {
   e.preventDefault();
   const headerHeight = document.querySelector("header").offsetHeight;
@@ -297,7 +297,7 @@ const swiperLastNews = new Swiper('.posts', {
 const swiperDoc = new Swiper('.product-doc-list', {
   modules: [Navigation],
   slidesPerView: 1,
-  centeredSlides: true,
+  //centeredSlides: true,
   // loop: true,
   navigation: {
     nextEl: '.swiper-doc-button-next',
@@ -306,18 +306,18 @@ const swiperDoc = new Swiper('.product-doc-list', {
   breakpoints: {
     640: {
       slidesPerView: 2,
-      centeredSlides: false,
-      // loop: true,
+      //centeredSlides: false,
+      //loop: true,
     },
     768: {
       slidesPerView: 2,
-      centeredSlides: false,
-      // loop: true,
+      //centeredSlides: false,
+      //loop: true,
     },
     1200: {
       slidesPerView: 3,
-      centeredSlides: true,
-      // loop: true,
+      //centeredSlides: true,
+      //loop: true,
     }
   }
 });
