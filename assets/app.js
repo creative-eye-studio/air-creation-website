@@ -307,17 +307,17 @@ const swiperDoc = new Swiper('.product-doc-list', {
     640: {
       slidesPerView: 2,
       centeredSlides: false,
-      loop: true,
+      // loop: true,
     },
     768: {
       slidesPerView: 2,
       centeredSlides: false,
-      loop: true,
+      // loop: true,
     },
     1200: {
       slidesPerView: 3,
       centeredSlides: true,
-      loop: true,
+      // loop: true,
     }
   }
 });
