@@ -20,99 +20,38 @@
             <!-- Champs obligatoires -->
             <div class="tab-pane active">
                 {{ form_row(form.product_name) }}
-                {{ form_row(form.product_old) }}
-                {{ form_row(form.product_logo) }}
-                {{ form_row(form.product_thumb) }}
-                {{ form_row(form.product_thumb_hover) }}
-                {{ form_row(form.product_intro) }}
             </div>
 
             <!-- Moteurs -->
             <div class="tab-pane">
-                {{ form_row(form.product_motor_1) }} 
-                {{ form_row(form.product_motor_img_1) }}
-                <hr />
-                {{ form_row(form.product_motor_2) }} 
-                {{ form_row(form.product_motor_img_2) }}
-                <hr />
-                {{ form_row(form.product_motor_3) }} 
-                {{ form_row(form.product_motor_img_3) }}
             </div>
 
             <!-- Blocks principaux -->
             <div class="tab-pane">
-                {{ form_row(form.product_max_speed) }}
-                {{ form_row(form.product_stall_speed) }}
-                {{ form_row(form.product_mass_speed) }}
-                {{ form_row(form.product_consumption) }}
             </div>
 
             <!-- Galeries-->
             <div class="tab-pane">
-                {{ form_row(form.fly_gallery) }}
-                {{ form_row(form.lifestyle_gallery) }}
-                {{ form_row(form.workshop_gallery) }}
             </div>
 
             <!-- Description -->
             <div class="tab-pane">
-                {{ form_row(form.product_desc) }}
             </div>
 
             <!-- Caractéristiques -->
             <div class="tab-pane">
-                {{ form_row(form.product_carac_1) }}
-                {{ form_row(form.product_carac_2) }}
-                {{ form_row(form.product_carac_3) }}
-                {{ form_row(form.product_carac_4) }}
-                {{ form_row(form.product_carac_5) }}
-                {{ form_row(form.product_carac_6) }}
-                {{ form_row(form.product_carac_7) }}
-                {{ form_row(form.product_carac_8) }}
-                {{ form_row(form.product_carac_9) }}
-                {{ form_row(form.product_carac_10) }}
-                {{ form_row(form.product_carac_29) }}
-                {{ form_row(form.product_carac_28) }}
-                {{ form_row(form.product_carac_11) }}
-                {{ form_row(form.product_carac_12) }}
-                {{ form_row(form.product_carac_13) }}
-                {{ form_row(form.product_carac_14) }}
-                {{ form_row(form.product_carac_15) }}
-                {{ form_row(form.product_carac_16) }}
-                {{ form_row(form.product_carac_17) }}
-                {{ form_row(form.product_carac_18) }}
-                {{ form_row(form.product_carac_19) }}
-                {{ form_row(form.product_carac_20) }}
-                {{ form_row(form.product_carac_21) }}
-                {{ form_row(form.product_carac_22) }}
-                {{ form_row(form.product_carac_23) }}
-                {{ form_row(form.product_carac_25) }}
-                {{ form_row(form.product_carac_26) }}
-                {{ form_row(form.product_carac_27) }}
             </div>
 
             <!-- Dimensions -->
             <div class="tab-pane">
-                {{ form_row(form.product_dim) }}
             </div>
 
             <!-- Critères de recherche -->
             <div class="tab-pane">
-               {{ form_row(form.product_capacity) }}
-               {{ form_row(form.product_wing) }}
-               {{ form_row(form.product_tricycle) }}
             </div>
 
             <!-- SEO -->
             <div class="tab-pane">
-                <p>
-                    {{ form_label(form.product_meta_title) }}<br />
-                    {{ form_widget(form.product_meta_title) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_meta_desc) }}<br />
-                    {{ form_widget(form.product_meta_desc) }}
-                </p>
             </div>
 
             <p>{{ form_widget(form.product_submit) }}</p>
