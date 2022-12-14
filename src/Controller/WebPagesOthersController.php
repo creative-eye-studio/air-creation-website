@@ -116,7 +116,7 @@ class WebPagesOthersController extends AbstractController
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);
 
-        $headerType = 'header-second';
+        $headerType = 'header-base';
 
         // Récupération du produit
         $product = $products_function->getProduct($doctrine, $product_slug);

@@ -1,75 +1,18 @@
 // PRODUCT MAIN BLOCK
 // ------------------------------------------
 .product-main-block{
-    .image{
-        figure{
-            @include coverImage('4-3');
-            &:not(.active){
-                display: none;
-            }
-        }
-        select{
-            font-weight: 400;
-            color: white;
-            background-color: $p-color-d;
-            border: none;
-            border-radius: 0;
-            padding: 1rem;
-            text-transform: uppercase;
-        }
-    }
-    .intro{
-        padding: $marges-m;
+    position: relative;
+    .logos{
+        position: absolute;
+        top: 10rem;
+        right: 10rem;
         img{
-            width: 100%;
-            height: auto;
-            margin-bottom: $marges-m;
+            max-width: 300px;
+            display: block;
         }
-        .main-blocks-container{
-            margin-top: $marges-m;
-            .main-block{
-                padding: $marges-m;
-                background-color: $p-color;
-                text-align: center;
-                font-weight: 400;
-                &:not(:last-child){
-                    margin-bottom: $marges-m;
-                }
-            }
-        }
-    }
-    @media screen and (min-width:1024px) {
-        &::after{
-            content: '';
-            display: table;
-            clear: both;
-        }
-        .image{
-            float: left;
-            width: 50%;
-            height: calc(100vh - 4.5rem);
-            position: sticky;
-            top: 4.5rem;
-            select{
-                padding: 2rem;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                z-index: 1;
-            }
-        }
-        .intro{
-            width: 50%;
-            margin-left: auto;
-            padding: $marges-d-y $marges-d-x;
-        }
-    }
-    @media screen and (min-width:1200px) {
-        .intro{
-            .main-blocks-container{
-                justify-content: flex-start;
-            }
+        .and-icon{
+            font-size: 3em;
+            font-weight: 400;
         }
     }
 }
