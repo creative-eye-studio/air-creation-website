@@ -41,10 +41,10 @@
   <div class="products-list-container">
     {% for product in products %}
     <article class="product-block">
-      <a href="{{ path('product_pages', {product_slug: product.producturl}) }}">
+      <a href="{{ path('product_pages', {product_slug: product.productslug}) }}">
         <div class="image">
-          <img src="../uploads/images/products/thumbs/{{ product.productthumbhover }}" alt="{{ product.productname }} Modèle 3D" />
-          <img src="../uploads/images/products/thumbs/{{ product.productthumb }}" alt="{{ product.productname }}" class="thumb-hover" />
+          <img src="../uploads/images/products/thumbs/{{ product.productsecondthumb }}" alt="{{ product.productname }} Modèle 3D" />
+          <img src="../uploads/images/products/thumbs/{{ product.productmainthumb }}" alt="{{ product.productname }}" class="thumb-hover" />
         </div>
         <h2>{{ product.productname }}</h2>
       </a>
