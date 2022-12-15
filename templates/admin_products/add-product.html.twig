@@ -7,112 +7,136 @@
         <h2>Ajouter un nouveau produit</h2>
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Champs obligatoires</a></li>
-            <li><a class="tab">Moteurs</a></li>
-            <li><a class="tab">Blocks principaux</a></li>
+            <li><a class="tab">Moteur 1</a></li>
+            <li><a class="tab">Moteur 2</a></li>
+            <li><a class="tab">Moteur 3</a></li>
             <li><a class="tab">Galeries</a></li>
-            <li><a class="tab">Description</a></li>
-            <li><a class="tab">Caractéristiques</a></li>
             <li><a class="tab">Dimensions</a></li>
-            <li><a class="tab">Critères de recherche</a></li>
             <li><a class="tab">SEO</a></li>
         </ul>
         {{ form_start(form, { 'attr' : {'class': 'tab-panes'} }) }}
             <!-- Champs obligatoires -->
             <div class="tab-pane active">
-                {{ form_row(form.product_name) }}
-                {{ form_row(form.product_old) }}
-                {{ form_row(form.product_logo) }}
-                {{ form_row(form.product_thumb) }}
-                {{ form_row(form.product_thumb_hover) }}
-                {{ form_row(form.product_intro) }}
+                <p>{{ form_row(form.product_name) }}</p>
+                <p>{{ form_row(form.product_logo_main) }}</p>
+                <p>{{ form_row(form.product_logo_second) }}</p>
+                <p>{{ form_row(form.product_main_thumb) }}</p>
+                <p>{{ form_row(form.product_second_thumb) }}</p>
+                <p>{{ form_label(form.product_capacity) }}<br />
+                {{ form_widget(form.product_capacity) }}</p>
+                <p>{{ form_label(form.product_wing) }}<br />
+                {{ form_widget(form.product_wing) }}</p>
+                <p>{{ form_label(form.product_tricycle) }}<br />
+                {{ form_widget(form.product_tricycle) }}</p>
+                <p>{{ form_row(form.product_desc) }}</p>
             </div>
 
-            <!-- Moteurs -->
+            <!-- Moteur 1 -->
             <div class="tab-pane">
-                {{ form_row(form.product_motor_1) }} 
-                {{ form_row(form.product_motor_img_1) }}
+                <p>{{ form_row(form.product_motor_name_1)}}</p>
+                <p>{{ form_row(form.product_motor_image_1)}}</p>
                 <hr />
-                {{ form_row(form.product_motor_2) }} 
-                {{ form_row(form.product_motor_img_2) }}
+                <p>{{ form_row(form.product_motor_1_block_1_icon)}}</p>
+                <p>{{ form_row(form.product_motor_1_block_1_title)}}</p>
+                <p>{{ form_row(form.product_motor_1_block_1_value)}}</p>
                 <hr />
-                {{ form_row(form.product_motor_3) }} 
-                {{ form_row(form.product_motor_img_3) }}
+                <p>{{ form_row(form.product_motor_1_block_2_icon)}}</p>
+                <p>{{ form_row(form.product_motor_1_block_2_title)}}</p>
+                <p>{{ form_row(form.product_motor_1_block_2_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_1_block_3_icon)}}</p>
+                <p>{{ form_row(form.product_motor_1_block_3_title)}}</p>
+                <p>{{ form_row(form.product_motor_1_block_3_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_1_block_4_icon)}}</p>
+                <p>{{ form_row(form.product_motor_1_block_4_title)}}</p>
+                <p>{{ form_row(form.product_motor_1_block_4_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_vitesse_1)}}</p>
+                <p>{{ form_row(form.product_motor_vol_1)}}</p>
+                <p>{{ form_row(form.product_motor_hauteur_1)}}</p>
+                <p>{{ form_row(form.product_motor_masse_1)}}</p>
+                <p>{{ form_row(form.product_motor_moteur_1)}}</p>
+                <p>{{ form_row(form.product_motor_reservoir_1)}}</p>
             </div>
 
-            <!-- Blocks principaux -->
+            <!-- Moteur 2 -->
             <div class="tab-pane">
-                {{ form_row(form.product_max_speed) }}
-                {{ form_row(form.product_stall_speed) }}
-                {{ form_row(form.product_mass_speed) }}
-                {{ form_row(form.product_consumption) }}
+                <p>{{ form_row(form.product_motor_name_2)}}</p>
+                <p>{{ form_row(form.product_motor_image_2)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_2_block_1_icon)}}</p>
+                <p>{{ form_row(form.product_motor_2_block_1_title)}}</p>
+                <p>{{ form_row(form.product_motor_2_block_1_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_2_block_2_icon)}}</p>
+                <p>{{ form_row(form.product_motor_2_block_2_title)}}</p>
+                <p>{{ form_row(form.product_motor_2_block_2_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_2_block_3_icon)}}</p>
+                <p>{{ form_row(form.product_motor_2_block_3_title)}}</p>
+                <p>{{ form_row(form.product_motor_2_block_3_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_2_block_4_icon)}}</p>
+                <p>{{ form_row(form.product_motor_2_block_4_title)}}</p>
+                <p>{{ form_row(form.product_motor_2_block_4_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_vitesse_2)}}</p>
+                <p>{{ form_row(form.product_motor_vol_2)}}</p>
+                <p>{{ form_row(form.product_motor_hauteur_2)}}</p>
+                <p>{{ form_row(form.product_motor_masse_2)}}</p>
+                <p>{{ form_row(form.product_motor_moteur_2)}}</p>
+                <p>{{ form_row(form.product_motor_reservoir_2)}}</p>
+            </div>
+
+            <!-- Moteur 3 -->
+            <div class="tab-pane">
+                <p>{{ form_row(form.product_motor_name_3)}}</p>
+                <p>{{ form_row(form.product_motor_image_3)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_3_block_1_icon)}}</p>
+                <p>{{ form_row(form.product_motor_3_block_1_title)}}</p>
+                <p>{{ form_row(form.product_motor_3_block_1_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_3_block_2_icon)}}</p>
+                <p>{{ form_row(form.product_motor_3_block_2_title)}}</p>
+                <p>{{ form_row(form.product_motor_3_block_2_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_3_block_3_icon)}}</p>
+                <p>{{ form_row(form.product_motor_3_block_3_title)}}</p>
+                <p>{{ form_row(form.product_motor_3_block_3_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_3_block_4_icon)}}</p>
+                <p>{{ form_row(form.product_motor_3_block_4_title)}}</p>
+                <p>{{ form_row(form.product_motor_3_block_4_value)}}</p>
+                <hr />
+                <p>{{ form_row(form.product_motor_vitesse_3)}}</p>
+                <p>{{ form_row(form.product_motor_vol_3)}}</p>
+                <p>{{ form_row(form.product_motor_hauteur_3)}}</p>
+                <p>{{ form_row(form.product_motor_masse_3)}}</p>
+                <p>{{ form_row(form.product_motor_moteur_3)}}</p>
+                <p>{{ form_row(form.product_motor_reservoir_3)}}</p>
             </div>
 
             <!-- Galeries-->
             <div class="tab-pane">
-                {{ form_row(form.fly_gallery) }}
-                {{ form_row(form.lifestyle_gallery) }}
-                {{ form_row(form.workshop_gallery) }}
-            </div>
-
-            <!-- Description -->
-            <div class="tab-pane">
-                {{ form_row(form.product_desc) }}
-            </div>
-
-            <!-- Caractéristiques -->
-            <div class="tab-pane">
-                {{ form_row(form.product_carac_1) }}
-                {{ form_row(form.product_carac_2) }}
-                {{ form_row(form.product_carac_3) }}
-                {{ form_row(form.product_carac_4) }}
-                {{ form_row(form.product_carac_5) }}
-                {{ form_row(form.product_carac_6) }}
-                {{ form_row(form.product_carac_7) }}
-                {{ form_row(form.product_carac_8) }}
-                {{ form_row(form.product_carac_9) }}
-                {{ form_row(form.product_carac_10) }}
-                {{ form_row(form.product_carac_29) }}
-                {{ form_row(form.product_carac_28) }}
-                {{ form_row(form.product_carac_11) }}
-                {{ form_row(form.product_carac_12) }}
-                {{ form_row(form.product_carac_13) }}
-                {{ form_row(form.product_carac_14) }}
-                {{ form_row(form.product_carac_15) }}
-                {{ form_row(form.product_carac_16) }}
-                {{ form_row(form.product_carac_17) }}
-                {{ form_row(form.product_carac_18) }}
-                {{ form_row(form.product_carac_19) }}
-                {{ form_row(form.product_carac_20) }}
-                {{ form_row(form.product_carac_21) }}
-                {{ form_row(form.product_carac_22) }}
-                {{ form_row(form.product_carac_23) }}
-                {{ form_row(form.product_carac_25) }}
-                {{ form_row(form.product_carac_26) }}
-                {{ form_row(form.product_carac_27) }}
+                {{ form_row(form.product_gallery_vol)}}
+                {{ form_row(form.product_gallery_atelier)}}
+                {{ form_row(form.product_gallery_lifestyle)}}
             </div>
 
             <!-- Dimensions -->
             <div class="tab-pane">
-                {{ form_row(form.product_dim) }}
-            </div>
-
-            <!-- Critères de recherche -->
-            <div class="tab-pane">
-               {{ form_row(form.product_capacity) }}
-               {{ form_row(form.product_wing) }}
-               {{ form_row(form.product_tricycle) }}
+                <p>{{ form_label(form.product_dim) }}<br />
+                {{ form_widget(form.product_dim) }}</p>
             </div>
 
             <!-- SEO -->
             <div class="tab-pane">
-                <p>
-                    {{ form_label(form.product_meta_title) }}<br />
-                    {{ form_widget(form.product_meta_title) }}
-                </p>
-                <p>
-                    {{ form_label(form.product_meta_desc) }}<br />
-                    {{ form_widget(form.product_meta_desc) }}
-                </p>
+                <p>{{ form_label(form.product_meta_title) }}<br />
+                {{ form_widget(form.product_meta_title) }}</p>
+                <p>{{ form_label(form.product_meta_desc) }}<br />
+                {{ form_widget(form.product_meta_desc) }}</p>
             </div>
 
             <p>{{ form_widget(form.product_submit) }}</p>
@@ -122,14 +146,4 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        CKEDITOR.instances["product_product_intro"].destroy();
-        CKEDITOR.replace( 'product_product_intro', {
-        	startupMode: 'wysiwyg'
-        });
-        CKEDITOR.instances["product_product_desc"].destroy();
-        CKEDITOR.replace( 'product_product_desc', {
-        	startupMode: 'wysiwyg'
-        });
-    </script>
 {% endblock %}

@@ -114,6 +114,50 @@ subNavButtons.forEach(subNavButton => {
 
 
 
+// Page Produit
+// ------------------------------------------------------------------
+var motorsBlock = document.querySelectorAll(".motor-board .block");
+var firstBlock = motorsBlock[0];
+firstBlock.className = 'block active';
+
+var motorsListBlock = document.querySelectorAll(".motor-list-container .motor-list-block");
+var firstListBlock = motorsListBlock[0];
+firstListBlock.className = 'motor-list-block active';
+
+var motorsImages = document.querySelectorAll(".motor-image-container .motor-image");
+var firstImageBlock = motorsImages[0];
+firstImageBlock.className = 'motor-image active';
+
+
+var motorSelect = document.querySelector('.motor-select');
+
+if (motorSelect) {
+  motorSelect.addEventListener('change', function(){
+    var valueSelected = motorSelect.value;
+    var blockSelected = document.querySelector('[data-motor="' + valueSelected + '"]');
+    var blockInfosSelected = document.querySelector('[data-motor-infos="' + valueSelected + '"]');
+    var imageSelected = document.querySelector('[data-motor-image="' + valueSelected + '"]');
+
+    motorsBlock.forEach(block => {
+      block.classList.remove('active');
+    });
+
+    motorsListBlock.forEach(block => {
+      block.classList.remove('active');
+    });
+
+    motorsImages.forEach(block => {
+      block.classList.remove('active');
+    });
+
+    blockSelected.classList.add('active');
+    blockInfosSelected.classList.add('active');
+    imageSelected.classList.add('active');
+  });
+}
+
+
+
 // Contact Form
 // ------------------------------------------------------------------
 var contactButton = document.querySelectorAll('.toggle-contact');
@@ -128,8 +172,6 @@ contactButton.forEach(button => {
 var contactBtn1 = document.querySelector('#contactBtn1');
 var contactBtn2 = document.querySelector('#contactBtn2');
 var contactBtn3 = document.querySelector('#contactBtn3');
-
-console.log(document.querySelectorAll("input[name='contact_form[gender]']").length);
 
 contactBtn1.onclick = function () {
   document.querySelector("#contact-tab-1").classList.add('active');
@@ -242,29 +284,6 @@ function clickHandler(e) {
   scroll({
     top: offsetTop,
     behavior: "smooth"
-  });
-}
-
-
-
-
-// Products
-// ------------------------------------------------------------------
-var motorSelect = document.querySelector('.motor-select');
-var motorsSlides = document.querySelectorAll('.motor-image');
-
-if (motorSelect) {
-  motorSelect.addEventListener('change', function(){
-    var valueSelected = motorSelect.value;
-    var slideSelected = document.querySelector('[data-slider="' + valueSelected + '"]')
-
-    motorsSlides.forEach(motorsSlide => {
-      motorsSlide.classList.remove('active');
-    });
-
-    slideSelected.classList.add('active');
-
-    console.log(valueSelected);
   });
 }
 
@@ -416,7 +435,7 @@ const swiperGalleryLifestyle = new Swiper('.gallery-lifestyle', {
   },
   breakpoints: {
     1024: {
-      slidesPerView: 4,
+      slidesPerView: 3,
       spaceBetween: 30,
     },
   },

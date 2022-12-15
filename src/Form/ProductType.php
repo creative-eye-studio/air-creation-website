@@ -5,9 +5,7 @@ namespace App\Form;
 use App\Entity\Products;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,232 +22,377 @@ class ProductType extends AbstractType
             ->add('product_name', TextType::class, [
                 'label' => 'Nom du produit'
             ])
-            ->add('product_old', CheckboxType::class, [
-                'label' => 'Produit ancien',
-                'required' => false
+            ->add('product_logo_main', DropzoneType::class, [
+                'label' => "Logo principal du produit"
             ])
-            ->add('product_logo', DropzoneType::class, [
-                'label' => 'Logo du produit',
+            ->add('product_logo_second', DropzoneType::class, [
+                'label' => "Logo secondaire du produit"
+            ])
+            ->add('product_main_thumb', DropzoneType::class, [
+                'label' => "Image principale du produit"
+            ])
+            ->add('product_second_thumb', DropzoneType::class, [
+                'label' => "Image secondaire du produit"
+            ])
+            ->add('product_desc', CKEditorType::class, [
+                'label' => "Description du produit"
+            ])
+            ->add('product_capacity', ChoiceType::class, [
+                'choices' => [
+                    "Monoplace" => "Monoplace",
+                    "Biplace" => "Biplace"
+                ],
+                'label' => "Capacité"
+            ])
+            ->add('product_wing', ChoiceType::class, [
+                'choices' => [
+                    "IFun" => "IFun",
+                    "Nuvix" => "Nuvix",
+                    "Bionix" => "Bionix"
+                ],
+                'label' => "Ailes"
+            ])
+            ->add('product_tricycle', ChoiceType::class, [
+                'choices' => [
+                    "Pixel" => "Pixel",
+                    "Skypper Bush" => "Skypper Bush",
+                    "Skypper Néo" => "Skypper Néo",
+                    "Tanarg Néo" => "Tanarg Néo"
+                ],
+                'label' => "Tricycle"
+            ])
+
+
+            // MOTEUR 1
+            ->add('product_motor_name_1', TextType::class, [
+                'label' => "Nom du moteur",
                 'mapped' => false,
-                'empty_data' => '',
+                'required' => false
             ])
-            ->add('product_thumb', DropzoneType::class, [
-                'label' => 'Image du produit',
+            ->add('product_motor_image_1', DropzoneType::class, [
+                'label' => "Photo du moteur",
                 'mapped' => false,
-                'empty_data' => '',
+                'required' => false
             ])
-            ->add('product_thumb_hover', DropzoneType::class, [
-                'label' => 'Image du produit au survol',
+            ->add('product_motor_1_block_1_icon', DropzoneType::class, [
+                'label' => "Image du Block 1",
                 'mapped' => false,
-                'empty_data' => '',
+                'required' => false
+            ])
+            ->add('product_motor_1_block_1_title', TextType::class, [
+                'label' => "Titre du Block 1",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_1_value', TextType::class, [
+                'label' => "Valeur du Block 1",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_2_icon', DropzoneType::class, [
+                'label' => "Image du Block 2",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_2_title', TextType::class, [
+                'label' => "Titre du Block 2",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_2_value', TextType::class, [
+                'label' => "Valeur du Block 2",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_3_icon', DropzoneType::class, [
+                'label' => "Image du Block 3",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_3_title', TextType::class, [
+                'label' => "Titre du Block 3",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_3_value', TextType::class, [
+                'label' => "Valeur du Block 3",
+                'mapped' => false,
+                'required' => false
             ])
 
-            ->add('product_intro', CKEditorType::class, [
-                'label' => 'Présentation',
-                'mapped' => false
+            ->add('product_motor_1_block_4_icon', DropzoneType::class, [
+                'label' => "Image du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_4_title', TextType::class, [
+                'label' => "Titre du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_1_block_4_value', TextType::class, [
+                'label' => "Valeur du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
+
+            ->add('product_motor_vitesse_1', CKEditorType::class, [
+                'label' => "Informations vitesse",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_vol_1', CKEditorType::class, [
+                'label' => "Informations de vol",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_hauteur_1', CKEditorType::class, [
+                'label' => "Informations sur la hauteur",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_masse_1', CKEditorType::class, [
+                'label' => "Informations sur la masse",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_moteur_1', CKEditorType::class, [
+                'label' => "Informations sur le moteur",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_reservoir_1', CKEditorType::class, [
+                'label' => "Informations sur le réservoir",
+                'mapped' => false,
+                'required' => false
+            ])
+
+            
+            // MOTEUR 2
+            ->add('product_motor_name_2', TextType::class, [
+                'label' => "Nom du moteur",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_image_2', DropzoneType::class, [
+                'label' => "Photo du moteur",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_1_icon', DropzoneType::class, [
+                'label' => "Image du Block 1",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_1_title', TextType::class, [
+                'label' => "Titre du Block 1",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_1_value', TextType::class, [
+                'label' => "Valeur du Block 1",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_2_icon', DropzoneType::class, [
+                'label' => "Image du Block 2",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_2_title', TextType::class, [
+                'label' => "Titre du Block 2",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_2_value', TextType::class, [
+                'label' => "Valeur du Block 2",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_3_icon', DropzoneType::class, [
+                'label' => "Image du Block 3",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_3_title', TextType::class, [
+                'label' => "Titre du Block 3",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_3_value', TextType::class, [
+                'label' => "Valeur du Block 3",
+                'mapped' => false,
+                'required' => false
+            ])
+
+            ->add('product_motor_2_block_4_icon', DropzoneType::class, [
+                'label' => "Image du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_4_title', TextType::class, [
+                'label' => "Titre du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_2_block_4_value', TextType::class, [
+                'label' => "Valeur du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
+
+            ->add('product_motor_vitesse_2', CKEditorType::class, [
+                'label' => "Informations vitesse",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_vol_2', CKEditorType::class, [
+                'label' => "Informations de vol",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_hauteur_2', CKEditorType::class, [
+                'label' => "Informations sur la hauteur",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_masse_2', CKEditorType::class, [
+                'label' => "Informations sur la masse",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_moteur_2', CKEditorType::class, [
+                'label' => "Informations sur le moteur",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_reservoir_2', CKEditorType::class, [
+                'label' => "Informations sur le réservoir",
+                'mapped' => false,
+                'required' => false
             ])
 
 
-            // MOTEURS
-            ->add('product_motor_1', TextType::class, [
-                'label' => "Moteur 1",
+            // MOTEUR 3
+            ->add('product_motor_name_3', TextType::class, [
+                'label' => "Nom du moteur",
+                'mapped' => false,
                 'required' => false
             ])
-            ->add('product_motor_img_1', DropzoneType::class, [
-                'label' => "Image",
-                'empty_data' => '',
-                'required' => false,
-                'data_class' => null,
-                'mapped' => false
-            ])
-            ->add('product_motor_2', TextType::class, [
-                'label' => "Moteur 2",
+            ->add('product_motor_image_3', DropzoneType::class, [
+                'label' => "Photo du moteur",
+                'mapped' => false,
                 'required' => false
             ])
-            ->add('product_motor_img_2', DropzoneType::class, [
-                'label' => "Image",
-                'empty_data' => '',
-                'required' => false,
-                'data_class' => null,
-                'mapped' => false
-            ])
-            ->add('product_motor_3', TextType::class, [
-                'label' => "Moteur 3",
+            ->add('product_motor_3_block_1_icon', DropzoneType::class, [
+                'label' => "Image du Block 1",
+                'mapped' => false,
                 'required' => false
             ])
-            ->add('product_motor_img_3', DropzoneType::class, [
-                'label' => "Image",
-                'empty_data' => '',
-                'required' => false,
-                'data_class' => null,
-                'mapped' => false
+            ->add('product_motor_3_block_1_title', TextType::class, [
+                'label' => "Titre du Block 1",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_3_block_1_value', TextType::class, [
+                'label' => "Valeur du Block 1",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_3_block_2_icon', DropzoneType::class, [
+                'label' => "Image du Block 2",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_3_block_2_title', TextType::class, [
+                'label' => "Titre du Block 2",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_3_block_2_value', TextType::class, [
+                'label' => "Valeur du Block 2",
+                'mapped' => false,
+                'required' => false
             ])
 
+            ->add('product_motor_3_block_3_icon', DropzoneType::class, [
+                'label' => "Image du Block 3",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_3_block_3_title', TextType::class, [
+                'label' => "Titre du Block 3",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_3_block_3_value', TextType::class, [
+                'label' => "Valeur du Block 3",
+                'mapped' => false,
+                'required' => false
+            ])
+            
+            ->add('product_motor_3_block_4_icon', DropzoneType::class, [
+                'label' => "Image du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_3_block_4_title', TextType::class, [
+                'label' => "Titre du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_3_block_4_value', TextType::class, [
+                'label' => "Valeur du Block 4",
+                'mapped' => false,
+                'required' => false
+            ])
 
-            // BLOCKS PRINCIPAUX
-            ->add('product_max_speed', TextType::class, [
-                'label' => "Champ 1",
+            ->add('product_motor_vitesse_3', CKEditorType::class, [
+                'label' => "Informations vitesse",
+                'mapped' => false,
                 'required' => false
             ])
-            ->add('product_stall_speed', TextType::class, [
-                'label' => "Champ 2",
+            ->add('product_motor_vol_3', CKEditorType::class, [
+                'label' => "Informations de vol",
+                'mapped' => false,
                 'required' => false
             ])
-            ->add('product_mass_speed', TextType::class, [
-                'label' => "Champ 3",
+            ->add('product_motor_hauteur_3', CKEditorType::class, [
+                'label' => "Informations sur la hauteur",
+                'mapped' => false,
                 'required' => false
             ])
-            ->add('product_consumption', TextType::class, [
-                'label' => "Champ 4",
+            ->add('product_motor_masse_3', CKEditorType::class, [
+                'label' => "Informations sur la masse",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_moteur_3', CKEditorType::class, [
+                'label' => "Informations sur le moteur",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_motor_reservoir_3', CKEditorType::class, [
+                'label' => "Informations sur le réservoir",
+                'mapped' => false,
                 'required' => false
             ])
 
 
             // GALERIES
-            ->add('fly_gallery', DropzoneType::class, [
+            ->add('product_gallery_vol', DropzoneType::class, [
                 'label' => "Galerie 'En vol'",
-                'data_class' => null,
-                'required' => false,
-                'multiple' => true,
                 'mapped' => false,
+                'required' => false
             ])
-
-            ->add('lifestyle_gallery', DropzoneType::class, [
+            ->add('product_gallery_atelier', DropzoneType::class, [
+                'label' => "Galerie 'Atelier'",
+                'mapped' => false,
+                'required' => false
+            ])
+            ->add('product_gallery_lifestyle', DropzoneType::class, [
                 'label' => "Galerie 'Lifestyle'",
-                'data_class' => null,
-                'required' => false,
-                'multiple' => true,
                 'mapped' => false,
-            ])
-
-            ->add('workshop_gallery', DropzoneType::class, [
-                'label' => "Galerie 'L'Atelier'",
-                'data_class' => null,
-                'required' => false,
-                'multiple' => true,
-                'mapped' => false,
-            ])
-
-
-            // DESC
-            ->add('product_desc', CKEditorType::class, [
-                'label' => 'Description',
-                'mapped' => false,
-                'required' => false
-            ])
-
-
-            // CARACTERISTIQUES
-            ->add('product_carac_1', TextType::class, [
-                'label' => "Vitesse max (palier)",
-                'required' => false
-            ])
-            ->add('product_carac_2', TextType::class, [
-                'label' => "Vitesse min (palier)",
-                'required' => false
-            ])
-            ->add('product_carac_3', TextType::class, [
-                'label' => "Vitesse de croisière",
-                'required' => false
-            ])
-            ->add('product_carac_4', TextType::class, [
-                'label' => "Vitesse de décrochage",
-                'required' => false
-            ])
-            ->add('product_carac_5', TextType::class, [
-                'label' => "Vitesse à ne pas dépasser",
-                'required' => false
-            ])
-            ->add('product_carac_6', TextType::class, [
-                'label' => "Vitesse Max (À ne pas dépasser en air très turbulent)",
-                'required' => false
-            ])
-            ->add('product_carac_7', TextType::class, [
-                'label' => "Vitesse de finesse max",
-                'required' => false
-            ])
-            ->add('product_carac_8', TextType::class, [
-                'label' => "Finesse max",
-                'required' => false
-            ])
-            ->add('product_carac_9', TextType::class, [
-                'label' => "Taux de montée",
-                'required' => false
-            ])
-            ->add('product_carac_10', TextType::class, [
-                'label' => "Distance de décollage",
-                'required' => false
-            ])
-            ->add('product_carac_29', TextType::class, [
-                'label' => "Passage des 15m",
-                'required' => false
-            ])
-            ->add('product_carac_28', TextType::class, [
-                'label' => "Distance d'atterissage",
-                'required' => false
-            ])
-            ->add('product_carac_11', TextType::class, [
-                'label' => "Passage des 15m (2)",
-                'required' => false
-            ])
-            ->add('product_carac_12', TextType::class, [
-                'label' => "Masse à vide",
-                'required' => false
-            ])
-            ->add('product_carac_13', TextType::class, [
-                'label' => "Masse maximale",
-                'required' => false
-            ])
-            ->add('product_carac_14', TextType::class, [
-                'label' => "Charge utile",
-                'required' => false
-            ])
-            ->add('product_carac_15', TextType::class, [
-                'label' => "Moteur",
-                'required' => false
-            ])
-            ->add('product_carac_16', TextType::class, [
-                'label' => "Puissance",
-                'required' => false
-            ])
-            ->add('product_carac_17', TextType::class, [
-                'label' => "Hélice",
-                'required' => false
-            ])
-            ->add('product_carac_18', TextType::class, [
-                'label' => "Réduction",
-                'required' => false
-            ])
-            ->add('product_carac_19', TextType::class, [
-                'label' => "Capacité du réservoir",
-                'required' => false
-            ])
-            ->add('product_carac_20', TextType::class, [
-                'label' => "Consommation",
-                'required' => false
-            ])
-            ->add('product_carac_21', TextType::class, [
-                'label' => "Autonomie",
-                'required' => false
-            ])
-            ->add('product_carac_22', TextType::class, [
-                'label' => "Hauteur",
-                'required' => false
-            ])
-            ->add('product_carac_23', TextType::class, [
-                'label' => "Envergure",
-                'required' => false
-            ])
-            ->add('product_carac_25', TextType::class, [
-                'label' => "Surface allaire",
-                'required' => false
-            ])
-            ->add('product_carac_26', TextType::class, [
-                'label' => "Type de profil",
-                'required' => false
-            ])
-            ->add('product_carac_27', TextType::class, [
-                'label' => "Capacité",
                 'required' => false
             ])
 
@@ -257,54 +400,20 @@ class ProductType extends AbstractType
             // DIMENSIONS
             ->add('product_dim', DropzoneType::class, [
                 'label' => "Dimensions",
-                'data_class' => null,
-                'empty_data' => '',
-                'required' => false,
-                'mapped' => false,
+                'required' => false
             ])
-
-
-            // CRITERES DE RECHERCHE
-            ->add('product_capacity', ChoiceType::class, [
-                'choices'  => [
-                    'Monoplace' => 'Monoplace',
-                    'Biplace' => 'Biplace',
-                ],
-                'label' => 'Capacité',
-            ])
-            ->add('product_wing', ChoiceType::class, [
-                'choices'  => [
-                    'IFun' => 'IFun',
-                    'Nuvix' => 'Nuvix',
-                    'BioniX' => 'BioniX',
-                ],
-                'label' => 'Aile',
-            ])
-            ->add('product_tricycle', ChoiceType::class, [
-                'choices'  => [
-                    'Pixel' => 'Pixel',
-                    'Skypper Bush' => 'Skypper Bush',
-                    'Skypper Evo' => 'Skypper Evo',
-                    'Tanarg Néo' => 'Tanarg Néo',
-                ],
-                'label' => 'Tricycle',
-            ])
-
+            
 
             // SEO
             ->add('product_meta_title', TextType::class, [
-                'label' => 'Meta Title',
-                'required' => false,
+                'label' => "Meta title du produit",
+                'required' => false
             ])
+
             ->add('product_meta_desc', TextareaType::class, [
-                'label' => 'Meta Description',
-                'required' => false,
+                'label' => "Meta description du produit",
+                'required' => false
             ])
-
-
-            // HIDDEN
-            ->add('product_url', HiddenType::class)
-            ->add('product_id', HiddenType::class)
 
 
             // SUBMIT
