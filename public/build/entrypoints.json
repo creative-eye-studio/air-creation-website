@@ -2,44 +2,42 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_internals_inherit-if-required_js-node_modules_core-js_internals_-ca0482.js",
-        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-8ddd4c.js",
-        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_photoswipe_di-d5d52d.js",
-        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
-        "/build/app.js"
+        "/build/runtime.e7def758.js",
+        "/build/715.97d8eee1.js",
+        "/build/945.bda9a26b.js",
+        "/build/524.ec3a946f.js",
+        "/build/433.c3b48f6a.js",
+        "/build/app.b2ea8282.js"
       ],
       "css": [
-        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-8ddd4c.css",
-        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_photoswipe_di-d5d52d.css",
-        "/build/app.css"
+        "/build/524.94651512.css",
+        "/build/app.8aa064de.css"
       ]
     },
     "filters": {
       "js": [
-        "/build/runtime.js",
-        "/build/filters.js"
+        "/build/runtime.e7def758.js",
+        "/build/filters.f3fcb61b.js"
       ]
     },
     "app-admin": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_internals_inherit-if-required_js-node_modules_core-js_internals_-ca0482.js",
-        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-8ddd4c.js",
-        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
-        "/build/app-admin.js"
+        "/build/runtime.e7def758.js",
+        "/build/715.97d8eee1.js",
+        "/build/945.bda9a26b.js",
+        "/build/433.c3b48f6a.js",
+        "/build/app-admin.0510a23b.js"
       ],
       "css": [
-        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-8ddd4c.css",
-        "/build/app-admin.css"
+        "/build/app-admin.35807478.css"
       ]
     },
     "fontawesome": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_core-js_internals_inherit-if-required_js-node_modules_core-js_internals_-ca0482.js",
-        "/build/vendors-node_modules_core-js_modules_es_array_fill_js-node_modules_core-js_modules_es_array_f-09448a.js",
-        "/build/fontawesome.js"
+        "/build/runtime.e7def758.js",
+        "/build/715.97d8eee1.js",
+        "/build/387.749cbb33.js",
+        "/build/fontawesome.5c35f766.js"
       ]
     }
   }
