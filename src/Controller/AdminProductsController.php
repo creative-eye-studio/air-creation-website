@@ -263,7 +263,7 @@ class AdminProductsController extends AbstractController
             $motor->setMotorInfosReservoir($MotorInfo20);
 
             $entityManager = $doctrine->getManager();
-            $entityManager->persist($product);
+            $entityManager->persist($motor);
             $entityManager->flush();
 
             // Création du moteur 2
@@ -398,6 +398,10 @@ class AdminProductsController extends AbstractController
             $motor->setMotorInfosMoteur($MotorInfo19);
             $motor->setMotorInfosReservoir($MotorInfo20);
 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($motor);
+            $entityManager->flush();
+
             // Création du moteur 3
             // --------------------------------------------
             $MotorInfo1 = $form->get('product_motor_name_3')->getData();
@@ -519,6 +523,10 @@ class AdminProductsController extends AbstractController
             $motor->setMotorInfosMoteur($MotorInfo19);
             $motor->setMotorInfosReservoir($MotorInfo20);
 
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($motor);
+            $entityManager->flush();
+
 
             // Création des galeries
             // --------------------------------------------
@@ -530,7 +538,7 @@ class AdminProductsController extends AbstractController
                     $image = $safeThumbName . '.' . $imageGallery->guessExtension();
                     try {
                         $imageGallery->move(
-                            $this->getParameter('thumbs_directory'),
+                            $this->getParameter('fly_gallery_directory'),
                             $image
                         );
                         $img = new ProductsImages();
@@ -551,7 +559,7 @@ class AdminProductsController extends AbstractController
                     $image = $safeThumbName . '.' . $imageGallery->guessExtension();
                     try {
                         $imageGallery->move(
-                            $this->getParameter('thumbs_directory'),
+                            $this->getParameter('workshop_gallery_directory'),
                             $image
                         );
                         $img = new ProductsImages();
@@ -572,7 +580,7 @@ class AdminProductsController extends AbstractController
                     $image = $safeThumbName . '.' . $imageGallery->guessExtension();
                     try {
                         $imageGallery->move(
-                            $this->getParameter('thumbs_directory'),
+                            $this->getParameter('lifestyle_gallery_directory'),
                             $image
                         );
                         $img = new ProductsImages();

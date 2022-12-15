@@ -416,9 +416,6 @@ class ProductType extends AbstractType
             ])
 
 
-            // HIDDEN
-
-
             // SUBMIT
             ->add('product_submit', SubmitType::class, [
                 'label' => "Enregistrer"

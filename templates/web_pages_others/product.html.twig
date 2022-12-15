@@ -16,9 +16,9 @@
     <main id="swup">
         <!-- Main Image & Intro -->
         <section class="product-main-block">
-            <div class="motor-image">
+            <div class="motor-image-container">
                 {% for motor in product.productmotor %}
-                    <figure>
+                    <figure class="motor-image" data-motor-image="{{ motor.id }}">
                         <img src="../../uploads/images/products/motors/{{ motor.motormainimage }}" />
                     </figure>
                 {% endfor %}
@@ -29,32 +29,40 @@
                 <img src="../../uploads/images/products/logos/{{ product.productlogosecond }}" />
             </div>
             <div class="motor-board">
-                <select>
+                <select class="motor-select">
                     {% for motor in product.productmotor %}
-                    <option>{{ motor.motorname }}</option>
+                    <option value="{{ motor.id }}">{{ motor.motorname }}</option>
                     {% endfor %}
                 </select>
                 {% for motor in product.productmotor %}
-                    <div class="block" data-motor="1">
-                        <div>
+                    <div class="block" data-motor="{{ motor.id }}">
+                        <div class="sub-block">
                             <img src="../../uploads/images/products/motors/{{ motor.motorblock1image }}" />
-                            <p>{{ motor.motorblock1name }}</p>
-                            <p>{{ motor.motorblock1value }}</p>
+                            <div class="text">
+                                <p>{{ motor.motorblock1name }}</p>
+                                <p>{{ motor.motorblock1value }}</p>
+                            </div>
                         </div>
-                        <div>
+                        <div class="sub-block">
                             <img src="../../uploads/images/products/motors/{{ motor.motorblock2image }}" />
-                            <p>{{ motor.motorblock2title }}</p>
-                            <p>{{ motor.motorblock2value }}</p>
+                            <div class="text">
+                                <p>{{ motor.motorblock2title }}</p>
+                                <p>{{ motor.motorblock2value }}</p>
+                            </div>
                         </div>
-                        <div>
+                        <div class="sub-block">
                             <img src="../../uploads/images/products/motors/{{ motor.motorblock3image }}" />
-                            <p>{{ motor.motorblock3title }}</p>
-                            <p>{{ motor.motorblock3value }}</p>
+                            <div class="text">
+                                <p>{{ motor.motorblock3title }}</p>
+                                <p>{{ motor.motorblock3value }}</p>
+                            </div>
                         </div>
-                        <div>
+                        <div class="sub-block">
                             <img src="../../uploads/images/products/motors/{{ motor.motorblock4image }}" />
-                            <p>{{ motor.motorblock4title }}</p>
-                            <p>{{ motor.motorblock4value }}</p>
+                            <div class="text">
+                                <p>{{ motor.motorblock4title }}</p>
+                                <p>{{ motor.motorblock4value }}</p>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -177,33 +185,35 @@
                     </section>
                 </div>
                 <!-- Tab Caractéristiques -->
-                <div class="tab-pane">
+                <div class="tab-pane motor-list-container">
                     {% for motor in product.productmotor %}
-                    <h2>{{ motor.motorname }}</h2>
-                    <div>
-                        <div>
-                            <h3>Vitesse</h3>
-                            {{ motor.motorinfosvitesse | raw }}
-                        </div>
-                        <div>
-                            <h3>Vol</h3>
-                            {{ motor.motorinfosvol | raw }}
-                        </div>
-                        <div>
-                            <h3>Hauteur</h3>
-                            {{ motor.motorinfoshauteur  | raw}}
-                        </div>
-                        <div>
-                            <h3>Masse</h3>
-                            {{ motor.motorinfosmasse | raw }}
-                        </div>
-                        <div>
-                            <h3>Moteur</h3>
-                            {{ motor.motorinfosmoteur | raw }}
-                        </div>
-                        <div>
-                            <h3>Réservoir</h3>
-                            {{ motor.motorinfosreservoir | raw }}
+                    <div class="motor-list-block" data-motor-infos="{{ motor.id }}">
+                        <h2>{{ motor.motorname }}</h2>
+                        <div class="motor-list">
+                            <div class="motor-list-section">
+                                <h3>Vitesse</h3>
+                                {{ motor.motorinfosvitesse | raw }}
+                            </div>
+                            <div class="motor-list-section">
+                                <h3>Vol</h3>
+                                {{ motor.motorinfosvol | raw }}
+                            </div>
+                            <div class="motor-list-section">
+                                <h3>Hauteur</h3>
+                                {{ motor.motorinfoshauteur  | raw}}
+                            </div>
+                            <div class="motor-list-section">
+                                <h3>Masse</h3>
+                                {{ motor.motorinfosmasse | raw }}
+                            </div>
+                            <div class="motor-list-section">
+                                <h3>Moteur</h3>
+                                {{ motor.motorinfosmoteur | raw }}
+                            </div>
+                            <div class="motor-list-section">
+                                <h3>Réservoir</h3>
+                                {{ motor.motorinfosreservoir | raw }}
+                            </div>
                         </div>
                     </div>
                     {% endfor %}

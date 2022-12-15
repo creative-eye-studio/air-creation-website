@@ -73,7 +73,7 @@ class ProductsMotors
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $motor_main_image = null;
 
-    #[ORM\ManyToOne(inversedBy: 'productsMotors')]
+    #[ORM\ManyToOne(inversedBy: 'productsMotors', cascade:["persist"])]
     private ?Products $product_id = null;
 
     public function getId(): ?int

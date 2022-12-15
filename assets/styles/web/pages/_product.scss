@@ -17,6 +17,61 @@
     }
 }
 
+.motor-image-container{
+    position: relative;
+    height: 100vh;
+    .motor-image{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        img{
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        &:not(.active){
+            display: none;
+        }
+    }
+}
+
+
+// MOTOR BOARD
+// ------------------------------------------
+.motor-board{
+    width: 500px;
+    position: absolute;
+    top: 52.5vh;
+    left: calc(50% + 10vw);
+    background-color: $bw-color-2;
+    select{
+        background-color: $p-color;
+        color: white;
+    }
+    .block{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: $marges-m $marges-m 0;
+        .sub-block{
+            margin-bottom: $marges-m;
+            width: 50%;
+            display: flex;
+            p{
+                font-weight: 400;
+            }
+            img{
+                width: 100px;
+                margin-right: 1rem;
+            }
+        }
+        &:not(.active){
+            display: none;
+        }
+    }
+}
+
 
 // IMAGES TABS CONTAINER
 // ------------------------------------------
@@ -65,45 +120,30 @@
 
 // CARACTERISTIQUES
 // ------------------------------------------
-.carac-block-container{
-    padding: $marges-m;
-    text-align: center;
-    .carac-block{
+.motor-list-container{
+    padding: $marges-d-y $marges-d-x;
+}
+
+.motor-list-block{
+    &:not(.active){
+        display: none;
+    }
+    .motor-list-section{
         padding: $marges-m;
         background-color: $bw-color-2;
-        img{
-            display: block;
-            margin: 0 auto $marges-m;
-        }
-        p{
-            font-size: 1.1em;
+        h3{
+            font-size: 1.5em;
             font-weight: 400;
         }
-        &:not(:last-child){
-            margin-bottom: $marges-m;
-        }
     }
-    @media screen and (min-width:768px) {
-        display: flex;
-        flex-wrap: wrap;
-        gap: $marges-m;
-        .carac-block{
-            width: calc(50% - (#{$marges-m} / 2));
-            &:not(:last-child){
-                margin-bottom: 0;
-            }
-        }
-    }
-    @media screen and (min-width:1024px) {
-        padding: $marges-d-y $marges-d-x;
-        .carac-block{
-            width: calc(32.8% - (#{$marges-m} / 2));
-        }
-    }
-    @media screen and (min-width:1200px) {
-        .carac-block{
-            width: calc(24% - (#{$marges-m} / 2));
-        }
+}
+
+.motor-list{
+    display: flex;
+    flex-wrap: wrap;
+    gap: $marges-m;
+    > *{
+        width: calc(33.33% - $marges-m);
     }
 }
 
