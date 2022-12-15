@@ -26,9 +26,6 @@ class PostsFormType extends AbstractType
                     'placeholder' => "Si le champ n'est pas rempli, l'URL sera le nom de l'article"
                 ]
             ])
-            ->add('photo_filename', FileType::class, [
-                'label' => "Image de l'article (Jpg, Jpeg, Png)",
-            ])
             ->add('post_content', CKEditorType::class, [
                 'label' => "Contenu de l'article"
             ])

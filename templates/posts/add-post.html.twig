@@ -6,8 +6,8 @@
     <section class="block tab-container">
         <h2>Ajouter un article</h2>
         <ul class="tabs tabs-btn">
-            <li><a class="tab active">Contenu de page</a></li>
-            <li><a class="tab">SEO de la page</a></li>
+            <li><a class="tab active">Contenu de l'article</a></li>
+            <li><a class="tab">SEO de l'article</a></li>
         </ul>
         {{ form_start(form, { 'attr' : { 'class': 'tab-panes' } }) }}
             <div id="content-page" class="tab-pane active">
@@ -16,6 +16,9 @@
 
                 <p>{{ form_label(form.post_url) }}<br />
                 {{ form_widget(form.post_url) }}</p>
+
+                <p>{{ form_label(form.photo_filename) }}<br />
+                {{ form_widget(form.photo_filename) }}</p>
 
                 <p>{{ form_label(form.post_content) }}<br />
                 {{ form_widget(form.post_content) }}</p>
