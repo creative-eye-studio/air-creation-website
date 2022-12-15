@@ -5,14 +5,17 @@
     .logos{
         position: absolute;
         top: 10rem;
-        right: 10rem;
+        left: calc(50% + 10vw);
         img{
-            max-width: 300px;
+            max-width: 350px;
             display: block;
         }
         .and-icon{
             font-size: 3em;
             font-weight: 400;
+            text-align: center;
+            display: block;
+            margin: 1rem 0;
         }
     }
 }

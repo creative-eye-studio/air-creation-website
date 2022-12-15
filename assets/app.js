@@ -435,7 +435,7 @@ const swiperGalleryLifestyle = new Swiper('.gallery-lifestyle', {
   },
   breakpoints: {
     1024: {
-      slidesPerView: 4,
+      slidesPerView: 3,
       spaceBetween: 30,
     },
   },
