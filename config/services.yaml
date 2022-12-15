@@ -11,6 +11,7 @@ parameters:
    logos_directory: '%kernel.project_dir%/public/uploads/images/products/logos'
    motors_directory: '%kernel.project_dir%/public/uploads/images/products/motors'
    thumbs_directory: '%kernel.project_dir%/public/uploads/images/products/thumbs'
+   posts_directory: '%kernel.project_dir%/public/uploads/images/posts'
 
 services:
     # default configuration for services in *this* file

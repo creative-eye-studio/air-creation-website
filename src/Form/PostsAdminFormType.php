@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class PostsAdminFormType extends AbstractType
 {
@@ -22,6 +23,9 @@ class PostsAdminFormType extends AbstractType
             ->add('post_url', TextType::class, [
                 'label' => "URL de l'article (Optionnel)",
                 'required' => false
+            ])
+            ->add('photo_filename', DropzoneType::class, [
+                'label' => "Image de l'article (Jpg, Jpeg, Png)",
             ])
             ->add('post_content', CKEditorType::class, [
                 'label' => "Contenu de l'article",

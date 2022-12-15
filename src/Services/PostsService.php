@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Entity\PostsList;
 use App\Form\PostsAdminFormType;
 use Cocur\Slugify\Slugify;
+use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,6 +65,26 @@ class PostsService extends AbstractController{
             } else {
                 $post->setPostMetaTitle($form->get('post_meta_title')->getData());
             }
+
+            // Création de l'image
+            $imgPost = $form->get('photo_filename')->getData();
+            $originalThumbName = pathinfo($imgPost->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeThumbName = $slugify->slugify($originalThumbName);
+            $image = $safeThumbName . '.' . $imgPost->guessExtension();
+            try {
+                $imgPost->move(
+                    $this->getParameter('posts_directory'),
+                    $image
+                );
+                $post->setPhotoFilename($image);
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+
+            // Création de la date du post
+            $date = new DateTimeImmutable();
+            $date->format('d/m/Y');
+            $post->setCreatedAt($date);
 
             // Envoi des données vers la BDD
             $entityManager = $doctrine->getManager();
