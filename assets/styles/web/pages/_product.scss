@@ -63,6 +63,9 @@
             display: flex;
             p{
                 font-weight: 400;
+                &.motor-main-value{
+                    font-size: 1.75em;
+                }
             }
             img{
                 width: 100px;
@@ -86,6 +89,7 @@
         text-align: center;
         display: block;
         padding: 1rem 2rem;
+        margin: $marges-m;
         background-color: $p-color;
         &.active{
             background-color: $p-color-d;
