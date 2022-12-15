@@ -68,18 +68,28 @@ class PostsService extends AbstractController{
 
             // Création de l'image
             $imgPost = $form->get('photo_filename')->getData();
-            $originalThumbName = pathinfo($imgPost->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeThumbName = $slugify->slugify($originalThumbName);
-            $image = $safeThumbName . '.' . $imgPost->guessExtension();
-            try {
-                $imgPost->move(
-                    $this->getParameter('posts_directory'),
-                    $image
-                );
-                $post->setPhotoFilename($image);
-            } catch (\Throwable $th) {
-                throw $th;
+            if ($imgPost) {
+                $originalThumbName = pathinfo($imgPost->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeThumbName = $slugify->slugify($originalThumbName);
+                $image = $safeThumbName . '.' . $imgPost->guessExtension();
+                try {
+                    $imgPost->move(
+                        $this->getParameter('posts_directory'),
+                        $image
+                    );
+                    $post->setPhotoFilename($image);
+                } catch (\Throwable $th) {
+                    throw $th;
+                }
+            } else {
+                if (!$newPost) {
+                    $imgPost = $post->getPhotoFilename();
+                    dump($imgPost);
+                    $post->setPhotoFilename($imgPost);
+                }
+                
             }
+            
 
             // Création de la date du post
             $date = new DateTimeImmutable();

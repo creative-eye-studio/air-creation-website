@@ -18,7 +18,9 @@
                 {{ form_widget(form.post_url) }}</p>
 
                 <p>{{ form_label(form.photo_filename) }}<br />
-                {{ form_widget(form.photo_filename) }}</p>
+                {{ form_widget(form.photo_filename, {
+                    'required': false
+                }) }}</p>
 
                 <p>{{ form_label(form.post_content) }}<br />
                 {{ form_widget(form.post_content, {
