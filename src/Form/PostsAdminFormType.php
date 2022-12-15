@@ -26,6 +26,7 @@ class PostsAdminFormType extends AbstractType
             ])
             ->add('photo_filename', DropzoneType::class, [
                 'label' => "Image de l'article (Jpg, Jpeg, Png)",
+                'data_class' => null
             ])
             ->add('post_content', CKEditorType::class, [
                 'label' => "Contenu de l'article",
