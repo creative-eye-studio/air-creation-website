@@ -116,45 +116,48 @@ subNavButtons.forEach(subNavButton => {
 
 // Page Produit
 // ------------------------------------------------------------------
-var motorsBlock = document.querySelectorAll(".motor-board .block");
-var firstBlock = motorsBlock[0];
-firstBlock.className = 'block active';
+if (document.querySelector(".motor-board") != undefined) {
+  var motorsBlock = document.querySelectorAll(".motor-board .block");
+  var firstBlock = motorsBlock[0];
+  firstBlock.className = 'block active';
 
-var motorsListBlock = document.querySelectorAll(".motor-list-container .motor-list-block");
-var firstListBlock = motorsListBlock[0];
-firstListBlock.className = 'motor-list-block active';
+  var motorsListBlock = document.querySelectorAll(".motor-list-container .motor-list-block");
+  var firstListBlock = motorsListBlock[0];
+  firstListBlock.className = 'motor-list-block active';
 
-var motorsImages = document.querySelectorAll(".motor-image-container .motor-image");
-var firstImageBlock = motorsImages[0];
-firstImageBlock.className = 'motor-image active';
+  var motorsImages = document.querySelectorAll(".motor-image-container .motor-image");
+  var firstImageBlock = motorsImages[0];
+  firstImageBlock.className = 'motor-image active';
 
 
-var motorSelect = document.querySelector('.motor-select');
+  var motorSelect = document.querySelector('.motor-select');
 
-if (motorSelect) {
-  motorSelect.addEventListener('change', function(){
-    var valueSelected = motorSelect.value;
-    var blockSelected = document.querySelector('[data-motor="' + valueSelected + '"]');
-    var blockInfosSelected = document.querySelector('[data-motor-infos="' + valueSelected + '"]');
-    var imageSelected = document.querySelector('[data-motor-image="' + valueSelected + '"]');
+  if (motorSelect) {
+    motorSelect.addEventListener('change', function(){
+      var valueSelected = motorSelect.value;
+      var blockSelected = document.querySelector('[data-motor="' + valueSelected + '"]');
+      var blockInfosSelected = document.querySelector('[data-motor-infos="' + valueSelected + '"]');
+      var imageSelected = document.querySelector('[data-motor-image="' + valueSelected + '"]');
 
-    motorsBlock.forEach(block => {
-      block.classList.remove('active');
+      motorsBlock.forEach(block => {
+        block.classList.remove('active');
+      });
+
+      motorsListBlock.forEach(block => {
+        block.classList.remove('active');
+      });
+
+      motorsImages.forEach(block => {
+        block.classList.remove('active');
+      });
+
+      blockSelected.classList.add('active');
+      blockInfosSelected.classList.add('active');
+      imageSelected.classList.add('active');
     });
-
-    motorsListBlock.forEach(block => {
-      block.classList.remove('active');
-    });
-
-    motorsImages.forEach(block => {
-      block.classList.remove('active');
-    });
-
-    blockSelected.classList.add('active');
-    blockInfosSelected.classList.add('active');
-    imageSelected.classList.add('active');
-  });
+  }
 }
+
 
 
 
