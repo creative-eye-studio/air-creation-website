@@ -40,6 +40,7 @@ class AdminDocumentationController extends AbstractController
         ]);
     }
 
+
     #[Route('/admin/documentation/{cat_name}/liste', name: 'admin_doc_files')]
     public function add_docs(ManagerRegistry $doctrine, Request $request, String $cat_name): Response
     {
@@ -81,17 +82,38 @@ class AdminDocumentationController extends AbstractController
         ]);
     }
 
+
     #[Route('/admin/documentation/delete_doc_file/{selectcatslug}/{id}', name: 'admin_doc_file_delete')]
     public function delete_doc(ManagerRegistry $doctrine, String $selectcatslug, int $id)
     {
         $entityManager = $doctrine->getManager();
         $fileToDel = $entityManager->getRepository(DocFiles::class)->find($id);
 
-        var_dump($selectcatslug);
-
         $entityManager->remove($fileToDel);
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_doc_files', ['cat_name' => $selectcatslug]);
     }
+
+
+    #[Route('/admin/documentation/delete_doc_file/{id}', name: 'admin_doc_cat_delete')]
+    public function delete_cat(ManagerRegistry $doctrine, int $id)
+    {
+        $entityManager = $doctrine->getManager();
+        $catToDel = $entityManager->getRepository(DocCategories::class)->find($id);
+        $filesOfCat = $entityManager->getRepository(DocFiles::class)->findBy(['doc_category' => $id]);
+
+        if ($filesOfCat) {
+            foreach ($filesOfCat as $file) {
+                $entityManager->remove($file);
+                $entityManager->flush();
+            }
+        }
+        
+        $entityManager->remove($catToDel);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_admin_documentation');
+    }
+
 }
