@@ -545,6 +545,9 @@ class AdminProductsController extends AbstractController
                         $img->setImageName($image);
                         $img->setImageProduct($product);
                         $img->setImageType(0);
+                        $entityManager = $doctrine->getManager();
+                        $entityManager->persist($img);
+                        $entityManager->flush();
                     } catch (\Throwable $th) {
                         throw $th;
                     }
@@ -566,6 +569,9 @@ class AdminProductsController extends AbstractController
                         $img->setImageName($image);
                         $img->setImageProduct($product);
                         $img->setImageType(1);
+                        $entityManager = $doctrine->getManager();
+                        $entityManager->persist($img);
+                        $entityManager->flush();
                     } catch (\Throwable $th) {
                         throw $th;
                     }
@@ -587,6 +593,9 @@ class AdminProductsController extends AbstractController
                         $img->setImageName($image);
                         $img->setImageProduct($product);
                         $img->setImageType(2);
+                        $entityManager = $doctrine->getManager();
+                        $entityManager->persist($img);
+                        $entityManager->flush();
                     } catch (\Throwable $th) {
                         throw $th;
                     }

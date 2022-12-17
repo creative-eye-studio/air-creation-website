@@ -382,18 +382,24 @@ class ProductType extends AbstractType
             // GALERIES
             ->add('product_gallery_vol', DropzoneType::class, [
                 'label' => "Galerie 'En vol'",
+                'multiple' => true,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'data_class' => null
             ])
             ->add('product_gallery_atelier', DropzoneType::class, [
                 'label' => "Galerie 'Atelier'",
+                'multiple' => true,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'data_class' => null
             ])
             ->add('product_gallery_lifestyle', DropzoneType::class, [
                 'label' => "Galerie 'Lifestyle'",
+                'multiple' => true,
                 'mapped' => false,
-                'required' => false
+                'required' => false,
+                'data_class' => null
             ])
 
 
