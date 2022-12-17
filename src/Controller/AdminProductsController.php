@@ -663,15 +663,15 @@ class AdminProductsController extends AbstractController
     public function DeleteProduct(ManagerRegistry $doctrine, String $product_id){
         $entityManager = $doctrine->getManager();
         $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
+        $motors = $entityManager->getRepository(ProductsMotors::class)->findBy(['product_id' => $product_id]);
         $images = $entityManager->getRepository(ProductsImages::class)->findBy(['image_product' => $product_id]);
 
-        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '-desc.html.twig');
-        unlink($this->getParameter('kernel.project_dir') . '/templates/webpages/products/' . $product->getProductId() . '-intro.html.twig');
-
+        foreach ($motors as $motor) {
+            $entityManager->remove($motor);
+        }
         foreach ($images as $image) {
             $entityManager->remove($image);
         }
-
         $entityManager->remove($product);
         $entityManager->flush();
 
