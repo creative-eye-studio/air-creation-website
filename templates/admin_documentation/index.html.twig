@@ -4,19 +4,22 @@
 
 {% block body %}
     <section class="block">
-        <a class="btn-link float-right" href="{{ path('app_admin_documentation_add') }}">Ajouter des documents</a>
-        <h2>Produits</h2>
-        <div class="docs-list">
-            {% for product in products %}
-                <a href="{{ path('app_admin_documentation_product', { product_id: product.id }) }}">
-                    <div class="docs-block">
-                        <figure class="image">
-                        <img src="../uploads/images/products/thumbs/{{ product.productThumb }}" alt="{{ product.productname }}" />
-                        </figure>
-                        <h3>{{ product.productname }}</h3>
-                    </div>
-                </a>
-            {% endfor %}
+        <h2>Gestion de la documentation</h2>
+        <div class="doc-nav-block cat float">
+            <a>
+                <figure class="image">
+                    <img src="../uploads/admin/documentation/doc-block-cat.jpeg" alt="" />
+                </figure>
+                <h3>Gestion des catégories</h3>
+            </a>
+        </div>
+        <div class="doc-nav-block files ml">
+            <a>
+                <figure class="image">
+                    <img src="../uploads/admin/documentation/doc-block-files.jpeg" alt="" />
+                </figure>
+                <h3>Gestion des documents</h3>
+            </a>
         </div>
     </section>
 {% endblock %}
