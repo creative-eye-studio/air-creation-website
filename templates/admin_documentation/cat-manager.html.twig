@@ -1,0 +1,25 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Documentation{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <h2>Gestion des catégories de la documentation</h2>
+        {{ form_start(docForm) }}
+            <p>{{ form_label(docForm.name)}}<br/>
+            {{ form_widget(docForm.name)}}</p>
+            <p>{{ form_label(docForm.submit)}}</p>
+        {{ form_end(docForm) }}
+        <hr />
+        {% for cat in cats %}
+            <div class="line">
+                <p>
+                    {{ cat.name }} 
+                </p>
+                <ul>
+                    <li><a href="">Supprimer</a></li>
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}
