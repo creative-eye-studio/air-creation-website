@@ -24,6 +24,12 @@ class DocCategories
     #[ORM\OneToMany(mappedBy: 'doc_category', targetEntity: DocFiles::class)]
     private Collection $docFiles;
 
+    #[ORM\Column]
+    private ?bool $old_product = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $wing = null;
+
     public function __construct()
     {
         $this->docFiles = new ArrayCollection();
@@ -84,6 +90,30 @@ class DocCategories
                 $docFile->setDocCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isOldProduct(): ?bool
+    {
+        return $this->old_product;
+    }
+
+    public function setOldProduct(bool $old_product): self
+    {
+        $this->old_product = $old_product;
+
+        return $this;
+    }
+
+    public function getWing(): ?string
+    {
+        return $this->wing;
+    }
+
+    public function setWing(?string $wing): self
+    {
+        $this->wing = $wing;
 
         return $this;
     }

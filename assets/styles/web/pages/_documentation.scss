@@ -3,72 +3,35 @@
     h2{
         font-weight: 300;
     }
-    .product{
+    h3{
+        font-weight: 300;
+        font-size: 1.7em;
+    }
+    .cat-block{
+        padding: $marges-m;
+        background-color: $bw-color-2;
         &:not(:last-child){
             margin-bottom: $marges-m;
         }
-        .product-item{
-            background-color: $bw-color-2;
-            .image{
-                @include coverImage("4-3");
-            }
-            h3{
-                padding: $marges-m calc(#{$marges-m} / 2);
-                margin-bottom: 0;
-                font-size: 2rem;
-                font-weight: 400;
-            }
+        ul{
+            margin-bottom: 0;
         }
-        .arrow{
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 5;
-            &.next{
-                right: $marges-m;
-            }
-            &.prev{
-                left: $marges-m;;
-            }
-        }
-    }
-    .old-product{
-        &:not(:last-child){
-            margin-bottom: 2rem;
-        }
-    }
-    .product-doc-block{
-        svg{
-            display: block;
-            margin: 1rem auto;
-        }
-        text-align: center;
     }
     @media screen and (min-width:768px) {
-        .product{
-            display: flex;
-            align-items: center;
-            border: .0625rem solid $bw-color-2;
-            .product-item{
-                flex: 35%;
-                .image{
-                    @include coverImage("16-9");
-                }
-            }
-            .product-doc-list{
-                flex: 50%;
+        .products-docs-list{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 2rem;
+            grid-auto-rows: minmax(100px, auto);
+        }
+        .cat-block{
+            &:not(:last-child){
+                margin-bottom: 0;
             }
         }
     }
     @media screen and (min-width:1024px) {
-        .product{
-            .product-item{
-                flex: 30%;
-            }
-            .product-doc-list{
-                flex: 70%;
-            }
-        }
+
     }
     @media screen and (min-width:1200px){
         padding: $marges-d-y $marges-d-x;

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Classes\DocSearch;
 use App\Classes\ProductsSearch;
 use App\Entity\Chronologie;
+use App\Entity\DocCategories;
 use App\Entity\FAQList;
 use App\Form\ContactFormType;
 use App\Form\SAVManagerFormType;
@@ -39,7 +40,7 @@ class WebPagesOthersController extends AbstractController
         $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
         $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
         $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
-        $questions = $doctrine->getRepository(FAQList::class)->findAll();
+        $documents = $doctrine->getRepository(DocCategories::class)->findAll();
         
         $products = $products_function->getProducts($doctrine);
         // $products = $products_function->getPaginatedProducts();
@@ -96,8 +97,8 @@ class WebPagesOthersController extends AbstractController
             'resellers' => $resellers,
             'trainers' => $trainers,
             'techs' => $techs,
-            'questions' => $questions,
             'headerType' => $headerType,
+            'docCategories' => $documents,
             'contactForm' => $contactForm->createView(),
             'newsForm' => $newsForm->createView(),
             'assistForm' => $assistForm->createView(),
