@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\DocCategories;
+use App\Entity\DocFiles;
 use App\Form\DocCategoriesType;
+use App\Form\DocFilesType;
+use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,15 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminDocumentationController extends AbstractController
 {
     #[Route('/admin/documentation', name: 'app_admin_documentation')]
-    public function index(): Response
-    {
-        return $this->render('admin_documentation/index.html.twig', [
-            'controller_name' => 'AdminDocumentationController',
-        ]);
-    }
-
-    #[Route('/admin/documentation/categories', name: 'admin_doc_categories')]
-    public function category_manager(ManagerRegistry $doctrine, Request $request): Response
+    public function index(ManagerRegistry $doctrine, Request $request): Response
     {
         $entityManager = $doctrine->getManager();
         $docCat = new DocCategories();
@@ -30,15 +25,55 @@ class AdminDocumentationController extends AbstractController
         $docForm->handleRequest($request);
 
         if ($docForm->isSubmitted() && $docForm->isValid()) {
+            $slugify = new Slugify();
             $cat = $docForm->getData();
+            $docCat->setSlug($slugify->slugify($docForm->get('name')->getData()));
             $entityManager->persist($cat);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_doc_categories');
+            return $this->redirectToRoute('app_admin_documentation');
         }
 
-        return $this->render('admin_documentation/cat-manager.html.twig', [
+        return $this->render('admin_documentation/index.html.twig', [
             'cats' => $docCatList,
+            'docForm' => $docForm->createView()
+        ]);
+    }
+
+    #[Route('/admin/documentation/{cat_name}/liste', name: 'admin_doc_files')]
+    public function add_doc(ManagerRegistry $doctrine, Request $request, String $cat_name): Response
+    {
+        $entityManager = $doctrine->getManager();
+        $selectCat = $entityManager->getRepository(DocCategories::class)->findOneBy(['slug' => $cat_name]);
+        $selectCatSlug = $selectCat->getSlug();
+        $docForm = $this->createForm(DocFilesType::class);
+        $docForm->handleRequest($request);
+
+        if ($docForm->isSubmitted() && $docForm->isValid()) {
+            $slugify = new Slugify();
+            $file = $docForm->get('files')->getData();
+
+            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugify->slugify($originalFilename);
+            $newFilename = $safeFilename . '.' . $file->guessExtension();
+            try {
+                $file->move(
+                    $this->getParameter('docs_directory'),
+                    $newFilename
+                );
+                $docFile = new DocFiles();
+                $docFile->setDocName($newFilename);
+                $docFile->setDocCategory($selectCat);
+                $entityManager->persist($docFile);
+                $entityManager->flush();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+
+            return $this->redirectToRoute('admin_doc_files', ['cat_name' => $selectCatSlug]);
+        }
+
+        return $this->render('admin_documentation/files-list.html.twig', [
             'docForm' => $docForm->createView()
         ]);
     }

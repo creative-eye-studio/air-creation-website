@@ -1,0 +1,14 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Documents de la catégorie{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <h2>Documents de la catégorie</h2>
+        {{ form_start(docForm) }}
+            <p>{{ form_label(docForm.files)}}<br/>
+            {{ form_widget(docForm.files)}}</p>
+            <p>{{ form_label(docForm.submit)}}</p>
+        {{ form_end(docForm) }}
+    </section>
+{% endblock %}

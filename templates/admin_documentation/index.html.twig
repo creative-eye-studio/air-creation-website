@@ -5,21 +5,22 @@
 {% block body %}
     <section class="block">
         <h2>Gestion de la documentation</h2>
-        <div class="doc-nav-block cat float">
-            <a href="{{ path('admin_doc_categories') }}">
-                <figure class="image">
-                    <img src="../uploads/admin/documentation/doc-block-cat.jpeg" alt="" />
-                </figure>
-                <h3>Gestion des catégories</h3>
-            </a>
-        </div>
-        <div class="doc-nav-block files ml">
-            <a>
-                <figure class="image">
-                    <img src="../uploads/admin/documentation/doc-block-files.jpeg" alt="" />
-                </figure>
-                <h3>Gestion des documents</h3>
-            </a>
-        </div>
+        {{ form_start(docForm) }}
+            <p>{{ form_label(docForm.name)}}<br/>
+            {{ form_widget(docForm.name)}}</p>
+            <p>{{ form_label(docForm.submit)}}</p>
+        {{ form_end(docForm) }}
+        <hr />
+        {% for cat in cats %}
+            <div class="line">
+                <p>
+                    {{ cat.name }} 
+                </p>
+                <ul>
+                    <li><a href="{{ path('admin_doc_files', {cat_name: cat.slug}) }}">Ajouter des documents</a></li>
+                    <li><a href="">Supprimer</a></li>
+                </ul>
+            </div>
+        {% endfor %}
     </section>
 {% endblock %}
