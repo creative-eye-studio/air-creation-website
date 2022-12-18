@@ -113,6 +113,14 @@ subNavButtons.forEach(subNavButton => {
 
 
 
+// Page Accueil
+// ------------------------------------------------------------------
+$('.home-hidden-btn').on('click', function(){
+  $('.home-hidden-text').slideToggle('slow');
+})
+
+
+
 
 // Page Produit
 // ------------------------------------------------------------------
