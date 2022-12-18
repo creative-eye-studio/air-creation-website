@@ -422,7 +422,7 @@ const swiperGalleryVol = new Swiper('.gallery-vol', {
   },
   breakpoints: {
     1024: {
-      slidesPerView: 4,
+      slidesPerView: 3,
       spaceBetween: 30,
     },
   },
@@ -454,7 +454,7 @@ const swiperGalleryAtelier = new Swiper('.gallery-atelier', {
   },
   breakpoints: {
     1024: {
-      slidesPerView: 4,
+      slidesPerView: 3,
       spaceBetween: 30,
     },
   },

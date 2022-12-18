@@ -23,16 +23,24 @@ class ProductType extends AbstractType
                 'label' => 'Nom du produit'
             ])
             ->add('product_logo_main', DropzoneType::class, [
-                'label' => "Logo principal du produit"
+                'label' => "Logo principal du produit",
+                'data_class' => null,
+                'mapped' => false
             ])
             ->add('product_logo_second', DropzoneType::class, [
-                'label' => "Logo secondaire du produit"
+                'label' => "Logo secondaire du produit",
+                'data_class' => null,
+                'mapped' => false
             ])
             ->add('product_main_thumb', DropzoneType::class, [
-                'label' => "Image principale du produit"
+                'label' => "Image principale du produit",
+                'data_class' => null,
+                'mapped' => false
             ])
             ->add('product_second_thumb', DropzoneType::class, [
-                'label' => "Image secondaire du produit"
+                'label' => "Image secondaire du produit",
+                'data_class' => null,
+                'mapped' => false
             ])
             ->add('product_desc', CKEditorType::class, [
                 'label' => "Description du produit"
@@ -76,6 +84,7 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_1_block_1_icon', DropzoneType::class, [
                 'label' => "Image du Block 1",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -91,6 +100,7 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_1_block_2_icon', DropzoneType::class, [
                 'label' => "Image du Block 2",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -106,6 +116,7 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_1_block_3_icon', DropzoneType::class, [
                 'label' => "Image du Block 3",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -122,6 +133,7 @@ class ProductType extends AbstractType
 
             ->add('product_motor_1_block_4_icon', DropzoneType::class, [
                 'label' => "Image du Block 4",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -176,11 +188,13 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_image_2', DropzoneType::class, [
                 'label' => "Photo du moteur",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
             ->add('product_motor_2_block_1_icon', DropzoneType::class, [
                 'label' => "Image du Block 1",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -196,6 +210,7 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_2_block_2_icon', DropzoneType::class, [
                 'label' => "Image du Block 2",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -211,6 +226,7 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_2_block_3_icon', DropzoneType::class, [
                 'label' => "Image du Block 3",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -227,6 +243,7 @@ class ProductType extends AbstractType
 
             ->add('product_motor_2_block_4_icon', DropzoneType::class, [
                 'label' => "Image du Block 4",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -281,11 +298,13 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_image_3', DropzoneType::class, [
                 'label' => "Photo du moteur",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
             ->add('product_motor_3_block_1_icon', DropzoneType::class, [
                 'label' => "Image du Block 1",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -301,6 +320,7 @@ class ProductType extends AbstractType
             ])
             ->add('product_motor_3_block_2_icon', DropzoneType::class, [
                 'label' => "Image du Block 2",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -317,6 +337,7 @@ class ProductType extends AbstractType
 
             ->add('product_motor_3_block_3_icon', DropzoneType::class, [
                 'label' => "Image du Block 3",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -333,6 +354,7 @@ class ProductType extends AbstractType
             
             ->add('product_motor_3_block_4_icon', DropzoneType::class, [
                 'label' => "Image du Block 4",
+                'data_class' => null,
                 'mapped' => false,
                 'required' => false
             ])
@@ -406,6 +428,8 @@ class ProductType extends AbstractType
             // DIMENSIONS
             ->add('product_dim', DropzoneType::class, [
                 'label' => "Dimensions",
+                'data_class' => null,
+                'mapped' => false,
                 'required' => false
             ])
             

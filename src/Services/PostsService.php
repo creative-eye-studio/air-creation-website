@@ -89,7 +89,6 @@ class PostsService extends AbstractController{
                 }
                 
             }
-            
 
             // Création de la date du post
             $date = new DateTimeImmutable();

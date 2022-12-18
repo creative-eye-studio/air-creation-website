@@ -74,9 +74,9 @@
 
             <!-- Buttons Tabs -->
             <ul class="tabs">
-                <li><a class="tab active">Galerie « En vol »</a></li>
-                <li><a class="tab">Galerie « Lifestyle »</a></li>
-                <li><a class="tab">Galerie « L’atelier »</a></li>
+                <li><a class="tab active">Galerie « En vol »</a></li>
+                <li><a class="tab">Galerie « Lifestyle »</a></li>
+                <li><a class="tab">Galerie « L’atelier »</a></li>
             </ul>
 
             <!-- Tabs Blocks -->
@@ -112,46 +112,20 @@
                 <div class="tab-pane">
                     <div class="swiper gallery-lifestyle">
                         <div class="swiper-wrapper">
-                           <div class="swiper-slide">
-                                <a 
-                                    href="../../uploads/images/products/carousels/lifestyle/bionix2-tanarg-neo-samir-2.jpg"
-                                    data-cropped="true" 
-                                    target="_blank">
-                                    <figure class="slide-image">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/bionix2-tanarg-neo-samir-2.jpg" alt="" />
-                                    </figure>
-                                </a>
-                            </div>
-                           <div class="swiper-slide">
-                                <a 
-                                    href="../../uploads/images/products/carousels/lifestyle/bionix2-tanarg-neo-samir-3.jpg"
-                                    data-cropped="true" 
-                                    target="_blank">
-                                    <figure class="slide-image">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/bionix2-tanarg-neo-samir-3.jpg" alt="" />
-                                    </figure>
-                                </a>
-                            </div>
-                           <div class="swiper-slide">
-                                <a 
-                                    href="../../uploads/images/products/carousels/lifestyle/tanarg-neo-is-0106-c.jpg"
-                                    data-cropped="true" 
-                                    target="_blank">
-                                    <figure class="slide-image">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/tanarg-neo-is-0106-c.jpg" alt="" />
-                                    </figure>
-                                </a>
-                            </div>
-                           <div class="swiper-slide">
-                                <a 
-                                    href="../../uploads/images/products/carousels/lifestyle/test.jpg"
-                                    data-cropped="true" 
-                                    target="_blank">
-                                    <figure class="slide-image">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/test.jpg" alt="" />
-                                    </figure>
-                                </a>
-                            </div>
+                            {% for image in product.imageproduct %}
+                                {% if image.imagetype == 1 %}
+                                    <div class="swiper-slide">
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/fly/{{ image.imagename }}" alt="fly/{{ image.imagename }}" />
+                                            </figure>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <div class="lifestyle-button-next swiper-btn next">
                             <i class="fa-solid fa-chevron-right fa-3x"></i>
