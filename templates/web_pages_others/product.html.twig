@@ -31,10 +31,13 @@
             <div class="motor-board">
                 <select class="motor-select">
                     {% for motor in product.productmotor %}
-                    <option value="{{ motor.id }}">{{ motor.motorname }}</option>
+                        {% if motor.motorname != null %}
+                        <option value="{{ motor.id }}">{{ motor.motorname }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
                 {% for motor in product.productmotor %}
+                    {% if motor.motorname != null %}
                     <div class="block" data-motor="{{ motor.id }}">
                         <div class="sub-block">
                             <img src="../../uploads/images/products/motors/{{ motor.motorblock1image }}" />
@@ -65,6 +68,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </section>
@@ -74,9 +78,9 @@
 
             <!-- Buttons Tabs -->
             <ul class="tabs">
-                <li><a class="tab active">Galerie « En vol »</a></li>
-                <li><a class="tab">Galerie « Lifestyle »</a></li>
-                <li><a class="tab">Galerie « L’atelier »</a></li>
+                <li><a class="tab active">Galerie « En vol »</a></li>
+                <li><a class="tab">Galerie « Lifestyle »</a></li>
+                <li><a class="tab">Galerie « L’atelier »</a></li>
             </ul>
 
             <!-- Tabs Blocks -->
@@ -112,46 +116,20 @@
                 <div class="tab-pane">
                     <div class="swiper gallery-lifestyle">
                         <div class="swiper-wrapper">
-                           <div class="swiper-slide">
-                                <a 
-                                    href="../../uploads/images/products/carousels/lifestyle/bionix2-tanarg-neo-samir-2.jpg"
-                                    data-cropped="true" 
-                                    target="_blank">
-                                    <figure class="slide-image">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/bionix2-tanarg-neo-samir-2.jpg" alt="" />
-                                    </figure>
-                                </a>
-                            </div>
-                           <div class="swiper-slide">
-                                <a 
-                                    href="../../uploads/images/products/carousels/lifestyle/bionix2-tanarg-neo-samir-3.jpg"
-                                    data-cropped="true" 
-                                    target="_blank">
-                                    <figure class="slide-image">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/bionix2-tanarg-neo-samir-3.jpg" alt="" />
-                                    </figure>
-                                </a>
-                            </div>
-                           <div class="swiper-slide">
-                                <a 
-                                    href="../../uploads/images/products/carousels/lifestyle/tanarg-neo-is-0106-c.jpg"
-                                    data-cropped="true" 
-                                    target="_blank">
-                                    <figure class="slide-image">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/tanarg-neo-is-0106-c.jpg" alt="" />
-                                    </figure>
-                                </a>
-                            </div>
-                           <div class="swiper-slide">
-                                <a 
-                                    href="../../uploads/images/products/carousels/lifestyle/test.jpg"
-                                    data-cropped="true" 
-                                    target="_blank">
-                                    <figure class="slide-image">
-                                        <img src="../../uploads/images/products/carousels/lifestyle/test.jpg" alt="" />
-                                    </figure>
-                                </a>
-                            </div>
+                            {% for image in product.imageproduct %}
+                                {% if image.imagetype == 1 %}
+                                    <div class="swiper-slide">
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/fly/{{ image.imagename }}" alt="fly/{{ image.imagename }}" />
+                                            </figure>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <div class="lifestyle-button-next swiper-btn next">
                             <i class="fa-solid fa-chevron-right fa-3x"></i>
@@ -213,35 +191,37 @@
                 <!-- Tab Caractéristiques -->
                 <div class="tab-pane motor-list-container">
                     {% for motor in product.productmotor %}
-                    <div class="motor-list-block" data-motor-infos="{{ motor.id }}">
-                        <h2>{{ motor.motorname }}</h2>
-                        <div class="motor-list">
-                            <div class="motor-list-section">
-                                <h3>Vitesse</h3>
-                                {{ motor.motorinfosvitesse | raw }}
-                            </div>
-                            <div class="motor-list-section">
-                                <h3>Vol</h3>
-                                {{ motor.motorinfosvol | raw }}
-                            </div>
-                            <div class="motor-list-section">
-                                <h3>Hauteur</h3>
-                                {{ motor.motorinfoshauteur  | raw}}
-                            </div>
-                            <div class="motor-list-section">
-                                <h3>Masse</h3>
-                                {{ motor.motorinfosmasse | raw }}
-                            </div>
-                            <div class="motor-list-section">
-                                <h3>Moteur</h3>
-                                {{ motor.motorinfosmoteur | raw }}
-                            </div>
-                            <div class="motor-list-section">
-                                <h3>Réservoir</h3>
-                                {{ motor.motorinfosreservoir | raw }}
+                        {% if motor.motorname != null %}
+                        <div class="motor-list-block" data-motor-infos="{{ motor.id }}">
+                            <h2>{{ motor.motorname }}</h2>
+                            <div class="motor-list">
+                                <div class="motor-list-section">
+                                    <h3>Vitesse</h3>
+                                    {{ motor.motorinfosvitesse | raw }}
+                                </div>
+                                <div class="motor-list-section">
+                                    <h3>Vol</h3>
+                                    {{ motor.motorinfosvol | raw }}
+                                </div>
+                                <div class="motor-list-section">
+                                    <h3>Hauteur</h3>
+                                    {{ motor.motorinfoshauteur  | raw}}
+                                </div>
+                                <div class="motor-list-section">
+                                    <h3>Masse</h3>
+                                    {{ motor.motorinfosmasse | raw }}
+                                </div>
+                                <div class="motor-list-section">
+                                    <h3>Moteur</h3>
+                                    {{ motor.motorinfosmoteur | raw }}
+                                </div>
+                                <div class="motor-list-section">
+                                    <h3>Réservoir</h3>
+                                    {{ motor.motorinfosreservoir | raw }}
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
                 <!-- Tab Dimensions -->

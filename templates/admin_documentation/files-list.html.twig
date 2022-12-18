@@ -1,0 +1,26 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Documents de la catégorie{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <a class="btn-link float-right" href="{{ path('app_admin_documentation') }}">Retour à la liste des catégories</a>
+        <h2>Documents de la catégorie</h2>
+        {{ form_start(docForm) }}
+            <p>{{ form_label(docForm.files)}}<br/>
+            {{ form_widget(docForm.files)}}</p>
+            <p>{{ form_label(docForm.submit)}}</p>
+        {{ form_end(docForm) }}
+        <hr />
+        {% for file in files %}
+            <div class="line">
+                <p>
+                    {{ file.docname }} 
+                </p>
+                <ul>
+                    <li><a href="{{ path('admin_doc_file_delete', {selectcatslug: catname, id: file.id}) }}">Supprimer</a></li>
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

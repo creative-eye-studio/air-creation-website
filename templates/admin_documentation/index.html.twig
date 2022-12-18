@@ -4,19 +4,26 @@
 
 {% block body %}
     <section class="block">
-        <a class="btn-link float-right" href="{{ path('app_admin_documentation_add') }}">Ajouter des documents</a>
-        <h2>Produits</h2>
-        <div class="docs-list">
-            {% for product in products %}
-                <a href="{{ path('app_admin_documentation_product', { product_id: product.id }) }}">
-                    <div class="docs-block">
-                        <figure class="image">
-                        <img src="../uploads/images/products/thumbs/{{ product.productThumb }}" alt="{{ product.productname }}" />
-                        </figure>
-                        <h3>{{ product.productname }}</h3>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
+        <h2>Gestion de la documentation</h2>
+        {{ form_start(docForm) }}
+            <p>{{ form_label(docForm.name)}}<br/>
+            {{ form_widget(docForm.name)}}</p>
+            <p>{{ form_label(docForm.wing)}}<br/>
+            {{ form_widget(docForm.wing)}}</p>
+            <p>{{ form_widget(docForm.old_product)}} {{ form_label(docForm.old_product)}}</p>
+            <p>{{ form_label(docForm.submit)}}</p>
+        {{ form_end(docForm) }}
+        <hr />
+        {% for cat in cats %}
+            <div class="line">
+                <p>
+                    {{ cat.name }} 
+                </p>
+                <ul>
+                    <li><a href="{{ path('admin_doc_files', {cat_name: cat.slug}) }}">Ajouter des documents</a></li>
+                    <li><a href="{{ path('admin_doc_cat_delete', {id: cat.id}) }}">Supprimer</a></li>
+                </ul>
+            </div>
+        {% endfor %}
     </section>
 {% endblock %}
