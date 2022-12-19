@@ -55,6 +55,7 @@ class AdminProductsController extends AbstractController
     public function UpdateProduct(ProductService $productService, ManagerRegistry $doctrine, Request $request, $product_id) 
     {
         $entityManager = $doctrine->getManager();
+        $product = $entityManager->getRepository(Products::class)->findOneBy(['id' => $product_id]);
         $motors = $entityManager->getRepository(ProductsMotors::class)->findBy(['product_id' => $product_id]);
 
         $form = $productService->ProductManager($doctrine, $request, false, $product_id);
@@ -67,7 +68,7 @@ class AdminProductsController extends AbstractController
 
         return $this->render('admin_products/update-product.html.twig', [
             'form' => $form->createView(),
-
+            'product' => $product,
             'motor1Name' => $motors[0]->getMotorName(),
             'motor1Block1Title' => $motors[0]->getMotorBlock1Name(),
             'motor1Block1Value' => $motors[0]->getMotorBlock1Value(),
@@ -145,17 +146,16 @@ class AdminProductsController extends AbstractController
 
     // SUPPRIMER UNE IMAGE
     //-----------------------------------------------------
-    public function DeleteImage(ManagerRegistry $doctrine, Request $request)
+    #[Route('/admin/products/delete_product_image/{product_id}/{id}', name: 'app_admin_delete_image')]
+    public function DeleteImage(ManagerRegistry $doctrine, int $product_id, int $id)
     {
-        if ($request->isXmlHttpRequest()) {
-            $id = $request->get('imgId');
-            $entityManager = $doctrine->getManager();
-            $imgToDel = $entityManager->getRepository(ProductsImages::class)->findOneBy(['id' => $id]);
+        $entityManager = $doctrine->getManager();
+        $image = $entityManager->getRepository(ProductsImages::class)->findOneBy(["id" => $id]);
+        $entityManager->remove($image);
+        $entityManager->flush();
 
-            $entityManager->remove($imgToDel);
-            $entityManager->flush();
-
-            return new JsonResponse('good');
-        }
+        return $this->redirectToRoute('app_admin_products_update', [
+            'product_id' => $product_id
+        ]);
     }
 }

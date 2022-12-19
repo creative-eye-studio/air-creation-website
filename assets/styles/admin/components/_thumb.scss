@@ -1,0 +1,18 @@
+.thumbs-container{
+    margin-top: 2rem;
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.thumb{
+    width: 17%;
+    margin: 0 3% 0 0;
+    float: left;
+    img{
+        width: 100%;
+        height: auto;
+    }
+}

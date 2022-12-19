@@ -33,12 +33,12 @@ class ProductType extends AbstractType
                 'mapped' => false
             ])
             ->add('product_main_thumb', DropzoneType::class, [
-                'label' => "Image principale du produit",
+                'label' => "Miniature principale du produit",
                 'data_class' => null,
                 'mapped' => false
             ])
             ->add('product_second_thumb', DropzoneType::class, [
-                'label' => "Image secondaire du produit",
+                'label' => "Miniature secondaire du produit",
                 'data_class' => null,
                 'mapped' => false
             ])
