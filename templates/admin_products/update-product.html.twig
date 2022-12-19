@@ -160,6 +160,45 @@
                 {{ form_row(form.product_gallery_vol)}}
                 {{ form_row(form.product_gallery_atelier)}}
                 {{ form_row(form.product_gallery_lifestyle)}}
+                <hr />
+                <p>Cliquez sur une image pour la supprimer !<br />
+                Attention ! Toute image supprimée ne peut être récupérée.</p>
+                <div class="thumbs-container">
+                    <h3>En vol</h3>
+                    {% for image in product.imageproduct %}
+                        {% if image.imagetype == 0 %}
+                        <figure class="thumb">
+                            <a href="{{ path('app_admin_delete_image', {product_id: product.id, id: image.id}) }}">
+                                <img loading="lazy" decoding="async" src="../../../uploads/images/products/carousels/fly/{{ image.imagename }}" />
+                            </a>
+                        </figure>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="thumbs-container">
+                    <h3>Atelier</h3>
+                    {% for image in product.imageproduct %}
+                        {% if image.imagetype == 1 %}
+                        <figure class="thumb">
+                            <a href="{{ path('app_admin_delete_image', {product_id: product.id, id: image.id}) }}">
+                               <img loading="lazy" decoding="async" src="../../../uploads/images/products/carousels/workshop/{{ image.imagename }}" />
+                            </a>
+                        </figure>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="thumbs-container">
+                    <h3>Lifestyle</h3>
+                    {% for image in product.imageproduct %}
+                        {% if image.imagetype == 2 %}
+                        <figure class="thumb">
+                            <a href="{{ path('app_admin_delete_image', {product_id: product.id, id: image.id}) }}">
+                              <img loading="lazy" decoding="async" src="../../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" />
+                            </a>
+                        </figure>
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
 
             <!-- Dimensions -->
