@@ -49,9 +49,6 @@ class ProductFilterType extends AbstractType
                 'label' => 'Tricycle',
                 'required' => false
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => "Rechercher"
-            ])
         ;
     }
 
