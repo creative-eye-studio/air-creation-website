@@ -26,9 +26,14 @@ class ProductFilterType extends AbstractType
             ->add('filter_wing', ChoiceType::class, [
                 'choices'  => [
                     'Tous types d\'ailes' => "",
-                    'IFun' => 'IFun',
-                    'Nuvix' => 'Nuvix',
-                    'BioniX' => 'BioniX',
+                    "IFun" => "IFun",
+                    "IFun 16" => "IFun 16",
+                    "IFun XL" => "IFun XL",
+                    "BioniX 15" => "BioniX 15",
+                    "BioniX²" => "BioniX²",
+                    "NuviX" => "NuviX",
+                    "Bio 15" => "Bio 15",
+                    "Bio²" => "Bio²",
                 ],
                 'label' => 'Aile',
                 'required' => false
@@ -36,9 +41,10 @@ class ProductFilterType extends AbstractType
             ->add('filter_tricycle', ChoiceType::class, [
                 'choices'  => [
                     'Tous types de tricycles' => "",
-                    'Pixel' => 'Pixel',
-                    'Skypper Evo' => 'Skypper Evo',
-                    'Tanarg Néo' => 'Tanarg Néo',
+                    "Pixel" => "Pixel",
+                    "Skypper Bush" => "Skypper Bush",
+                    "Skypper Evo" => "Skypper Evo",
+                    "Tanarg Néo" => "Tanarg Néo"
                 ],
                 'label' => 'Tricycle',
                 'required' => false

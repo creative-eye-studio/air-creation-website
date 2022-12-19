@@ -55,8 +55,13 @@ class ProductType extends AbstractType
             ->add('product_wing', ChoiceType::class, [
                 'choices' => [
                     "IFun" => "IFun",
-                    "Nuvix" => "Nuvix",
-                    "Bionix" => "Bionix"
+                    "IFun 16" => "IFun 16",
+                    "IFun XL" => "IFun XL",
+                    "BioniX 15" => "BioniX 15",
+                    "BioniX²" => "BioniX²",
+                    "NuviX" => "NuviX",
+                    "Bio 15" => "Bio 15",
+                    "Bio²" => "Bio²",
                 ],
                 'label' => "Ailes"
             ])
@@ -64,7 +69,7 @@ class ProductType extends AbstractType
                 'choices' => [
                     "Pixel" => "Pixel",
                     "Skypper Bush" => "Skypper Bush",
-                    "Skypper Néo" => "Skypper Néo",
+                    "Skypper Evo" => "Skypper Evo",
                     "Tanarg Néo" => "Tanarg Néo"
                 ],
                 'label' => "Tricycle"
