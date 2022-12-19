@@ -21,6 +21,7 @@
                 </p>
                 <ul>
                     <li><a href="{{ path('admin_doc_files', {cat_name: cat.slug}) }}">Ajouter des documents</a></li>
+                    <li><a href="{{ path('admin_cat_manager', {id: cat.id}) }}">Modifier la catégorie</a></li>
                     <li><a href="{{ path('admin_doc_cat_delete', {id: cat.id}) }}">Supprimer</a></li>
                 </ul>
             </div>

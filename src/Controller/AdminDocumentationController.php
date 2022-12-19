@@ -53,23 +53,25 @@ class AdminDocumentationController extends AbstractController
 
         if ($docForm->isSubmitted() && $docForm->isValid()) {
             $slugify = new Slugify();
-            $file = $docForm->get('files')->getData();
+            $files = $docForm->get('files')->getData();
 
-            $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-            $safeFilename = $slugify->slugify($originalFilename);
-            $newFilename = $safeFilename . '.' . $file->guessExtension();
-            try {
-                $file->move(
-                    $this->getParameter('docs_directory'),
-                    $newFilename
-                );
-                $docFile = new DocFiles();
-                $docFile->setDocName($newFilename);
-                $docFile->setDocCategory($selectCat);
-                $entityManager->persist($docFile);
-                $entityManager->flush();
-            } catch (\Throwable $th) {
-                throw $th;
+            foreach ($files as $file) {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugify->slugify($originalFilename);
+                $newFilename = $safeFilename . '.' . $file->guessExtension();
+                try {
+                    $file->move(
+                        $this->getParameter('docs_directory'),
+                        $newFilename
+                    );
+                    $docFile = new DocFiles();
+                    $docFile->setDocName($newFilename);
+                    $docFile->setDocCategory($selectCat);
+                    $entityManager->persist($docFile);
+                    $entityManager->flush();
+                } catch (\Throwable $th) {
+                    throw $th;
+                }
             }
 
             return $this->redirectToRoute('admin_doc_files', ['cat_name' => $selectCatSlug]);
@@ -78,6 +80,26 @@ class AdminDocumentationController extends AbstractController
         return $this->render('admin_documentation/files-list.html.twig', [
             'files' => $docFilesList,
             'catname' => $cat_name,
+            'docForm' => $docForm->createView()
+        ]);
+    }
+
+
+    #[Route('/admin/documentation/category-manager/{id}', name: 'admin_cat_manager')]
+    public function cat_manager(ManagerRegistry $doctrine, Request $request, int $id){
+        $entityManager = $doctrine->getManager();
+        $category = $entityManager->getRepository(DocCategories::class)->findOneBy(['id' => $id]);
+
+        $docForm = $this->createForm(DocCategoriesType::class, $category);
+        $docForm->handleRequest($request);
+        if ($docForm->isSubmitted() && $docForm->isValid()) {
+            $entityManager->persist($category);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_admin_documentation');
+        }
+
+        return $this->render('admin_documentation/cat-manager.html.twig', [
             'docForm' => $docForm->createView()
         ]);
     }

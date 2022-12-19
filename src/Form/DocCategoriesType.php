@@ -25,9 +25,14 @@ class DocCategoriesType extends AbstractType
             ->add('wing', ChoiceType::class, [
                 'choices'  => [
                     'Tous types d\'ailes' => "",
-                    'IFun' => 'IFun',
-                    'Nuvix' => 'Nuvix',
-                    'BioniX' => 'BioniX',
+                    "IFun" => "IFun",
+                    "IFun 16" => "IFun 16",
+                    "IFun XL" => "IFun XL",
+                    "BioniX 15" => "BioniX 15",
+                    "BioniX²" => "BioniX²",
+                    "NuviX" => "NuviX",
+                    "Bio 15" => "Bio 15",
+                    "Bio²" => "Bio²",
                 ],
                 'label' => 'Aile',
                 'required' => false

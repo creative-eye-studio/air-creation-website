@@ -16,7 +16,8 @@ class DocFilesType extends AbstractType
             ->add('files', DropzoneType::class, [
                 'label' => "Documents",
                 'mapped' => false,
-                'data_class' => null
+                'data_class' => null,
+                'multiple' => true
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "Envoyer"
