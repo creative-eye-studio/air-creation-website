@@ -375,7 +375,7 @@ const swiperLastsEvents = new Swiper('.home-timeline-container', {
 
 const swiperChrono = new Swiper('.chrono-swiper-1', {
   modules: [Navigation],
-  spaceBetween: 30,
+  spaceBetween: 100,
   navigation: {
     nextEl: '.chrono-swiper-button-next',
     prevEl: '.chrono-swiper-button-prev',
@@ -385,8 +385,8 @@ const swiperChrono = new Swiper('.chrono-swiper-1', {
       slidesPerView: 1,
     },
     1200: {
-      spaceBetween: 60,
-      slidesPerView: 3,
+      spaceBetween: 150,
+      slidesPerView: 2,
     },
   }
 });
