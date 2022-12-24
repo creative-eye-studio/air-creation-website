@@ -29,8 +29,10 @@
       <figure class="image">
         <img src="../uploads/images/chronologie/{{ date.chronologieimg }}" alt="{{ date.chronologiedate }}" />
       </figure>
-      <h3>{{ date.chronologiedate }}</h3>
-      <p>{{ date.chronologietext }}</p>
+      <div class="text">
+        <h3>{{ date.chronologiedate }}</h3>
+      	<p>{{ date.chronologietext }}</p>
+      </div>
     </div>
     {% endfor %}
     {% for date in chronoActual %}
@@ -38,8 +40,10 @@
       <figure class="image">
         <img src="../uploads/images/chronologie/{{ date.chronologieimg }}" alt="{{ date.chronologiedate }}" />
       </figure>
-      <h3>{{ date.chronologiedate }}</h3>
-      <p>{{ date.chronologietext }}</p>
+      <div class="text">
+        <h3>{{ date.chronologiedate }}</h3>
+      	<p>{{ date.chronologietext }}</p>
+      </div>
     </div>
     {% endfor %}
   </div>
