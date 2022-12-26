@@ -12,5 +12,5 @@ class DocSearch
     /**
      * @var string
      */
-    public $filter_name = '';
+    public $filter_tricycle = '';
 }

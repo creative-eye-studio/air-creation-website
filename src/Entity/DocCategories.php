@@ -30,6 +30,9 @@ class DocCategories
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $wing = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $tricycle = null;
+
     public function __construct()
     {
         $this->docFiles = new ArrayCollection();
@@ -114,6 +117,18 @@ class DocCategories
     public function setWing(?string $wing): self
     {
         $this->wing = $wing;
+
+        return $this;
+    }
+
+    public function getTricycle(): ?string
+    {
+        return $this->tricycle;
+    }
+
+    public function setTricycle(string $tricycle): self
+    {
+        $this->tricycle = $tricycle;
 
         return $this;
     }
