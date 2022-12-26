@@ -24,7 +24,6 @@ class DocCategoriesType extends AbstractType
             ])
             ->add('wing', ChoiceType::class, [
                 'choices'  => [
-                    'Tous types d\'ailes' => "",
                     "IFun" => "IFun",
                     "IFun 16" => "IFun 16",
                     "IFun XL" => "IFun XL",
