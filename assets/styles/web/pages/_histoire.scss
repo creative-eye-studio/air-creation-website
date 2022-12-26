@@ -48,8 +48,9 @@
         }
         h3{
             margin-bottom: calc(#{$marges-d-y} / 3);
-            font-size: 1.75vw;
-            font-weight: 400;
+            font-size: 1.8vw;
+            font-weight: 600;
+            font-style: italic;
         }
         .swiper-slide{
             &:nth-child(even){
