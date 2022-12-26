@@ -374,11 +374,25 @@ const swiperLastsEvents = new Swiper('.home-timeline-container', {
 
 
 const swiperChrono = new Swiper('.chrono-swiper-1', {
-  modules: [Navigation],
+  modules: [Navigation, Pagination],
   spaceBetween: 100,
+  slideToClickedSlide: true,
   navigation: {
     nextEl: '.chrono-swiper-button-next',
     prevEl: '.chrono-swiper-button-prev',
+  },
+  mousewheel: {
+    enabled: true,
+    sensitivity: 5.5,
+  },
+  freeMode: {
+    enabled: true,
+    sticky: false,
+    momentumBounce: false,
+  },
+  scrollbar: {
+    el: ".swiper-scrollbar",
+    draggable: true,
   },
   breakpoints: {
     768: {

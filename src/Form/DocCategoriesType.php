@@ -37,6 +37,16 @@ class DocCategoriesType extends AbstractType
                 'label' => 'Aile',
                 'required' => false
             ])
+            ->add('tricycle', ChoiceType::class, [
+                'choices' => [
+                    "Pixel" => "Pixel",
+                    "Skypper Bush" => "Skypper Bush",
+                    "Skypper Evo" => "Skypper Evo",
+                    "Tanarg Néo" => "Tanarg Néo"
+                ],
+                'label' => "Tricycle",
+                'required' => false
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => "Enregistrer la catégorie"
             ])

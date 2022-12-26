@@ -30,9 +30,14 @@ class DocFilterType extends AbstractType
                 'label' => 'Aile',
                 'required' => false
             ])
-            ->add('filter_name', TextType::class, [
-                'label' => 'Nom du produit',
-                'required' => false
+            ->add('filter_tricycle', ChoiceType::class, [
+                'choices' => [
+                    "Pixel" => "Pixel",
+                    "Skypper Bush" => "Skypper Bush",
+                    "Skypper Evo" => "Skypper Evo",
+                    "Tanarg Néo" => "Tanarg Néo"
+                ],
+                'label' => "Tricycle"
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "Rechercher"
