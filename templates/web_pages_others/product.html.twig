@@ -23,12 +23,12 @@
                     </figure>
                 {% endfor %}
             </div>
-            <div class="logos">
-                <img src="../../uploads/images/products/logos/{{ product.productlogomain }}" />
-                <span class="and-icon">&</span>
-                <img src="../../uploads/images/products/logos/{{ product.productlogosecond }}" />
-            </div>
             <div class="motor-board">
+                <div class="logos">
+                    <img src="../../uploads/images/products/logos/{{ product.productlogomain }}" />
+                    <span class="and-icon">&</span>
+                    <img src="../../uploads/images/products/logos/{{ product.productlogosecond }}" />
+                </div>
                 <select class="motor-select">
                     {% for motor in product.productmotor %}
                         {% if motor.motorname != null %}

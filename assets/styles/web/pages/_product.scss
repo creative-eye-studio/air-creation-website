@@ -3,11 +3,13 @@
 .product-main-block{
     position: relative;
     .logos{
-        position: absolute;
+        /*position: absolute;
         top: 10rem;
-        left: calc(50% + 10vw);
+        left: calc(50% + 10vw);*/
+        margin-bottom: $marges-m;
         img{
-            max-width: 350px;
+            max-width: 100%;
+            width: 32vh;
             display: block;
         }
         .and-icon{
@@ -17,6 +19,29 @@
             display: block;
             margin: 1rem 0;
         }
+    }
+    @media screen and (max-width: 1200px) {
+        .logos{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: $marges-m;
+            .and-icon{
+                margin: 0 $marges-m;
+            }
+        }
+    }
+    @media screen and (max-width: 640px) {
+        .logos{
+            flex-direction: column;
+            .and-icon{
+                margin: calc(#{$marges-m} / 2) $marges-m;
+            }
+            img{
+                width: 50%;
+            }
+        }
+        
     }
 }
 
@@ -37,6 +62,9 @@
             display: none;
         }
     }
+    @media screen and (max-width: 1200px) {
+        height: 50vw;
+    }
 }
 
 
@@ -45,14 +73,14 @@
 .motor-board{
     width: 500px;
     position: absolute;
-    top: 52.5vh;
+    top: 20vh;
     left: calc(50% + 10vw);
-    background-color: $bw-color-2;
     select{
         background-color: $p-color;
         color: white;
     }
     .block{
+        background-color: $bw-color-2;
         display: flex;
         align-items: center;
         flex-wrap: wrap;
@@ -75,6 +103,20 @@
         &:not(.active){
             display: none;
         }
+    }
+    @media screen and (max-width: 1200px) {
+        width: 100%;
+        position: relative;
+        top: inherit;
+        left: inherit;
+    }
+    @media screen and (max-width: 640px) {
+        .block{
+            .sub-block{
+                width: 100%;
+            }
+        }
+       
     }
 }
 
@@ -142,6 +184,18 @@
             font-size: 1.5em;
             font-weight: 400;
         }
+        table{
+            width: 100% !important;
+        }
+        td{
+            width: 50% !important;
+            &:nth-child(even){
+                text-align: right;
+            }
+            span{
+                display: block;
+            }
+        }
     }
 }
 
@@ -151,6 +205,16 @@
     gap: $marges-m;
     > *{
         width: calc(33.33% - $marges-m);
+    }
+    @media screen and (max-width:1200px) {
+        > *{
+            width: calc(50% - $marges-m);
+        }
+    }
+    @media screen and (max-width:768px) {
+        > *{
+            width: calc(100%);
+        }
     }
 }
 
