@@ -3,15 +3,15 @@
     "app": {
       "js": [
         "/build/runtime.e7def758.js",
-        "/build/715.97d8eee1.js",
-        "/build/945.bda9a26b.js",
-        "/build/524.ec3a946f.js",
-        "/build/433.c3b48f6a.js",
-        "/build/app.a0e77c4a.js"
+        "/build/760.4576bcfd.js",
+        "/build/884.91f9a225.js",
+        "/build/674.e2a5b47d.js",
+        "/build/354.9f2d77ff.js",
+        "/build/app.d9f34b50.js"
       ],
       "css": [
-        "/build/524.94651512.css",
-        "/build/app.3f14cc5f.css"
+        "/build/354.0abf59ad.css",
+        "/build/app.f9c49b58.css"
       ]
     },
     "filters": {
@@ -23,21 +23,21 @@
     "app-admin": {
       "js": [
         "/build/runtime.e7def758.js",
-        "/build/715.97d8eee1.js",
-        "/build/945.bda9a26b.js",
-        "/build/433.c3b48f6a.js",
-        "/build/app-admin.0510a23b.js"
+        "/build/760.4576bcfd.js",
+        "/build/884.91f9a225.js",
+        "/build/app-admin.2e99f05d.js"
       ],
       "css": [
-        "/build/app-admin.8890f17d.css"
+        "/build/app-admin.2a24de06.css"
       ]
     },
     "fontawesome": {
       "js": [
         "/build/runtime.e7def758.js",
-        "/build/715.97d8eee1.js",
-        "/build/387.749cbb33.js",
-        "/build/fontawesome.5c35f766.js"
+        "/build/760.4576bcfd.js",
+        "/build/674.e2a5b47d.js",
+        "/build/489.0d904fbe.js",
+        "/build/fontawesome.1d1ce744.js"
       ]
     }
   }

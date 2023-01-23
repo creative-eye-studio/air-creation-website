@@ -39,7 +39,7 @@ if (caracBtn) {
 
 
 
-/* SUPPRESSION d'UNE IMAGE
+/* SUPPRESSION D'UNE IMAGE
 --------------------------------------------*/
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Page chargée");
@@ -63,3 +63,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 })
+
+
+
+/* TINY MCE
+--------------------------------------------*/
+tinymce.init({
+    selector: '#mytextarea'
+});

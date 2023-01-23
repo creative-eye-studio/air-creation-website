@@ -30,7 +30,7 @@ class DocCategories
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $wing = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $tricycle = null;
 
     public function __construct()
@@ -126,7 +126,7 @@ class DocCategories
         return $this->tricycle;
     }
 
-    public function setTricycle(string $tricycle): self
+    public function setTricycle(?string $tricycle): self
     {
         $this->tricycle = $tricycle;
 

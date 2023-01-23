@@ -1,5 +1,8 @@
 .info-block-intro-container{
     background-color: $bw-color-2;
+    &.bg-white{
+        background-color: $bw-color-1;
+    }
     video{
         width: 100%;
     }

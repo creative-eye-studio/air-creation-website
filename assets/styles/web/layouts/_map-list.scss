@@ -1,7 +1,8 @@
 .partners-container{
     margin: auto;
     .partners-map{
-        display: none;
+        // display: none;
+        height: 300px;
     }
     @media screen and (min-width:1024px) {
         &::after{

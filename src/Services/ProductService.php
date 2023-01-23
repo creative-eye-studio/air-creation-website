@@ -32,8 +32,7 @@ class ProductService extends AbstractController{
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-
+            
             // Création de l'URL et de l'ID
             // --------------------------------------------
             if ($newProduct) {

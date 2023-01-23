@@ -309,16 +309,16 @@ import 'swiper/css/pagination';
 
 const swiperLastNews = new Swiper('.posts', {
   slidesPerView: "auto",
-  centeredSlides: true,
+  // centeredSlides: true,
   loop: true,
   spaceBetween: 20,
   breakpoints: {
     1024: {
-      centeredSlides: false,
+      // centeredSlides: false,
       slidesPerView: 2,
     },
     1200: {
-      centeredSlides: true,
+      // centeredSlides: true,
       slidesPerView: 3,
     }
   }

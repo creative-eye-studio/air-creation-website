@@ -6,24 +6,31 @@
   </video>
 </div>
 
+<!-- Block Showroom -->
+<section class="block-showroom">
+  <h2 class="center" data-aos="fade-up">Des ULM conçus pour toutes les situations, découvrez la gamme d’ULM Air Création</h2>
+  <p class="center" data-aos="fade-up">
+    <a class="btn" href="{{ path('web_pages', {page_slug: 'showroom'}) }}">Notre showroom</a>
+  </p>
+</section>
+
 <!-- Block Intro -->
 <section class="home-intro-block">
   <div class="text">
-
     <div data-aos="fade-up">
       <h1>Air Création<br />
         Leader mondial de l'ULM pendulaire depuis 1982
       </h1>
       <p>Air Création est l'une des premières sociétés françaises de conception et de fabrication d'aéronefs, le leader mondial de l’ULM Pendulaires (deltaplanes motorisés - DPM) n'a cessé de faire progresser ses produits afin d'optimiser confort & performance de vol.</p>
       <p>Les 40 années de savoir-faire et d'expérience des équipes associée à l'utilisation de technologies de pointe ont permis de créer des aéronefs de plus en plus performants, de plus en plus fiables, de plus en plus confortables, de plus en plus économiques.</p>
-      <p><span class="home-hidden-btn"><u><strong>Voir plus</strong></u></span></p>
-      <div class="home-hidden-text">
+      <!--<div class="home-hidden-text">
         <p>L'importante gamme d'ailes et de tricycles proposée par le constructeur Ardéchois permet d'offrir à chaque client une combinaison parfaitement adapté à ses besoins, que ce soit dans un but purement récréatif ou à titre professionnel (formation, baptêmes, photographie, surveillance, largage de parachutiste, expérimentation scientifique, compétition, …).</p>
         <p>Les ULM Air Création étant présents sur tous les continents, cela en fait une réelle vitrine du savoir-faire aéronautique français.</p>
         <p>
           <a class="btn" href="{{ path('web_pages', {page_slug: 'qui-sommes-nous'}) }}">En savoir plus</a>
         </p>
       </div>
+      <p><span class="home-hidden-btn"><u><strong>Voir plus</strong></u></span></p>-->
     </div>
 
   </div>
@@ -58,15 +65,7 @@
     </div>
   </div>
   <p class="center" data-aos="fade-up" data-aos-delay="500">
-    <a class="btn" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Les valeurs de Air Création</a>
-  </p>
-</section>
-
-<!-- Block Showroom -->
-<section class="block-showroom">
-  <h2 class="center" data-aos="fade-up">Des ULM conçues pour toutes les situations, découvrez la gamme biplace d'Air Création </h2>
-  <p class="center" data-aos="fade-up">
-    <a class="btn" href="{{ path('web_pages', {page_slug: 'showroom'}) }}">L'ULM monoplace par Air Création</a>
+    <a class="btn" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Nos valeurs</a>
   </p>
 </section>
 
@@ -178,7 +177,8 @@
         </div>
         <a class="text" href="{{ path('post_page', {post_slug: post.posturl}) }}">
           <h3>
-            {{ post.postname }}
+            {{ post.postname }}<br />
+            Posté le {{ post.createdat|format_date('short', locale='fr') }}
           </h3>
         </a>
       </article>
@@ -188,6 +188,8 @@
   <!-- Instagram -->
   <div class="instagram-container">
     <h2>Identifiez nous #aircreationtrike</h2>
-    <iframe src="https://widget.taggbox.com/113035" style="width:100%;height:50rem;border:none;"></iframe>
+    <!--<iframe src="https://widget.taggbox.com/113035" style="width:100%;height:50rem;border:none;"></iframe>-->
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+	<div class="elfsight-app-ee49837a-4fb1-4ce5-b913-492972866c03"></div>
   </div>
 </section>
