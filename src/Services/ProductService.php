@@ -598,15 +598,15 @@ class ProductService extends AbstractController{
                 }
             }
 
-            $productGalleryAtelier = $form->get('product_gallery_atelier')->getData();
-            if ($productGalleryAtelier) {
-                foreach ($productGalleryAtelier as $imageGallery) {
+            $productGalleryLifestyle = $form->get('product_gallery_lifestyle')->getData();
+            if ($productGalleryLifestyle) {
+                foreach ($productGalleryLifestyle as $imageGallery) {
                     $originalThumbName = pathinfo($imageGallery->getClientOriginalName(), PATHINFO_FILENAME);
                     $safeThumbName = $slugify->slugify($originalThumbName);
                     $image = $safeThumbName . '.' . $imageGallery->guessExtension();
                     try {
                         $imageGallery->move(
-                            $this->getParameter('workshop_gallery_directory'),
+                            $this->getParameter('lifestyle_gallery_directory'),
                             $image
                         );
                         $img = new ProductsImages();
@@ -622,15 +622,15 @@ class ProductService extends AbstractController{
                 }
             }
 
-            $productGalleryLifestyle = $form->get('product_gallery_lifestyle')->getData();
-            if ($productGalleryLifestyle) {
-                foreach ($productGalleryLifestyle as $imageGallery) {
+            $productGalleryAtelier = $form->get('product_gallery_atelier')->getData();
+            if ($productGalleryAtelier) {
+                foreach ($productGalleryAtelier as $imageGallery) {
                     $originalThumbName = pathinfo($imageGallery->getClientOriginalName(), PATHINFO_FILENAME);
                     $safeThumbName = $slugify->slugify($originalThumbName);
                     $image = $safeThumbName . '.' . $imageGallery->guessExtension();
                     try {
                         $imageGallery->move(
-                            $this->getParameter('lifestyle_gallery_directory'),
+                            $this->getParameter('workshop_gallery_directory'),
                             $image
                         );
                         $img = new ProductsImages();
