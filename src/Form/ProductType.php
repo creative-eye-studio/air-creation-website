@@ -42,6 +42,9 @@ class ProductType extends AbstractType
                 'data_class' => null,
                 'mapped' => false
             ])
+            ->add('product_intro', CKEditorType::class, [
+                'label' => "Courte présentation du produit"
+            ])
             ->add('product_desc', CKEditorType::class, [
                 'label' => "Description du produit"
             ])
