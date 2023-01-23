@@ -140,6 +140,7 @@ class WebPagesOthersController extends AbstractController
             'product' => $product,
             'contactForm' => $contactForm->createView(),
             'productName' => $product->getProductName(),
+            'productIntro' => $product->getProductIntro(),
             'productThumb' => $product->getProductMainThumb(),
             'meta_title' => $product->getProductMetaTitle(),
             'meta_desc' => $product->getProductMetaDesc(),

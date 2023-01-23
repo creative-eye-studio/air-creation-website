@@ -64,6 +64,9 @@ class Products
     #[ORM\OneToMany(mappedBy: 'image_product', targetEntity: ProductsImages::class)]
     private Collection $image_product;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $product_intro = null;
+
     public function __construct()
     {
         $this->productMotor = new ArrayCollection();
@@ -299,6 +302,18 @@ class Products
                 $imageProduct->setImageProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProductIntro(): ?string
+    {
+        return $this->product_intro;
+    }
+
+    public function setProductIntro(?string $product_intro): self
+    {
+        $this->product_intro = $product_intro;
 
         return $this;
     }
