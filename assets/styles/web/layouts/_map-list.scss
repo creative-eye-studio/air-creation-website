@@ -41,6 +41,10 @@
     a{
         color: black;
     }
+    &.selected{
+        background-color: $bw-color-4;
+        color: white;
+    }
     &:not(:last-child){
         margin-bottom: $marges-m;
     }
