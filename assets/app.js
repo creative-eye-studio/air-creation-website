@@ -125,9 +125,14 @@ $('.home-hidden-btn').on('click', function(){
 // Page Produit
 // ------------------------------------------------------------------
 if (document.querySelector(".motor-board") != undefined) {
+
+  var motorsTab = document.querySelectorAll(".motor-board .tab");  
+  var firstBlock = motorsTab[0];
+  firstBlock.className = 'tab active';
+
   var motorsBlock = document.querySelectorAll(".motor-board .block");
   var firstBlock = motorsBlock[0];
-  firstBlock.className = 'block active';
+  firstBlock.className = 'tab-pane block active';
 
   var motorsListBlock = document.querySelectorAll(".motor-list-container .motor-list-block");
   var firstListBlock = motorsListBlock[0];
@@ -136,34 +141,8 @@ if (document.querySelector(".motor-board") != undefined) {
   var motorsImages = document.querySelectorAll(".motor-image-container .motor-image");
   var firstImageBlock = motorsImages[0];
   firstImageBlock.className = 'motor-image active';
+  
 
-
-  var motorSelect = document.querySelector('.motor-select');
-
-  if (motorSelect) {
-    motorSelect.addEventListener('change', function(){
-      var valueSelected = motorSelect.value;
-      var blockSelected = document.querySelector('[data-motor="' + valueSelected + '"]');
-      var blockInfosSelected = document.querySelector('[data-motor-infos="' + valueSelected + '"]');
-      var imageSelected = document.querySelector('[data-motor-image="' + valueSelected + '"]');
-
-      motorsBlock.forEach(block => {
-        block.classList.remove('active');
-      });
-
-      motorsListBlock.forEach(block => {
-        block.classList.remove('active');
-      });
-
-      motorsImages.forEach(block => {
-        block.classList.remove('active');
-      });
-
-      blockSelected.classList.add('active');
-      blockInfosSelected.classList.add('active');
-      imageSelected.classList.add('active');
-    });
-  }
 }
 
 
@@ -253,6 +232,11 @@ if (document.querySelector('.images-tabs-container') != undefined) {
 
 if (document.querySelector('.content-tabs-container') != undefined) {
   var optionsContainer = document.querySelector('.content-tabs-container')
+  tabs(optionsContainer);
+}
+
+if (document.querySelector('.motor-tabs-container') != undefined) {
+  var optionsContainer = document.querySelector('.motor-tabs-container')
   tabs(optionsContainer);
 }
 
@@ -438,6 +422,7 @@ const swiperGalleryVol = new Swiper('.gallery-vol', {
   modules: [Navigation],
   slidesPerView: 1,
   loop: true,
+  centeredSlides: true,
   navigation: {
     nextEl: ".vol-button-next",
     prevEl: ".vol-button-prev",
@@ -454,6 +439,7 @@ const swiperGalleryLifestyle = new Swiper('.gallery-lifestyle', {
   modules: [Navigation],
   slidesPerView: 1,
   loop: true,
+  centeredSlides: true,
   navigation: {
     nextEl: ".lifestyle-button-next",
     prevEl: ".lifestyle-button-prev",
@@ -470,6 +456,7 @@ const swiperGalleryAtelier = new Swiper('.gallery-atelier', {
   modules: [Navigation],
   slidesPerView: 1,
   loop: true,
+  centeredSlides: true,
   navigation: {
     nextEl: ".atelier-button-next",
     prevEl: ".atelier-button-prev",

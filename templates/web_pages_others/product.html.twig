@@ -23,22 +23,24 @@
                     </figure>
                 {% endfor %}
             </div>
-            <div class="motor-board">
+            <div class="motor-board motor-tabs-container">
                 <div class="logos">
                     <img src="../../uploads/images/products/logos/{{ product.productlogomain }}" />
                     <span class="and-icon"><strong><em>&</em></strong></span>
                     <img src="../../uploads/images/products/logos/{{ product.productlogosecond }}" />
                 </div>
-                <select class="motor-select">
+
+                <ul class="tabs">
                     {% for motor in product.productmotor %}
                         {% if motor.motorname != null %}
-                        <option value="{{ motor.id }}">{{ motor.motorname }}</option>
+                        <li><a class="tab">{{ motor.motorname }}</a></li>
                         {% endif %}
                     {% endfor %}
-                </select>
+                </ul>
+
                 {% for motor in product.productmotor %}
                     {% if motor.motorname != null %}
-                    <div class="block" data-motor="{{ motor.id }}">
+                    <div class="tab-pane block" data-motor="{{ motor.id }}">
                         <div class="sub-block">
                             <img src="../../uploads/images/products/motors/{{ motor.motorblock1image }}" />
                             <div class="text">

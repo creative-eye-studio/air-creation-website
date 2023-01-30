@@ -11,6 +11,10 @@
             max-width: 100%;
             width: 32vh;
             display: block;
+            &:last-child{
+                display: block;
+                margin-left: auto;
+            }
         }
         .and-icon{
             font-size: 3em;
@@ -64,6 +68,23 @@
     }
     @media screen and (max-width: 1200px) {
         height: 50vw;
+    }
+}
+
+.motor-tabs-container{
+    .tabs{
+        width: 100%;
+        li{
+            flex: 1;
+        }
+        
+        a{
+            margin: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }
 
@@ -257,6 +278,17 @@
         }
     }
     
+}
+
+#product-galleries{
+    .swiper-slide{
+        transition-duration: .5s;
+        opacity: 1;
+        &:not(.swiper-slide-active){
+            transform: scale(.8);
+            opacity: .7;
+        }
+    }
 }
 
 .images-tabs-container{
