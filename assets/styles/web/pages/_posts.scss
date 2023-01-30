@@ -13,10 +13,17 @@
     }
     @media screen and (min-width: 768px) {
         .posts-list{
-            display: flex;
+            /*display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: $marges-m;
+            gap: $marges-m;*/
+
+            display: grid;
+            grid-template-columns: repeat(3, 2fr);
+            grid-column-gap: $marges-m;
+            grid-row-gap: $marges-m;
+                
+                
         }
         .post-block{
             flex: 0 0 calc(50% - (#{$marges-m} / 2));
