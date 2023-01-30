@@ -78,6 +78,11 @@
             }
         }
     }
+    .and-icon{
+        margin: 0 calc(#{$marges-m} / 2);
+        font-size: 2em;
+        font-weight: 400;
+    }
     .logos{
         display: flex;
         flex-direction: column;
@@ -120,6 +125,7 @@
         .logos{
             flex-direction: row;
             justify-content: space-around;
+            align-items: center;
         }
     }
 }
