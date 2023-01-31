@@ -33,7 +33,7 @@
                 <ul class="tabs">
                     {% for motor in product.productmotor %}
                         {% if motor.motorname != null %}
-                        <li><a class="tab">{{ motor.motorname }}</a></li>
+                        <li><a class="tab" data-motor="{{ motor.id }}">{{ motor.motorname }}</a></li>
                         {% endif %}
                     {% endfor %}
                 </ul>
