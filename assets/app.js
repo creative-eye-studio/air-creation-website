@@ -141,8 +141,21 @@ if (document.querySelector(".motor-board") != undefined) {
   var motorsImages = document.querySelectorAll(".motor-image-container .motor-image");
   var firstImageBlock = motorsImages[0];
   firstImageBlock.className = 'motor-image active';
-  
 
+  var motorsTabBtns = document.querySelectorAll(".motor-board a");
+
+  motorsTabBtns.forEach(btn => {
+    btn.onclick = function(){
+      var motorId = btn.getAttribute('data-motor');
+      var motorBlockId = document.querySelector("[data-motor-infos='" + motorId + "']");
+      console.log(motorBlockId);
+      //return false;
+      document.querySelectorAll('.motor-list-block').forEach(motorBlock => {
+        motorBlock.classList.remove('active');
+      });
+      motorBlockId.classList.add('active');
+    }
+  })
 }
 
 
