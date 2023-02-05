@@ -148,17 +148,21 @@
     margin: 0;
     padding-left: 0;
     list-style-type: none;
-    a{
-        text-align: center;
-        display: block;
-        padding: 1rem 2rem;
-        margin: $marges-m;
-        background-color: $p-color;
-        &.active{
-            background-color: $p-color-d;
-            color: white;
+    &:not(.rounded){
+        a{
+            text-align: center;
+            display: block;
+            padding: 1rem 2rem;
+            background-color: $p-color;
+            display: flex;
+            justify-content: center;
+            &.active{
+                background-color: $p-color-d;
+                color: white;
+            }
         }
     }
+    
     @media screen and (min-width:768px) {
         display: flex;
         > *{

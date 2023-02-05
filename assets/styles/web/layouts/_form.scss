@@ -21,9 +21,9 @@ button[type=submit]{
     @include redBtn();
     &#newsletter_form_submit{
         position: absolute;
-        bottom: 0;
+        top: 0;
         right: 0;
-        height: 45px;
+        height: 47px;
         padding: 1rem;
         &:after{
             font: var(--fa-font-solid);
