@@ -31,25 +31,34 @@
     <div class="footer-block">
       <h2>Recevoir nos actus</h2>
       {{ form_start(newsForm) }}
+        {{ form_widget(newsForm.email) }}
+        {{ form_widget(newsForm.submit) }}
+        <span class="rgpd-alert">
+          {{ form_widget(newsForm.rgpd) }}
+          {{ form_label(newsForm.rgpd, null) }}
+        </span>
       {{ form_end(newsForm) }}
     </div>
   </div>
   <hr />
   <div class="line2">
     <ul>
-      <li><a>Accueil</a></li>
-      <li><a>Le Showroom</a></li>
-      <li><a>Sur-Mesure</a></li>
-      <li><a>Shop</a></li>
-      <li><a>Complet et Occasion</a></li>
-      <li><a>Sous-traitance</a></li>
-      <li><a>Maintenance</a></li>
-      <li><a>Documentation en ligne</a></li>
-      <li><a>Notre histoire</a></li>
-      <li><a>Notre innovation</a></li>
-      <li><a>Liste des revendeurs</a></li>
-      <li><a>Actualités</a></li>
+      <li><a href="{{ path('web_index') }}">Bienvenue</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Sur-Mesure</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'nos-options'}) }}">Nos options</a></li>
+      <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">Shop</a></li>
+      <li><a href="https://shop.aircreation.fr/-les-occasions-air-creation" target="_blank" rel="noopener">Nos occasions</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'sous-traitance'}) }}">Sous-traitance</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}">Maintenance</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'documentation-en-ligne'}) }}">Documentation en ligne</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'qui-sommes-nous'}) }}">Qui sommes nous ?</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'notre-histoire'}) }}">Notre histoire</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'innovation'}) }}">Nos innovations</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Nos valeurs</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'liste-des-revendeurs'}) }}">Liste des revendeurs</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'liste-des-formateurs'}) }}">Centres de formations</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'actualites'}) }}">Actualités</a></li>
     </ul>
-    <p>Référencement SEO : <a href="https://www.agence-gestion-com.fr" target="_blank" rel="noopener">AGC Web</a> | Design graphique : <a href="https://weec.fr" target="_blank" rel="noopener" >WEEC</a> | Conception et développement : Creative Eye Studio</p>
+    <p>Référencement SEO : <a href="https://www.agence-gestion-com.fr" target="_blank" rel="noopener">AGC Web</a> | Design graphique : <a href="https://weec.fr" target="_blank" rel="noopener">WEEC</a> | Conception et développement : <a href="https://www.creative-eye.fr" target="_blank" rel="noopener">Creative Eye Studio</a></p>
   </div>
 </footer>
