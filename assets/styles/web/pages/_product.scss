@@ -43,6 +43,9 @@
             }
             img{
                 width: 50%;
+                &:last-child{
+                    margin-left: inherit;
+                }
             }
         }
         
