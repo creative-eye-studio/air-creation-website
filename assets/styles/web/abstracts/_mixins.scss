@@ -44,6 +44,9 @@
     font-weight: 400;
     font-size: 1em;
     text-decoration: none;
+    &.rounded{
+        border-radius: 3rem;
+    }
 }
 
 @mixin coverImage($size) {
