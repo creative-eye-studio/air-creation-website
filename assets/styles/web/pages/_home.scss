@@ -76,6 +76,8 @@
 .home-block-infos-0{
     padding: $marges-m;
     background-color: $grey-color;
+    display: block;
+    text-decoration: none;
     .icons-blocks-container{
         .icons-block{
             color: $bw-color-1;
@@ -230,6 +232,7 @@
         @media screen and (min-width:1199px) {
             .icons-block{
                 width: 25%;
+                padding: 0 $marges-m;
             }
         }
     }
@@ -255,6 +258,7 @@
         }
         a{
             color: white;
+            text-decoration: none;
         }
     }
 }

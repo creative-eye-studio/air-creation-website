@@ -104,7 +104,7 @@
         color: white;
     }
     .block{
-        background-color: $bw-color-2;
+        background-color: rgba($color: $bw-color-2, $alpha: .6);
         display: flex;
         align-items: center;
         flex-wrap: wrap;
