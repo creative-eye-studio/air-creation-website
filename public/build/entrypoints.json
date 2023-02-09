@@ -2,42 +2,44 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.e7def758.js",
-        "/build/760.4576bcfd.js",
-        "/build/884.91f9a225.js",
-        "/build/674.e2a5b47d.js",
-        "/build/354.9f2d77ff.js",
-        "/build/app.ddeed617.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_modules_es_array-cfa5ad.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_symfony_ux-dropzone_d-73492e.js",
+        "/build/vendors-node_modules_core-js_modules_es_promise_js.js",
+        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_photoswipe_di-d5d52d.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/354.0abf59ad.css",
-        "/build/app.3617b314.css"
+        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_photoswipe_di-d5d52d.css",
+        "/build/app.css"
       ]
     },
     "filters": {
       "js": [
-        "/build/runtime.e7def758.js",
-        "/build/filters.f3fcb61b.js"
+        "/build/runtime.js",
+        "/build/filters.js"
       ]
     },
     "app-admin": {
       "js": [
-        "/build/runtime.e7def758.js",
-        "/build/760.4576bcfd.js",
-        "/build/884.91f9a225.js",
-        "/build/app-admin.2e99f05d.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_modules_es_array-cfa5ad.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_symfony_ux-dropzone_d-73492e.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
+        "/build/app-admin.js"
       ],
       "css": [
-        "/build/app-admin.2a24de06.css"
+        "/build/app-admin.css"
       ]
     },
     "fontawesome": {
       "js": [
-        "/build/runtime.e7def758.js",
-        "/build/760.4576bcfd.js",
-        "/build/674.e2a5b47d.js",
-        "/build/489.0d904fbe.js",
-        "/build/fontawesome.1d1ce744.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_modules_es_array-cfa5ad.js",
+        "/build/vendors-node_modules_core-js_modules_es_promise_js.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_concat_js-node_modules_core-js_modules_es_array-2f1ec5.js",
+        "/build/fontawesome.js"
       ]
     }
   }
