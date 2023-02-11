@@ -36,6 +36,10 @@ select{
     @include inputDesign();
 }
 
+optgroup, option{
+    font-family: $font;
+}
+
 textarea{
     @include inputDesign();
 }

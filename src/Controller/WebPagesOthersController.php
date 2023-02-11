@@ -43,7 +43,6 @@ class WebPagesOthersController extends AbstractController
         $documents = $doctrine->getRepository(DocCategories::class)->findAll();
         
         $products = $products_function->getProducts($doctrine);
-        // $products = $products_function->getPaginatedProducts();
         
         $posts = $doctrine->getRepository(PostsList::class)->findAll();
         $newsForm = $this->createForm(NewsletterFormType::class);
@@ -80,7 +79,7 @@ class WebPagesOthersController extends AbstractController
         $docFilterForm = $this->createForm(DocFilterType::class, $docFilter);
         $docFilterForm->handleRequest($request);
         if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) {
-            $products = $doctrine->getRepository(Products::class)->findDocWithSearch($docFilter);
+            $documents = $doctrine->getRepository(DocCategories::class)->findDocWithSearch($docFilter);
         }
 
 

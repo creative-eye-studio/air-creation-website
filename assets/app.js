@@ -25,26 +25,6 @@ AOS.init({
 });
 
 
-
-// RELOAD PAGE
-// ------------------------------------------------------------------
-/*import Swup from 'swup';
-import SwupBodyClassPlugin from '@swup/body-class-plugin';
-
-const swup = new Swup({
-  plugins: [new SwupBodyClassPlugin()]
-
-});
-
-document.addEventListener('swup:contentReplaced', function(){
-  AOS.init();
-  swiperFunctions();
-  OpenLayersMap();
-})*/
-
-
-
-
 // Parallax
 // ------------------------------------------------------------------
 import 'parallax-image';
@@ -64,7 +44,6 @@ if (document.querySelector('.header-base') != undefined) {
     }
   })
 }
-
 
 
 // Navigation
@@ -90,7 +69,6 @@ navLinks.forEach(navLink => {
 });
 
 
-
 // Sous-Navigation
 // ------------------------------------------------------------------
 var subNavButtons = document.querySelectorAll('.sub-menu-btn');
@@ -112,14 +90,11 @@ subNavButtons.forEach(subNavButton => {
 });
 
 
-
 // Page Accueil
 // ------------------------------------------------------------------
 $('.home-hidden-btn').on('click', function(){
   $('.home-hidden-text').slideToggle('slow');
 })
-
-
 
 
 // Page Produit
@@ -157,8 +132,6 @@ if (document.querySelector(".motor-board") != undefined) {
     }
   })
 }
-
-
 
 
 // Contact Form
@@ -210,8 +183,6 @@ contactBtn3.onclick = function () {
 };
 
 
-
-
 // Tabs
 // ------------------------------------------------------------------
 var tabs = require('tabs');
@@ -259,8 +230,6 @@ if (document.querySelector('.options-list') != undefined) {
 }
 
 
-
-
 // Lightbox
 // ------------------------------------------------------------------
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
@@ -274,8 +243,6 @@ const productLightbox = new PhotoSwipeLightbox({
 productLightbox.init();
 
 
-
-
 // Post
 // ------------------------------------------------------------------
 var postArrow = document.querySelector('.scroll-down-post')
@@ -283,7 +250,6 @@ if (postArrow != undefined) {
   console.log("trouvé");
   postArrow.addEventListener('click', clickHandler);
 }
-
 
 function clickHandler(e) {
   e.preventDefault();
@@ -296,6 +262,56 @@ function clickHandler(e) {
 }
 
 
+// MOTEUR DE RECHERCHE DES PRODUITS
+// ------------------------------------------------------------------
+let alert = ["Alerte"];
+let oldWings = ["iFun 13", "iFun 16", "iFun XL", "Nuvix", "BioniX 15", "BioniX²"];
+let oldTricycles = ["Pixel", "Skypper Evo", "Skypper Bush", "Tanarg Néo"]; 
+let wings = ["BioniX 13", "iXess 15", "iXess 13", "Fun 450"];
+let tricycles = ["Pixel 250", "Skypper Evo 250", "Tanarg"];
+
+function removeList(){
+  console.log("Changé");
+  $('#tricycle option').remove();
+}
+
+function updateList(list) {
+  removeList();
+  for (let i = 0; i < list.length; i++) {
+    $('#tricycle').append('<option value="' + list[i] + '">' + list[i] + '</option>');
+  }
+}
+
+$(window).on('load', function(){
+  if ($('#tricycle') != null) {
+    $('#wing').val() == 0;
+    updateList(alert);
+  }
+})
+
+$('#wing').on('change', function(){
+  var value = $(this).val();
+  switch (true) {
+    case value == 0:
+      updateList(alert);
+      break;
+    case value == 1:
+      updateList(oldWings);
+      break;
+    case value == 2:
+      updateList(oldTricycles);
+      break;
+    case value == 3:
+      updateList(wings);
+      break;
+    case value == 4:
+      updateList(tricycles);
+      break;
+    default:
+      removeList();
+      break;
+  }
+})
 
 
 // Swiper
@@ -349,7 +365,6 @@ const swiperDoc = new Swiper('.product-doc-list', {
   }
 });
 
-
 const swiperLastsEvents = new Swiper('.home-timeline-container', {
   modules: [Navigation],
   slidesPerView: "auto",
@@ -368,7 +383,6 @@ const swiperLastsEvents = new Swiper('.home-timeline-container', {
     },
   }
 });
-
 
 const swiperChrono = new Swiper('.chrono-swiper-1', {
   modules: [Navigation, Pagination],
@@ -402,7 +416,6 @@ const swiperChrono = new Swiper('.chrono-swiper-1', {
   }
 });
 
-
 const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
     modules: [Pagination],
     slidesPerView: "auto",
@@ -415,14 +428,12 @@ const swiperBlocksInfos1 = new Swiper('.slider-mobile-container', {
     },
 });
 
-
 const swiperProductsColoris = new Swiper('.slider-coloris', {
     modules: [Navigation],
     slidesPerView: "auto",
     centeredSlides: true,
     loop: true,
 });
-
 
 const swiperProductsAccessories = new Swiper('.slider-accessoiries', {
     modules: [Pagination],

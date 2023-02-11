@@ -15,29 +15,35 @@ class DocFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('filter_wing', ChoiceType::class, [
+            ->add('wing', ChoiceType::class, [
                 'choices'  => [
-                    'Tous types d\'ailes' => "",
-                    "IFun" => "IFun",
-                    "IFun 16" => "IFun 16",
-                    "IFun XL" => "IFun XL",
+                    "Bulletin d'alerte" => 0,
+                    "Nos anciens modèles" => [
+                        "Nos ailes (anciens)" => 1,
+                        "Nos tricycles (anciens)" => 2
+                    ],
+                    "Nos modèles actuels" => [
+                        "Nos ailes (actuels)" => 3,
+                        "Nos tricycles (actuels)" => 4
+                    ],
+                ],
+                'label' => 'Nos documents'
+            ])
+            ->add('tricycle', ChoiceType::class, [
+                'choices' => [
+                    "Alerte" => "Alerte",
+                    "iFun 13" => "iFun 13",
+                    "iFun 16" => "iFun 16",
+                    "iFun XL" => "iFun XL",
+                    "Nuvix" => "Nuvix",
                     "BioniX 15" => "BioniX 15",
                     "BioniX²" => "BioniX²",
-                    "NuviX" => "NuviX",
-                    "Bio 15" => "Bio 15",
-                    "Bio²" => "Bio²",
-                ],
-                'label' => 'Aile',
-                'required' => false
-            ])
-            ->add('filter_tricycle', ChoiceType::class, [
-                'choices' => [
                     "Pixel" => "Pixel",
-                    "Skypper Bush" => "Skypper Bush",
                     "Skypper Evo" => "Skypper Evo",
+                    "Skypper Bush" => "Skypper Bush",
                     "Tanarg Néo" => "Tanarg Néo"
                 ],
-                'label' => "Tricycle"
+                'label' => 'Nos produits',
             ])
             ->add('submit', SubmitType::class, [
                 'label' => "Rechercher"

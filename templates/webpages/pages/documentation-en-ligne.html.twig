@@ -12,10 +12,10 @@
 <div class="filters doc-form">
   {{ form_start(docFilterForm) }}
   <div class="input-block">
-    {{ form_row(docFilterForm.filter_wing) }}
+    {{ form_row(docFilterForm.wing) }}
   </div>
   <div class="input-block">
-    {{ form_row(docFilterForm.filter_tricycle) }}
+    {{ form_row(docFilterForm.tricycle) }}
   </div>
   <div class="input-btn">
     {{ form_row(docFilterForm.submit) }}
@@ -29,7 +29,6 @@
   </h2>
   <div class="products-docs-list">
     {% for docCategory in docCategories %}
-      {% if docCategory.oldproduct == 0 %}
         <div class="cat-block">
           <h3>{{ docCategory.name }}</h3>
           <ul>
@@ -38,30 +37,6 @@
             {% endfor %}
           </ul>
         </div>
-      {% endif %}
     {% endfor %}
   </div>
-</section>
-
-<hr />
-
-<section class="doc-container">
-  <h2 class="center">
-    Produits anciens
-  </h2>
-  <div class="old-products-list">
-    {% for docCategory in docCategories %}
-      {% if docCategory.oldproduct %}
-        <div>
-          <h3>{{ docCategory.name }}</h3>
-          <ul>
-            {% for document in docCategory.docfiles %}
-            <li><a href="../uploads/documentation/{{ document.docname }}" download>{{ document.docname }}</a></li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-
 </section>

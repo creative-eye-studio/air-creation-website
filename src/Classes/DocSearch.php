@@ -7,10 +7,10 @@ class DocSearch
     /**
      * @var string
      */
-    public $filter_wing = '';
+    public $wing = '';
 
     /**
      * @var string
      */
-    public $filter_tricycle = '';
+    public $tricycle = '';
 }

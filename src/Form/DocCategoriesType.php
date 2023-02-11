@@ -18,32 +18,36 @@ class DocCategoriesType extends AbstractType
             ->add('name', TextType::class, [
                 'label' => "Nom de la catégorie"
             ])
-            ->add('old_product', CheckboxType::class, [
-                'label' => "Produit ancien",
-                'required' => false
-            ])
             ->add('wing', ChoiceType::class, [
                 'choices'  => [
-                    "IFun" => "IFun",
-                    "IFun 16" => "IFun 16",
-                    "IFun XL" => "IFun XL",
-                    "BioniX 15" => "BioniX 15",
-                    "BioniX²" => "BioniX²",
-                    "NuviX" => "NuviX",
-                    "Bio 15" => "Bio 15",
-                    "Bio²" => "Bio²",
+                    "Bulletin d'alerte" => 0,
+                    "Nos anciens modèles" => [
+                        "Nos ailes (anciens)" => 1,
+                        "Nos tricycles (anciens)" => 2
+                    ],
+                    "Nos modèles actuels" => [
+                        "Nos ailes (actuels)" => 3,
+                        "Nos tricycles (actuels)" => 4
+                    ],
                 ],
-                'label' => 'Aile',
+                'label' => 'Nos documents',
                 'required' => false
             ])
             ->add('tricycle', ChoiceType::class, [
                 'choices' => [
+                    "Alerte" => "Alerte",
+                    "iFun 13" => "iFun 13",
+                    "iFun 16" => "iFun 16",
+                    "iFun XL" => "iFun XL",
+                    "Nuvix" => "Nuvix",
+                    "BioniX 15" => "BioniX 15",
+                    "BioniX²" => "BioniX²",
                     "Pixel" => "Pixel",
-                    "Skypper Bush" => "Skypper Bush",
                     "Skypper Evo" => "Skypper Evo",
+                    "Skypper Bush" => "Skypper Bush",
                     "Tanarg Néo" => "Tanarg Néo"
                 ],
-                'label' => "Tricycle",
+                'label' => 'Nos produits',
                 'required' => false
             ])
             ->add('submit', SubmitType::class, [
