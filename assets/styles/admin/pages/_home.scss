@@ -1,5 +1,6 @@
 .home-row{
+    flex-wrap: inherit;
     .col{
-        flex: 0 0 calc(50% - 1.125rem);
+        flex: 0 0 calc(33.33% - 1.125rem);
     }
 }
