@@ -12,10 +12,7 @@
 <div class="filters doc-form">
   {{ form_start(docFilterForm) }}
   <div class="input-block">
-    {{ form_row(docFilterForm.wing) }}
-  </div>
-  <div class="input-block">
-    {{ form_row(docFilterForm.tricycle) }}
+    {{ form_row(docFilterForm.product_type) }}
   </div>
   <div class="input-btn">
     {{ form_row(docFilterForm.submit) }}
@@ -30,7 +27,7 @@
   <div class="products-docs-list">
     {% for docCategory in docCategories %}
         <div class="cat-block">
-          <h3>{{ docCategory.name }}</h3>
+          <h3>{{ docCategory.productname }}</h3>
           <ul>
             {% for document in docCategory.docfiles %}
             <li><a href="../uploads/documentation/{{ document.docname }}" download>{{ document.docname }}</a></li>

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classes\DocSearch;
 use App\Entity\DocProducts;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,20 +40,37 @@ class DocProductsRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Requète pour récupérer les produits selon la recherche
+     */
+    public function findDocWithSearch(DocSearch $search)
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('p')
+        ;
+
+        if (!empty($search->product_type)) {
+            $query = $query
+                ->andWhere('p.product_type IN (:product_type)')
+                ->setParameter(':product_type', $search->product_type)
+            ;
+        }
+
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
-//     * @return DocProducts[] Returns an array of DocProducts objects
+//     * @return DocProducts[]
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('d.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /*public function findAllProducts()
+    {
+        return $this->createQueryBuilder('d')
+            ->where('d.product_name = :id')
+            ->getQuery()
+            ->getResult()
+        ;
+    }*/
 
 //    public function findOneBySomeField($value): ?DocProducts
 //    {

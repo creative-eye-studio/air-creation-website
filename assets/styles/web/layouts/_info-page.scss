@@ -11,9 +11,6 @@
 .info-block-intro{
     padding: $marges-m;
     text-align: center;
-    h2{
-        margin-bottom: 0;
-    }
     @media screen and (min-width: 1200px) {
         padding: $marges-d-y 0;
         margin: auto;

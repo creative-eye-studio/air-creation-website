@@ -4,7 +4,7 @@
 
 body{
     padding: 3rem;
-    font: 400 1em/1.5em "Lato";
+    font: 300 1em/1.5em $font;
     &.admin-page{
         margin: 0 0 0 $nav-width;
     }

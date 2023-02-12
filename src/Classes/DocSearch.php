@@ -7,10 +7,5 @@ class DocSearch
     /**
      * @var string
      */
-    public $wing = '';
-
-    /**
-     * @var string
-     */
-    public $tricycle = '';
+    public $product_type = '';
 }

@@ -50,7 +50,10 @@ class ProductFilterType extends AbstractType
                 'required' => false
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Rechercher"
+                'label' => "Rechercher",
+                'attr' => [
+                    'class' => "rounded"
+                ]
             ])
         ;
     }
