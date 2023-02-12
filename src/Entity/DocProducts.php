@@ -19,7 +19,15 @@ class DocProducts
     private ?string $product_name = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $doc_product = null;
+    private ?int $product_type = null;
+
+    #[ORM\OneToMany(mappedBy: 'doc_model', targetEntity: DocFiles::class)]
+    private Collection $docFiles;
+
+    public function __construct()
+    {
+        $this->docFiles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -38,14 +46,44 @@ class DocProducts
         return $this;
     }
 
-    public function getDocProduct(): ?int
+    public function getProductType(): ?int
     {
-        return $this->doc_product;
+        return $this->product_type;
     }
 
-    public function setDocProduct(?int $doc_product): self
+    public function setProductType(?int $product_type): self
     {
-        $this->doc_product = $doc_product;
+        $this->product_type = $product_type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DocFiles>
+     */
+    public function getDocFiles(): Collection
+    {
+        return $this->docFiles;
+    }
+
+    public function addDocFile(DocFiles $docFile): self
+    {
+        if (!$this->docFiles->contains($docFile)) {
+            $this->docFiles->add($docFile);
+            $docFile->setDocModel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocFile(DocFiles $docFile): self
+    {
+        if ($this->docFiles->removeElement($docFile)) {
+            // set the owning side to null (unless already changed)
+            if ($docFile->getDocModel() === $this) {
+                $docFile->setDocModel(null);
+            }
+        }
 
         return $this;
     }
