@@ -10,8 +10,47 @@
 <section class="block-showroom">
   <h2 class="center" data-aos="fade-up">Des ULM conçus pour toutes les situations, découvrez la gamme d’ULM Air Création</h2>
   <p class="center" data-aos="fade-up">
-    <a class="btn" href="{{ path('web_pages', {page_slug: 'showroom'}) }}">Notre showroom</a>
+    <a class="btn rounded" href="{{ path('web_pages', {page_slug: 'showroom'}) }}">Notre showroom</a>
   </p>
+</section>
+
+<!-- Parallax -->
+<figure class="parallax">
+  <img class="parallax-image" data-height="75vh" data-speed="0.5" src="./uploads/images/pages/home/img-cover-1.jpg" alt="Présentation de Air Création" />
+</figure>
+
+<section class="home-block-infos-1">
+  <!-- Icons Blocks -->
+  <div class="icons-blocks-container">
+    <article class="icons-block" data-aos="fade-up">
+      <a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">
+        <i class="fa-solid fa-pen-ruler fa-4x"></i>
+        <h3>Une réalisation sur-mesure</h3>
+        <p>Configurer l’ULM de vos rêves !</p>
+      </a>
+    </article>
+    <article class="icons-block" data-aos="fade-up" data-aos-delay="100">
+      <a href="https://shop.aircreation.fr" rel="noopener" target="_blank">
+        <i class="fa-solid fa-cart-shopping fa-4x"></i>
+        <h3>Shop</h3>
+        <p>Retrouvez toutes les pièces détachées</p>
+      </a>
+    </article>
+    <article class="icons-block" data-aos="fade-up" data-aos-delay="200">
+      <a href="https://shop.aircreation.fr/-les-occasions-air-creation" rel="noopener" target="_blank">
+        <i class="fa-solid fa-shop fa-4x"></i>
+        <h3>Occasion</h3>
+        <p>Trouvez l'occasion qu'il vous faut</p>
+      </a>
+    </article>
+    <article class="icons-block" data-aos="fade-up" data-aos-delay="300">
+      <a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}">
+        <i class="fa-solid fa-gear fa-4x"></i>
+        <h3>Maintenance</h3>
+        <p>Confier l’entretien de votre révision ou réparation à notre réseau de maintenance.</p>
+      </a>
+    </article>
+  </div>
 </section>
 
 <!-- Block Intro -->
@@ -23,12 +62,13 @@
       </h1>
       <p>Air Création est l'une des premières sociétés françaises de conception et de fabrication d'aéronefs, le leader mondial de l’ULM Pendulaires (deltaplanes motorisés - DPM) n'a cessé de faire progresser ses produits afin d'optimiser confort & performance de vol.</p>
       <p>Les 40 années de savoir-faire et d'expérience des équipes associée à l'utilisation de technologies de pointe ont permis de créer des aéronefs de plus en plus performants, de plus en plus fiables, de plus en plus confortables, de plus en plus économiques.</p>
+      <p>
+        <a class="btn rounded" href="{{ path('web_pages', {page_slug: 'qui-sommes-nous'}) }}">En savoir plus</a>
+      </p>
       <!--<div class="home-hidden-text">
         <p>L'importante gamme d'ailes et de tricycles proposée par le constructeur Ardéchois permet d'offrir à chaque client une combinaison parfaitement adapté à ses besoins, que ce soit dans un but purement récréatif ou à titre professionnel (formation, baptêmes, photographie, surveillance, largage de parachutiste, expérimentation scientifique, compétition, …).</p>
         <p>Les ULM Air Création étant présents sur tous les continents, cela en fait une réelle vitrine du savoir-faire aéronautique français.</p>
-        <p>
-          <a class="btn" href="{{ path('web_pages', {page_slug: 'qui-sommes-nous'}) }}">En savoir plus</a>
-        </p>
+
       </div>
       <p><span class="home-hidden-btn"><u><strong>Voir plus</strong></u></span></p>-->
     </div>
@@ -39,39 +79,40 @@
   </figure>
 </section>
 
-
 <!-- Block Infos 0 -->
-<section class="home-block-infos-0">
-  <div class="icons-blocks-container">
-    <div class="icons-block" data-aos="fade-up">
-      <i class="fa-solid fa-thumbs-up fa-4x"></i>
-      <h2>Passion</h2>
+<section>
+  <a class="home-block-infos-0" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">
+    <div class="icons-blocks-container">
+      <div class="icons-block" data-aos="fade-up">
+        <i class="fa-solid fa-thumbs-up fa-4x"></i>
+        <h2>Passion</h2>
+      </div>
+      <div class="icons-block" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-arrow-trend-up fa-4x"></i>
+        <h2>Innovation</h2>
+      </div>
+      <div class="icons-block" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-clock fa-4x"></i>
+        <h2>Durabilité</h2>
+      </div>
+      <div class="icons-block" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa-solid fa-shield-halved fa-4x"></i>
+        <h2>Sécurité</h2>
+      </div>
+      <div class="icons-block" data-aos="fade-up" data-aos-delay="400">
+        <i class="fa-solid fa-star fa-4x"></i>
+        <h2>Qualité</h2>
+      </div>
     </div>
-    <div class="icons-block" data-aos="fade-up" data-aos-delay="100">
-      <i class="fa-solid fa-arrow-trend-up fa-4x"></i>
-      <h2>Innovation</h2>
-    </div>
-    <div class="icons-block" data-aos="fade-up" data-aos-delay="200">
-      <i class="fa-solid fa-clock fa-4x"></i>
-      <h2>Durabilité</h2>
-    </div>
-    <div class="icons-block" data-aos="fade-up" data-aos-delay="300">
-      <i class="fa-solid fa-shield-halved fa-4x"></i>
-      <h2>Sécurité</h2>
-    </div>
-    <div class="icons-block" data-aos="fade-up" data-aos-delay="400">
-      <i class="fa-solid fa-star fa-4x"></i>
-      <h2>Qualité</h2>
-    </div>
-  </div>
-  <p class="center" data-aos="fade-up" data-aos-delay="500">
-    <a class="btn" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Nos valeurs</a>
-  </p>
+    <p class="center" data-aos="fade-up" data-aos-delay="500">
+      <span class="btn rounded">Nos valeurs</span>
+    </p>
+  </a>
 </section>
 
 <!-- Parallax -->
 <figure class="parallax">
-  <img class="parallax-image" data-height="75vh" data-speed="0.5" src="./uploads/images/pages/home/img-cover-1.jpg" alt="Présentation de Air Création" />
+  <img class="parallax-image" data-height="75vh" data-speed="0.5" src="./uploads/images/pages/home/img-cover-2.jpg" alt="Présentation de Air Création" />
 </figure>
 
 <!-- Block Infos 1 -->
@@ -129,40 +170,7 @@
       </figure>
     </div>
   </div>
-
-  <hr />
-
-  <!-- Icons Blocks -->
-  <div class="icons-blocks-container">
-    <article class="icons-block" data-aos="fade-up">
-      <i class="fa-solid fa-pen-ruler fa-4x"></i>
-      <h3>Une réalisation sur-mesure</h3>
-      <p>Configurer l’ULM de vos rêves !</p>
-    </article>
-    <article class="icons-block" data-aos="fade-up" data-aos-delay="100">
-      <i class="fa-solid fa-cart-shopping fa-4x"></i>
-      <h3>Shop</h3>
-      <p>Retrouvez toutes les pièces détachées<br />
-        <a href="https://shop.aircreation.fr" rel="noopener" target="blank">Voir notre boutique en ligne</a></p>
-    </article>
-    <article class="icons-block" data-aos="fade-up" data-aos-delay="200">
-      <i class="fa-solid fa-shop fa-4x"></i>
-      <h3>Occasion</h3>
-      <p>Trouvez l'occasion qu'il vous faut<br />
-        <a href="https://shop.aircreation.fr/-les-occasions-air-creation" rel="noopener" target="blank">Voir nos produits d'occasions</a></p>
-    </article>
-    <article class="icons-block" data-aos="fade-up" data-aos-delay="300">
-      <i class="fa-solid fa-gear fa-4x"></i>
-      <h3>Maintenance</h3>
-      <p>Confier l’entretien de votre Air Création révision ou réparation à notre réseau de maintenance.</p>
-    </article>
-  </div>
 </section>
-
-<!-- Parallax -->
-<figure class="parallax">
-  <img class="parallax-image" data-height="75vh" data-speed="0.5" src="./uploads/images/pages/home/img-cover-2.jpg" alt="Présentation de Air Création" />
-</figure>
 
 <!-- Community Block -->
 <section class="social">
@@ -188,8 +196,7 @@
   <!-- Instagram -->
   <div class="instagram-container">
     <h2>Identifiez nous #aircreationtrike</h2>
-    <!--<iframe src="https://widget.taggbox.com/113035" style="width:100%;height:50rem;border:none;"></iframe>-->
     <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-	<div class="elfsight-app-ee49837a-4fb1-4ce5-b913-492972866c03"></div>
+    <div class="elfsight-app-33387d6f-0c42-46c3-8c83-6ac8c19a7c44"></div>
   </div>
 </section>

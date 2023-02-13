@@ -81,10 +81,7 @@ class WebPagesOthersController extends AbstractController
             $documents = $doctrine->getRepository(DocProducts::class)->findDocWithSearch($docFilter);
         }
 
-
-
         return $this->render('web_pages_others/index.html.twig', [
-            'controller_name' => 'WebPagesOthersController',
             'page_id' => $selected_page->getPageId(),
             'chronoOrigines' => $chronoOrigines,
             'chronoPionniers' => $chronoPionniers,
