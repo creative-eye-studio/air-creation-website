@@ -5,13 +5,39 @@
 {% block body %}
 <section class="row home-row">
     <div class="col block">
-        <h2>Dernières pages</h2>
+        <h2>Derniers produits</h2>
+        {% for product in products %}
+        <div class="line">
+            <p>
+                {{ product.productname }}
+            </p>
+        </div>
+        {% endfor %}
+        <p><a class="btn-link" href="{{ path('app_admin_products') }}">Voir tous les produits</a></p>
     </div>
     <div class="col block">
         <h2>Derniers articles</h2>
+        {% for post in posts %}
+        <div class="line">
+            <p>
+                {{ post.postname }}
+            </p>
+        </div>
+        {% endfor %}
+        <p><a class="btn-link" href="{{ path('app_admin_posts') }}">Voir tous les posts</a></p>
     </div>
+    {% if is_granted('ROLE_ADMIN') %}
     <div class="col block">
-        <h2>Utilisateurs</h2>
+        <h2>Dernières pages</h2>
+        {% for page in pages %}
+        <div class="line">
+            <p>
+                {{ page.pagename }}
+            </p>
+        </div>
+         {% endfor %}
+        <p><a class="btn-link" href="{{ path('admin_pages') }}">Voir toutes les pages</a></p>
     </div>
+    {% endif %}
 </section>
 {% endblock %}

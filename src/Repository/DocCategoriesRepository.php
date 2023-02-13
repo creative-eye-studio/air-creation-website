@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classes\DocSearch;
 use App\Entity\DocCategories;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -37,6 +38,64 @@ class DocCategoriesRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findForPagination()
+    {
+        $qb = $this->createQueryBuilder('a');
+        
+        return $qb->getQuery();
+    }
+
+    /**
+     * @return void
+     */
+    public function getPaginatedProducts($wing = null, $tricycle = null)
+    {
+        $query = $this->createQueryBuilder('p');
+
+        if ($wing != null) {
+            $query->andWhere('a.wing IN(:wing)')
+                ->setParameters(':wing', $wing)
+            ;
+        }
+
+        if ($tricycle != null) {
+            $query->andWhere('a.tricycle IN(:tricycle)')
+                ->setParameters(':tricycle', $tricycle)
+            ;
+        }
+
+        $query->orderBy('p.name', 'ASC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Requète pour récupérer les produits selon la recherche
+     */
+    public function findDocWithSearch(DocSearch $search)
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('p')
+        ;
+
+        if (!empty($search->wing)) {
+            $query = $query
+                ->andWhere('p.wing IN (:wing)')
+                ->setParameter(':wing', $search->wing)
+            ;
+        }
+
+        if (!empty($search->tricycle)) {
+            $query = $query
+                ->andWhere('p.tricycle IN (:tri)')
+                ->setParameter(':tri', $search->tricycle)
+            ;
+        }
+
+        return $query->getQuery()->getResult();
     }
 
 //    /**

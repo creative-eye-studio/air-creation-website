@@ -7,13 +7,10 @@
         <a class="btn-link float-right" href="{{ path('app_admin_documentation') }}">Retour à la liste des catégories</a>
         <h2>Modifier la catégorie</h2>
         {{ form_start(docForm) }}
-            <p>{{ form_label(docForm.name)}}<br/>
-            {{ form_widget(docForm.name)}}</p>
-            <p>{{ form_label(docForm.wing)}}<br/>
-            {{ form_widget(docForm.wing)}}</p>
-            <p>{{ form_label(docForm.tricycle)}}<br/>
-            {{ form_widget(docForm.tricycle)}}</p>
-            <p>{{ form_widget(docForm.old_product)}} {{ form_label(docForm.old_product)}}</p>
+            <p>{{ form_label(docForm.product_name)}}<br/>
+            {{ form_widget(docForm.product_name)}}</p>
+            <p>{{ form_label(docForm.product_type)}}<br/>
+            {{ form_widget(docForm.product_type)}}</p>
             <p>{{ form_label(docForm.submit)}}</p>
         {{ form_end(docForm) }}
     </section>

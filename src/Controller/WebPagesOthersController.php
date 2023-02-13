@@ -6,7 +6,7 @@ use App\Classes\DocSearch;
 use App\Classes\ProductsSearch;
 use App\Entity\Chronologie;
 use App\Entity\DocCategories;
-use App\Entity\FAQList;
+use App\Entity\DocProducts;
 use App\Form\ContactFormType;
 use App\Form\SAVManagerFormType;
 use App\Entity\PagesList;
@@ -14,7 +14,6 @@ use App\Entity\Partners;
 use App\Entity\PostsList;
 use App\Entity\Products;
 use App\Entity\ProductsImages;
-use App\Entity\ProductsMotors;
 use App\Form\DocFilterType;
 use App\Form\NewsletterFormType;
 use App\Form\OptionsFilterType;
@@ -40,10 +39,9 @@ class WebPagesOthersController extends AbstractController
         $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
         $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
         $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
-        $documents = $doctrine->getRepository(DocCategories::class)->findAll();
+        $documents = $doctrine->getRepository(DocProducts::class)->findAll();
         
         $products = $products_function->getProducts($doctrine);
-        // $products = $products_function->getPaginatedProducts();
         
         $posts = $doctrine->getRepository(PostsList::class)->findAll();
         $newsForm = $this->createForm(NewsletterFormType::class);
@@ -80,13 +78,10 @@ class WebPagesOthersController extends AbstractController
         $docFilterForm = $this->createForm(DocFilterType::class, $docFilter);
         $docFilterForm->handleRequest($request);
         if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) {
-            $products = $doctrine->getRepository(Products::class)->findDocWithSearch($docFilter);
+            $documents = $doctrine->getRepository(DocProducts::class)->findDocWithSearch($docFilter);
         }
 
-
-
         return $this->render('web_pages_others/index.html.twig', [
-            'controller_name' => 'WebPagesOthersController',
             'page_id' => $selected_page->getPageId(),
             'chronoOrigines' => $chronoOrigines,
             'chronoPionniers' => $chronoPionniers,

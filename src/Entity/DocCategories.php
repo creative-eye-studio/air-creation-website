@@ -24,9 +24,6 @@ class DocCategories
     #[ORM\OneToMany(mappedBy: 'doc_category', targetEntity: DocFiles::class)]
     private Collection $docFiles;
 
-    #[ORM\Column]
-    private ?bool $old_product = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $wing = null;
 

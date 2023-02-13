@@ -1,8 +1,12 @@
 {
+<<<<<<< HEAD
   "build/app.css": "/build/app.1e0c2d9f.css",
+=======
+  "build/app.css": "/build/app.e6c8c739.css",
+>>>>>>> 5b2132efa9e17b459f9f74e610136835c06f6317
   "build/app.js": "/build/app.ddeed617.js",
   "build/filters.js": "/build/filters.f3fcb61b.js",
-  "build/app-admin.css": "/build/app-admin.2a24de06.css",
+  "build/app-admin.css": "/build/app-admin.73d8ca7c.css",
   "build/app-admin.js": "/build/app-admin.2e99f05d.js",
   "build/fontawesome.js": "/build/fontawesome.1d1ce744.js",
   "build/runtime.js": "/build/runtime.e7def758.js",

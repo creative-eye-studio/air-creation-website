@@ -6,23 +6,20 @@
     <section class="block">
         <h2>Gestion de la documentation</h2>
         {{ form_start(docForm) }}
-            <p>{{ form_label(docForm.name)}}<br/>
-            {{ form_widget(docForm.name)}}</p>
-            <p>{{ form_label(docForm.wing)}}<br/>
-            {{ form_widget(docForm.wing)}}</p>
-            <p>{{ form_label(docForm.tricycle)}}<br/>
-            {{ form_widget(docForm.tricycle)}}</p>
-            <p>{{ form_widget(docForm.old_product)}} {{ form_label(docForm.old_product)}}</p>
+            <p>{{ form_label(docForm.product_name)}}<br/>
+            {{ form_widget(docForm.product_name)}}</p>
+            <p>{{ form_label(docForm.product_type)}}<br/>
+            {{ form_widget(docForm.product_type)}}</p>
             <p>{{ form_label(docForm.submit)}}</p>
         {{ form_end(docForm) }}
         <hr />
         {% for cat in cats %}
             <div class="line">
                 <p>
-                    {{ cat.name }} 
+                    {{ cat.productname }} 
                 </p>
                 <ul>
-                    <li><a href="{{ path('admin_doc_files', {cat_name: cat.slug}) }}">Ajouter des documents</a></li>
+                    <li><a href="{{ path('admin_doc_files', {id: cat.id}) }}">Ajouter des documents</a></li>
                     <li><a href="{{ path('admin_cat_manager', {id: cat.id}) }}">Modifier la catégorie</a></li>
                     <li><a href="{{ path('admin_doc_cat_delete', {id: cat.id}) }}">Supprimer</a></li>
                 </ul>

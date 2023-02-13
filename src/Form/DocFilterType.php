@@ -3,44 +3,40 @@
 namespace App\Form;
 
 use App\Classes\DocSearch;
+use App\Entity\DocProducts;
+use App\Repository\DocProductsRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DocFilterType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('filter_wing', ChoiceType::class, [
+            ->add('product_type', ChoiceType::class, [
                 'choices'  => [
-                    'Tous types d\'ailes' => "",
-                    "IFun" => "IFun",
-                    "IFun 16" => "IFun 16",
-                    "IFun XL" => "IFun XL",
-                    "BioniX 15" => "BioniX 15",
-                    "BioniX²" => "BioniX²",
-                    "NuviX" => "NuviX",
-                    "Bio 15" => "Bio 15",
-                    "Bio²" => "Bio²",
+                    "Bulletin d'alerte" => 0,
+                    "Nos anciens modèles" => [
+                        "Nos ailes (anciens)" => 1,
+                        "Nos tricycles (anciens)" => 2
+                    ],
+                    "Nos modèles actuels" => [
+                        "Nos ailes (actuels)" => 3,
+                        "Nos tricycles (actuels)" => 4
+                    ],
                 ],
-                'label' => 'Aile',
-                'required' => false
-            ])
-            ->add('filter_tricycle', ChoiceType::class, [
-                'choices' => [
-                    "Pixel" => "Pixel",
-                    "Skypper Bush" => "Skypper Bush",
-                    "Skypper Evo" => "Skypper Evo",
-                    "Tanarg Néo" => "Tanarg Néo"
-                ],
-                'label' => "Tricycle"
+                'label' => 'Nos types de documents'
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "Rechercher"
+                'label' => "Rechercher",
+                'attr' => [
+                    'class' => "rounded"
+                ]
             ])
         ;
     }

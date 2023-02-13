@@ -17,8 +17,7 @@ class DocFiles
     private ?string $doc_name = null;
 
     #[ORM\ManyToOne(inversedBy: 'docFiles')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?DocCategories $doc_category = null;
+    private ?DocProducts $doc_model = null;
 
     public function getId(): ?int
     {
@@ -37,14 +36,14 @@ class DocFiles
         return $this;
     }
 
-    public function getDocCategory(): ?DocCategories
+    public function getDocModel(): ?DocProducts
     {
-        return $this->doc_category;
+        return $this->doc_model;
     }
 
-    public function setDocCategory(?DocCategories $doc_category): self
+    public function setDocModel(?DocProducts $doc_model): self
     {
-        $this->doc_category = $doc_category;
+        $this->doc_model = $doc_model;
 
         return $this;
     }

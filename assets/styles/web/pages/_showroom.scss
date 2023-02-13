@@ -49,7 +49,7 @@
         &.doc-form{
             form{
                 .input-block{
-                    width: calc(50% - (#{$marges-m} / 2));
+                    width: calc(100%);
                 }
             }
         }
