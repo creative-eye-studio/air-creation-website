@@ -64,7 +64,10 @@ class ContactFormType extends AbstractType
                 ]
             ])
             ->add('submit_button', SubmitType::class, [
-                'label' => 'Envoyer'
+                'label' => 'Envoyer',
+                'attr' => [
+                    'class' => 'rounded'
+                ]
             ])
         ;
     }
