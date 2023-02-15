@@ -26,7 +26,6 @@ class ProductService extends AbstractController{
             $motor1 = $motors[0]->getId();
             $motor2 = $motors[1]->getId();
             $motor3 = $motors[2]->getId();
-            dump($product);
         }
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
