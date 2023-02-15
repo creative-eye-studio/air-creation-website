@@ -54,3 +54,12 @@
     display: block;
     margin-top: 1em;
 }
+
+.swiper-pagination-bullet{
+    width: 12px;
+    height: 12px;
+}
+
+.swiper-pagination-bullet-active{
+    background: $p-color;
+}
