@@ -92,7 +92,7 @@
 // MOTOR BOARD
 // ------------------------------------------
 .motor-board{
-    width: 500px;
+    width: 550px;
     position: absolute;
     top: 10vh;
     left: calc(50% + 10vw);
@@ -103,7 +103,7 @@
     .block{
         background-color: rgba($color: $bw-color-2, $alpha: .6);
         display: flex;
-        align-items: center;
+        align-items: baseline;
         flex-wrap: wrap;
         padding: $marges-m $marges-m 0;
         .sub-block{
