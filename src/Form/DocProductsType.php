@@ -20,13 +20,13 @@ class DocProductsType extends AbstractType
             ->add('product_type', ChoiceType::class, [
                 'choices' => [
                     "Bulletin d'alerte" => 0,
-                    "Nos modèles" => [
-                        "Ailes en stocks" => 1,
-                        "Tricycles en stocks" => 2,
+                    "Notre catalogue" => [
+                        "Nos ailes (catalogue)" => 3,
+                        "Nos tricycles (catalogue)" => 4
                     ],
                     "Nos anciens modèles" => [
-                        "Nos anciennes ailes" => 3,
-                        "Nos anciens tricycles" => 4,
+                        "Nos ailes (modèles anciens)" => 1,
+                        "Nos tricycles (modèles anciens)" => 2
                     ]
                 ],
                 'label' => "Type de produit"

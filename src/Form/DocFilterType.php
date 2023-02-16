@@ -21,14 +21,14 @@ class DocFilterType extends AbstractType
             ->add('product_type', ChoiceType::class, [
                 'choices'  => [
                     "Bulletin d'alerte" => 0,
+                    "Notre catalogue" => [
+                        "Nos ailes (catalogue)" => 3,
+                        "Nos tricycles (catalogue)" => 4
+                    ],
                     "Nos anciens modèles" => [
-                        "Nos ailes (anciens)" => 1,
-                        "Nos tricycles (anciens)" => 2
-                    ],
-                    "Nos modèles actuels" => [
-                        "Nos ailes (actuels)" => 3,
-                        "Nos tricycles (actuels)" => 4
-                    ],
+                        "Nos ailes (modèles anciens)" => 1,
+                        "Nos tricycles (modèles anciens)" => 2
+                    ]
                 ],
                 'label' => 'Nos types de documents'
             ])
