@@ -3,13 +3,10 @@
 .product-main-block{
     position: relative;
     .logos{
-        /*position: absolute;
-        top: 10rem;
-        left: calc(50% + 10vw);*/
         margin-bottom: $marges-m;
         img{
             max-width: 100%;
-            width: 32vh;
+            width: 25vh;
             display: block;
             &:last-child{
                 display: block;
@@ -97,7 +94,7 @@
 .motor-board{
     width: 500px;
     position: absolute;
-    top: 20vh;
+    top: 10vh;
     left: calc(50% + 10vw);
     select{
         background-color: $p-color;
