@@ -1,0 +1,67 @@
+<footer>
+  <div class="line1">
+    <div class="footer-block">
+      <h2>Nous contacter</h2>
+      <p>
+        615, Route de l’aerodrome<br />
+        07200 Lanas - Ardèche<br />
+        <a href="tel:+33475936666">04 75 93 66 66</a><br />
+        <a href="mailto:contact@aircreation.fr">contact@aircreation.fr</a>
+      </p>
+    </div>
+    <div class="footer-block">
+      <h2>Nous suivre</h2>
+      <ul>
+        <li><a href="https://fr-fr.facebook.com/aircreationulm/" target="_blank" rel="noopener"><i class="fa-brands fa-2x fa-facebook-f"></i></a></li>
+        <li><a href="https://www.instagram.com/aircreationtrike/" target="_blank" rel="noopener"><i class="fa-brands fa-2x fa-instagram"></i></a></li>
+        <li><a href="https://www.youtube.com/channel/UCbRg9faD1zfvMyFv1cDRt3g" target="_blank" rel="noopener"><i class="fa-brands fa-2x fa-youtube"></i></a></li>
+        <li><a href="https://www.linkedin.com/company/air-cr%C3%A9ation/" target="_blank" rel="noopener"><i class="fa-brands fa-2x fa-linkedin-in"></i></a></li>
+      </ul>
+    </div>
+    <div class="footer-block cci-block">
+      <div class="footer-sub-block">
+        <h2>Notre partenaire</h2>
+        <img src="https://aircreation.com/uploads/images/footer/logo-ffulm.png" alt="Fédération française d'ULM" />
+      </div>
+      <div class="footer-sub-block">
+        <h2>Notre région</h2>
+        <img src="https://aircreation.com/uploads/images/footer/logo-dep.jpg" alt="Région Auvergne Rhône Alpes" />
+      </div>
+    </div>
+    <div class="footer-block">
+      <h2>Recevoir nos actus</h2>
+      {{ form_start(newsForm) }}
+        {{ form_widget(newsForm.email) }}
+        {{ form_widget(newsForm.submit) }}
+        <span class="rgpd-alert">
+          {{ form_widget(newsForm.rgpd) }}
+          {{ form_label(newsForm.rgpd, null) }}
+        </span>
+        <div class="g-recaptcha" data-sitekey="6LdWoYUkAAAAAK1bt61B95QbNLKVLEdDEn6MThiT"></div>
+      {{ form_end(newsForm) }}
+    </div>
+  </div>
+  <hr />
+  <div class="line2">
+    <ul>
+      <li><a href="{{ path('web_index') }}">Bienvenue</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Sur-Mesure</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'nos-options'}) }}">Nos options</a></li>
+      <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">Shop</a></li>
+      <li><a href="https://shop.aircreation.fr/-les-occasions-air-creation" target="_blank" rel="noopener">Nos occasions</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'sous-traitance'}) }}">Sous-traitance</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}">Maintenance</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'documentation-en-ligne'}) }}">Documentation en ligne</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'qui-sommes-nous'}) }}">Qui sommes nous ?</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'notre-histoire'}) }}">Notre histoire</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'innovation'}) }}">Nos innovations</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Nos valeurs</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'liste-des-revendeurs'}) }}">Liste des revendeurs</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'liste-des-formateurs'}) }}">Centres de formations</a></li>
+      <li><a href="{{ path('web_pages', {page_slug: 'actualites'}) }}">Actualités</a></li>
+    </ul>
+    <p>Référencement SEO : <a href="https://www.agence-gestion-com.fr" target="_blank" rel="noopener">AGC Web</a> | Design graphique : <a href="https://weec.fr" target="_blank" rel="noopener">WEEC</a> | Conception et développement : <a href="https://www.creative-eye.fr" target="_blank" rel="noopener">Creative Eye Studio</a></p>
+  </div>
+</footer>
+
+<div class="gtranslate_wrapper"></div>
