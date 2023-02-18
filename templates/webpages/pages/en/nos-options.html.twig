@@ -1,0 +1,169 @@
+<!-- Cover Block -->
+<section class="cover-page">
+  <div class="text">
+    <h1>Nos options</h1>
+  </div>
+  <div class="image">
+    <img src="../uploads/images/options/bg-page.jpg" alt="" />
+  </div>
+</section>
+
+<!-- Intro Block -->
+<!--<section class="info-block-intro-container">
+  <div class="info-block-intro">
+    <p>Du tableau de bord à l’hélice !<br />
+      Retrouvez toutes nos options !</p>
+  </div>
+</section>-->
+
+<!-- Fonctions filtrage -->
+<div class="filters no-flex">
+  {{ form_start(optionsFilterForm) }}
+
+  <div class="input-block">
+    {{ form_row(optionsFilterForm.product_name) }}
+  </div>
+
+  <span>Nos différentes options</span>
+  <div class="input-block options-input-list">
+    {% for child in optionsFilterForm.product_option %}
+    <div>
+      {{ form_widget(child) }}
+      {{ form_label(child, null) }}
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="input-btn">
+    {{ form_row(optionsFilterForm.submit) }}
+  </div>
+
+  {{ form_end(optionsFilterForm) }}
+</div>
+
+<div class="options-list">
+  <div class="tabs">
+      <li><a class="tab active">Tanarg</a></li>
+      <li><a class="tab">Skypper</a></li>
+      <li><a class="tab">Pixel</a></li>
+  </div>
+
+  <div class="tab-panes">
+    <!-- Tanarg -->
+    <div class="tab-pane active">
+      <!-- Tanarg Néo -->
+      <section class="options-container">
+        <div class="options-text">
+          <h2 class="center">Tanarg néo</h2>
+          <ul>
+            <li>Les helices: Hélice Neuform IP CL3-65 / Hélice Duc Flash-2.</li>
+            <li>Tableau de bord : Vintage / Blaze / Xtreme / MX-1 / Explorer Lite.</li>
+            <li>Support tablette </li>
+            <li>Parachute de secours</li>
+            <li>Instrument : MGL / Blaze ASV-2 / Intercom / Alternat spiral velcro. </li>
+            <li>Communication : Noise killer / Adaptateur Bluetooth / Cablage Icom A25 / Radio Icom A25 / Radio TQ KRT2 / Transpondeur TQ KTX2S-V2.</li>
+            <li>Pour l’instruction : Poignées de trapèze / Double commande direction et gaz </li>
+            <li>Transport : Remorque / Housse / Support d’aile</li>
+            <li>Harnais de fixation 4 point </li>
+            <li>Feux de navigation Hermes </li>
+            <li>Système de remorquage </li>
+          </ul>
+        </div>
+        <hr />
+        <div id="options-gallery" class="images-list">
+          {% for i in 1..4 %}
+          <figure>
+            <a href="../uploads/images/options/tanarg/image-{{i}}.jpg">
+              <img src="../uploads/images/options/tanarg/image-{{i}}.jpg" />
+            </a>
+          </figure>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <!-- Skypper -->
+    <div class="tab-pane">
+      <!-- Skypper Evo -->
+      <section class="options-container">
+        <div class="options-text">
+          <h2 class="center">Skypper Evo</h2>
+          <ul>
+            <li>Les helices: hélice HELIX blindé / Hélice Neuform IP CL3-65 / Hélice Neuform TXL3-65 / Hélice Duc Flash-2</li>
+            <li>Carénage Coque</li>
+            <li>Tableau de bord : Standard / Blaze / Xtreme / MX-1</li>
+            <li>Support tablette</li>
+            <li>Parachute de secours</li>
+            <li>Instrument et Communication : MGL / Blaze ASV-2 / Intercom / Alternat spiral velcro/ Noise killer / Adaptateur Bluetooth / Cablage Icom A25 / Radio Icom A25 / Radio TQ KRT2 / Transpondeur TQ KTX2S-V2</li>
+            <li>Pour l’instruction : Poignées de trapèze / Double commande direction et gaz</li>
+            <li>Transport : Remorque / Housse / Support d’aile</li>
+            <li>Harnais de fixation 4 point</li>
+            <li>Feux de navigation Hermes</li>
+            <li>Système de remorquage</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="options-gallery" class="images-list">
+          {% for i in 1..7 %}
+          <figure>
+            <a href="../uploads/images/options/skypper/image-{{i}}.jpg">
+              <img src="../uploads/images/options/skypper/image-{{i}}.jpg" />
+            </a>
+          </figure>
+          {% endfor %}
+        </div>
+      </section>
+      <!-- Skypper Bush -->
+      <section class="options-container">
+        <div class="options-text">
+          <h2 class="center">Skypper Bush</h2>
+          <ul>
+            <li>Les helices: hélice HELIX blindé / Hélice Neuform IP CL3-65 / Hélice Neuform TXL3-65</li>
+            <li>Tableau de bord : Standard / Blaze / Xtreme / MX-1</li>
+            <li>Support tablette</li>
+            <li>Parachute de secours</li>
+            <li>Instrument : MGL / Blaze ASV-2 / Intercom / Alternat spiral velcro</li>
+            <li>Communication : Noise killer / Adaptateur Bluetooth / Cablage Icom A25 / Radio Icom A25 / Radio TQ KRT2 / Transpondeur TQ KTX2S-V2</li>
+            <li>Pour l’instruction : Poignées de trapèze / Double commande direction et gaz</li>
+            <li>Transport : Remorque / Housse / support d’aile</li>
+            <li>Harnais de fixation 4 point</li>
+            <li>Feux de navigation Hermes</li>
+            <li>Système de remorquage</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="options-gallery" class="images-list">
+          {% for i in 1..7 %}
+          <figure>
+            <a href="../uploads/images/options/skypper/image-{{i}}.jpg">
+              <img src="../uploads/images/options/skypper/image-{{i}}.jpg" />
+            </a>
+          </figure>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <!-- Pixel -->
+    <div class="tab-pane">
+      <section class="options-container">
+        <div class="options-text">
+          <h2 class="center">Pixel</h2>
+          <ul>
+            <li>Les helices: Hélice e-Props réglable</li>
+            <li>Parachute de secours</li>
+            <li>Instrument : MGL / Blaze ASV-2 / Intercom / Alternat spiral velcro</li>
+            <li>Communication : Noise killer / Adaptateur Bluetooth / Cablage Icom A25 / Radio Icom A25</li>
+            <li>Transport : Remorque / Housse / Support d’aile</li>
+          </ul>
+        </div>
+        <hr />
+        <div id="options-gallery" class="images-list">
+        </div>
+      </section>
+    </div>
+
+    <div>
+  </div>
+
+</div>
