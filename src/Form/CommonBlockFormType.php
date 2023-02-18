@@ -31,3 +31,27 @@ class CommonBlockFormType extends AbstractType
         ]);
     }
 }
+
+class CommonBlockFormTypeEn extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+            ->add('common_block', CKEditorType::class, [
+                'label' => false,
+                'required' => false,
+            ])
+
+            ->add('common_submit', SubmitType::class, [
+                'label' => 'Envoyer'
+            ])
+        ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            // Configure your form options here
+        ]);
+    }
+}
