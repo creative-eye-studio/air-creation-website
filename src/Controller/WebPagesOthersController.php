@@ -205,6 +205,7 @@ class WebPagesOthersController extends AbstractController
             'contactForm' => $contactForm->createView(),
             'newsForm' => $newsForm->createView(),
             'post_id' => $post->getPostId(),
+            'post_url' => $post->getPostUrl(),
             'post_image' => $post->getPhotoFilename(),
             'post_title' => $post->getPostName(),
             'post_date' => $post->getCreatedAt(),
