@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ meta_title }} - Air Création{% endblock %}
+{% block meta_description %}{{ meta_desc }}{% endblock %}
+
+{% block body_class %}{{ headerType }}{% endblock %}
+
+{% block body %}
+
+    {% include "webpages/blocks/fr/header.html.twig" %}
+    <main id="swup">
+        {% include "webpages/pages/fr/#{page_id}.html.twig" %}
+    </main>
+    {% include "webpages/blocks/fr/footer.html.twig" %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        {% for reseller in resellers %}
+            L.marker([{{reseller.coordlat}}, {{reseller.coordlong}}]).addTo(map);
+        {% endfor %}
+    </script>
+{% endblock %}

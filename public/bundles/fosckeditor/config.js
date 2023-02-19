@@ -4,8 +4,13 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	config.extraPlugins = 'codemirror';
-	config.startupMode = 'source';
+	config.language = 'fr';
+	config.extraPlugins = 'codemirror,filebrowser';
+	// config.startupMode = 'source';
+	config.allowedContent = true;
+	config.entities = false;
+	config.baseHref = '/';
+	config.contentsCss = '../build/app.css';
+	config.height = 300;
+	config.bodyClass = 'no-js header-second';
 };

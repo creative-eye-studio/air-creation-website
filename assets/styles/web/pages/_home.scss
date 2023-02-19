@@ -79,9 +79,10 @@
     display: block;
     text-decoration: none;
     .icons-blocks-container{
-        .icons-block{
+        .icons-block, a{
             color: $bw-color-1;
             text-align: center;
+            text-decoration: none;
         }
         h2{
             font-size: 1.5em;

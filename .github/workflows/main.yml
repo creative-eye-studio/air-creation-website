@@ -29,3 +29,9 @@ jobs:
           **/assets/**
           **/node_modules/**
           **/var/**
+    
+    - name: Databases migration
+      run: symfony console make:migration
+    
+    - name: Databases update
+      run: symfony console doctrine:migrations:migrate

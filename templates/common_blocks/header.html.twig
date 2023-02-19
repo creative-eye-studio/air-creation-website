@@ -3,14 +3,29 @@
 {% block title %}Modifier l'en-tête du site{% endblock %}
 
 {% block body %}
-    <section class="block">
+    <section class="block tab-container">
         <h2>Modifier l'en-tête du site</h2>
-        {{ form_start(form) }}
-            <p>{{ form_widget(form.common_block, {
-                'value': content
-            }) }}</p>
-
-            {{ form_row(form.common_submit) }}
-        {{ form_end(form) }}
+        <ul class="tabs-btn tabs">
+            <li><a class="tab active">Français</a></li>
+            <li><a class="tab">English</a></li>
+        </ul>
+        <div class="tab-panes">
+            <div class="tab-pane active">
+                {{ form_start(form) }}
+                    <p>{{ form_widget(form.common_block, {
+                        'value': content
+                    }) }}</p>
+                    {{ form_row(form.common_submit) }}
+                {{ form_end(form) }}
+            </div>
+            <div class="tab-pane">
+                {{ form_start(form_en) }}
+                    <p>{{ form_widget(form_en.common_block, {
+                        'value': content_en
+                    }) }}</p>
+                    {{ form_row(form_en.common_submit) }}
+                {{ form_end(form_en) }}
+            </div>
+        </div>
     </section>
 {% endblock %}

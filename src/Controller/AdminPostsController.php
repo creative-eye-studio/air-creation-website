@@ -52,7 +52,8 @@ class AdminPostsController extends AbstractController
     public function modify_post(ManagerRegistry $doctrine, Request $request, String $post_id, PostsService $postService) {
 
         // Récupération du contenu de la page
-        $postContent = file_get_contents("../templates/webpages/posts/" . $post_id . ".html.twig");
+        $postContent = file_get_contents("../templates/webpages/posts/fr/" . $post_id . ".html.twig");
+        $postContentEn = file_get_contents("../templates/webpages/posts/en/" . $post_id . ".html.twig");
 
         $form = $postService->PostManager($doctrine, $request, false, $post_id);
 
@@ -65,6 +66,7 @@ class AdminPostsController extends AbstractController
         return $this->render('posts/modify-post.html.twig', [
             'form' => $form->createView(),
             'content' => $postContent,
+            'contentEn' => $postContentEn,
         ]);
     }
 
@@ -86,7 +88,8 @@ class AdminPostsController extends AbstractController
         $entityManager->flush();
 
         // Suppression du fichier
-        unlink("../templates/webpages/posts/" . $post_id . ".html.twig");
+        unlink("../templates/webpages/posts/fr/" . $post_id . ".html.twig");
+        unlink("../templates/webpages/posts/en/" . $post_id . ".html.twig");
 
         return $this->redirectToRoute('app_admin_posts');
     }

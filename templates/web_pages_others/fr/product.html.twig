@@ -1,0 +1,262 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.productmetatitle }} - Air Création{% endblock %}
+{% block meta_description %}{{ meta_desc }}{% endblock %}
+
+{% block meta %}
+  <meta description="{{ productMetaDesc }}">
+{% endblock %}
+
+{% block body_class %}{{ headerType }}{% endblock %}
+
+{% block body %}
+
+    {% include "webpages/blocks/header.html.twig" %}
+
+    <main id="swup">
+        <!-- Main Image & Intro -->
+        <section class="product-main-block">
+            <div class="motor-image-container">
+                {% for motor in product.productmotor %}
+                    <figure class="motor-image" data-motor-image="{{ motor.id }}">
+                        <img src="../../uploads/images/products/motors/{{ motor.motormainimage }}" />
+                    </figure>
+                {% endfor %}
+            </div>
+            <div class="motor-board motor-tabs-container">
+                <div class="logos">
+                    <img src="../../uploads/images/products/logos/{{ product.productlogomain }}" />
+                    <span class="and-icon"><strong><em>&</em></strong></span>
+                    <img src="../../uploads/images/products/logos/{{ product.productlogosecond }}" />
+                </div>
+
+                <ul class="tabs">
+                    {% for motor in product.productmotor %}
+                        {% if motor.motorname != null %}
+                        <li><a class="tab" data-motor="{{ motor.id }}">{{ motor.motorname }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
+                {% for motor in product.productmotor %}
+                    {% if motor.motorname != null %}
+                    <div class="tab-pane block" data-motor="{{ motor.id }}">
+                        <div class="sub-block">
+                            <img src="../../uploads/images/products/motors/{{ motor.motorblock1image }}" />
+                            <div class="text">
+                                <p>{{ motor.motorblock1name }}</p>
+                                <p class="motor-main-value">{{ motor.motorblock1value }}</p>
+                            </div>
+                        </div>
+                        <div class="sub-block">
+                            <img src="../../uploads/images/products/motors/{{ motor.motorblock2image }}" />
+                            <div class="text">
+                                <p>{{ motor.motorblock2title }}</p>
+                                <p class="motor-main-value">{{ motor.motorblock2value }}</p>
+                            </div>
+                        </div>
+                        <div class="sub-block">
+                            <img src="../../uploads/images/products/motors/{{ motor.motorblock3image }}" />
+                            <div class="text">
+                                <p>{{ motor.motorblock3title }}</p>
+                                <p class="motor-main-value">{{ motor.motorblock3value }}</p>
+                            </div>
+                        </div>
+                        <div class="sub-block">
+                            <img src="../../uploads/images/products/motors/{{ motor.motorblock4image }}" />
+                            <div class="text">
+                                <p>{{ motor.motorblock4title }}</p>
+                                <p class="motor-main-value">{{ motor.motorblock4value }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Block Intro -->
+        <section class="info-block-intro-container">
+            <div class="info-block-intro">
+                <p>{{ productIntro | raw }}</p>
+            </div>
+        </section>
+
+        <!-- Tabs Images -->
+        <div class="images-tabs-container">
+
+            <!-- Buttons Tabs -->
+            <ul class="tabs">
+                <li><a class="tab active">Galerie « En vol »</a></li>
+                <li><a class="tab">Galerie « Lifestyle »</a></li>
+                <li><a class="tab">Galerie « L’atelier »</a></li>
+            </ul>
+
+            <!-- Tabs Blocks -->
+            <div class="tab-panes" id="product-galleries">
+
+                <div class="tab-pane active">
+                    <div class="swiper gallery-vol">
+                        <div class="swiper-wrapper">
+                            {% for image in product.imageproduct %}
+                                {% if image.imagetype == 0 %}
+                                    <div class="swiper-slide">
+                                        <a 
+                                            href="../../uploads/images/products/carousels/fly/{{ image.imagename }}"
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/fly/{{ image.imagename }}" alt="fly/{{ image.imagename }}" />
+                                            </figure>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="vol-button-next swiper-btn next">
+                            <i class="fa-solid fa-chevron-right fa-3x"></i>
+                        </div>
+                        <div class="vol-button-prev swiper-btn prev">
+                            <i class="fa-solid fa-chevron-left fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane">
+                    <div class="swiper gallery-lifestyle">
+                        <div class="swiper-wrapper">
+                            {% for image in product.imageproduct %}
+                                {% if image.imagetype == 1 %}
+                                    <div class="swiper-slide">
+                                        <a 
+                                            href="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}"
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/lifestyle/{{ image.imagename }}" alt="fly/{{ image.imagename }}" />
+                                            </figure>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="lifestyle-button-next swiper-btn next">
+                            <i class="fa-solid fa-chevron-right fa-3x"></i>
+                        </div>
+                        <div class="lifestyle-button-prev swiper-btn prev">
+                            <i class="fa-solid fa-chevron-left fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane">
+                    <div class="swiper gallery-atelier">
+                        <div class="swiper-wrapper">
+                            {% for image in product.imageproduct %}
+                                {% if image.imagetype == 2 %}
+                                    <div class="swiper-slide">
+                                        <a 
+                                            href="../../uploads/images/products/carousels/workshop/{{ image.imagename }}"
+                                            data-cropped="true" 
+                                            target="_blank">
+                                            <figure class="slide-image">
+                                                <img src="../../uploads/images/products/carousels/workshop/{{ image.imagename }}" alt="workshop/{{ image.imagename }}" />
+                                            </figure>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="atelier-button-next swiper-btn next">
+                            <i class="fa-solid fa-chevron-right fa-3x"></i>
+                        </div>
+                        <div class="atelier-button-prev swiper-btn prev">
+                            <i class="fa-solid fa-chevron-left fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Tabs Content -->
+        <div class="content-tabs-container">
+
+            <!-- Buttons Tabs -->
+            <ul class="tabs">
+                <li><a class="tab active">Description</a></li>
+                <li><a class="tab">Caractéristiques</a></li>
+                <li><a class="tab">Dimensions</a></li>
+            </ul>
+
+            <!-- Tabs Blocks -->
+            <div class="tab-panes">
+                <!-- Tab Description -->
+                <div class="tab-pane active">
+                    <section class="desc-container">
+                        {{ product.productdesc | raw }}
+                    </section>
+                </div>
+                <!-- Tab Caractéristiques -->
+                <div class="tab-pane motor-list-container">
+                    {% for motor in product.productmotor %}
+                        {% if motor.motorname != null %}
+                        <div class="motor-list-block" data-motor-infos="{{ motor.id }}">
+                            <h2>{{ motor.motorname }}</h2>
+                            <div class="motor-list">
+                                <div class="motor-list-section">
+                                    <img src="../../uploads/images/products/icons/vitesse.png" alt="" />
+                                    <h3>Vitesse</h3>
+                                    {{ motor.motorinfosvitesse | raw }}
+                                </div>
+
+                                <div class="motor-list-section">
+                                    <img src="../../uploads/images/products/icons/vol.png" alt="" />
+                                    <h3>Vol</h3>
+                                    {{ motor.motorinfosvol | raw }}
+                                </div>
+
+                                <div class="motor-list-section">
+                                    <img src="../../uploads/images/products/icons/dimensions.png" alt="" />
+                                    <h3>Hauteur</h3>
+                                    {{ motor.motorinfoshauteur  | raw}}
+                                </div>
+
+                                <div class="motor-list-section">
+                                    <img src="../../uploads/images/products/icons/masse.png" alt="" />
+                                    <h3>Masse</h3>
+                                    {{ motor.motorinfosmasse | raw }}
+                                </div>
+
+                                <div class="motor-list-section">
+                                    <img src="../../uploads/images/products/icons/moteur.png" alt="" />
+                                    <h3>Moteur</h3>
+                                    {{ motor.motorinfosmoteur | raw }}
+                                </div>
+                                
+                                <div class="motor-list-section">
+                                    <img src="../../uploads/images/products/icons/reservoir.png" alt="" />
+                                    <h3>Réservoir</h3>
+                                    {{ motor.motorinfosreservoir | raw }}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <!-- Tab Dimensions -->
+                <div class="tab-pane">
+                    <div class="dims-container">
+                        <h2>Dimensions</h2>
+                        {% if product.productdim %}
+                        <img src="../../uploads/images/products/dimensions/{{ product.productdim }}" alt="" />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    {% include "webpages/blocks/footer.html.twig" %}
+
+{% endblock %}
