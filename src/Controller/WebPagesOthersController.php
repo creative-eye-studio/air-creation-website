@@ -31,6 +31,7 @@ class WebPagesOthersController extends AbstractController
     public function CallPage(int $lang, Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function)
     {
         // Page sélectionnée
+        $langHtml = "fr";
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
         if (!$selected_page)
             throw $this->createNotFoundException(
