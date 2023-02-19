@@ -32,7 +32,6 @@ class WebPagesOthersController extends AbstractController
     {
         // Page sélectionnée
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
-        dump($selected_page);
         if (!$selected_page)
             throw $this->createNotFoundException(
                 'La page demandée est introuvable. Contactez le webmaster du site pour remédier au problème.'

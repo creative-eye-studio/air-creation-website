@@ -22,7 +22,6 @@ class WebPagesIndexController extends AbstractController
         $headerType = 'header-base';
         $page = '';
         $langHtml = '';
-        dump($selected_page);
 
         switch($lang){
             case 0:
