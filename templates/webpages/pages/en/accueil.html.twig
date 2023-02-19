@@ -1,5 +1,5 @@
 <div class="cover-video">
-<video autoplay="" loop="" muted=""><source src="./uploads/videos/video-home.mp4" type="video/mp4" />
+<video autoplay="" controls="" loop="" muted=""><source src="./uploads/videos/video-home.mp4" type="video/mp4" />
 <p>Votre navigateur ne prend pas en charge les vidéos HTML5.<br />
 <a href="./uploads/videos/video-home.mp4">Voici un lien pour télécharger la vidéo</a>.</p>
 </video>
@@ -7,39 +7,47 @@
 <!-- Block Showroom -->
 
 <section class="block-showroom">
-<h2 class="center" data-aos="fade-up">ULM</h2>
+<h2 class="center" data-aos="fade-up">Des ULM conçus pour toutes les situations, découvrez la gamme d’ULM Air Création</h2>
 
 <p class="center" data-aos="fade-up"><a class="btn rounded" href="{{ path('web_pages', {page_slug: 'showroom'}) }}">Notre showroom</a></p>
 </section>
 <!-- Parallax -->
 
-<figure class="parallax"><img alt="Présentation de Air Création" class="parallax-image" data-height="75vh" data-speed="0.5" src="/uploads/images/pages/home/img-cover-1.jpg" /></figure>
+<figure class="parallax"><img alt="Présentation de Air Création" class="parallax-image" data-height="75vh" data-speed="0.5" src="./uploads/images/pages/home/img-cover-1.jpg" /></figure>
 
 <section class="home-block-infos-1"><!-- Icons Blocks -->
 <div class="icons-blocks-container">
-<article class="icons-block" data-aos="fade-up">
+<article class="icons-block" data-aos="fade-up"><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}"><img alt="Réalisation sur-mesure" src="../uploads/images/pages/home/realisation-sur-mesure.png" /> </a>
+
 <h3><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Une réalisation sur-mesure</a></h3>
+<a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}"> </a>
 
 <p><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Configurer l’ULM de vos rêves !</a></p>
-</article>
+<a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}"> </a></article>
 
-<article class="icons-block" data-aos="fade-up" data-aos-delay="100">
+<article class="icons-block" data-aos="fade-up" data-aos-delay="100"><a href="https://shop.aircreation.fr" rel="noopener" target="_blank"><img alt="Shop" src="../uploads/images/pages/home/shop.png" /> </a>
+
 <h3><a href="https://shop.aircreation.fr" rel="noopener" target="_blank">Shop</a></h3>
+<a href="https://shop.aircreation.fr" rel="noopener" target="_blank"> </a>
 
 <p><a href="https://shop.aircreation.fr" rel="noopener" target="_blank">Retrouvez toutes les pièces détachées</a></p>
-</article>
+<a href="https://shop.aircreation.fr" rel="noopener" target="_blank"> </a></article>
 
-<article class="icons-block" data-aos="fade-up" data-aos-delay="200">
+<article class="icons-block" data-aos="fade-up" data-aos-delay="200"><a href="https://shop.aircreation.fr/-les-occasions-air-creation" rel="noopener" target="_blank"><img alt="Occasion" src="../uploads/images/pages/home/occasion.png" /> </a>
+
 <h3><a href="https://shop.aircreation.fr/-les-occasions-air-creation" rel="noopener" target="_blank">Occasion</a></h3>
+<a href="https://shop.aircreation.fr/-les-occasions-air-creation" rel="noopener" target="_blank"> </a>
 
 <p><a href="https://shop.aircreation.fr/-les-occasions-air-creation" rel="noopener" target="_blank">Trouvez l'occasion qu'il vous faut</a></p>
-</article>
+<a href="https://shop.aircreation.fr/-les-occasions-air-creation" rel="noopener" target="_blank"> </a></article>
 
-<article class="icons-block" data-aos="fade-up" data-aos-delay="300">
+<article class="icons-block" data-aos="fade-up" data-aos-delay="300"><a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}"><img alt="Maintenance" src="../uploads/images/pages/home/maintenance.png" /> </a>
+
 <h3><a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}">Maintenance</a></h3>
+<a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}"> </a>
 
 <p><a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}">Confier l’entretien de votre révision ou réparation à notre réseau de maintenance.</a></p>
-</article>
+<a href="{{ path('web_pages', {page_slug: 'maintenance'}) }}"> </a></article>
 </div>
 </section>
 <!-- Block Intro -->
@@ -67,30 +75,35 @@ Leader mondial de l'ULM pendulaire depuis 1982</h1>
 </section>
 <!-- Block Infos 0 -->
 
-<section>
+<section class="home-block-infos-0">
 <div class="icons-blocks-container">
-<div class="icons-block" data-aos="fade-up">
-<h2><a class="home-block-infos-0" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Passion</a></h2>
+<div class="icons-block aos-init aos-animate" data-aos="fade-up"><a href="/fr/nos-valeurs"><img alt="Passion" src="../uploads/images/pages/home/passion.png" /></a>
+
+<h2><a href="/fr/nos-valeurs">Passion</a></h2>
 </div>
 
-<div class="icons-block" data-aos="fade-up" data-aos-delay="100">
-<h2><a class="home-block-infos-0" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Innovation</a></h2>
+<div class="icons-block aos-init aos-animate" data-aos="fade-up" data-aos-delay="100"><a href="/fr/nos-valeurs"><img alt="innovation" src="../uploads/images/pages/home/innovation.png" /></a>
+
+<h2><a href="/fr/nos-valeurs">Innovation</a></h2>
 </div>
 
-<div class="icons-block" data-aos="fade-up" data-aos-delay="200">
-<h2><a class="home-block-infos-0" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Durabilité</a></h2>
+<div class="icons-block aos-init aos-animate" data-aos="fade-up" data-aos-delay="200"><a href="/fr/nos-valeurs"><img alt="Durabilité" src="../uploads/images/pages/home/durabilite.png" /></a>
+
+<h2><a href="/fr/nos-valeurs">Durabilité</a></h2>
 </div>
 
-<div class="icons-block" data-aos="fade-up" data-aos-delay="300">
-<h2><a class="home-block-infos-0" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Sécurité</a></h2>
+<div class="icons-block aos-init aos-animate" data-aos="fade-up" data-aos-delay="300"><a href="/fr/nos-valeurs"><img alt="Sécurité" src="../uploads/images/pages/home/securite.png" /></a>
+
+<h2><a href="/fr/nos-valeurs">Sécurité</a></h2>
 </div>
 
-<div class="icons-block" data-aos="fade-up" data-aos-delay="400">
-<h2><a class="home-block-infos-0" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}">Qualité</a></h2>
+<div class="icons-block aos-init aos-animate" data-aos="fade-up" data-aos-delay="400"><a href="/fr/nos-valeurs"><img alt="Qualité" src="../uploads/images/pages/home/qualite.png" /></a>
+
+<h2><a href="/fr/nos-valeurs">Qualité</a></h2>
 </div>
 </div>
 
-<p class="center" data-aos="fade-up" data-aos-delay="500"><a class="home-block-infos-0" href="{{ path('web_pages', {page_slug: 'nos-valeurs'}) }}"><span class="btn rounded">Nos valeurs</span> </a></p>
+<p class="center aos-init aos-animate" data-aos="fade-up" data-aos-delay="500"><a class="btn rounded">Nos valeurs</a></p>
 </section>
 <!-- Parallax -->
 
@@ -156,6 +169,14 @@ Posté le {{ post.createdat|format_date('short', locale='fr') }} </a></h3>
 <h2>Identifiez nous #aircreationtrike</h2>
 <script src="https://apps.elfsight.com/p/platform.js" defer></script>
 
-<div class="elfsight-app-33387d6f-0c42-46c3-8c83-6ac8c19a7c44">&nbsp;</div>
+<div class="elfsight-app-ee49837a-4fb1-4ce5-b913-492972866c03">&nbsp;</div>
 </div>
 </section>
+<style type="text/css">.icons-block a img,
+  .icons-block img{
+    width: 100px;
+    display: block;
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+</style>

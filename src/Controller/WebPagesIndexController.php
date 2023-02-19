@@ -49,6 +49,8 @@ class WebPagesIndexController extends AbstractController
             'newsForm' => $newsForm->createView(),
             'meta_title' => $index_page->getPageMetaTitle(),
             'meta_desc' => $index_page->getPageMetaDesc(),
+            'meta_title_en' => $index_page->getPageMetaTitleEn(),
+            'meta_desc_en' => $index_page->getPageMetaDescEn(),
             'posts' => $lasts_posts,
             'events' => $lasts_events,
             'headerType' => $headerType,

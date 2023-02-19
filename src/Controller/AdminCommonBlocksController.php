@@ -13,11 +13,11 @@ class AdminCommonBlocksController extends AbstractController
     #[Route('/admin/header', name: 'add_admin_header')]
     public function header_manage(CommonBlocksService $block, Request $request): Response
     {
-        $file = '../templates/webpages/blocks/header.html.twig';
+        $file = '../templates/webpages/blocks/fr/header.html.twig';
         $content = file_get_contents($file);
         $form = $block->BlockManager($request, $file);
 
-        $file_en = '../templates/webpages/blocks/header_en.html.twig';
+        $file_en = '../templates/webpages/blocks/en/header.html.twig';
         $content_en = file_get_contents($file_en);
         $form_en = $block->BlockManagerEn($request, $file_en);
 
@@ -41,11 +41,12 @@ class AdminCommonBlocksController extends AbstractController
     #[Route('/admin/footer', name: 'add_admin_footer')]
     public function footer_manage(CommonBlocksService $block, Request $request): Response
     {
-        $file = '../templates/webpages/blocks/footer.html.twig';
-        $file_en = '../templates/webpages/blocks/footer_en.html.twig';
+        $file = '../templates/webpages/blocks/fr/footer.html.twig';
         $content = file_get_contents($file);
-        $content_en = file_get_contents($file_en);
         $form = $block->BlockManager($request, $file);
+        
+        $file_en = '../templates/webpages/blocks/en/footer.html.twig';
+        $content_en = file_get_contents($file_en);
         $form_en = $block->BlockManagerEn($request, $file_en);
 
         if ($form->isSubmitted() && $form->isValid()) {
