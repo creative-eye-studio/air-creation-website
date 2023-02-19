@@ -29,9 +29,3 @@ jobs:
           **/assets/**
           **/node_modules/**
           **/var/**
-    
-    - name: Databases migration
-      run: bin/console make:migration
-    
-    - name: Databases update
-      run: bin/console doctrine:migrations:migrate
