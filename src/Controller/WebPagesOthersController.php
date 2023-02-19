@@ -28,62 +28,73 @@ class WebPagesOthersController extends AbstractController
 {
     // Pages de Base
     // --------------------------------------------------------------------
-    #[Route('/fr/{page_slug}', name: 'web_pages')]
-    public function index(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response
+    public function CallPage(int $lang, Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function)
     {
+        // Page sélectionnée
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => $page_slug]);
-        $chronoOrigines = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'origines']);
-        $chronoPionniers = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'pionniers']);
-        $chronoActual = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'air-creation']);
-        $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
-        $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
-        $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
-        $documents = $doctrine->getRepository(DocProducts::class)->findAll();
-        
-        $products = $products_function->getProducts($doctrine);
-        
-        $posts = $doctrine->getRepository(PostsList::class)->findAll();
-        $newsForm = $this->createForm(NewsletterFormType::class);
-        $newsForm->handleRequest($request);
-        $assistForm = $this->createForm(SAVManagerFormType::class);
-        $assistForm->handleRequest($request);
-        $optionsFilterForm = $this->createForm(OptionsFilterType::class);
-        $optionsFilterForm->handleRequest($request);
-        $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
-
-        $page = '';
-        $langHtml = '';
-
-        if (!$selected_page) {
+        if (!$selected_page)
             throw $this->createNotFoundException(
                 'La page demandée est introuvable. Contactez le webmaster du site pour remédier au problème.'
             );
-        }
-
-        if ($selected_page->getPageModel() == 0) {
+        if ($selected_page->getPageModel() == 0)
             $headerType = 'header-base';
-        } else {
+        else
             $headerType = 'header-second';
-        }
 
+        switch($lang){
+            case 0:
+                $langHtml = "fr";
+                $page = 'web_pages_others/fr/index.html.twig';
+                if (!$page)
+                    throw $this->createNotFoundException('La page est introuvable. Contactez le webmaster du site à contact@creative-eye.fr pour remédier au problème.');
+                break;
+            case 1:
+                $langHtml = "en";
+                $page = 'web_pages_others/en/index.html.twig';
+                if (!$page)
+                    throw $this->createNotFoundException('This page is unavailable. Please contact the webmaster at contact@creative-eye.fr to resolve the problem.');
+                break;
+            default:
+                throw $this->createNotFoundException('This language is not available. Please contact the webmaster at contact@creative-eye.fr to resolve the problem.');
+        }
+        
+        // Dernières actualités
+        $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
+        // Chronologie
+        $chronoOrigines = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'origines']);
+        $chronoPionniers = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'pionniers']);
+        $chronoActual = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'air-creation']);
+        // Cartes
+        $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
+        $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
+        $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
+        // Documents
+        $documents = $doctrine->getRepository(DocProducts::class)->findAll();
+        // Produits
+        $products = $products_function->getProducts($doctrine);
+        // Posts
+        $posts = $doctrine->getRepository(PostsList::class)->findAll();
+        // Newsletter
+        $newsForm = $this->createForm(NewsletterFormType::class);
+        $newsForm->handleRequest($request);
+        $langHtml = '';
+        // Formulaire de contact
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
-
+        // Formulaire de filtrage produits
         $productFilter = new ProductsSearch();
         $filterForm = $this->createForm(ProductFilterType::class, $productFilter);
         $filterForm->handleRequest($request);
-        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
+        if ($filterForm->isSubmitted() && $filterForm->isValid())
             $products = $doctrine->getRepository(Products::class)->findWithSearch($productFilter);
-        }
-
+        // Formulaire de filtrage documents
         $docFilter = new DocSearch();
         $docFilterForm = $this->createForm(DocFilterType::class, $docFilter);
         $docFilterForm->handleRequest($request);
-        if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) {
+        if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) 
             $documents = $doctrine->getRepository(DocProducts::class)->findDocWithSearch($docFilter);
-        }
 
-        return $this->render('web_pages_others/fr/index.html.twig', [
+        return $this->render($page, [
             'page_id' => $selected_page->getPageId(),
             'chronoOrigines' => $chronoOrigines,
             'chronoPionniers' => $chronoPionniers,
@@ -98,14 +109,26 @@ class WebPagesOthersController extends AbstractController
             'docCategories' => $documents,
             'contactForm' => $contactForm->createView(),
             'newsForm' => $newsForm->createView(),
-            'assistForm' => $assistForm->createView(),
             'filterForm' => $filterForm->createView(),
             'docFilterForm' => $docFilterForm->createView(),
-            'optionsFilterForm' => $optionsFilterForm->createView(),
             'meta_title' => $selected_page->getPageMetaTitle(),
             'meta_desc' => $selected_page->getPageMetaDesc(),
+            'meta_title_en' => $selected_page->getPageMetaTitleEn(),
+            'meta_desc_en' => $selected_page->getPageMetaDescEn(),
             'lang' => $langHtml,
         ]);
+    }
+
+    #[Route('/fr/{page_slug}', name: 'web_pages')]
+    public function page_fr(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response{
+        $page = $this->CallPage(0, $request, $doctrine, $page_slug, $products_function);
+        return $page;
+    }
+
+    #[Route('/en/{page_slug}', name: 'web_pages_en')]
+    public function page_en(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response{
+        $page = $this->CallPage(1, $request, $doctrine, $page_slug, $products_function);
+        return $page;
     }
 
     // Page Produit
@@ -130,9 +153,6 @@ class WebPagesOthersController extends AbstractController
 
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
-
-        // Récupération des images
-
         return $this->render('web_pages_others/product.html.twig', [
             'controller_name' => 'WebPagesOthersController',
             'product' => $product,
