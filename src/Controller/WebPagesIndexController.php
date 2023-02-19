@@ -21,7 +21,7 @@ class WebPagesIndexController extends AbstractController
         $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
         $headerType = 'header-base';
         $page = '';
-        $langHtml = "";
+        $langHtml = '';
 
         switch($lang){
             case 0:

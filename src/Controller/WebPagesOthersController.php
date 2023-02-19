@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Classes\DocSearch;
 use App\Classes\ProductsSearch;
 use App\Entity\Chronologie;
-use App\Entity\DocCategories;
 use App\Entity\DocProducts;
 use App\Form\ContactFormType;
 use App\Form\SAVManagerFormType;
@@ -52,6 +51,9 @@ class WebPagesOthersController extends AbstractController
         $optionsFilterForm->handleRequest($request);
         $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
 
+        $page = '';
+        $langHtml = '';
+
         if (!$selected_page) {
             throw $this->createNotFoundException(
                 'La page demandée est introuvable. Contactez le webmaster du site pour remédier au problème.'
@@ -81,7 +83,7 @@ class WebPagesOthersController extends AbstractController
             $documents = $doctrine->getRepository(DocProducts::class)->findDocWithSearch($docFilter);
         }
 
-        return $this->render('web_pages_others/index.html.twig', [
+        return $this->render('web_pages_others/fr/index.html.twig', [
             'page_id' => $selected_page->getPageId(),
             'chronoOrigines' => $chronoOrigines,
             'chronoPionniers' => $chronoPionniers,
@@ -102,6 +104,7 @@ class WebPagesOthersController extends AbstractController
             'optionsFilterForm' => $optionsFilterForm->createView(),
             'meta_title' => $selected_page->getPageMetaTitle(),
             'meta_desc' => $selected_page->getPageMetaDesc(),
+            'lang' => $langHtml,
         ]);
     }
 
@@ -148,20 +151,34 @@ class WebPagesOthersController extends AbstractController
 
     // Article de blog
     // --------------------------------------------------------------------
-    #[Route('/fr/blog/{post_slug}', name: 'post_page')]
-    public function post_page(Request $request, ManagerRegistry $doctrine, string $post_slug): Response
-    {
-        $headerType = 'header-second';
-
-        // Récupération du post
+    public function CallArticlePage(int $lang, ManagerRegistry $doctrine, string $post_slug, Request $request){
         $post = $doctrine->getRepository(PostsList::class)->findOneBy(["post_url" => $post_slug]);
-
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);
+        $headerType = 'header-second';
+        $page = '';
+        $langHtml = '';
 
-        return $this->render('web_pages_others/post.html.twig', [
+        switch($lang){
+            case 0:
+                $langHtml = "fr";
+                $page = 'web_pages_others/fr/post.html.twig';
+                if (!$page)
+                    throw $this->createNotFoundException('L\'article du site est introuvable. Contactez le webmaster du site à contact@creative-eye.fr pour remédier au problème.');
+                break;
+            case 1:
+                $langHtml = "en";
+                $page = 'web_pages_others/en/post.html.twig';
+                if (!$page)
+                    throw $this->createNotFoundException('This article is unavailable. Please contact the webmaster at contact@creative-eye.fr to resolve the problem.');
+                break;
+            default:
+                throw $this->createNotFoundException('This language is not available. Please contact the webmaster at contact@creative-eye.fr to resolve the problem.');
+        }
+
+        return $this->render($page, [
             'contactForm' => $contactForm->createView(),
             'newsForm' => $newsForm->createView(),
             'post_id' => $post->getPostId(),
@@ -171,7 +188,22 @@ class WebPagesOthersController extends AbstractController
             'meta_title' => $post->getPostMetaTitle(),
             'meta_desc' => $post->getPostMetaDesc(),
             'created_at' => $post->getCreatedAt(),
-            'headerType' => $headerType
+            'headerType' => $headerType,
+            'lang' => $langHtml,
         ]);
+    }
+    
+    #[Route('/fr/blog/{post_slug}', name: 'post_page')]
+    public function post_page_fr(ManagerRegistry $doctrine, string $post_slug, Request $request): Response
+    {
+        $post = $this->CallArticlePage(0, $doctrine, $post_slug, $request);
+        return $post;
+    }
+    
+    #[Route('/en/blog/{post_slug}', name: 'post_page')]
+    public function post_page_en(ManagerRegistry $doctrine, string $post_slug, Request $request): Response
+    {
+        $post = $this->CallArticlePage(1, $doctrine, $post_slug, $request);
+        return $post;
     }
 }
