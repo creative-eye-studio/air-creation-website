@@ -34,7 +34,7 @@ class PostsAdminFormType extends AbstractType
                 'mapped' => false
             ])
             ->add('post_meta_title', TextType::class, [
-                'label' => "Meta Title de l'article (FR- Optionnel)",
+                'label' => "Titre de l'article (FR)",
                 'required' => false
             ])
             ->add('post_meta_desc', TextareaType::class, [
@@ -47,7 +47,7 @@ class PostsAdminFormType extends AbstractType
                 'required' => false
             ])
             ->add('post_meta_title_en', TextType::class, [
-                'label' => "Meta Title de l'article (EN - Optionnel)",
+                'label' => "Titre de l'article (EN)",
                 'required' => false
             ])
             ->add('post_meta_desc_en', TextareaType::class, [
