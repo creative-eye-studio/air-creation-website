@@ -5,30 +5,42 @@
 {% block body %}
     <section class="block tab-container">
         <h2>Ajouter un article</h2>
-        <ul class="tabs tabs-btn">
-            <li><a class="tab active">Contenu de l'article</a></li>
-            <li><a class="tab">SEO de l'article</a></li>
-        </ul>
-        {{ form_start(form, { 'attr' : { 'class': 'tab-panes' } }) }}
-            <div id="content-page" class="tab-pane active">
-                <p>{{ form_label(form.post_name) }}<br />
-                {{ form_widget(form.post_name) }}</p>
+        {{ form_start(form) }}
+            <p>{{ form_label(form.post_name) }}<br />
+            {{ form_widget(form.post_name) }}</p>
 
-                <p>{{ form_label(form.post_url) }}<br />
-                {{ form_widget(form.post_url) }}</p>
+            <p>{{ form_label(form.post_url) }}<br />
+            {{ form_widget(form.post_url) }}</p>
 
-                <p>{{ form_label(form.photo_filename) }}<br />
-                {{ form_widget(form.photo_filename) }}</p>
+            <p>{{ form_label(form.photo_filename) }}<br />
+            {{ form_widget(form.photo_filename) }}</p>
+            <hr />
+            <ul class="tabs tabs-btn">
+                <li><a class="tab active">Français</a></li>
+                <li><a class="tab">English</a></li>
+            </ul>
+            <div class="tab-panes">
+                <div id="content-page" class="tab-pane active">
+                    <p>{{ form_label(form.post_content) }}<br />
+                    {{ form_widget(form.post_content) }}</p>
 
-                <p>{{ form_label(form.post_content) }}<br />
-                {{ form_widget(form.post_content) }}</p>
-            </div>
-            <div id="seo-page" class="tab-pane">
-                <p>{{ form_label(form.post_meta_title) }}<br />
-                {{ form_widget(form.post_meta_title) }}</p>
+                    <p>{{ form_label(form.post_meta_title) }}<br />
+                    {{ form_widget(form.post_meta_title) }}</p>
 
-                <p>{{ form_label(form.post_meta_desc) }}<br />
-                {{ form_widget(form.post_meta_desc) }}</p>
+                    <p>{{ form_label(form.post_meta_desc) }}<br />
+                    {{ form_widget(form.post_meta_desc) }}</p>
+                </div>
+
+                <div id="seo-page" class="tab-pane">
+                    <p>{{ form_label(form.post_content_en) }}<br />
+                    {{ form_widget(form.post_content_en) }}</p>
+
+                    <p>{{ form_label(form.post_meta_title_en) }}<br />
+                    {{ form_widget(form.post_meta_title_en) }}</p>
+
+                    <p>{{ form_label(form.post_meta_desc_en) }}<br />
+                    {{ form_widget(form.post_meta_desc_en) }}</p>
+                </div>
             </div>
             {{ form_row(form.submit) }}
         {{ form_end(form) }}
@@ -37,10 +49,4 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        CKEDITOR.instances["posts_form_post_content"].destroy();
-        CKEDITOR.replace( 'posts_form_post_content', {
-        	startupMode: 'wysiwyg'
-        });
-    </script>
 {% endblock %}

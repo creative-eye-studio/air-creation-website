@@ -187,6 +187,8 @@ class WebPagesOthersController extends AbstractController
             'post_date' => $post->getCreatedAt(),
             'meta_title' => $post->getPostMetaTitle(),
             'meta_desc' => $post->getPostMetaDesc(),
+            'meta_title_en' => $post->getPostMetaTitleEn(),
+            'meta_desc_en' => $post->getPostMetaDescEn(),
             'created_at' => $post->getCreatedAt(),
             'headerType' => $headerType,
             'lang' => $langHtml,
@@ -200,7 +202,7 @@ class WebPagesOthersController extends AbstractController
         return $post;
     }
     
-    #[Route('/en/blog/{post_slug}', name: 'post_page')]
+    #[Route('/en/blog/{post_slug}', name: 'post_page_en')]
     public function post_page_en(ManagerRegistry $doctrine, string $post_slug, Request $request): Response
     {
         $post = $this->CallArticlePage(1, $doctrine, $post_slug, $request);

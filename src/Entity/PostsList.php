@@ -22,17 +22,23 @@ class PostsList
     #[ORM\Column(type: 'string', length: 255)]
     private $post_id;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $post_meta_title;
+    #[ORM\Column(length: 255)]
+    private ?string $photo_filename = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $post_meta_desc;
+    private $post_meta_title = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $post_meta_desc = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $post_meta_title_en = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $post_meta_desc_en = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $photo_filename = null;
 
     public function getId(): ?int
     {
@@ -119,6 +125,30 @@ class PostsList
     public function setPhotoFilename(string $photo_filename): self
     {
         $this->photo_filename = $photo_filename;
+
+        return $this;
+    }
+
+    public function getPostMetaTitleEn(): ?string
+    {
+        return $this->post_meta_title_en;
+    }
+
+    public function setPostMetaTitleEn(?string $post_meta_title_en): self
+    {
+        $this->post_meta_title_en = $post_meta_title_en;
+
+        return $this;
+    }
+
+    public function getPostMetaDescEn(): ?string
+    {
+        return $this->post_meta_desc_en;
+    }
+
+    public function setPostMetaDescEn(?string $post_meta_desc_en): self
+    {
+        $this->post_meta_desc_en = $post_meta_desc_en;
 
         return $this;
     }

@@ -11,6 +11,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.entities = false;
 	config.baseHref = '/';
 	config.contentsCss = '../build/app.css';
-	config.height = 800;
+	config.height = 300;
 	config.bodyClass = 'no-js header-second';
 };
