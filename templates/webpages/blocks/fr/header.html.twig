@@ -27,7 +27,6 @@
         <span>Consulter nos services</span>
         <ul class="sub-menu">
           <li><a href="{{ path('web_pages', {page_slug: 'service-sur-mesure'}) }}">Sur-Mesure</a></li>
-          <li><a href="{{ path('web_pages', {page_slug: 'nos-options'}) }}">Nos options</a></li>
           <li><a href="https://shop.aircreation.fr/" target="_blank" rel="noopener">Shop</a></li>
           <li><a href="https://shop.aircreation.fr/-les-occasions-air-creation" target="_blank" rel="noopener">Nos occasions</a></li>
           <li><a href="{{ path('web_pages', {page_slug: 'sous-traitance'}) }}">Sous-traitance</a></li>
@@ -48,6 +47,7 @@
         </ul>
       </li>
       <li class="nav-item"><span class="toggle-contact">Nous contacter</span></li>
+      <li class="nav-item"><a href="{{ path('web_pages_en', {page_slug: page_id }) }}">EN</a></li>
     </ul>
   </nav>
 </header>

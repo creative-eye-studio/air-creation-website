@@ -16,12 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class WebPagesIndexController extends AbstractController
 {
     public function CallIndexPage(int $lang, Request $request, ManagerRegistry $doctrine, FormsManager $formsManager){
-        $index_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => "index"]);
+        $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => "index"]);
         $lasts_posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC'], 3, null);
         $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
         $headerType = 'header-base';
         $page = '';
         $langHtml = '';
+        dump($selected_page);
 
         switch($lang){
             case 0:
@@ -45,12 +46,14 @@ class WebPagesIndexController extends AbstractController
         $newsForm = $formsManager->NewsletterForm($request);
 
         return $this->render($page, [
+            'page_id' => $selected_page->getPageId(),
+            'page_slug' => $selected_page->getPageUrl(),
             'contactForm' => $contactForm->createView(),
             'newsForm' => $newsForm->createView(),
-            'meta_title' => $index_page->getPageMetaTitle(),
-            'meta_desc' => $index_page->getPageMetaDesc(),
-            'meta_title_en' => $index_page->getPageMetaTitleEn(),
-            'meta_desc_en' => $index_page->getPageMetaDescEn(),
+            'meta_title' => $selected_page->getPageMetaTitle(),
+            'meta_desc' => $selected_page->getPageMetaDesc(),
+            'meta_title_en' => $selected_page->getPageMetaTitleEn(),
+            'meta_desc_en' => $selected_page->getPageMetaDescEn(),
             'posts' => $lasts_posts,
             'events' => $lasts_events,
             'headerType' => $headerType,
