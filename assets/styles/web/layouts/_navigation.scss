@@ -92,6 +92,18 @@
     }
 }
 
+.no-js{
+    .primary-menu{
+        li{
+            &.sub-menu-btn{
+                .sub-menu{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
 .second-menu{
     position: fixed;
     bottom: 0;
