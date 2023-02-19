@@ -168,6 +168,7 @@ class WebPagesOthersController extends AbstractController
             'images' => $image,
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType,
+            'lang' => "fr",
         ]);
     }
 
