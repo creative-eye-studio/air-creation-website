@@ -12,38 +12,97 @@
 <section class="info-block-intro-container">
   <div class="info-block-intro">
     <p>Confier l’entretien de votre Air Création révision ou réparation à notre réseau de maintenance.
-De la révision aux opérations de maintenance nos équipes s’occupent de tout.</p>
+      De la révision aux opérations de maintenance nos équipes s’occupent de tout.</p>
     <p>Trouver la station technique proche de chez vous.</p>
   </div>
 </section>
 
 <!-- Block Partenaires -->
 <section class="partners-container">
-	<!-- Leaflet -->
+  <!-- Leaflet -->
   <div id="map" class="partners-map"></div>
-	<!-- List -->
-  <article class="partners-list">
+  <!-- List -->
+  <article id="list" class="partners-list" style="position: relative">
     {% for tech in techs %}
-  	<div class="partner-block">
+    <div class="partner-block" data-id-name="{{ tech.name }}" style="position: relative">
       <h3>{{ tech.name }}</h3>
       <p>{{ tech.adress }}<br />
         {{ tech.postcode }} - {{ tech.city }}</p>
       <p>
-        
+
         {% if tech.telfixe != null %}
-        	Téléphone : {{ tech.telfixe }}<br />
+        Téléphone : {{ tech.telfixe }}<br />
         {% endif %}
         {% if tech.telport != null %}
-        	Portable : {{ tech.telport }}<br />
+        Portable : {{ tech.telport }}<br />
         {% endif %}
         {% if tech.telfax != null %}
-        	Fax : {{ tech.telfax }}<br />
+        Fax : {{ tech.telfax }}<br />
         {% endif %}
+
         
-        Site web : {{ tech.website }}
+        Site web : <a href="{{ tech.website }}" target="_blank" rel="noopener">{{ tech.website }}</a>
       </p>
       <p><a target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=map&center={{ tech.coordlong }},{{ tech.coordlat }}">Voir sur Google Maps</a></p>
     </div>
     {% endfor %}
   </article>
 </section>
+
+<!-- Google Plugin -->
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqyWmCliQINYIAHhnt9KKK8InU3AqYQXg&callback=initMap&v=weekly"
+        defer
+        ></script>
+
+<script>
+  let map;
+  function initMap(){
+
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 2,
+      center: new google.maps.LatLng(44.6197, 4.39028),
+      mapTypeId: "roadmap",
+    });
+
+    var infoWindow = new google.maps.InfoWindow();
+    const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
+    const icons = {
+      info: {
+        name: "Info",
+        icon: "https://labs.google.com/ridefinder/images/mm_20_red.png" ,
+      },
+    };
+
+    const features = [
+      {% for tech in techs %}
+      {
+      position: new google.maps.LatLng( {{ tech.coordlong }}, {{ tech.coordlat }} ),
+        type: "info",
+            name: "{{ tech.name }}",
+  },
+    {% endfor %}
+    ]
+
+    features.forEach((feature) => {
+      marker = new google.maps.Marker({
+        position: feature.position,
+        icon: icons[feature.type].icon,
+        map: map,
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        const list = document.getElementById("list");
+        var blocks = document.querySelectorAll('.partner-block');
+        blocks.forEach((block) => {
+          block.classList.remove('selected');
+        })
+        const target = document.querySelector("[data-id-name='" + feature.name + "']");
+        list.scrollTo({
+          top: target.offsetTop
+        });
+        target.classList.add('selected');
+      });
+    });
+    }
+  window.initMap = initMap;
+</script>

@@ -19,17 +19,17 @@
 <section class="partners-container">
   <!-- Leaflet -->
   <div id="map" class="partners-map"></div>
+  <div id="legend" style="background-color: white; padding:1rem"></div>
   <!-- List -->
-  <article class="partners-list">
+  <article id="list" class="partners-list" style="position: relative">
     {% for reseller in resellers %}
-    <div class="partner-block">
+    <div class="partner-block" data-id-name="{{ reseller.name }}" style="position: relative">
       <h3>
         {{ reseller.name }}
       </h3>
       <p>{{ reseller.adress }}<br />
         {{ reseller.postcode }} - {{ reseller.city }}</p>
       <p>
-
         {% if reseller.telfixe != null %}
         Téléphone : {{ reseller.telfixe }}<br />
         {% endif %}
@@ -39,8 +39,7 @@
         {% if reseller.telfax != null %}
         Fax : {{ reseller.telfax }}<br />
         {% endif %}
-
-        Site web : {{ reseller.website }}
+        Site web : <a href="{{ reseller.website }}" target="_blank" rel="noopener">{{ reseller.website }}</a>
       </p>
       <p><a target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=map&center={{ reseller.coordlong }},{{ reseller.coordlat }}">Voir sur Google Maps</a></p>
     </div>
@@ -49,18 +48,94 @@
 </section>
 
 <!-- Google Plugin -->
-<script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
-        defer
-        ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqyWmCliQINYIAHhnt9KKK8InU3AqYQXg&callback=initMap&v=weekly" defer></script>
+
 <script>
   let map;
   function initMap(){
+
     map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 16,
+      zoom: 2,
       center: new google.maps.LatLng(44.6197, 4.39028),
       mapTypeId: "roadmap",
     });
-  }
-  {% for reseller in resellers %}{% endfor %}
+
+    var infoWindow = new google.maps.InfoWindow();
+    const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
+    const icons = {
+      Importateur: {
+        name: "Importateur",
+        icon: "https://labs.google.com/ridefinder/images/mm_20_black.png" ,
+      },
+      Revendeur: {
+        name: "Revendeur",
+        icon: "https://labs.google.com/ridefinder/images/mm_20_gray.png" ,
+      },
+      Local: {
+        name: "Air Création",
+        icon: "https://labs.google.com/ridefinder/images/mm_20_red.png" ,
+      },
+    };
+
+    const features = [
+      {% for reseller in resellers %}
+      {% if 'Importateur' in reseller.partnersubcat|json_encode() %}
+      {
+        position: new google.maps.LatLng( {{ reseller.coordlong }},{{ reseller.coordlat }} ), 
+          type: "Importateur",
+            name: "{{ reseller.name }}",
+  },
+    {% elseif 'Local' in reseller.partnersubcat|json_encode() %}
+    {
+      position: new google.maps.LatLng({{ reseller.coordlong }},{{ reseller.coordlat }}), 
+        type: "Local",
+          name: "{{ reseller.name }}",
+  },
+    {% else %}
+    {
+      position: new google.maps.LatLng({{ reseller.coordlong }},{{ reseller.coordlat }}), 
+        type: "Revendeur",
+          name: "{{ reseller.name }}",
+  },
+    {% endif %}
+    {% endfor %}
+    ]
+
+    features.forEach((feature) => {
+      marker = new google.maps.Marker({
+        position: feature.position,
+        icon: icons[feature.type].icon,
+        map: map,
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        const list = document.getElementById("list");
+        var blocks = document.querySelectorAll('.partner-block');
+        blocks.forEach((block) => {
+          block.classList.remove('selected');
+        })
+        const target = document.querySelector("[data-id-name='" + feature.name + "']");
+        list.scrollTo({
+          top: target.offsetTop
+        });
+        target.classList.add('selected');
+      });
+    });
+
+     const legend = document.getElementById("legend");
+     map.controls[google.maps.ControlPosition.LEFT_TOP].push(legend);
+     for (const key in icons) {
+       const type = icons[key];
+       const name = type.name;
+       const icon = type.icon;
+       const div = document.createElement("div");
+       div.style.display = 'flex';
+       div.style.padding = '10px';
+       div.style.fontSize = '16px';
+
+       div.innerHTML = '<img src="' + icon + '"> ' + name;
+       legend.appendChild(div);
+     }
+    }
+
+     window.initMap = initMap;
 </script>

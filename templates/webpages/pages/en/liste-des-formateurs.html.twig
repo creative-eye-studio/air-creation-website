@@ -15,40 +15,95 @@
     <p>
       <a href="https://ffplum.fr/" target="_blank" rel="noopener">
         <em>Site officiel de la <abbr title="Fédération Française d'ULM">FFPLUM</abbr></em><br />
-      	<img src="../uploads/images/footer/icon-ffulm.jpg" alt="Site officiel de la FFPLUM" class="img-center" />
+        <img src="../uploads/images/footer/icon-ffulm.jpg" alt="Site officiel de la FFPLUM" class="img-center" />
       </a>
-      
+
     </p>
   </div>
 </section>
 
 <!-- Block Partenaires -->
 <section class="partners-container">
-	<!-- Leaflet -->
+  <!-- Leaflet -->
   <div id="map" class="partners-map"></div>
-	<!-- List -->
-  <article class="partners-list">
+  <!-- List -->
+  <article id="list" class="partners-list" style="position: relative">
     {% for trainer in trainers %}
-  	<div class="partner-block">
+    <div class="partner-block" data-id-name="{{ trainer.name }}" style="position: relative">
       <h3>{{ trainer.name }}</h3>
       <p>{{ trainer.adress }}<br />
         {{ trainer.postcode }} - {{ trainer.city }}</p>
       <p>
-        
+
         {% if trainer.telfixe != null %}
-        	Téléphone : {{ trainer.telfixe }}<br />
+        Téléphone : {{ trainer.telfixe }}<br />
         {% endif %}
         {% if trainer.telport != null %}
-        	Portable : {{ trainer.telport }}<br />
+        Portable : {{ trainer.telport }}<br />
         {% endif %}
         {% if trainer.telfax != null %}
-        	Fax : {{ trainer.telfax }}<br />
+        Fax : {{ trainer.telfax }}<br />
         {% endif %}
-        
-        Site web : {{ trainer.website }}
+
+        Site web : <a href="{{ trainer.website }}" target="_blank" rel="noopener">{{ trainer.website }}</a>
       </p>
       <p><a target="_blank" rel="noopener" href="https://www.google.com/maps/@?api=1&map_action=map&center={{ trainer.coordlong }},{{ trainer.coordlat }}">Voir sur Google Maps</a></p>
     </div>
     {% endfor %}
   </article>
 </section>
+<!-- Google Plugin -->
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqyWmCliQINYIAHhnt9KKK8InU3AqYQXg&callback=initMap&v=weekly"
+        defer
+        ></script>
+
+<script>
+  let map;
+  function initMap(){
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 2,
+      center: new google.maps.LatLng(44.6197, 4.39028),
+      mapTypeId: "roadmap",
+    });
+    var infoWindow = new google.maps.InfoWindow();
+    const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
+    const icons = {
+      library: {
+        name: "Library",
+        icon: "https://labs.google.com/ridefinder/images/mm_20_red.png" ,
+      },
+    };
+    const features = [
+      {% for trainer in trainers %}
+      {
+      position: new google.maps.LatLng( {{ trainer.coordlong }}, {{ trainer.coordlat }} ),
+        type: "library",
+            name: "{{ trainer.name }}",
+  },
+    {% endfor %}
+    ]
+
+    features.forEach((feature) => {
+      marker = new google.maps.Marker({
+        position: feature.position,
+        icon: icons[feature.type].icon,
+        map: map,
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        const list = document.getElementById("list");
+        var blocks = document.querySelectorAll('.partner-block');
+        blocks.forEach((block) => {
+          block.classList.remove('selected');
+        })
+        const target = document.querySelector("[data-id-name='" + feature.name + "']");
+        list.scrollTo({
+          top: target.offsetTop
+        });
+        target.classList.add('selected');
+      });
+    });
+
+    }
+  window.initMap = initMap;
+</script>
