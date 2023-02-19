@@ -36,6 +36,9 @@
                 </div>
 
                 <div id="seo-page" class="tab-pane">
+                    <p>{{ form_label(form.post_meta_title_en) }}<br />
+                    {{ form_widget(form.post_meta_title_en) }}</p>
+
                     <p>{{ form_label(form.post_content_en) }}<br />
                     {{ form_widget(form.post_content_en, {
                         value: contentEn
