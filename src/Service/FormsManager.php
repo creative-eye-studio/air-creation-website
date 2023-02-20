@@ -15,13 +15,12 @@ class FormsManager extends AbstractController{
         $newsForm->handleRequest($request);
 
         if ($newsForm->isSubmitted() && $newsForm->isValid()) {
-            $client = new Client($this->getParameter('mailjet_public'), $this->getParameter('mailjet_private'), true, ['version' => 'v3.1']);
+            $client = new Client(getenv($this->getParameter('mailjet_public')), getenv($this->getParameter('mailjet_private')), true, ['version' => 'v3.1']);
             $body = [
-                'Name' => "Air Création",
                 'Email' => $newsForm->get('email')->getData(),
                 'Action' => 'addnoforce',
             ];
-            $response = $client->post(Resources::$Contactslist, ['body' => $body]);
+            $response = $client->post(Resources::$Contact, ['body' => $body]);
             if ($response->success()) {
                 dump("Utilisateur enregistré");
             } else {
