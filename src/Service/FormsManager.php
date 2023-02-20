@@ -21,7 +21,7 @@ class FormsManager extends AbstractController{
                 'Email' => $newsForm->get('email')->getData(),
                 'Action' => 'addnoforce',
             ];
-            $response = $client->post(Resources::$Contact, ['body' => $body]);
+            $response = $client->post(Resources::$Contactslist, ['body' => $body]);
             if ($response->success()) {
                 dump("Utilisateur enregistré");
             } else {
