@@ -10,7 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.allowedContent = true;
 	config.entities = false;
 	config.baseHref = '/';
-	config.contentsCss = '../build/app.f8df98cc.css';
+	config.contentsCss = '../build/app.86764ae1.css';
 	config.height = 300;
 	config.bodyClass = 'no-js header-second';
 };
