@@ -18,6 +18,8 @@
             <!-- Champs obligatoires -->
             <div class="tab-pane active">
                 <p>{{ form_row(form.product_name) }}</p>
+                <p>{{ form_label(form.product_lang) }}<br />
+                {{ form_widget(form.product_lang) }}</p>
                 <p>{{ form_row(form.product_logo_main, { required: false }) }}</p>
                 <p>{{ form_row(form.product_logo_second, { required: false }) }}</p>
                 <p>{{ form_row(form.product_main_thumb, { required: false }) }}</p>

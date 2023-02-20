@@ -38,19 +38,21 @@
 <section class="products-list">
   <div class="products-list-container">
     {% for product in products %}
-    <article class="product-block">
-      <a href="{{ path('product_pages', {product_slug: product.productslug}) }}">
-        <div class="image">
-          <img src="../uploads/images/products/thumbs/{{ product.productsecondthumb }}" alt="{{ product.productname }} Modèle 3D" />
-          <img src="../uploads/images/products/thumbs/{{ product.productmainthumb }}" alt="{{ product.productname }}" class="thumb-hover" />
-        </div>
-        <div class="logos">
-          <img src="../../uploads/images/products/logos/{{ product.productlogomain }}" />
-          <span class="and-icon"><strong><em>&</em></strong></span>
-          <img src="../../uploads/images/products/logos/{{ product.productlogosecond }}" />
-        </div>
-      </a>
-    </article>
+      {% if product.productlang == 'en' %}
+        <article class="product-block">
+          <a href="{{ path('product_pages', {product_slug: product.productslug}) }}">
+            <div class="image">
+              <img src="../uploads/images/products/thumbs/{{ product.productsecondthumb }}" alt="{{ product.productname }} Modèle 3D" />
+              <img src="../uploads/images/products/thumbs/{{ product.productmainthumb }}" alt="{{ product.productname }}" class="thumb-hover" />
+            </div>
+            <div class="logos">
+              <img src="../../uploads/images/products/logos/{{ product.productlogomain }}" />
+              <span class="and-icon"><strong><em>&</em></strong></span>
+              <img src="../../uploads/images/products/logos/{{ product.productlogosecond }}" />
+            </div>
+          </a>
+        </article>
+      {% endif %}
     {% endfor %}
   </div>
   <!--<div style="padding: 6.25rem 0;">

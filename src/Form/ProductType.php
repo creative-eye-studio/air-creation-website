@@ -22,6 +22,13 @@ class ProductType extends AbstractType
             ->add('product_name', TextType::class, [
                 'label' => 'Nom du produit'
             ])
+            ->add('product_lang', ChoiceType::class, [
+                'choices' => [
+                    "Français" => 'fr',
+                    "English" => 'en',
+                ],
+                'label' => "Langue",
+            ])
             ->add('product_logo_main', DropzoneType::class, [
                 'label' => "Logo principal du produit",
                 'data_class' => null,

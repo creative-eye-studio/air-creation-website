@@ -67,6 +67,9 @@ class Products
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $product_intro = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $product_lang = null;
+
     public function __construct()
     {
         $this->productMotor = new ArrayCollection();
@@ -314,6 +317,18 @@ class Products
     public function setProductIntro(?string $product_intro): self
     {
         $this->product_intro = $product_intro;
+
+        return $this;
+    }
+
+    public function getProductLang(): ?string
+    {
+        return $this->product_lang;
+    }
+
+    public function setProductLang(?string $product_lang): self
+    {
+        $this->product_lang = $product_lang;
 
         return $this;
     }
