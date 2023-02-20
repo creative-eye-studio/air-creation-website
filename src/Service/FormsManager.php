@@ -17,6 +17,7 @@ class FormsManager extends AbstractController{
         if ($newsForm->isSubmitted() && $newsForm->isValid()) {
             $client = new Client($this->getParameter('mailjet_public'), $this->getParameter('mailjet_private'), true, ['version' => 'v3.1']);
             $body = [
+                'IsExcludedFromCampaigns' => "false",
                 'Email' => $newsForm->get('email')->getData(),
                 'Action' => 'addnoforce',
             ];
@@ -25,7 +26,7 @@ class FormsManager extends AbstractController{
                 dump("Utilisateur enregistré");
             } else {
                 dump($response->getReasonPhrase());
-                dump($response);
+                dump($response->getData());
             }
         }
 
