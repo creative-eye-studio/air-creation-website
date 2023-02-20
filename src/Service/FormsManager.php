@@ -25,6 +25,7 @@ class FormsManager extends AbstractController{
             if ($response->success()) {
                 dump("Utilisateur enregistré");
             } else {
+                dump($response);
                 dump($response->getReasonPhrase());
             }
         }
