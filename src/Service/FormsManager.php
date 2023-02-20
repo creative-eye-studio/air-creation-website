@@ -25,6 +25,7 @@ class FormsManager extends AbstractController{
             if ($response->success()) {
                 dump("Utilisateur enregistré");
             } else {
+                dump($newsForm->get('email')->getData());
                 dump($response->getReasonPhrase());
                 dump($response->getData());
             }
