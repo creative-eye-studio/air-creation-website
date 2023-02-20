@@ -42,6 +42,8 @@ class WebPagesIndexController extends AbstractController
 
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
+
+        // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);
 
         return $this->render($page, [

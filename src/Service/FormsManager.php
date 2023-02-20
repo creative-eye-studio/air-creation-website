@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Form\NewsletterFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Mailjet\Client;
 use Mailjet\Resources;
 
 class FormsManager extends AbstractController{
@@ -14,17 +15,17 @@ class FormsManager extends AbstractController{
         $newsForm->handleRequest($request);
 
         if ($newsForm->isSubmitted() && $newsForm->isValid()) {
-            $contactMail = $newsForm->getData('email');
-
-            $apiKey = getenv('8d5a09810a8c3e6118b42e219de4f54e');
-            $apiSecret = getenv('2bcb7c2dda3645dbba1b5269eac57591');
-            $client = new \Mailjet\Client($apiKey, $apiSecret, true, ['version' => 'v3']);
+            $client = new Client($this->getParameter('mailjet_public'), $this->getParameter('mailjet_private'), true, ['version' => 'v3.1']);
             $body = [
-                'IsExcludedFromCampaigns' => false,
-                'Email' => $contactMail
+                'Email' => $newsForm->get('email')->getData(),
+                'Action' => 'addnoforce',
             ];
             $response = $client->post(Resources::$Contact, ['body' => $body]);
-            $response->success();
+            if ($response->success()) {
+                dump("Utilisateur enregistré");
+            } else {
+                dump($response->getReasonPhrase());
+            }
         }
 
         return $newsForm;
