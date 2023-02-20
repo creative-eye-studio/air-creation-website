@@ -18,13 +18,11 @@ class FormsManager extends AbstractController{
             $client = new Client($this->getParameter('mailjet_public'), $this->getParameter('mailjet_private'), true, ['version' => 'v3']);
             $body = [
                 'Email' => $newsForm->get('email')->getData(),
-                'Action' => 'addnoforce',
             ];
             $response = $client->post(Resources::$Contact, ['body' => $body]);
             if ($response->success()) {
                 dump("Utilisateur enregistré");
             } else {
-                dump($response);
                 dump($response->getReasonPhrase());
             }
         }
