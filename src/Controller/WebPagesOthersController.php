@@ -133,13 +133,10 @@ class WebPagesOthersController extends AbstractController
 
     // Page Produit
     // --------------------------------------------------------------------
-    #[Route('/fr/produit/{product_slug}', name: 'product_pages')]
-    public function product_page(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function): Response{
+    public function CallProductPage(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function): Response{
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);
-
         $headerType = 'header-base';
-
         // Récupération du produit
         $product = $products_function->getProduct($doctrine, $product_slug);
         $entityManager = $doctrine->getManager();
@@ -168,6 +165,18 @@ class WebPagesOthersController extends AbstractController
             'headerType' => $headerType,
             'lang' => "fr",
         ]);
+    }
+
+    #[Route('/fr/produit/{product_slug}', name: 'product_pages')]
+    public function product_page(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function){
+        $product = $this->CallProductPage($request, $doctrine, $product_slug, $products_function);
+        return $product;
+    }
+
+    #[Route('/en/produit/{product_slug}', name: 'product_pages_en')]
+    public function product_page_en(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function){
+        $product = $this->CallProductPage($request, $doctrine, $product_slug, $products_function);
+        return $product;
     }
 
     // Article de blog
