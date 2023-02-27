@@ -40,7 +40,7 @@
     {% for product in products %}
       {% if product.productlang == 'en' %}
         <article class="product-block">
-          <a href="{{ path('product_pages', {product_slug: product.productslug}) }}">
+          <a href="{{ path('product_pages_en', {product_slug: product.productslug}) }}">
             <div class="image">
               <img src="../uploads/images/products/thumbs/{{ product.productsecondthumb }}" alt="{{ product.productname }} Modèle 3D" />
               <img src="../uploads/images/products/thumbs/{{ product.productmainthumb }}" alt="{{ product.productname }}" class="thumb-hover" />
