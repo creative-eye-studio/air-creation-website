@@ -72,7 +72,7 @@ class WebPagesOthersController extends AbstractController
         // Produits
         $products = $products_function->getProducts($doctrine);
         // Posts
-        $posts = $doctrine->getRepository(PostsList::class)->findAll();
+        $posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC']);
         // Newsletter
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);

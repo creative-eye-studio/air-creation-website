@@ -24,10 +24,17 @@
     padding: $marges-m;
     select{
         border: 0;
-        color: $bw-color-5;
-        background-color: rgba($color: $bw-color-5, $alpha: 0.2);
+        color: $bw-color-1;
+        background-color: rgba($color: $p-color, $alpha: 1);
         padding: 1rem;
         margin-bottom: 1rem;
+        &:focus{
+            option{
+                &:hover{
+                    background: rgba($color: $p-color-d, $alpha: 1);
+                }
+            }
+        }
     }
     @media screen and (min-width:1024px) {
         form{
