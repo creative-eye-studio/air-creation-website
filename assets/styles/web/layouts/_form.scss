@@ -34,6 +34,8 @@ button[type=submit]{
 
 select{
     @include inputDesign();
+    color: white;
+    background-color: $p-color;
 }
 
 optgroup, option{
