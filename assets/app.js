@@ -262,8 +262,21 @@ function clickHandler(e) {
 }
 
 
-// SELECT
+// OPTIONS PAGE
 // ------------------------------------------------------------------
+var optionImgBtns = document.querySelectorAll('.img-option-button');
+optionImgBtns.forEach(btn => {
+  btn.addEventListener('click', function(){
+    // On récupère les informations du viewer
+    var dataViewerSelected = btn.getAttribute('data-viewer-id');
+    var dataViewer = document.querySelector('[data-viewer="' + dataViewerSelected + '"]');
+    // On récupère l'image
+    var img = btn.children[0].getAttribute('src');
+    // On change l'image
+    dataViewer.src = img;
+  })
+})
+
 
 // SWIPER
 // ------------------------------------------------------------------
