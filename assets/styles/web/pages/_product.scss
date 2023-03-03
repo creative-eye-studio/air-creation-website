@@ -206,15 +206,16 @@
     .motor-list-section{
         padding: $marges-m;
         background-color: $bw-color-2;
-        h3{
+        /*h3{
             font-size: 1.5em;
             font-weight: 400;
             line-height: 50px;
             margin-left: 5rem;
-        }
+        }*/
         img{
             width: 60px;
-            float: left;
+            margin: auto;
+            // float: left;
         }
         table{
             width: 100% !important;

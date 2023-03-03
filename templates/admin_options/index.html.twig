@@ -1,0 +1,21 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Gestion des options - Air Création{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <a class="btn-link float-right" href="{{ path('admin_options_add') }}">Ajouter une option</a>
+        <h2>Liste des options</h2>
+        {% for option in options %}
+        <div class="line">
+            <p>
+                {{ option.optionnamefr }}
+            </p>
+            <ul>
+                <li><a href="{{ path('admin_options_modify', {option_id: option.id}) }}">Modifier</a></li>
+                <li><a href="{{ path('admin_options_delete', {option_id: option.id}) }}">Supprimer</a></li>
+            </ul>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}

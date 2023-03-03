@@ -1,0 +1,28 @@
+.option-container{
+    margin: $marges-m 0;
+    @media screen and (min-width:1024px) {
+        margin: $marges-d-y 0;
+    }
+}
+
+.images-option-list{
+    background-color: $bw-color-2;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 2rem 2rem 0;
+    .img-option-button-container{
+        width: calc(50% - 1rem);
+    }
+    figure{
+        margin-bottom: 2rem;
+        cursor: pointer;
+        @include coverImage("4-3");
+    }
+    @media screen and (min-width: 1024px) {
+        padding: $marges-d-y $marges-d-x calc(#{$marges-d-y} - 2rem);
+        .img-option-button-container{
+            width: calc(25% - 1rem);
+        }
+    }
+}
