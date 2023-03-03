@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OptionsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OptionsRepository::class)]
@@ -24,6 +26,17 @@ class Options
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $option_content_en = null;
+
+    #[ORM\ManyToOne(inversedBy: 'options')]
+    private ?OptionModels $option_model = null;
+
+    #[ORM\OneToMany(mappedBy: 'image_option', targetEntity: OptionsImages::class)]
+    private Collection $optionsImages;
+
+    public function __construct()
+    {
+        $this->optionsImages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +87,48 @@ class Options
     public function setOptionContentEn(?string $option_content_en): self
     {
         $this->option_content_en = $option_content_en;
+
+        return $this;
+    }
+
+    public function getOptionModel(): ?OptionModels
+    {
+        return $this->option_model;
+    }
+
+    public function setOptionModel(?OptionModels $option_model): self
+    {
+        $this->option_model = $option_model;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, OptionsImages>
+     */
+    public function getOptionsImages(): Collection
+    {
+        return $this->optionsImages;
+    }
+
+    public function addOptionsImage(OptionsImages $optionsImage): self
+    {
+        if (!$this->optionsImages->contains($optionsImage)) {
+            $this->optionsImages->add($optionsImage);
+            $optionsImage->setImageOption($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOptionsImage(OptionsImages $optionsImage): self
+    {
+        if ($this->optionsImages->removeElement($optionsImage)) {
+            // set the owning side to null (unless already changed)
+            if ($optionsImage->getImageOption() === $this) {
+                $optionsImage->setImageOption(null);
+            }
+        }
 
         return $this;
     }

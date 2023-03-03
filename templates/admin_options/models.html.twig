@@ -1,0 +1,24 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Gestion des options - Air Création{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <h2>Liste des modèles</h2>
+        {{ form_start(form) }}
+            <p>{{ form_row(form.model_name) }}</p>
+            <p>{{ form_row(form.submit) }}</p>
+        {{ form_end(form) }}
+        <hr />
+        {% for model in models %}
+        <div class="line">
+            <p>
+                {{ model.modelname }}
+            </p>
+            <ul>
+                <li><a href="{{ path('admin_options_models_delete', {model_id: model.id}) }}">Supprimer</a></li>
+            </ul>
+        </div>
+        {% endfor %}
+    </section>
+{% endblock %}

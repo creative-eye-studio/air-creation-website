@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\OptionModels;
 use App\Entity\Options;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -31,6 +33,13 @@ class OptionsFormType extends AbstractType
                 'label' => "Contenu de l'option (EN)",
                 'required' => false
             ])
+
+            ->add('option_model', EntityType::class, [
+                'class' => OptionModels::class,
+                'choice_label' => 'model_name',
+                'label' => "Modèle"
+            ])
+
             ->add('submit', SubmitType::class, [
                 'label' => "Envoyer"
             ])

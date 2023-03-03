@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\OptionModels;
 use App\Entity\Options;
+use App\Entity\OptionsImages;
+use App\Form\OptionModelType;
 use App\Form\OptionsFormType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -75,7 +78,7 @@ class AdminOptionsController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/options/suppr/{option_id}', name: 'admin_options_delete')]
+    #[Route('/admin/options/supprimer/{option_id}', name: 'admin_options_delete')]
     public function delete_option(ManagerRegistry $doctrine, String $option_id)
     {
         // Récupération de l'option souhaitée
@@ -91,5 +94,58 @@ class AdminOptionsController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('admin_options');
+    }
+
+    #[Route('/admin/options/modeles', name: 'admin_options_models')]
+    public function model_list(Request $request, ManagerRegistry $doctrine){
+        $entityManager = $doctrine->getManager();
+        $models = $entityManager->getRepository(OptionModels::class)->findAll();
+
+        $model = new OptionModels();
+        $form = $this->createForm(OptionModelType::class, $model);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Récupération des données
+            $model = $form->getData();
+            
+            // Envoi des données vers la BDD
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($model);
+            $entityManager->flush();
+
+            // Redirection vers la liste des options
+            return $this->redirectToRoute('admin_options_models');
+        }
+
+        return $this->render('admin_options/models.html.twig', [
+            'form' => $form->createView(),
+            'models' => $models
+        ]);
+    }
+
+    #[Route('/admin/options/modeles/supprimer/{model_id}', name: 'admin_options_models_delete')]
+    public function delete_model(ManagerRegistry $doctrine, String $model_id)
+    {
+        // Récupération de l'option souhaitée
+        $entityManager = $doctrine->getManager();
+        $model = $entityManager->getRepository(OptionModels::class)->findOneBy(['id' => $model_id]);
+
+        if (!$model)
+            throw $this->createNotFoundException(
+                "Aucune option n'a été trouvée"
+            );
+
+        $entityManager->remove($model);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_options_models');
+
+    }
+
+    #[Route('/admin/options/images/{options}', name: 'admin_options_images')]
+    public function images_option(Request $request, ManagerRegistry $doctrine){
+        $entityManager = $doctrine->getManager();
+        $images = $entityManager->getRepository(OptionsImages::class)->findAll();
     }
 }
