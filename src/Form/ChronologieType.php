@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Chronologie;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -35,7 +36,7 @@ class ChronologieType extends AbstractType
                 ],
                 'label' => 'Section de la chronologie'
             ])
-            ->add('chronologie_text', TextareaType::class, [
+            ->add('chronologie_text', CKEditorType::class, [
                 'label' => 'Texte'
             ])
             ->add('submit', SubmitType::class, [

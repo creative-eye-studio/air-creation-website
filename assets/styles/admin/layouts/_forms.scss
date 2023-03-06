@@ -9,6 +9,9 @@ input{
         width: 100%;
         padding: .5rem;
     }
+    &[type=datetime-local]{
+        padding: .5rem;
+    }
 }
 
 select{
