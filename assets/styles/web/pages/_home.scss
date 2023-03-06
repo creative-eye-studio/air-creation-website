@@ -299,27 +299,14 @@
     padding: $marges-m;
     .posts{
         margin-bottom: $marges-m;
-        .post-block{
-            padding-top: 75%;
-        }
     }
     .instagram-media{
         min-width: inherit !important;
-    }
-    @media screen and (min-width: 1024px) {
-        .posts{
-            .post-block{
-                padding-top: calc(75% / 2);
-            }
-        }
     }
     @media screen and (min-width: 1200px) {
         padding: $marges-d-y $marges-d-x;
         .posts{
             margin-bottom: $marges-d-y;
-            .post-block{
-                padding-top: calc(75% / 3);
-            }
         }
     }
 }
