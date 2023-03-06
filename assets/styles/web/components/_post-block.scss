@@ -18,13 +18,15 @@
         bottom: 0;
         left: 0;
         text-align: center;
-        text-decoration: none;
         background-color: rgba($color: $bw-color-2, $alpha: 1);
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 2rem;
         margin-bottom: 0;
+        a{
+            text-decoration: none;
+        }
     }
     @media screen and (min-width: 640px) {
         &:not(:last-child){
