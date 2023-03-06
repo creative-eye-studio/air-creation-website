@@ -12,7 +12,7 @@
       ],
       "css": [
         "/build/354.0abf59ad.css",
-        "/build/app.1c9f4bc3.css"
+        "/build/app.20b57a15.css"
       ]
     },
     "app-admin": {
@@ -24,7 +24,7 @@
         "/build/app-admin.c94304af.js"
       ],
       "css": [
-        "/build/app-admin.4c4d97fa.css"
+        "/build/app-admin.156e32e0.css"
       ]
     },
     "googlemaps": {

@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\PostsList;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,6 +24,11 @@ class PostsAdminFormType extends AbstractType
             ])
             ->add('post_url', TextType::class, [
                 'label' => "URL de l'article (Optionnel)",
+                'required' => false
+            ])
+            ->add('created_at', DateTimeType::class, [
+                'label' => "Date de l'article",
+                'widget' => 'single_text',
                 'required' => false
             ])
             ->add('photo_filename', DropzoneType::class, [
