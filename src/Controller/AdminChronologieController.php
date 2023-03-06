@@ -70,8 +70,6 @@ class AdminChronologieController extends AbstractController
         $thumb = $date->getChronologieImg();
         $form = $this->createForm(ChronologieType::class, $date);
         $form->handleRequest($request);
-        
-        dump($thumb);
 
         if(!$date) {
             throw $this->createNotFoundException(
