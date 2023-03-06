@@ -55,6 +55,11 @@ class AdminPostsController extends AbstractController
         $postContent = file_get_contents("../templates/webpages/posts/fr/" . $post_id . ".html.twig");
         $postContentEn = file_get_contents("../templates/webpages/posts/en/" . $post_id . ".html.twig");
 
+        // Value de la date
+        $entityManager = $doctrine->getManager();
+        $post = $entityManager->getRepository(PostsList::class)->findOneBy(['post_id' => $post_id]);
+        $date_post = $post->getCreatedAt();
+
         $form = $postService->PostManager($doctrine, $request, false, $post_id);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -67,6 +72,7 @@ class AdminPostsController extends AbstractController
             'form' => $form->createView(),
             'content' => $postContent,
             'contentEn' => $postContentEn,
+            'date_post' => $date_post
         ]);
     }
 

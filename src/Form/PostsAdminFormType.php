@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\PostsList;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeImmutableToDateTimeTransformer;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -29,6 +30,8 @@ class PostsAdminFormType extends AbstractType
             ->add('created_at', DateTimeType::class, [
                 'label' => "Date de l'article",
                 'widget' => 'single_text',
+                'mapped' => false,
+                'input' => 'datetime_immutable',
                 'required' => false
             ])
             ->add('photo_filename', DropzoneType::class, [
