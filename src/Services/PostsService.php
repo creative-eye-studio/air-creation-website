@@ -24,6 +24,7 @@ class PostsService extends AbstractController{
         $form = $this->createForm(PostsAdminFormType::class, $post);
         $form->handleRequest($request);
 
+        // Soumission du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupération des données du formulaire
             $post = $form->getData();
@@ -84,16 +85,28 @@ class PostsService extends AbstractController{
             } else {
                 if (!$newPost) {
                     $imgPost = $post->getPhotoFilename();
-                    dump($imgPost);
                     $post->setPhotoFilename($imgPost);
                 }
                 
             }
 
             // Création de la date du post
-            $date = new DateTimeImmutable();
+            if ($newPost) {
+                if ($form->get('created_at')->getData()) {
+                    $date = $form->get('created_at')->getData();
+                } else {
+                    $date = new DateTimeImmutable();
+                }
+            } else {
+                if (!$form->get('created_at')->getData()){
+                    $date = $post->getCreatedAt();
+                } else {
+                    $date = $form->get('created_at')->getData();
+                }
+            }
             $date->format('d/m/Y');
             $post->setCreatedAt($date);
+            
 
             // Envoi des données vers la BDD
             $entityManager = $doctrine->getManager();
