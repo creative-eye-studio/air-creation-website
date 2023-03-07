@@ -3,7 +3,7 @@
 {% block title %}Ajouter une chronologie{% endblock %}
 
 {% block body %}
-    <section class="block">
+    <section class="block tab-container">
         <h2>Ajouter un nouveau produit</h2>
         {{ form_start(form) }}
             <p>{{ form_label(form.chronologie_date) }}<br />
@@ -14,10 +14,25 @@
 
             <p>{{ form_label(form.chronologie_type) }}<br />
             {{ form_widget(form.chronologie_type) }}</p>
+            
+            <hr />
+            
+            <ul class="tabs-btn tabs">
+                <li><a class="tab active">Français</a></li>
+                <li><a class="tab">English</a></li>
+            </ul>
 
-            <p>{{ form_label(form.chronologie_text) }}<br />
-            {{ form_widget(form.chronologie_text) }}</p>
-
+            <div class="tab-panes">
+                <div class="tab-pane active">
+                    <p>{{ form_label(form.chronologie_text) }}<br />
+                    {{ form_widget(form.chronologie_text) }}</p>
+                </div>
+                <div class="tab-pane">
+                    <p>{{ form_label(form.chronologie_text_en) }}<br />
+                    {{ form_widget(form.chronologie_text_en) }}</p>
+                </div>
+            </div>
+            
             <p>{{ form_widget(form.submit) }}</p>
         {{ form_end(form) }}
     </section>
