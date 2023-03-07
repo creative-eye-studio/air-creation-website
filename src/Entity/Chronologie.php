@@ -26,6 +26,9 @@ class Chronologie
     #[ORM\Column(length: 255)]
     private ?string $chronologie_img = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $chronologie_text_en = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Chronologie
     public function setChronologieImg(string $chronologie_img): self
     {
         $this->chronologie_img = $chronologie_img;
+
+        return $this;
+    }
+
+    public function getChronologieTextEn(): ?string
+    {
+        return $this->chronologie_text_en;
+    }
+
+    public function setChronologieTextEn(?string $chronologie_text_en): self
+    {
+        $this->chronologie_text_en = $chronologie_text_en;
 
         return $this;
     }

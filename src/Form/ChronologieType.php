@@ -37,7 +37,10 @@ class ChronologieType extends AbstractType
                 'label' => 'Section de la chronologie'
             ])
             ->add('chronologie_text', CKEditorType::class, [
-                'label' => 'Texte'
+                'label' => 'Texte (FR)'
+            ])
+            ->add('chronologie_text_en', CKEditorType::class, [
+                'label' => 'Texte (EN)'
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Enregistrer'
