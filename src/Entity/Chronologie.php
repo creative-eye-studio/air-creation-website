@@ -26,7 +26,7 @@ class Chronologie
     #[ORM\Column(length: 255)]
     private ?string $chronologie_img = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $chronologie_text_en = null;
 
     public function getId(): ?int
