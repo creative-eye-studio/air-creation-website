@@ -8,10 +8,12 @@
         <h2>Chronologie</h2>
         {% for date in dates %}
             <div class="line">
-                <p>
-                {{ date.chronologiedate }} - {{ date.chronologietype }}<br />
-                {{ date.chronologietext|raw }}
-                </p>
+                <div>
+                    <p>
+                        {{ date.chronologiedate }} - {{ date.chronologietype }}<br />
+                        {{ date.chronologietext|raw }}
+                    </p>
+                </div>
                 <ul>
                     <li><a href="{{ path('admin_chronologie_update', {date: date.chronologiedate}) }}">Modifier</a></li>
                     <li><a href="{{ path('admin_chronologie_delete', {date: date.chronologiedate}) }}">Supprimer</a></li>
