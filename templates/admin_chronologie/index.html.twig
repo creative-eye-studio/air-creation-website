@@ -10,7 +10,7 @@
             <div class="line">
                 <p>
                 {{ date.chronologiedate }} - {{ date.chronologietype }}<br />
-                {{ date.chronologietext }}
+                {{ date.chronologietext|raw }}
                 </p>
                 <ul>
                     <li><a href="{{ path('admin_chronologie_update', {date: date.chronologiedate}) }}">Modifier</a></li>
