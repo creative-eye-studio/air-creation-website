@@ -109,6 +109,13 @@ class ProductsRepository extends ServiceEntityRepository
             ;
         }
 
+        if (!empty($search->filter_tricycle)) {
+            $query = $query
+                ->andWhere('p.product_tricycle IN (:filter_tricycle)')
+                ->setParameter('filter_tricycle', $search->filter_tricycle)
+            ;
+        }
+
         return $query->getQuery()->getResult();
     }
 

@@ -26,14 +26,12 @@ class ProductFilterType extends AbstractType
             ->add('filter_wing', ChoiceType::class, [
                 'choices'  => [
                     'Tous types d\'ailes' => "",
-                    "iFun" => "IFun",
-                    "iFun 16" => "IFun 16",
-                    "iFun XL" => "IFun XL",
+                    "iFun" => "iFun 13",
+                    "iFun 16" => "iFun 16",
+                    "iFun XL" => "iFun XL",
                     "BioniX 15" => "BioniX 15",
                     "BioniX²" => "BioniX²",
                     "NuviX" => "NuviX",
-                    "Bio 15" => "Bio 15",
-                    "Bio²" => "Bio²",
                 ],
                 'label' => 'Aile',
                 'required' => false
