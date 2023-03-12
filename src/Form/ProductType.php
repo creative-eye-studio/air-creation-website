@@ -64,14 +64,12 @@ class ProductType extends AbstractType
             ])
             ->add('product_wing', ChoiceType::class, [
                 'choices' => [
-                    "IFun" => "IFun",
-                    "IFun 16" => "IFun 16",
-                    "IFun XL" => "IFun XL",
+                    "iFun 13" => "IFun",
+                    "iFun 16" => "iFun 16",
+                    "iFun XL" => "iFun XL",
                     "BioniX 15" => "BioniX 15",
                     "BioniX²" => "BioniX²",
                     "NuviX" => "NuviX",
-                    "Bio 15" => "Bio 15",
-                    "Bio²" => "Bio²",
                 ],
                 'label' => "Ailes"
             ])
