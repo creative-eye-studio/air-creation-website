@@ -26,7 +26,7 @@ class ProductFilterType extends AbstractType
             ->add('filter_wing', ChoiceType::class, [
                 'choices'  => [
                     'Tous types d\'ailes' => "",
-                    "iFun 13" => "iFun",
+                    "iFun 13" => "IFun",
                     "iFun 16" => "iFun 16",
                     "iFun XL" => "iFun XL",
                     "BioniX 15" => "BioniX 15",
