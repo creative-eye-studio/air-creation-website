@@ -20,6 +20,7 @@ class DocFilterType extends AbstractType
         $builder
             ->add('product_type', ChoiceType::class, [
                 'choices'  => [
+                    "Toute la documentation" => 0,
                     "Bulletin d'alerte" => 6,
                     "Notre catalogue" => [
                         "Nos ailes (catalogue)" => 3,
