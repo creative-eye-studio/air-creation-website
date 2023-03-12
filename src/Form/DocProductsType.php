@@ -19,7 +19,7 @@ class DocProductsType extends AbstractType
             ])
             ->add('product_type', ChoiceType::class, [
                 'choices' => [
-                    "Bulletin d'alerte" => 0,
+                    "Bulletin d'alerte" => 6,
                     "Notre catalogue" => [
                         "Nos ailes (catalogue)" => 3,
                         "Nos tricycles (catalogue)" => 4
