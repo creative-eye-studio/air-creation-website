@@ -11,7 +11,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraAllowedContent = 'i';
 	config.entities = false;
 	config.baseHref = '/';
-	config.contentsCss = '../build/app.6b401e9d.css';
+	config.contentsCss = '../build/app.489d5ccb.css';
 	config.height = 300;
 	config.bodyClass = 'no-js header-second';
 };
