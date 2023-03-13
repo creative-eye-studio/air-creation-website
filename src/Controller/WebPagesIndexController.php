@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Chronologie;
-use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\PostsList;
 use App\Service\FormsManager;
@@ -11,11 +10,12 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class WebPagesIndexController extends AbstractController
 {
-    public function CallIndexPage(int $lang, Request $request, ManagerRegistry $doctrine, FormsManager $formsManager){
+    public function CallIndexPage(int $lang, Request $request, ManagerRegistry $doctrine, FormsManager $formsManager, MailerInterface $mailer){
         $selected_page = $doctrine->getRepository(PagesList::class)->findOneBy(["page_url" => "index"]);
         $lasts_posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC'], 3, null);
         $lasts_events = $doctrine->getRepository(Chronologie::class)->findAll();
@@ -40,8 +40,8 @@ class WebPagesIndexController extends AbstractController
                 throw $this->createNotFoundException('This language is not available. Please contact the webmaster at contact@creative-eye.fr to resolve the problem.');
         }
 
-        $contactForm = $this->createForm(ContactFormType::class);
-        $contactForm->handleRequest($request);
+        // Contact Form
+        $contactForm = $formsManager->ContactForm($mailer, $request);
 
         // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);
@@ -63,16 +63,16 @@ class WebPagesIndexController extends AbstractController
     }
 
     #[Route('/fr', name: 'web_index')]
-    public function index(Request $request, ManagerRegistry $doctrine, FormsManager $formsManager): Response
+    public function index(Request $request, ManagerRegistry $doctrine, FormsManager $formsManager, MailerInterface $mailer): Response
     {
-        $page = $this->CallIndexPage(0, $request, $doctrine, $formsManager);
+        $page = $this->CallIndexPage(0, $request, $doctrine, $formsManager, $mailer);
         return $page;
     }
 
     #[Route('/en', name: 'web_index_en')]
-    public function index_en(Request $request, ManagerRegistry $doctrine, FormsManager $formsManager): Response
+    public function index_en(Request $request, ManagerRegistry $doctrine, FormsManager $formsManager, MailerInterface $mailer): Response
     {
-        $page = $this->CallIndexPage(1, $request, $doctrine, $formsManager);
+        $page = $this->CallIndexPage(1, $request, $doctrine, $formsManager, $mailer);
         return $page;
     }
 
