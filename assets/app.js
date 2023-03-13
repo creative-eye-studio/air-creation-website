@@ -90,10 +90,14 @@ subNavButtons.forEach(subNavButton => {
 });
 
 
-// Page Accueil
+// SHOWROOMS
 // ------------------------------------------------------------------
-$('.home-hidden-btn').on('click', function(){
-  $('.home-hidden-text').slideToggle('slow');
+const showroomSelects = document.querySelectorAll('.filters .input-block select');
+showroomSelects.forEach(select => {
+  select.addEventListener('change', (event) => {
+    const showroomFilter = document.querySelector('#product-filter-form');
+    showroomFilter.submit();
+  })
 })
 
 

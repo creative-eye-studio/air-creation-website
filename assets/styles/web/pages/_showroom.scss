@@ -19,15 +19,16 @@
 }
 
 .filters{
-    background-color: $bw-color-2;
+    background-color: $p-color;
     color: $bw-color-5;
     padding: $marges-m;
     select{
         border: 0;
+        border-bottom: .0125rem solid $bw-color-1;
         color: $bw-color-1;
         background-color: rgba($color: $p-color, $alpha: 1);
-        padding: 1rem;
-        margin-bottom: 1rem;
+        padding: 0 0 1rem;
+        margin-bottom: 0;
         &:focus{
             option{
                 &:hover{
@@ -59,6 +60,9 @@
                     width: calc(100%);
                 }
             }
+        }
+        select{
+            margin-bottom: 0;
         }
     }
 }

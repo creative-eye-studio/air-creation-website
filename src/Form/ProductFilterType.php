@@ -20,7 +20,7 @@ class ProductFilterType extends AbstractType
                     "Monoplace" => "Monoplace",
                     'Biplace' => 'Biplace',
                 ],
-                'label' => 'Capacité',
+                'label' => false,
                 'required' => false
             ])
             ->add('filter_wing', ChoiceType::class, [
@@ -33,7 +33,7 @@ class ProductFilterType extends AbstractType
                     "BioniX²" => "BioniX²",
                     "NuviX" => "NuviX",
                 ],
-                'label' => 'Aile',
+                'label' => false,
                 'required' => false
             ])
             ->add('filter_tricycle', ChoiceType::class, [
@@ -44,14 +44,8 @@ class ProductFilterType extends AbstractType
                     "Skypper Evo" => "Skypper Evo",
                     "Tanarg Néo" => "Tanarg Néo"
                 ],
-                'label' => 'Tricycle',
+                'label' => false,
                 'required' => false
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => "Rechercher",
-                'attr' => [
-                    'class' => "rounded"
-                ]
             ])
         ;
     }
