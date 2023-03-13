@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Form\NewsletterFormType;
+use App\Form\ContactFormType;
 use Mailjet\Client;
 use Mailjet\Resources;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
