@@ -15,18 +15,20 @@ use App\Entity\ProductsImages;
 use App\Form\DocFilterType;
 use App\Form\NewsletterFormType;
 use App\Form\ProductFilterType;
+use App\Service\FormsManager;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Mailer\MailerInterface;
 
 class WebPagesOthersController extends AbstractController
 {
     // Pages de Base
     // --------------------------------------------------------------------
-    public function CallPage(int $lang, Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function)
+    public function CallPage(int $lang, Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer)
     {
         // Page sélectionnée
         $langHtml = "fr";
@@ -73,13 +75,10 @@ class WebPagesOthersController extends AbstractController
         $products = $products_function->getProducts($doctrine);
         // Posts
         $posts = $doctrine->getRepository(PostsList::class)->findBy([], ['created_at' => 'DESC']);
-        // Newsletter
-        $newsForm = $this->createForm(NewsletterFormType::class);
-        $newsForm->handleRequest($request);
-        $langHtml = '';
-        // Formulaire de contact
-        $contactForm = $this->createForm(ContactFormType::class);
-        $contactForm->handleRequest($request);
+        // Newsletter Form
+        $newsForm = $formsManager->NewsletterForm($request);
+        // Contact Form
+        $contactForm = $formsManager->ContactForm($mailer, $request);
         // Formulaire de filtrage produits
         $productFilter = new ProductsSearch();
         $filterForm = $this->createForm(ProductFilterType::class, $productFilter);
@@ -120,20 +119,20 @@ class WebPagesOthersController extends AbstractController
     }
 
     #[Route('/fr/{page_slug}', name: 'web_pages')]
-    public function page_fr(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response{
-        $page = $this->CallPage(0, $request, $doctrine, $page_slug, $products_function);
+    public function page_fr(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer): Response{
+        $page = $this->CallPage(0, $request, $doctrine, $page_slug, $products_function, $formsManager, $mailer);
         return $page;
     }
 
     #[Route('/en/{page_slug}', name: 'web_pages_en')]
-    public function page_en(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function): Response{
-        $page = $this->CallPage(1, $request, $doctrine, $page_slug, $products_function);
+    public function page_en(Request $request, ManagerRegistry $doctrine, string $page_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer): Response{
+        $page = $this->CallPage(1, $request, $doctrine, $page_slug, $products_function, $formsManager, $mailer);
         return $page;
     }
 
     // Page Produit
     // --------------------------------------------------------------------
-    public function CallProductPage(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function): Response{
+    public function CallProductPage(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer): Response{
         $newsForm = $this->createForm(NewsletterFormType::class);
         $newsForm->handleRequest($request);
         $headerType = 'header-base';
@@ -141,6 +140,10 @@ class WebPagesOthersController extends AbstractController
         $product = $products_function->getProduct($doctrine, $product_slug);
         $entityManager = $doctrine->getManager();
         $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product]);
+        // Newsletter Form
+        $newsForm = $formsManager->NewsletterForm($request);
+        // Contact Form
+        $contactForm = $formsManager->ContactForm($mailer, $request);
 
         if (!$product) {
             throw $this->createNotFoundException(
@@ -168,20 +171,20 @@ class WebPagesOthersController extends AbstractController
     }
 
     #[Route('/fr/produit/{product_slug}', name: 'product_pages')]
-    public function product_page(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function){
-        $product = $this->CallProductPage($request, $doctrine, $product_slug, $products_function);
+    public function product_page(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer){
+        $product = $this->CallProductPage($request, $doctrine, $product_slug, $products_function, $formsManager, $mailer);
         return $product;
     }
 
     #[Route('/en/produit/{product_slug}', name: 'product_pages_en')]
-    public function product_page_en(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function){
-        $product = $this->CallProductPage($request, $doctrine, $product_slug, $products_function);
+    public function product_page_en(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer){
+        $product = $this->CallProductPage($request, $doctrine, $product_slug, $products_function, $formsManager, $mailer);
         return $product;
     }
 
     // Article de blog
     // --------------------------------------------------------------------
-    public function CallArticlePage(int $lang, ManagerRegistry $doctrine, string $post_slug, Request $request){
+    public function CallArticlePage(int $lang, ManagerRegistry $doctrine, string $post_slug, Request $request, FormsManager $formsManager, MailerInterface $mailer){
         $post = $doctrine->getRepository(PostsList::class)->findOneBy(["post_url" => $post_slug]);
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
@@ -190,6 +193,11 @@ class WebPagesOthersController extends AbstractController
         $headerType = 'header-second';
         $page = '';
         $langHtml = '';
+
+        // Newsletter Form
+        $newsForm = $formsManager->NewsletterForm($request);
+        // Contact Form
+        $contactForm = $formsManager->ContactForm($mailer, $request);
 
         switch($lang){
             case 0:
@@ -227,16 +235,16 @@ class WebPagesOthersController extends AbstractController
     }
     
     #[Route('/fr/blog/{post_slug}', name: 'post_page')]
-    public function post_page_fr(ManagerRegistry $doctrine, string $post_slug, Request $request): Response
+    public function post_page_fr(ManagerRegistry $doctrine, string $post_slug, Request $request, FormsManager $formsManager, MailerInterface $mailer): Response
     {
-        $post = $this->CallArticlePage(0, $doctrine, $post_slug, $request);
+        $post = $this->CallArticlePage(0, $doctrine, $post_slug, $request, $formsManager, $mailer);
         return $post;
     }
     
     #[Route('/en/blog/{post_slug}', name: 'post_page_en')]
-    public function post_page_en(ManagerRegistry $doctrine, string $post_slug, Request $request): Response
+    public function post_page_en(ManagerRegistry $doctrine, string $post_slug, Request $request, FormsManager $formsManager, MailerInterface $mailer): Response
     {
-        $post = $this->CallArticlePage(1, $doctrine, $post_slug, $request);
+        $post = $this->CallArticlePage(1, $doctrine, $post_slug, $request, $formsManager, $mailer);
         return $post;
     }
 }
