@@ -6,15 +6,13 @@
     }
     .partners-list{
         height: 600px;
+        overflow-y: scroll;
     }
     @media screen and (min-width:1024px) {
         &::after{
             content: '';
             display: table;
             clear: both;
-        }
-        .partners-map{
-            height: 600px;
         }
         .partners-map{
             float: left;
@@ -28,7 +26,6 @@
         .partners-list{
             float: right;
             width: 30%;
-            overflow-y: scroll;
         }
     }
 }
