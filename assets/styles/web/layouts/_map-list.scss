@@ -4,14 +4,16 @@
         // display: none;
         height: 300px;
     }
+    .partners-list{
+        height: 600px;
+    }
     @media screen and (min-width:1024px) {
         &::after{
             content: '';
             display: table;
             clear: both;
         }
-        .partners-map,
-        .partners-list{
+        .partners-map{
             height: 600px;
         }
         .partners-map{
