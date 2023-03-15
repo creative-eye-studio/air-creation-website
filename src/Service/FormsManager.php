@@ -35,28 +35,12 @@ class FormsManager extends AbstractController{
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-            switch ($contactForm['subject']) {
-                case 1:
-                    $subject = 'Demande auprès du service commercial';
-                    break;
-                case 2:
-                    $subject = 'Candidature spontanée';
-                    break;
-                case 3:
-                    $subject = 'Demande de SAV';
-                    break;
-                case 4:
-                    $subject = 'Message depuis le site Internet';
-                    break;
-                default:
-                    break;
-            }
-
+            
             $data = $contactForm->getData();
             $email = (new TemplatedEmail())
                 ->from($data['email'])
                 ->to('hello@creative-eye.fr')
-                ->subject($subject)
+                ->subject($data['subject'] . " - Air Création")
                 ->htmlTemplate('emails/mail-receiver.html.twig')
                 ->context([
                     'gender' => $data['gender'],
@@ -65,7 +49,7 @@ class FormsManager extends AbstractController{
                     'phone' => $data['phone'],
                     'email' => $data['email'],
                     'customer_type' => $data['customer_type'],
-                    'subject' => $subject,
+                    'subject' => $data['subject'],
                     'message' => $data['message'],
                 ]);
 
@@ -80,7 +64,7 @@ class FormsManager extends AbstractController{
                     'gender' => $data['gender'],
                     'lname' => $data['lname'],
                     'fname' => $data['fname'],
-                    'subject' => $subject,
+                    'subject' => "Récapitulatif de votre E-Mail - Air Création",
                     'message' => $data['message'],
                 ]);
 

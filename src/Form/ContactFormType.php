@@ -48,11 +48,10 @@ class ContactFormType extends AbstractType
             ])
             ->add('subject', ChoiceType::class, [
                 'choices' => [
-                    'Catégorie de la demande' => null,
-                    'Contacter le service commercial' => 1,
-                    'Déposer ma candidature' => 2,
-                    'Contacter le SAV' => 3,
-                    'Autre' => 4,
+                    'Catégorie de la demande' => "",
+                    'Contacter le service commercial' => "Demande auprès du service commercial",
+                    'Contacter le SAV' => "Demande de SAV",
+                    'Autre' => "Message depuis le site Internet",
                 ],
                 'label' => false
             ])
