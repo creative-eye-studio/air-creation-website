@@ -1,0 +1,72 @@
+{% extends 'email.html.twig' %}
+
+{% block body %}
+<table class="es-content" cellspacing="0" cellpadding="0" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
+    <tr>
+    <td align="center" style="padding:0;Margin:0">
+    <table class="es-content-body" cellspacing="0" cellpadding="0" bgcolor="#ffffff" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:#FFFFFF;width:600px">
+        <tr>
+        <td align="left" style="Margin:0;padding-top:20px;padding-bottom:20px;padding-left:20px;padding-right:20px">
+        <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+            <tr>
+            <td align="left" style="padding:0;Margin:0;width:560px">
+            <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                <tr>
+                <td align="left" style="padding:0;Margin:0"><h1 style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:30px;font-style:normal;font-weight:normal;color:#333333;text-align:center">{{ subject }}<br></h1></td>
+                </tr>
+            </table></td>
+            </tr>
+        </table></td>
+        </tr>
+        <tr>
+        <td align="left" style="padding:0;Margin:0">
+        <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+            <tr>
+            <td valign="top" align="center" style="padding:0;Margin:0;width:600px">
+            <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                <tr>
+                <td align="left" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:20px;padding-bottom:20px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:verdana, geneva, sans-serif;line-height:21px;color:#333333;font-size:14px">{{ message }}</p></td>
+                </tr>
+            </table></td>
+            </tr>
+        </table></td>
+        </tr>
+        <tr>
+        <td align="left" style="padding:0;Margin:0">
+        <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+            <tr>
+            <td valign="top" align="center" style="padding:0;Margin:0;width:600px">
+            <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
+                <tr>
+                <td style="padding:0;Margin:0">
+                <table style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;font-size:14px;font-family:Verdana" width="100%" border="1px solid black;" role="presentation">
+                    <tr>
+                    <td style="padding:10px;Margin:0;width:50%">Nom</td>
+                    <td style="padding:10px;Margin:0">{{ lname }}</td>
+                    </tr>
+                    <tr>
+                    <td style="padding:10px;Margin:0">Prénom</td>
+                    <td style="padding:10px;Margin:0">{{ fname }}</td>
+                    </tr>
+                    <tr>
+                    <td style="padding:10px;Margin:0">Téléphone</td>
+                    <td style="padding:10px;Margin:0">{{ phone }}</td>
+                    </tr>
+                    <tr>
+                    <td style="padding:10px;Margin:0">Adresse E-Mail</td>
+                    <td style="padding:10px;Margin:0">{{ email }}</td>
+                    </tr>
+                    <tr>
+                    <td style="padding:10px;Margin:0">Profil</td>
+                    <td style="padding:10px;Margin:0">{{ customer_type }}</td>
+                    </tr>
+                </table></td>
+                </tr>
+            </table></td>
+            </tr>
+        </table></td>
+        </tr>
+    </table></td>
+    </tr>
+</table>
+{% endblock %}

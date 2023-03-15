@@ -55,9 +55,9 @@ class FormsManager extends AbstractController{
             $data = $contactForm->getData();
             $email = (new TemplatedEmail())
                 ->from($data['email'])
-                ->to('contact@aircreation.fr')
+                ->to('hello@creative-eye.fr')
                 ->subject($subject)
-                ->htmlTemplate('')
+                ->htmlTemplate('emails/mail-receiver.html.twig')
                 ->context([
                     'gender' => $data['gender'],
                     'lname' => $data['lname'],
@@ -75,9 +75,11 @@ class FormsManager extends AbstractController{
                 ->from(`no-reply@aircreation.com`)
                 ->to($data['email'])
                 ->subject("Récapitulatif de votre demande envoyée")
-                ->htmlTemplate('')
+                ->htmlTemplate('emails/mail-sender.html.twig')
                 ->context([
-                    'customer_type' => $data['customer_type'],
+                    'gender' => $data['gender'],
+                    'lname' => $data['lname'],
+                    'fname' => $data['fname'],
                     'subject' => $subject,
                     'message' => $data['message'],
                 ]);
