@@ -37,19 +37,15 @@ class FormsManager extends AbstractController{
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
             switch ($contactForm['subject']) {
                 case 1:
-                    $mailto = 'vente@aircreation.fr';
                     $subject = 'Demande auprès du service commercial';
                     break;
                 case 2:
-                    $mailto = 'contact@aircreation.fr';
                     $subject = 'Candidature spontanée';
                     break;
                 case 3:
-                    $mailto = 'sav@aircreation.fr';
                     $subject = 'Demande de SAV';
                     break;
                 case 4:
-                    $mailto = 'info@aircreation.fr';
                     $subject = 'Message depuis le site Internet';
                     break;
                 default:
@@ -59,7 +55,7 @@ class FormsManager extends AbstractController{
             $data = $contactForm->getData();
             $email = (new TemplatedEmail())
                 ->from($data['email'])
-                ->to($mailto)
+                ->to('contact@aircreation.fr')
                 ->subject($subject)
                 ->htmlTemplate('')
                 ->context([
