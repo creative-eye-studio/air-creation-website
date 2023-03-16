@@ -40,10 +40,9 @@ class FormsManager extends AbstractController{
             $emailForm = (new TemplatedEmail())
                 ->from($data['mail'])
                 ->to('hello@creative-eye.fr')
-                ->subject($data['subject'] . " - Air Création")
+                ->subject($data['subject'] . ' - Air Création')
                 ->htmlTemplate('emails/mail-receiver.html.twig')
                 ->context([
-                    'gender' => $data['gender'],
                     'lname' => $data['lname'],
                     'fname' => $data['fname'],
                     'phone' => $data['phone'],
