@@ -166,7 +166,7 @@ contactBtn2.onclick = function () {
   if (document.querySelector('#contact_form_lname').value == "") {return false;}
   if (document.querySelector('#contact_form_fname').value == "") {return false;}
   if (document.querySelector('#contact_form_phone').value == "") {return false;}
-  if (document.querySelector('#contact_form_email').value == "") {return false;}
+  if (document.querySelector('#contact_form_mail').value == "") {return false;}
 
   document.querySelector("#contact-tab-1").classList.remove('active');
   document.querySelector("#contact-tab-2").classList.add('active');
