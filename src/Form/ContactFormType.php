@@ -34,7 +34,7 @@ class ContactFormType extends AbstractType
             ->add('phone', TelType::class, [
                 'label' => 'Téléphone',
             ])
-            ->add('email', EmailType::class, [
+            ->add('mail', EmailType::class, [
                 'label' => 'Adresse E-Mail',
             ])
             ->add('customer_type', ChoiceType::class, [
