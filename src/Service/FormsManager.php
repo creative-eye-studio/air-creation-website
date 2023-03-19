@@ -37,6 +37,7 @@ class FormsManager extends AbstractController{
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
             
             $data = $contactForm->getData();
+            
             $emailForm = (new TemplatedEmail())
                 ->from($data['mail'])
                 ->to('hello@creative-eye.fr')
@@ -51,7 +52,6 @@ class FormsManager extends AbstractController{
                     'subject' => $data['subject'],
                     'message' => $data['message'],
                 ]);
-
             $mailer->send($emailForm);
 
             $emailForm = (new TemplatedEmail())
@@ -66,7 +66,6 @@ class FormsManager extends AbstractController{
                     'subject' => "Récapitulatif de votre E-Mail - Air Création",
                     'message' => $data['message'],
                 ]);
-
             $mailer->send($emailForm);
         }
 

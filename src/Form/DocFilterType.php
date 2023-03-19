@@ -31,13 +31,7 @@ class DocFilterType extends AbstractType
                         "Nos tricycles (modèles anciens)" => 2
                     ]
                 ],
-                'label' => 'Nos types de documents'
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => "Rechercher",
-                'attr' => [
-                    'class' => "rounded"
-                ]
+                'label' => false
             ])
         ;
     }
