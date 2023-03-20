@@ -10,6 +10,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class FormsManager extends AbstractController{
 
@@ -38,35 +39,47 @@ class FormsManager extends AbstractController{
             
             $data = $contactForm->getData();
             
-            $emailForm = (new TemplatedEmail())
+            $emailForm = (new Email())
                 ->from($data['mail'])
                 ->to('hello@creative-eye.fr')
                 ->subject($data['subject'] . ' - Air Création')
-                ->htmlTemplate('emails/mail-receiver.html.twig')
-                ->context([
-                    'lname' => $data['lname'],
-                    'fname' => $data['fname'],
-                    'phone' => $data['phone'],
-                    'mail' => $data['mail'],
-                    'customer_type' => $data['customer_type'],
-                    'subject' => $data['subject'],
-                    'message' => $data['message'],
-                ]);
+                ->html(
+                    "
+                        <p>Nom : ". $data['lname'] ."<br />
+                        Prénom : ". $data['fname'] ."<br />
+                        Téléphone : ". $data['phone'] ."<br />
+                        E-Mail : ". $data['mail'] ."<br />
+                        Profil : ". $data['customer_type'] ."</p>
+
+                        <p>Message :<br />
+                        ". $data['message'] ." </p>
+                    "
+                );
+                // ->htmlTemplate('emails/mail-receiver.html.twig')
+                // ->context([
+                //     'lname' => $data['lname'],
+                //     'fname' => $data['fname'],
+                //     'phone' => $data['phone'],
+                //     'mail' => $data['mail'],
+                //     'customer_type' => $data['customer_type'],
+                //     'subject' => $data['subject'],
+                //     'message' => $data['message'],
+                // ]);
             $mailer->send($emailForm);
 
-            $emailForm = (new TemplatedEmail())
-                ->from(`no-reply@aircreation.com`)
-                ->to($data['mail'])
-                ->subject("Récapitulatif de votre demande envoyée")
-                ->htmlTemplate('emails/mail-sender.html.twig')
-                ->context([
-                    'gender' => $data['gender'],
-                    'lname' => $data['lname'],
-                    'fname' => $data['fname'],
-                    'subject' => "Récapitulatif de votre E-Mail - Air Création",
-                    'message' => $data['message'],
-                ]);
-            $mailer->send($emailForm);
+            // $emailForm = (new TemplatedEmail())
+            //     ->from(`no-reply@aircreation.com`)
+            //     ->to($data['mail'])
+            //     ->subject("Récapitulatif de votre demande envoyée")
+            //     ->htmlTemplate('emails/mail-sender.html.twig')
+            //     ->context([
+            //         'gender' => $data['gender'],
+            //         'lname' => $data['lname'],
+            //         'fname' => $data['fname'],
+            //         'subject' => "Récapitulatif de votre E-Mail - Air Création",
+            //         'message' => $data['message'],
+            //     ]);
+            // $mailer->send($emailForm);
         }
 
         return $contactForm;
