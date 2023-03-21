@@ -33,6 +33,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Exception;
 
 /**
  * @author Arthur Gribet <a.gribet@gmail.com>
@@ -212,18 +213,21 @@ class ManagerController extends AbstractController {
             $newfileName = $data['name'].$extension;
             if ($newfileName !== $fileName && isset($data['name'])) {
                 $fileManager = $this->newFileManager($queryParameters);
-                $NewfilePath = $fileManager->getCurrentPath().\DIRECTORY_SEPARATOR.$newfileName;
-                $OldfilePath = realpath($fileManager->getCurrentPath().\DIRECTORY_SEPARATOR.$fileName);
-                if (0 !== mb_strpos($NewfilePath, $fileManager->getCurrentPath())) {
+                $newfilePath = $fileManager->getCurrentPath().\DIRECTORY_SEPARATOR.$newfileName;
+                $oldfilePath = realpath($fileManager->getCurrentPath().\DIRECTORY_SEPARATOR.$fileName);
+                if (0 !== mb_strpos($newfilePath, $fileManager->getCurrentPath())) {
                     $this->addFlash('danger', $this->translator->trans('file.renamed.unauthorized'));
                 } else {
                     $fs = new Filesystem();
                     try {
-                        $fs->rename($OldfilePath, $NewfilePath);
+                        $this->dispatch(FileManagerEvents::RENAME_FILE, ['oldFile'=> $oldfilePath,'newFile'=> $newfilePath]);
+                        $fs->rename($oldfilePath, $newfilePath);
                         $this->addFlash('success', $this->translator->trans('file.renamed.success'));
                         //File has been renamed successfully
                     } catch (IOException $exception) {
                         $this->addFlash('danger', $this->translator->trans('file.renamed.danger'));
+                    } catch (Exception $exception) {
+                        $this->addFlash('danger', $exception->getMessage() );
                     }
                 }
             } else {
@@ -304,14 +308,16 @@ class ManagerController extends AbstractController {
                     if (0 !== mb_strpos($filePath, $fileManager->getCurrentPath())) {
                         $this->addFlash('danger', 'file.deleted.danger');
                     } else {
-                        $this->dispatch(FileManagerEvents::PRE_DELETE_FILE);
-                        try {
+                         try {
+                            $this->dispatch(FileManagerEvents::PRE_DELETE_FILE);
                             $fs->remove($filePath);
                             $is_delete = true;
+                            $this->dispatch(FileManagerEvents::POST_DELETE_FILE);
                         } catch (IOException $exception) {
                             $this->addFlash('danger', 'file.deleted.unauthorized');
+                        } catch (Exception $exception) {
+                            $this->addFlash('danger', $exception->getMessage() );
                         }
-                        $this->dispatch(FileManagerEvents::POST_DELETE_FILE);
                     }
                 }
                 if ($is_delete) {
@@ -319,12 +325,15 @@ class ManagerController extends AbstractController {
                 }
                 unset($queryParameters['delete']);
             } else {
-                $this->dispatch(FileManagerEvents::PRE_DELETE_FOLDER);
+                
                 try {
+                    $this->dispatch(FileManagerEvents::PRE_DELETE_FOLDER);
                     $fs->remove($fileManager->getCurrentPath());
                     $this->addFlash('success', 'folder.deleted.success');
                 } catch (IOException $exception) {
                     $this->addFlash('danger', 'folder.deleted.unauthorized');
+                } catch (Exception $exception) {
+                    $this->addFlash('danger', $exception->getMessage() );
                 }
 
                 $this->dispatch(FileManagerEvents::POST_DELETE_FOLDER);

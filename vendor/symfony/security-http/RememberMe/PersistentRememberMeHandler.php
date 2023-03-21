@@ -34,9 +34,8 @@ final class PersistentRememberMeHandler extends AbstractRememberMeHandler
 {
     private TokenProviderInterface $tokenProvider;
     private ?TokenVerifierInterface $tokenVerifier;
-    private string $secret;
 
-    public function __construct(TokenProviderInterface $tokenProvider, string $secret, UserProviderInterface $userProvider, RequestStack $requestStack, array $options, LoggerInterface $logger = null, TokenVerifierInterface $tokenVerifier = null)
+    public function __construct(TokenProviderInterface $tokenProvider, #[\SensitiveParameter] string $secret, UserProviderInterface $userProvider, RequestStack $requestStack, array $options, LoggerInterface $logger = null, TokenVerifierInterface $tokenVerifier = null)
     {
         parent::__construct($userProvider, $requestStack, $options, $logger);
 
@@ -45,18 +44,14 @@ final class PersistentRememberMeHandler extends AbstractRememberMeHandler
         }
         $this->tokenProvider = $tokenProvider;
         $this->tokenVerifier = $tokenVerifier;
-        $this->secret = $secret;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function createRememberMeCookie(UserInterface $user): void
     {
         $series = random_bytes(66);
         $tokenValue = strtr(base64_encode(substr($series, 33)), '+/=', '-_~');
         $series = strtr(base64_encode(substr($series, 0, 33)), '+/=', '-_~');
-        $token = new PersistentToken(\get_class($user), $user->getUserIdentifier(), $series, $tokenValue, new \DateTime());
+        $token = new PersistentToken($user::class, $user->getUserIdentifier(), $series, $tokenValue, new \DateTime());
 
         $this->tokenProvider->createNewToken($token);
         $this->createCookie(RememberMeDetails::fromPersistentToken($token, time() + $this->options['lifetime']));
@@ -106,9 +101,6 @@ final class PersistentRememberMeHandler extends AbstractRememberMeHandler
         $this->createCookie($rememberMeDetails->withValue($series.':'.$tokenValue));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function clearRememberMeCookie(): void
     {
         parent::clearRememberMeCookie();
