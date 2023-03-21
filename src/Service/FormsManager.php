@@ -6,7 +6,7 @@ use App\Form\NewsletterFormType;
 use App\Form\ContactFormType;
 use Mailjet\Client;
 use Mailjet\Resources;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -55,17 +55,11 @@ class FormsManager extends AbstractController{
                         ". $data['message'] ." </p>
                     "
                 );
-                // ->htmlTemplate('emails/mail-receiver.html.twig')
-                // ->context([
-                //     'lname' => $data['lname'],
-                //     'fname' => $data['fname'],
-                //     'phone' => $data['phone'],
-                //     'mail' => $data['mail'],
-                //     'customer_type' => $data['customer_type'],
-                //     'subject' => $data['subject'],
-                //     'message' => $data['message'],
-                // ]);
-            $mailer->send($emailForm);
+            try {
+                $mailer->send($emailForm);
+            } catch (TransportExceptionInterface $e) {
+                throw $e;
+            }
 
             // $emailForm = (new TemplatedEmail())
             //     ->from(`no-reply@aircreation.com`)
