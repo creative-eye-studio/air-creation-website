@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OptionsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OptionsRepository::class)]
@@ -30,13 +31,8 @@ class Options
     #[ORM\ManyToOne(inversedBy: 'options')]
     private ?OptionModels $option_model = null;
 
-    #[ORM\OneToMany(mappedBy: 'image_option', targetEntity: OptionsImages::class)]
-    private Collection $optionsImages;
-
-    public function __construct()
-    {
-        $this->optionsImages = new ArrayCollection();
-    }
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $option_images = null;
 
     public function getId(): ?int
     {
@@ -103,32 +99,14 @@ class Options
         return $this;
     }
 
-    /**
-     * @return Collection<int, OptionsImages>
-     */
-    public function getOptionsImages(): Collection
+    public function getOptionImages(): ?string
     {
-        return $this->optionsImages;
+        return $this->option_images;
     }
 
-    public function addOptionsImage(OptionsImages $optionsImage): self
+    public function setOptionImages(?string $option_images): self
     {
-        if (!$this->optionsImages->contains($optionsImage)) {
-            $this->optionsImages->add($optionsImage);
-            $optionsImage->setImageOption($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOptionsImage(OptionsImages $optionsImage): self
-    {
-        if ($this->optionsImages->removeElement($optionsImage)) {
-            // set the owning side to null (unless already changed)
-            if ($optionsImage->getImageOption() === $this) {
-                $optionsImage->setImageOption(null);
-            }
-        }
+        $this->option_images = $option_images;
 
         return $this;
     }

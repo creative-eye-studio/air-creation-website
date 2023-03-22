@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\OptionModels;
 use App\Entity\Options;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -25,11 +26,11 @@ class OptionsFormType extends AbstractType
                 'label' => "Nom de l'option (EN)",
                 'required' => false
             ])
-            ->add('option_content_fr', TextareaType::class, [
+            ->add('option_content_fr', CKEditorType::class, [
                 'label' => "Contenu de l'option (FR)",
                 'required' => false
             ])
-            ->add('option_content_en', TextareaType::class, [
+            ->add('option_content_en', CKEditorType::class, [
                 'label' => "Contenu de l'option (EN)",
                 'required' => false
             ])
@@ -38,6 +39,11 @@ class OptionsFormType extends AbstractType
                 'class' => OptionModels::class,
                 'choice_label' => 'model_name',
                 'label' => "Modèle"
+            ])
+
+            ->add('option_images', CKEditorType::class, [
+                'label' => "Galerie d'images",
+                'required' => false
             ])
 
             ->add('submit', SubmitType::class, [

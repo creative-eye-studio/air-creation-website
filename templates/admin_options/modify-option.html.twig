@@ -1,15 +1,18 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Ajouter une option - Air Création{% endblock %}
+{% block title %}Modifier une option - Air Création{% endblock %}
 
 {% block body %}
     <section class="block tab-container">
-        <h2>Ajouter une nouvelle option</h2>    
+        <h2>Modifier une option</h2>    
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Français</a></li>
             <li><a class="tab">English</a></li>
         </ul>
         {{ form_start(form) }}
+            <p>{{ form_label(form.option_model) }}<br />
+            {{ form_widget(form.option_model) }}</p>
+            <hr /> 
             <div class="tab-panes">
                 <div class="tab-pane active">
                     <p>{{ form_row(form.option_name_fr) }}</p>

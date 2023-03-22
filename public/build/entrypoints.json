@@ -2,46 +2,48 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.20220674.js",
-        "/build/962.0d3f66bc.js",
-        "/build/697.a8a4e5a6.js",
-        "/build/150.1bc8b215.js",
-        "/build/674.c78a98c9.js",
-        "/build/274.dfe94049.js",
-        "/build/app.be007f68.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_define-built-in-accessor_js-node_modules_core-js_modul-a06e75.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_internals_inheri-188d03.js",
+        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-d4f980.js",
+        "/build/vendors-node_modules_core-js_modules_es_promise_js.js",
+        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_photoswipe_di-d5d52d.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/274.e12537fc.css",
-        "/build/app.edf67c23.css"
+        "/build/vendors-node_modules_aos_dist_aos_js-node_modules_aos_dist_aos_css-node_modules_photoswipe_di-d5d52d.css",
+        "/build/app.css"
       ]
     },
     "app-admin": {
       "js": [
-        "/build/runtime.20220674.js",
-        "/build/962.0d3f66bc.js",
-        "/build/697.a8a4e5a6.js",
-        "/build/150.1bc8b215.js",
-        "/build/app-admin.057d85d4.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_define-built-in-accessor_js-node_modules_core-js_modul-a06e75.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_internals_inheri-188d03.js",
+        "/build/vendors-node_modules_swup_debug-plugin_lib_index_js-node_modules_swup_fade-theme_lib_index_js-d4f980.js",
+        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
+        "/build/app-admin.js"
       ],
       "css": [
-        "/build/app-admin.156e32e0.css"
+        "/build/app-admin.css"
       ]
     },
     "googlemaps": {
       "js": [
-        "/build/runtime.20220674.js",
-        "/build/962.0d3f66bc.js",
-        "/build/googlemaps.f980d3c8.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_define-built-in-accessor_js-node_modules_core-js_modul-a06e75.js",
+        "/build/googlemaps.js"
       ]
     },
     "fontawesome": {
       "js": [
-        "/build/runtime.20220674.js",
-        "/build/962.0d3f66bc.js",
-        "/build/697.a8a4e5a6.js",
-        "/build/674.c78a98c9.js",
-        "/build/489.bc976805.js",
-        "/build/fontawesome.89dd2edc.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_core-js_internals_define-built-in-accessor_js-node_modules_core-js_modul-a06e75.js",
+        "/build/vendors-node_modules_core-js_internals_a-constructor_js-node_modules_core-js_internals_inheri-188d03.js",
+        "/build/vendors-node_modules_core-js_modules_es_promise_js.js",
+        "/build/vendors-node_modules_core-js_modules_es_array_fill_js-node_modules_core-js_modules_es_array_f-a27c33.js",
+        "/build/fontawesome.js"
       ]
     }
   }
