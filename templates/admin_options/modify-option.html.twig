@@ -8,6 +8,7 @@
         <ul class="tabs-btn tabs">
             <li><a class="tab active">Français</a></li>
             <li><a class="tab">English</a></li>
+            <li><a class="tab">Images</a></li>
         </ul>
         {{ form_start(form) }}
             <p>{{ form_label(form.option_model) }}<br />
@@ -21,6 +22,9 @@
                 <div class="tab-pane">
                     <p>{{ form_row(form.option_name_en) }}</p>
                     <p>{{ form_row(form.option_content_en) }}</p>
+                </div>
+                <div class="tab-pane">
+                    <p>{{ form_row(form.option_images) }}</p>
                 </div>
                 <p>{{ form_widget(form.submit) }}</p>
             </div>
