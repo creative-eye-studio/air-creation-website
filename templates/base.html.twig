@@ -18,7 +18,6 @@
 
         {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.6.2.min.js"></script>
-        <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/js/all.min.js" integrity="sha512-naukR7I+Nk6gp7p5TMA4ycgfxaZBJ7MO5iC3Fp6ySQyKFHOGfpkSZkYVWV5R7u7cfAicxanwYQ5D1e17EfJcMA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tarteaucitronjs/1.9.6/tarteaucitron.js"></script>
         {{ encore_entry_script_tags('app') }}
@@ -50,8 +49,6 @@
             });
 
             (tarteaucitron.job = tarteaucitron.job || []).push('instagram');
-            tarteaucitron.user.recaptchaapi = '6Le6rIUkAAAAAMtPdSRa4LO3T_HAujr6ALdiF8v9';
-            (tarteaucitron.job = tarteaucitron.job || []).push('recaptcha');
         </script>
         {% endblock %}
         
