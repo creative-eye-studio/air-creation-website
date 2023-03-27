@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\OptionModels;
 use App\Entity\Options;
-use App\Entity\OptionsImages;
+use App\Entity\OptionImages;
+use App\Form\OptionImagesType;
 use App\Form\OptionModelType;
 use App\Form\OptionsFormType;
+use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
+use Proxies\__CG__\App\Entity\OptionsImages;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -144,8 +147,54 @@ class AdminOptionsController extends AbstractController
     }
 
     #[Route('/admin/options/images/{options}', name: 'admin_options_images')]
-    public function images_option(Request $request, ManagerRegistry $doctrine){
+    public function images_option(Request $request, ManagerRegistry $doctrine, int $options){
         $entityManager = $doctrine->getManager();
-        $images = $entityManager->getRepository(OptionsImages::class)->findAll();
+        $option = $entityManager->getRepository(Options::class)->findOneBy(["id" => $options]);
+        $images = $entityManager->getRepository(OptionImages::class)->findBy(['option_name' => $options]);
+        $form = $this->createForm(OptionImagesType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Ajout des images
+            $images = $form->get('option_images_add')->getData();
+            if ($images) {
+                foreach($images as $image){
+                    $slugify = new Slugify();
+                    $originalThumbName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                    $safeThumbName = $slugify->slugify($originalThumbName);
+                    $img = $safeThumbName . '.' . $image->guessExtension();
+                    try {
+                        $image->move(
+                            $this->getParameter('options_directory'),
+                            $img
+                        );
+                        $imgLine = new OptionImages();
+                        $imgLine->setOptionName($option);
+                        $imgLine->setOptionImage($img);
+                        $entityManager->persist($imgLine);
+                        $entityManager->flush();
+                    } catch (\Throwable $th) {
+                        throw $th;
+                    }
+                }
+            }
+            return $this->redirectToRoute('admin_options_images', ['options' => $options]);
+        }
+
+        return $this->render('admin_options/images-list.html.twig', [
+            'form' => $form->createView(),
+            'images' => $images,
+            'options_image' => $option->getId()
+        ]);
+    }
+
+    #[Route('/admin/options/images/{options}/remove/{image}', name: 'admin_options_images_del')]
+    public function images_option_remove(Request $request, ManagerRegistry $doctrine, int $options, String $image){
+        $entityManager = $doctrine->getManager();
+        $fileToDel = $entityManager->getRepository(OptionImages::class)->findOneBy(['option_image' => $image]);
+
+        $entityManager->remove($fileToDel);
+        $entityManager->flush();
+        return $this->redirectToRoute('admin_options_images', ['options' => $options]);
     }
 }

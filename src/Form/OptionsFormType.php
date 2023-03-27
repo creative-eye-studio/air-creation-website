@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class OptionsFormType extends AbstractType
 {
@@ -22,14 +23,17 @@ class OptionsFormType extends AbstractType
                 'label' => "Nom de l'option (FR)",
                 'required' => false
             ])
+
             ->add('option_name_en', TextType::class, [
                 'label' => "Nom de l'option (EN)",
                 'required' => false
             ])
+
             ->add('option_content_fr', CKEditorType::class, [
                 'label' => "Contenu de l'option (FR)",
                 'required' => false
             ])
+
             ->add('option_content_en', CKEditorType::class, [
                 'label' => "Contenu de l'option (EN)",
                 'required' => false
@@ -39,11 +43,6 @@ class OptionsFormType extends AbstractType
                 'class' => OptionModels::class,
                 'choice_label' => 'model_name',
                 'label' => "Modèle"
-            ])
-
-            ->add('option_images', CKEditorType::class, [
-                'label' => "Galerie d'images",
-                'required' => false
             ])
 
             ->add('submit', SubmitType::class, [

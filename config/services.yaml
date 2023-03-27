@@ -1,5 +1,5 @@
 # This file is the entry point to configure your own services.
-# Files in the packages/ subdirectory configure your dependencies.
+# Files in the packages / subdirectory configure your dependencies.
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
@@ -13,6 +13,7 @@ parameters:
    thumbs_directory: '%kernel.project_dir%/public/uploads/images/products/thumbs'
    posts_directory: '%kernel.project_dir%/public/uploads/images/posts'
    docs_directory: '%kernel.project_dir%/public/uploads/documentation'
+   options_directory: '%kernel.project_dir%/public/uploads/images/options'
    mailjet_public: '8d5a09810a8c3e6118b42e219de4f54e'
    mailjet_private: 'b44d9b538724e0fa9f74a26ffdacd070'
 

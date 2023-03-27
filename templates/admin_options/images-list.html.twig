@@ -1,0 +1,29 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Gestion des images d'options - Air Création{% endblock %}
+
+{% block body %}
+    <section class="block">
+        <h2>Images de l'option</h2>
+        {{ form_start(form) }}
+        <div>
+            <h3>Ajouter des images</h3>
+            {{ form_row(form.option_images_add) }}
+            {{ form_row(form.submit) }}
+        </div>
+        {{ form_end(form) }}
+        <hr />
+        <div class="thumbs-container">
+            <h3>Supprimer des images</h3>
+            {% for image in images %}
+                {% if image.optionname.id == options_image %}
+                <figure class="thumb">
+                    <a href="{{ path('admin_options_images_del', {options:image.optionname.id, image:image.optionimage}) }}">
+                        <img loading="lazy" decoding="async" src="../../../uploads/images/options/{{ image.optionimage }}" />
+                    </a>
+                </figure>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

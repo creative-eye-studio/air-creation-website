@@ -31,8 +31,13 @@ class Options
     #[ORM\ManyToOne(inversedBy: 'options')]
     private ?OptionModels $option_model = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $option_images = null;
+    #[ORM\OneToMany(mappedBy: 'option_name', targetEntity: OptionImages::class)]
+    private Collection $optionImages;
+
+    public function __construct()
+    {
+        $this->optionImages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -99,14 +104,32 @@ class Options
         return $this;
     }
 
-    public function getOptionImages(): ?string
+    /**
+     * @return Collection<int, OptionImages>
+     */
+    public function getOptionImages(): Collection
     {
-        return $this->option_images;
+        return $this->optionImages;
     }
 
-    public function setOptionImages(?string $option_images): self
+    public function addOptionImage(OptionImages $optionImage): self
     {
-        $this->option_images = $option_images;
+        if (!$this->optionImages->contains($optionImage)) {
+            $this->optionImages->add($optionImage);
+            $optionImage->setOptionName($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOptionImage(OptionImages $optionImage): self
+    {
+        if ($this->optionImages->removeElement($optionImage)) {
+            // set the owning side to null (unless already changed)
+            if ($optionImage->getOptionName() === $this) {
+                $optionImage->setOptionName(null);
+            }
+        }
 
         return $this;
     }

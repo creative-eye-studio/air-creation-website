@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\OptionsImages;
+use App\Entity\OptionImages;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<OptionsImages>
+ * @extends ServiceEntityRepository<OptionImages>
  *
- * @method OptionsImages|null find($id, $lockMode = null, $lockVersion = null)
- * @method OptionsImages|null findOneBy(array $criteria, array $orderBy = null)
- * @method OptionsImages[]    findAll()
- * @method OptionsImages[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method OptionImages|null find($id, $lockMode = null, $lockVersion = null)
+ * @method OptionImages|null findOneBy(array $criteria, array $orderBy = null)
+ * @method OptionImages[]    findAll()
+ * @method OptionImages[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class OptionsImagesRepository extends ServiceEntityRepository
+class OptionImagesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, OptionsImages::class);
+        parent::__construct($registry, OptionImages::class);
     }
 
-    public function save(OptionsImages $entity, bool $flush = false): void
+    public function save(OptionImages $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class OptionsImagesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(OptionsImages $entity, bool $flush = false): void
+    public function remove(OptionImages $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class OptionsImagesRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return OptionsImages[] Returns an array of OptionsImages objects
+//     * @return OptionImages[] Returns an array of OptionImages objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class OptionsImagesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?OptionsImages
+//    public function findOneBySomeField($value): ?OptionImages
 //    {
 //        return $this->createQueryBuilder('o')
 //            ->andWhere('o.exampleField = :val')
