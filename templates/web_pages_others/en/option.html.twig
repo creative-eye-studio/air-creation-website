@@ -16,6 +16,14 @@
             <div class="image"><img alt="" src="../uploads/images/pages/innovation/photo-test.jpeg" /></div>
         </div>
 
+        {# Options Models #}
+        <select id="select-model">
+            <option value="">Models list</option>
+            {% for model in models %}
+                <option value="{{ model.modelurl }}">{{ model.modelname }}</option>
+            {% endfor %}
+        </select>
+
         {# Options #}
         {% for option in options %}
             <section class="option-container">

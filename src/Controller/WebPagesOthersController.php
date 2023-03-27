@@ -256,6 +256,7 @@ class WebPagesOthersController extends AbstractController
     // --------------------------------------------------------------------
     public function CallOptionPage(int $lang, ManagerRegistry $doctrine, string $option_slug, Request $request, FormsManager $formsManager, MailerInterface $mailer){
         $model = $doctrine->getRepository(OptionModels::class)->findOneBy(["model_url" => $option_slug]);
+        $models = $doctrine->getRepository(OptionModels::class)->findAll();
         $options = $doctrine->getRepository(Options::class)->findBy(['option_model' => $model->getId()]);
         $optionsImages = $doctrine->getRepository(OptionImages::class)->findAll();
         $headerType = 'header-second';
@@ -289,6 +290,7 @@ class WebPagesOthersController extends AbstractController
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType,
             'lang' => $langHtml,
+            'models' => $models,
             'modelName' => $model->getModelName(),
             'modelMetaTitle' => $model->getModelMetaTitle(),
             'modelMetaDesc' => $model->getModelMetaDesc(),
