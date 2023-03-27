@@ -10,7 +10,6 @@ use App\Form\OptionModelType;
 use App\Form\OptionsFormType;
 use Cocur\Slugify\Slugify;
 use Doctrine\Persistence\ManagerRegistry;
-use Proxies\__CG__\App\Entity\OptionsImages;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +17,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminOptionsController extends AbstractController
 {
+    // GESTION DES OPTIONS
+    // -----------------------------------------------------------------------------------------------
     #[Route('/admin/options', name: 'admin_options')]
-    public function index(ManagerRegistry $doctrine): Response
-    {
+    public function index(ManagerRegistry $doctrine): Response {
         $entityManager = $doctrine->getManager();
         $options = $entityManager->getRepository(Options::class)->findAll();
 
@@ -30,8 +30,7 @@ class AdminOptionsController extends AbstractController
     }
 
     #[Route('/admin/options/ajouter', name: 'admin_options_add')]
-    public function add_option(Request $request, ManagerRegistry $doctrine)
-    {
+    public function add_option(Request $request, ManagerRegistry $doctrine) {
         $option = new Options();
         $form = $this->createForm(OptionsFormType::class, $option);
         $form->handleRequest($request);
@@ -55,8 +54,7 @@ class AdminOptionsController extends AbstractController
     }
 
     #[Route('/admin/options/modifier/{option_id}', name: 'admin_options_modify')]
-    public function modify_option(Request $request, ManagerRegistry $doctrine, String $option_id)
-    {
+    public function modify_option(Request $request, ManagerRegistry $doctrine, String $option_id) {
         // Récupération de l'option souhaitée
         $entityManager = $doctrine->getManager();
         $option = $entityManager->getRepository(Options::class)->findOneBy(['id' => $option_id]);
@@ -82,8 +80,7 @@ class AdminOptionsController extends AbstractController
     }
 
     #[Route('/admin/options/supprimer/{option_id}', name: 'admin_options_delete')]
-    public function delete_option(ManagerRegistry $doctrine, String $option_id)
-    {
+    public function delete_option(ManagerRegistry $doctrine, String $option_id) {
         // Récupération de l'option souhaitée
         $entityManager = $doctrine->getManager();
         $option = $entityManager->getRepository(Options::class)->findOneBy(['id' => $option_id]);
@@ -99,8 +96,10 @@ class AdminOptionsController extends AbstractController
         return $this->redirectToRoute('admin_options');
     }
 
+    // GESTION DES MODELES
+    // -----------------------------------------------------------------------------------------------
     #[Route('/admin/options/modeles', name: 'admin_options_models')]
-    public function model_list(Request $request, ManagerRegistry $doctrine){
+    public function model_list(Request $request, ManagerRegistry $doctrine) {
         $entityManager = $doctrine->getManager();
         $models = $entityManager->getRepository(OptionModels::class)->findAll();
 
@@ -110,7 +109,16 @@ class AdminOptionsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupération des données
+            $slugify = new Slugify();
             $model = $form->getData();
+
+            // Création de l'URL
+            $model->setModelUrl($slugify->slugify($form->get('model_name')->getData()));
+
+            // Création du Meta Title
+            if (!$form->get('model_meta_title')->getData()) {
+                $model->setModelMetaTitle($form->get('model_name')->getData());
+            }
             
             // Envoi des données vers la BDD
             $entityManager = $doctrine->getManager();
@@ -128,8 +136,7 @@ class AdminOptionsController extends AbstractController
     }
 
     #[Route('/admin/options/modeles/supprimer/{model_id}', name: 'admin_options_models_delete')]
-    public function delete_model(ManagerRegistry $doctrine, String $model_id)
-    {
+    public function delete_model(ManagerRegistry $doctrine, String $model_id) {
         // Récupération de l'option souhaitée
         $entityManager = $doctrine->getManager();
         $model = $entityManager->getRepository(OptionModels::class)->findOneBy(['id' => $model_id]);
@@ -146,8 +153,10 @@ class AdminOptionsController extends AbstractController
 
     }
 
+    // GESTION DES IMAGES
+    // -----------------------------------------------------------------------------------------------
     #[Route('/admin/options/images/{options}', name: 'admin_options_images')]
-    public function images_option(Request $request, ManagerRegistry $doctrine, int $options){
+    public function image_list(Request $request, ManagerRegistry $doctrine, int $options) {
         $entityManager = $doctrine->getManager();
         $option = $entityManager->getRepository(Options::class)->findOneBy(["id" => $options]);
         $images = $entityManager->getRepository(OptionImages::class)->findBy(['option_name' => $options]);
@@ -189,7 +198,7 @@ class AdminOptionsController extends AbstractController
     }
 
     #[Route('/admin/options/images/{options}/remove/{image}', name: 'admin_options_images_del')]
-    public function images_option_remove(Request $request, ManagerRegistry $doctrine, int $options, String $image){
+    public function delete_image(ManagerRegistry $doctrine, int $options, String $image) {
         $entityManager = $doctrine->getManager();
         $fileToDel = $entityManager->getRepository(OptionImages::class)->findOneBy(['option_image' => $image]);
 

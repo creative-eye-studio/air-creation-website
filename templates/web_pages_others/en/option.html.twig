@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ modelMetaTitle }} - Air Création{% endblock %}
+{% block meta_description %}{{ modelMetaDesc }}{% endblock %}
+
+{% block body_class %}{{ headerType }}{% endblock %}
+
+{% block body %}
+    {% include "webpages/blocks/en/header.html.twig" %}
+    <main>
+        {# Cover page #}
+        <div class="cover-page">
+            <div class="text">
+                <h1>{{ modelName }}</h1>
+            </div>
+            <div class="image"><img alt="" src="../uploads/images/pages/innovation/photo-test.jpeg" /></div>
+        </div>
+
+        {# Options #}
+        {% for option in options %}
+            <section class="option-container">
+                <div class="info-block-action">
+                    <div class="text">
+                        <h2>{{ option.optionnameen }}</h2>
+                        {{ option.optioncontenten | raw }}
+                    </div>
+                    <div class="image">
+                        <img alt="https://picsum.photos/id/100/500" data-viewer="{{ option.id }}" src="https://picsum.photos/id/100/2000" />
+                    </div>
+                </div>
+
+                <div class="images-option-list">
+                    {% for image in optionsImages %}
+                        {% if image.optionname.optionmodel.id == option.optionmodel.id %}
+                            <div class="img-option-button-container">
+                                <figure class="img-option-button" data-viewer-id="{{ option.id }}">
+                                    <img src="../../uploads/images/options/{{ image.optionimage }}" alt="{{ image.optionimage }}" />
+                                </figure>  
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+    </main>
+    {% include "webpages/blocks/en/footer.html.twig" %}
+{% endblock %}

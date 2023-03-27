@@ -7,6 +7,8 @@
         <h2>Liste des modèles</h2>
         {{ form_start(form) }}
             <p>{{ form_row(form.model_name) }}</p>
+            <p>{{ form_row(form.model_meta_title) }}</p>
+            <p>{{ form_row(form.model_meta_desc) }}</p>
             <p>{{ form_row(form.submit) }}</p>
         {{ form_end(form) }}
         <hr />

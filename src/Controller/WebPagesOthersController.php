@@ -6,6 +6,9 @@ use App\Classes\DocSearch;
 use App\Classes\ProductsSearch;
 use App\Entity\Chronologie;
 use App\Entity\DocProducts;
+use App\Entity\OptionImages;
+use App\Entity\OptionModels;
+use App\Entity\Options;
 use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\Partners;
@@ -18,6 +21,7 @@ use App\Form\ProductFilterType;
 use App\Service\FormsManager;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
+use Proxies\__CG__\App\Entity\OptionsImages;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -219,6 +223,8 @@ class WebPagesOthersController extends AbstractController
         return $this->render($page, [
             'contactForm' => $contactForm->createView(),
             'newsForm' => $newsForm->createView(),
+            'headerType' => $headerType,
+            'lang' => $langHtml,
             'post_id' => $post->getPostId(),
             'post_url' => $post->getPostUrl(),
             'post_image' => $post->getPhotoFilename(),
@@ -229,8 +235,6 @@ class WebPagesOthersController extends AbstractController
             'meta_title_en' => $post->getPostMetaTitleEn(),
             'meta_desc_en' => $post->getPostMetaDescEn(),
             'created_at' => $post->getCreatedAt(),
-            'headerType' => $headerType,
-            'lang' => $langHtml,
         ]);
     }
     
@@ -246,5 +250,62 @@ class WebPagesOthersController extends AbstractController
     {
         $post = $this->CallArticlePage(1, $doctrine, $post_slug, $request, $formsManager, $mailer);
         return $post;
+    }
+
+    // Page Option
+    // --------------------------------------------------------------------
+    public function CallOptionPage(int $lang, ManagerRegistry $doctrine, string $option_slug, Request $request, FormsManager $formsManager, MailerInterface $mailer){
+        $model = $doctrine->getRepository(OptionModels::class)->findOneBy(["model_url" => $option_slug]);
+        $options = $doctrine->getRepository(Options::class)->findBy(['option_model' => $model->getId()]);
+        $optionsImages = $doctrine->getRepository(OptionImages::class)->findAll();
+        $headerType = 'header-second';
+        $page = '';
+        $langHtml = '';
+
+        switch($lang){
+            case 0:
+                $langHtml = "fr";
+                $page = 'web_pages_others/fr/option.html.twig';
+                if (!$page)
+                    throw $this->createNotFoundException('L\'article du site est introuvable. Contactez le webmaster du site à contact@creative-eye.fr pour remédier au problème.');
+                break;
+            case 1:
+                $langHtml = "en";
+                $page = 'web_pages_others/en/option.html.twig';
+                if (!$page)
+                    throw $this->createNotFoundException('This article is unavailable. Please contact the webmaster at contact@creative-eye.fr to resolve the problem.');
+                break;
+            default:
+                throw $this->createNotFoundException('This language is not available. Please contact the webmaster at contact@creative-eye.fr to resolve the problem.');
+        }
+
+        // Newsletter Form
+        $newsForm = $formsManager->NewsletterForm($request);
+        // Contact Form
+        $contactForm = $formsManager->ContactForm($mailer, $request);
+
+        return $this->render($page, [
+            'contactForm' => $contactForm->createView(),
+            'newsForm' => $newsForm->createView(),
+            'headerType' => $headerType,
+            'lang' => $langHtml,
+            'modelName' => $model->getModelName(),
+            'modelMetaTitle' => $model->getModelMetaTitle(),
+            'modelMetaDesc' => $model->getModelMetaDesc(),
+            'options' => $options,
+            'optionsImages' => $optionsImages,
+        ]);
+    }
+    
+    #[Route('/fr/option/{option_slug}', name: 'option_page_fr')]
+    public function option_page_fr(ManagerRegistry $doctrine, string $option_slug, Request $request, FormsManager $formsManager, MailerInterface $mailer){
+        $optionPage = $this->CallOptionPage(0, $doctrine, $option_slug, $request, $formsManager, $mailer);
+        return $optionPage;
+    }
+    
+    #[Route('/en/option/{option_slug}', name: 'option_page_en')]
+    public function option_page_en(ManagerRegistry $doctrine, string $option_slug, Request $request, FormsManager $formsManager, MailerInterface $mailer){
+        $optionPage = $this->CallOptionPage(1, $doctrine, $option_slug, $request, $formsManager, $mailer);
+        return $optionPage;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\OptionModelsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: OptionModelsRepository::class)]
@@ -20,6 +21,15 @@ class OptionModels
 
     #[ORM\OneToMany(mappedBy: 'option_model', targetEntity: Options::class)]
     private Collection $options;
+
+    #[ORM\Column(length: 255)]
+    private ?string $model_url = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $model_meta_title = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $model_meta_desc = null;
 
     public function __construct()
     {
@@ -69,6 +79,42 @@ class OptionModels
                 $option->setOptionModel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getModelUrl(): ?string
+    {
+        return $this->model_url;
+    }
+
+    public function setModelUrl(string $model_url): self
+    {
+        $this->model_url = $model_url;
+
+        return $this;
+    }
+
+    public function getModelMetaTitle(): ?string
+    {
+        return $this->model_meta_title;
+    }
+
+    public function setModelMetaTitle(string $model_meta_title): self
+    {
+        $this->model_meta_title = $model_meta_title;
+
+        return $this;
+    }
+
+    public function getModelMetaDesc(): ?string
+    {
+        return $this->model_meta_desc;
+    }
+
+    public function setModelMetaDesc(string $model_meta_desc): self
+    {
+        $this->model_meta_desc = $model_meta_desc;
 
         return $this;
     }
