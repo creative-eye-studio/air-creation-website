@@ -13,7 +13,9 @@
             <div class="text">
                 <h1>{{ modelName }}</h1>
             </div>
-            <div class="image"><img alt="" src="../../uploads/images/options/bg-page.jpg" /></div>
+            <div class="image">
+                <img alt="" src="../../uploads/images/options/bg-page.jpg" />
+            </div>
         </div>
 
         {# Options Models #}
@@ -24,12 +26,6 @@
                 {% endfor %}
             </ul>
         </div>
-        {# <select id="select-model">
-            <option value="">Liste des modèles</option>
-            {% for model in models %}
-                <option value="{{ model.modelurl }}">{{ model.modelname }}</option>
-            {% endfor %}
-        </select> #}
 
         {# Options #}
         {% for option in options %}
@@ -40,13 +36,17 @@
                         {{ option.optioncontentfr | raw }}
                     </div>
                     <div class="image">
-                        <img alt="https://picsum.photos/id/100/500" data-viewer="{{ option.id }}" src="https://picsum.photos/id/100/2000" />
+                        {% for image in optionsImages %}
+                            {% if image.optionname.id == option.id %}
+                                <img src="../../uploads/images/options/{{ image.optionimage }}" data-viewer="{{ option.id }}" alt="{{ image.optionimage }}" />
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
 
                 <div class="images-option-list">
                     {% for image in optionsImages %}
-                        {% if image.optionname.optionmodel.id == option.optionmodel.id %}
+                        {% if image.optionname.id == option.id %}
                             <div class="img-option-button-container">
                                 <figure class="img-option-button" data-viewer-id="{{ option.id }}">
                                     <img src="../../uploads/images/options/{{ image.optionimage }}" alt="{{ image.optionimage }}" />

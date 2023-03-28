@@ -17,12 +17,6 @@
         </div>
 
         {# Options Models #}
-        {# <select id="select-model">
-            <option value="">Models list</option>
-            {% for model in models %}
-                <option value="{{ model.modelurl }}">{{ model.modelname }}</option>
-            {% endfor %}
-        </select> #}
         <div class="info-block-intro-container">
             <ul class="model-list">
                 {% for model in models %}
@@ -41,7 +35,11 @@
                         {{ option.optioncontenten | raw }}
                     </div>
                     <div class="image">
-                        <img alt="https://picsum.photos/id/100/500" data-viewer="{{ option.id }}" src="https://picsum.photos/id/100/2000" />
+                        {% for image in optionsImages %}
+                            {% if image.optionname.id == option.id %}
+                                <img src="../../uploads/images/options/{{ image.optionimage }}" data-viewer="{{ option.id }}" alt="{{ image.optionimage }}" />
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
 
