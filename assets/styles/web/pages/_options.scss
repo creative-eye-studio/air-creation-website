@@ -3,6 +3,17 @@ select{
     border: none;
 }
 
+.model-list{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: $marges-m 1rem;
+    margin: 0;
+    li{
+        margin: 0 1rem;
+    }
+}
+
 .options-input-list{
     margin: 1rem 0 $marges-m;
     @media screen and (min-width:1024px) {

@@ -13,16 +13,24 @@
             <div class="text">
                 <h1>{{ modelName }}</h1>
             </div>
-            <div class="image"><img alt="" src="../uploads/images/pages/innovation/photo-test.jpeg" /></div>
+            <div class="image"><img alt="" src="../../uploads/images/options/bg-page.jpg" /></div>
         </div>
 
         {# Options Models #}
-        <select id="select-model">
+        {# <select id="select-model">
             <option value="">Models list</option>
             {% for model in models %}
                 <option value="{{ model.modelurl }}">{{ model.modelname }}</option>
             {% endfor %}
-        </select>
+        </select> #}
+        <div class="info-block-intro-container">
+            <ul class="model-list">
+                {% for model in models %}
+                    <li><a class="btn rounded" href="{{ path('option_page_en', {option_slug: model.modelurl}) }}">{{ model.modelname }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        
 
         {# Options #}
         {% for option in options %}

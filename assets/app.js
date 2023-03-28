@@ -281,15 +281,15 @@ optionImgBtns.forEach(btn => {
   })
 })
 
-var optionModelSelector = document.querySelector('#select-model');
-optionModelSelector.addEventListener('change', function(){
-  var domainName = window.location.origin;
-  var lang = document.querySelector('html').getAttribute('lang');
-  var value = optionModelSelector.value;
-  console.log(domainName + '/' + lang + '/' + value);
-  window.location.href = domainName + '/' + lang + '/option/' + value;
-  return false;
-})
+// var optionModelSelector = document.querySelector('#select-model');
+// optionModelSelector.addEventListener('change', function(){
+//   var domainName = window.location.origin;
+//   var lang = document.querySelector('html').getAttribute('lang');
+//   var value = optionModelSelector.value;
+//   console.log(domainName + '/' + lang + '/' + value);
+//   window.location.href = domainName + '/' + lang + '/option/' + value;
+//   return false;
+// })
 
 
 // SWIPER
