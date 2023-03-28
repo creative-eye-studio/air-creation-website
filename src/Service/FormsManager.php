@@ -41,7 +41,7 @@ class FormsManager extends AbstractController{
             
             $emailForm = (new Email())
                 ->from($data['mail'])
-                ->to('hello@creative-eye.fr')
+                ->to('contact@creative-eye.fr')
                 ->subject($data['subject'] . ' - Air Création')
                 ->html(
                     "
