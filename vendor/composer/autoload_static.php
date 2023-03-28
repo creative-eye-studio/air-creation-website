@@ -2665,6 +2665,7 @@ class ComposerStaticInitfa189ac685c6e265ef50eadd5e82fcc6
         'Knp\\Bundle\\PaginatorBundle\\Subscriber\\SlidingPaginationSubscriber' => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle/src/Subscriber/SlidingPaginationSubscriber.php',
         'Knp\\Bundle\\PaginatorBundle\\Templating\\PaginationHelper' => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle/src/Templating/PaginationHelper.php',
         'Knp\\Bundle\\PaginatorBundle\\Twig\\Extension\\PaginationExtension' => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle/src/Twig/Extension/PaginationExtension.php',
+        'Knp\\Bundle\\PaginatorBundle\\Twig\\Extension\\PaginationRuntime' => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle/src/Twig/Extension/PaginationRuntime.php',
         'Knp\\Component\\Pager\\ArgumentAccess\\ArgumentAccessInterface' => __DIR__ . '/..' . '/knplabs/knp-components/src/Knp/Component/Pager/ArgumentAccess/ArgumentAccessInterface.php',
         'Knp\\Component\\Pager\\ArgumentAccess\\RequestArgumentAccess' => __DIR__ . '/..' . '/knplabs/knp-components/src/Knp/Component/Pager/ArgumentAccess/RequestArgumentAccess.php',
         'Knp\\Component\\Pager\\Event\\AfterEvent' => __DIR__ . '/..' . '/knplabs/knp-components/src/Knp/Component/Pager/Event/AfterEvent.php',

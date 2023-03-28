@@ -1886,6 +1886,7 @@ return array(
     'Knp\\Bundle\\PaginatorBundle\\Subscriber\\SlidingPaginationSubscriber' => $vendorDir . '/knplabs/knp-paginator-bundle/src/Subscriber/SlidingPaginationSubscriber.php',
     'Knp\\Bundle\\PaginatorBundle\\Templating\\PaginationHelper' => $vendorDir . '/knplabs/knp-paginator-bundle/src/Templating/PaginationHelper.php',
     'Knp\\Bundle\\PaginatorBundle\\Twig\\Extension\\PaginationExtension' => $vendorDir . '/knplabs/knp-paginator-bundle/src/Twig/Extension/PaginationExtension.php',
+    'Knp\\Bundle\\PaginatorBundle\\Twig\\Extension\\PaginationRuntime' => $vendorDir . '/knplabs/knp-paginator-bundle/src/Twig/Extension/PaginationRuntime.php',
     'Knp\\Component\\Pager\\ArgumentAccess\\ArgumentAccessInterface' => $vendorDir . '/knplabs/knp-components/src/Knp/Component/Pager/ArgumentAccess/ArgumentAccessInterface.php',
     'Knp\\Component\\Pager\\ArgumentAccess\\RequestArgumentAccess' => $vendorDir . '/knplabs/knp-components/src/Knp/Component/Pager/ArgumentAccess/RequestArgumentAccess.php',
     'Knp\\Component\\Pager\\Event\\AfterEvent' => $vendorDir . '/knplabs/knp-components/src/Knp/Component/Pager/Event/AfterEvent.php',
