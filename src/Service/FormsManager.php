@@ -55,6 +55,7 @@ class FormsManager extends AbstractController{
                         ". $data['message'] ." </p>
                     "
                 );
+
             try {
                 $mailer->send($emailForm);
             } catch (TransportExceptionInterface $e) {
