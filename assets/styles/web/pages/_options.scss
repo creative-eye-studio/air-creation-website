@@ -25,6 +25,10 @@ select{
     }
 }
 
+.image img:not(:first-child){
+    display: none;
+}
+
 .options-container{
     padding: $marges-m;
     hr{

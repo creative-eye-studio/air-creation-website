@@ -193,6 +193,7 @@ class AdminOptionsController extends AbstractController
         return $this->render('admin_options/images-list.html.twig', [
             'form' => $form->createView(),
             'images' => $images,
+            'option_name' => $option->getOptionNameFr(),
             'options_image' => $option->getId()
         ]);
     }
