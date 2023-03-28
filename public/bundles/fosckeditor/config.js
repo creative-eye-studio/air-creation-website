@@ -3,12 +3,6 @@
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-var request = new XMLHttpRequest();
-var urlBase = 'https://aircreation.com/'
-request.open("GET", "../../../build/entrypoints.json", false);
-request.send(null)
-var json = JSON.parse(request.responseText);
-
 CKEDITOR.editorConfig = function( config ) {
 	config.language = 'fr';
 	config.extraPlugins = 'codemirror,filebrowser,powrmediagallery';
@@ -17,7 +11,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.extraAllowedContent = 'i';
 	config.entities = false;
 	config.baseHref = '/';
-	config.contentsCss = '../' + json.entrypoints.app.css[0];
+	config.contentsCss = '../build/app.1539f8e6.css';
 	config.height = 300;
 	config.bodyClass = 'no-js header-second';
 };
