@@ -29,6 +29,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "ajax-form": "^2.1.4",
         "aos": "^2.3.4",
         "chocolat": "^1.1.0",
         "custombox": "^4.0.3",
