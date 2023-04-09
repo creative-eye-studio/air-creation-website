@@ -136,16 +136,17 @@ class WebPagesOthersController extends AbstractController
 
     // Page Produit
     // --------------------------------------------------------------------
-    public function CallProductPage(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer): Response{
-        $newsForm = $this->createForm(NewsletterFormType::class);
-        $newsForm->handleRequest($request);
+    public function CallProductPage(String $lang, Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer): Response{        $newsForm->handleRequest($request);
         $headerType = 'header-base';
+
         // Récupération du produit
         $product = $products_function->getProduct($doctrine, $product_slug);
         $entityManager = $doctrine->getManager();
-        $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product]);
+        $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product], ["product_lang" => $lang]);
+
         // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);
+
         // Contact Form
         $contactForm = $formsManager->ContactForm($mailer, $request);
 
@@ -176,13 +177,13 @@ class WebPagesOthersController extends AbstractController
 
     #[Route('/fr/produit/{product_slug}', name: 'product_pages')]
     public function product_page(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer){
-        $product = $this->CallProductPage($request, $doctrine, $product_slug, $products_function, $formsManager, $mailer);
+        $product = $this->CallProductPage('fr', $request, $doctrine, $product_slug, $products_function, $formsManager, $mailer);
         return $product;
     }
 
     #[Route('/en/produit/{product_slug}', name: 'product_pages_en')]
     public function product_page_en(Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer){
-        $product = $this->CallProductPage($request, $doctrine, $product_slug, $products_function, $formsManager, $mailer);
+        $product = $this->CallProductPage('en', $request, $doctrine, $product_slug, $products_function, $formsManager, $mailer);
         return $product;
     }
 

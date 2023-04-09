@@ -19,10 +19,7 @@ class ProductsFunctions extends AbstractController
         private RequestStack $requestStack,
         private ProductsRepository $productRepo,
         private PaginatorInterface $paginator
-    )
-    {
-        
-    }
+    ) {}
 
     public function getPaginatedProducts()
     {
