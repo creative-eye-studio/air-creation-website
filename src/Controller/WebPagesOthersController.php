@@ -156,9 +156,14 @@ class WebPagesOthersController extends AbstractController
             );
         }
 
+        if($lang == 'fr')
+            $template = 'web_pages_others/fr/product.html.twig';
+        else
+            $template = 'web_pages_others/en/product.html.twig';
+
         $contactForm = $this->createForm(ContactFormType::class);
         $contactForm->handleRequest($request);
-        return $this->render('web_pages_others/fr/product.html.twig', [
+        return $this->render($template, [
             'controller_name' => 'WebPagesOthersController',
             'product' => $product,
             'contactForm' => $contactForm->createView(),
@@ -171,7 +176,7 @@ class WebPagesOthersController extends AbstractController
             'images' => $image,
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType,
-            'lang' => "fr",
+            'lang' => $lang,
         ]);
     }
 
