@@ -136,7 +136,7 @@ class WebPagesOthersController extends AbstractController
 
     // Page Produit
     // --------------------------------------------------------------------
-    public function CallProductPage(String $lang, Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer): Response{        $newsForm->handleRequest($request);
+    public function CallProductPage(String $lang, Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer): Response{        
         $headerType = 'header-base';
 
         // Récupération du produit
