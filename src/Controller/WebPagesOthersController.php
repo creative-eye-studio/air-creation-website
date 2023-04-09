@@ -166,6 +166,7 @@ class WebPagesOthersController extends AbstractController
         return $this->render($template, [
             'controller_name' => 'WebPagesOthersController',
             'product' => $product,
+            'product_slug' => $product_slug,
             'contactForm' => $contactForm->createView(),
             'productName' => $product->getProductName(),
             'productIntro' => $product->getProductIntro(),
