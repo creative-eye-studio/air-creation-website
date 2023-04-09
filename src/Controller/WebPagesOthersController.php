@@ -142,7 +142,7 @@ class WebPagesOthersController extends AbstractController
         // Récupération du produit
         $product = $products_function->getProduct($doctrine, $product_slug);
         $entityManager = $doctrine->getManager();
-        $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product], ["product_lang" => $lang]);
+        $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product, "product_lang" => $lang]);
 
         // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);
