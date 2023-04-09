@@ -41,16 +41,16 @@ class ProductsFunctions extends AbstractController
         return $products;
     }
 
-    public function getProduct(ManagerRegistry $doctrine, String $product_url)
+    public function getProduct(ManagerRegistry $doctrine, String $product_url, String $lang)
     {
-        $product = $doctrine->getRepository(Products::class)->findOneBy(['product_slug' => $product_url]);
+        $product = $doctrine->getRepository(Products::class)->findOneBy(['product_slug' => $product_url, "product_lang" => $lang]);
         return $product;
     }
 
-    public function productPage(ManagerRegistry $doctrine, String $productInfo)
+    public function productPage(ManagerRegistry $doctrine, String $productInfo, String $lang)
     {
         // Récupération du produit
-        $product = $this->getProduct($doctrine, $productInfo);
+        $product = $this->getProduct($doctrine, $productInfo, $lang);
 
         // Récupération des valeurs du produit
         $productName = $product->getProductName();

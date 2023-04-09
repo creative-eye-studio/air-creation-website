@@ -140,9 +140,9 @@ class WebPagesOthersController extends AbstractController
         $headerType = 'header-base';
 
         // Récupération du produit
-        $product = $products_function->getProduct($doctrine, $product_slug);
+        $product = $products_function->getProduct($doctrine, $product_slug, $lang);
         $entityManager = $doctrine->getManager();
-        $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product, "product_lang" => $lang]);
+        $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product]);
 
         // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);
