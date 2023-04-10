@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 #region Dependances
-use App\Classes\DocSearch;
 use App\Classes\ProductsSearch;
 use App\Entity\Chronologie;
 use App\Entity\DocProducts;
@@ -15,9 +14,6 @@ use App\Entity\Partners;
 use App\Entity\PostsList;
 use App\Entity\Products;
 use App\Entity\ProductsImages;
-use App\Form\ContactFormType;
-use App\Form\DocFilterType;
-use App\Form\NewsletterFormType;
 use App\Form\ProductFilterType;
 use App\Service\FormsManager;
 use App\Service\ProductsFunctions;
@@ -91,11 +87,7 @@ class WebPagesOthersController extends AbstractController
         if ($filterForm->isSubmitted() && $filterForm->isValid())
             $products = $doctrine->getRepository(Products::class)->findWithSearch($productFilter);
         // Formulaire de filtrage documents
-        $docFilter = new DocSearch();
-        $docFilterForm = $this->createForm(DocFilterType::class, $docFilter);
-        $docFilterForm->handleRequest($request);
-        if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) 
-            $documents = $doctrine->getRepository(DocProducts::class)->findDocWithSearch($docFilter);
+        $docFilterForm = $formsManager->DocFilterForm($request, $doctrine, $lang);
 
         return $this->render($page, [
             'page_id' => $selected_page->getPageId(),

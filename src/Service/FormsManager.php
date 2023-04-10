@@ -2,9 +2,14 @@
 
 namespace App\Service;
 
+use App\Classes\DocSearch;
+use App\Entity\DocProducts;
 use App\Form\NewsletterFormType;
 use App\Form\ContactFormType;
 use App\Form\ContactFormEnType;
+use App\Form\DocFilterType;
+use App\Form\DocFilterEnType;
+use Doctrine\Persistence\ManagerRegistry;
 use Mailjet\Client;
 use Mailjet\Resources;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -66,23 +71,22 @@ class FormsManager extends AbstractController{
             } catch (TransportExceptionInterface $e) {
                 throw $e;
             }
-
-            // $emailForm = (new TemplatedEmail())
-            //     ->from(`no-reply@aircreation.com`)
-            //     ->to($data['mail'])
-            //     ->subject("Récapitulatif de votre demande envoyée")
-            //     ->htmlTemplate('emails/mail-sender.html.twig')
-            //     ->context([
-            //         'gender' => $data['gender'],
-            //         'lname' => $data['lname'],
-            //         'fname' => $data['fname'],
-            //         'subject' => "Récapitulatif de votre E-Mail - Air Création",
-            //         'message' => $data['message'],
-            //     ]);
-            // $mailer->send($emailForm);
         }
 
         return $contactForm;
+    }
+
+    public function DocFilterForm(Request $request, ManagerRegistry $doctrine, int $lang){
+        $docFilter = new DocSearch();
+        if ($lang == 0) 
+            $docFilterForm = $this->createForm(DocFilterType::class, $docFilter);
+        else 
+            $docFilterForm = $this->createForm(DocFilterEnType::class, $docFilter);
+
+        $docFilterForm->handleRequest($request);
+        if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) 
+            $documents = $doctrine->getRepository(DocProducts::class)->findDocWithSearch($docFilter);
+        return $docFilterForm;
     }
 
 }
