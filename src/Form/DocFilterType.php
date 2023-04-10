@@ -56,7 +56,7 @@ class DocFilterEnType extends AbstractType
         $builder
             ->add('product_type', ChoiceType::class, [
                 'choices'  => [
-                    "Envery Documentation" => 0,
+                    "Every Documentation" => 0,
                     "Bulletin d'alerte" => 6,
                     "Our catalog" => [
                         "Our wings (catalog)" => 3,
