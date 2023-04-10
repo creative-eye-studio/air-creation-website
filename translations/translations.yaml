@@ -1,0 +1,26 @@
+translations:
+  contact_form:
+    gender:
+      - label: ['Civilite', 'Civil']
+      - mr: ['Monsieur', 'Sir']
+      - mme: ['Madame', 'Madam']
+    lname:
+      - label: ['Nom', 'Last Name']
+    fname:
+      - label: ['Prénom', 'Fist Name']
+    phone:
+      - label: ['Téléphone', 'Phone']
+    mail:
+      - label: ['E-Mail', 'Mail']
+    customer_type:
+      - label: ['Vous êtes', 'You are']
+      - choice1: ['Client', 'Customer']
+      - choice2: ['Distributeur France', 'France Distributor']
+      - choice3: ['Distributeur International', 'International Distributor']
+    subject:
+      - choice1: ['Catégorie de la demande', 'Request Type']
+      - choice1: ['Contacter le service commercial', 'Marketing Service']
+      - choice2: ['Contacter le SAV', 'Customer Service']
+      - choice2: ['Message depuis le site Internet', 'Message from the website']
+    message:
+      - label: ['Détails de la demande', 'Request Details']

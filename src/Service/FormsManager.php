@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Form\NewsletterFormType;
 use App\Form\ContactFormType;
+use App\Form\ContactFormEnType;
 use Mailjet\Client;
 use Mailjet\Resources;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -31,8 +32,12 @@ class FormsManager extends AbstractController{
         return $newsForm;
     }
 
-    public function ContactForm(MailerInterface $mailer, Request $request){
-        $contactForm = $this->createForm(ContactFormType::class);
+    public function ContactForm(MailerInterface $mailer, Request $request, int $lang){
+        if ($lang == 0) {
+            $contactForm = $this->createForm(ContactFormType::class);
+        } else {
+            $contactForm = $this->createForm(ContactFormEnType::class);
+        }
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {

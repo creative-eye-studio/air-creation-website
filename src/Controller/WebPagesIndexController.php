@@ -41,7 +41,7 @@ class WebPagesIndexController extends AbstractController
         }
 
         // Contact Form
-        $contactForm = $formsManager->ContactForm($mailer, $request);
+        $contactForm = $formsManager->ContactForm($mailer, $request, $lang);
 
         // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);

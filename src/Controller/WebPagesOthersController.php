@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+#region Dependances
 use App\Classes\DocSearch;
 use App\Classes\ProductsSearch;
 use App\Entity\Chronologie;
@@ -9,24 +10,24 @@ use App\Entity\DocProducts;
 use App\Entity\OptionImages;
 use App\Entity\OptionModels;
 use App\Entity\Options;
-use App\Form\ContactFormType;
 use App\Entity\PagesList;
 use App\Entity\Partners;
 use App\Entity\PostsList;
 use App\Entity\Products;
 use App\Entity\ProductsImages;
+use App\Form\ContactFormType;
 use App\Form\DocFilterType;
 use App\Form\NewsletterFormType;
 use App\Form\ProductFilterType;
 use App\Service\FormsManager;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
-use Proxies\__CG__\App\Entity\OptionsImages;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Mailer\MailerInterface;
+#endregion
 
 class WebPagesOthersController extends AbstractController
 {
@@ -82,7 +83,7 @@ class WebPagesOthersController extends AbstractController
         // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);
         // Contact Form
-        $contactForm = $formsManager->ContactForm($mailer, $request);
+        $contactForm = $formsManager->ContactForm($mailer, $request, $lang);
         // Formulaire de filtrage produits
         $productFilter = new ProductsSearch();
         $filterForm = $this->createForm(ProductFilterType::class, $productFilter);
@@ -148,7 +149,7 @@ class WebPagesOthersController extends AbstractController
         $newsForm = $formsManager->NewsletterForm($request);
 
         // Contact Form
-        $contactForm = $formsManager->ContactForm($mailer, $request);
+        $contactForm = $formsManager->ContactForm($mailer, $request, $lang);
 
         if (!$product) {
             throw $this->createNotFoundException(
@@ -208,7 +209,7 @@ class WebPagesOthersController extends AbstractController
         // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);
         // Contact Form
-        $contactForm = $formsManager->ContactForm($mailer, $request);
+        $contactForm = $formsManager->ContactForm($mailer, $request, $lang);
 
         switch($lang){
             case 0:
@@ -290,7 +291,7 @@ class WebPagesOthersController extends AbstractController
         // Newsletter Form
         $newsForm = $formsManager->NewsletterForm($request);
         // Contact Form
-        $contactForm = $formsManager->ContactForm($mailer, $request);
+        $contactForm = $formsManager->ContactForm($mailer, $request, $lang);
 
         return $this->render($page, [
             'contactForm' => $contactForm->createView(),

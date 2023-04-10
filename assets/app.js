@@ -149,43 +149,6 @@ contactButton.forEach(button => {
   }
 });
 
-var contactBtn1 = document.querySelector('#contactBtn1');
-var contactBtn2 = document.querySelector('#contactBtn2');
-var contactBtn3 = document.querySelector('#contactBtn3');
-
-contactBtn1.onclick = function () {
-  document.querySelector("#contact-tab-1").classList.add('active');
-  document.querySelector("#contact-tab-2").classList.remove('active');
-  document.querySelector("#contact-tab-3").classList.remove('active');
-
-  contactBtn1.classList.remove('full');
-}
-
-contactBtn2.onclick = function () {
-  if (document.querySelectorAll("input[name='contact_form[gender]']:checked").length < 1) {return false;}
-  if (document.querySelector('#contact_form_lname').value == "") {return false;}
-  if (document.querySelector('#contact_form_fname').value == "") {return false;}
-  if (document.querySelector('#contact_form_phone').value == "") {return false;}
-  if (document.querySelector('#contact_form_mail').value == "") {return false;}
-
-  document.querySelector("#contact-tab-1").classList.remove('active');
-  document.querySelector("#contact-tab-2").classList.add('active');
-  document.querySelector("#contact-tab-3").classList.remove('active');
-
-  contactBtn1.classList.add('full');
-  contactBtn2.classList.remove('full');
-};
-
-contactBtn3.onclick = function () {
-  if (document.querySelectorAll("input[name='contact_form[customer_type]']:checked").length < 1) {return false;}
-
-  document.querySelector("#contact-tab-1").classList.remove('active');
-  document.querySelector("#contact-tab-2").classList.remove('active');
-  document.querySelector("#contact-tab-3").classList.add('active');
-
-  contactBtn2.classList.add('full');
-};
-
 
 // Tabs
 // ------------------------------------------------------------------
@@ -280,16 +243,6 @@ optionImgBtns.forEach(btn => {
     dataViewer.src = img;
   })
 })
-
-// var optionModelSelector = document.querySelector('#select-model');
-// optionModelSelector.addEventListener('change', function(){
-//   var domainName = window.location.origin;
-//   var lang = document.querySelector('html').getAttribute('lang');
-//   var value = optionModelSelector.value;
-//   console.log(domainName + '/' + lang + '/' + value);
-//   window.location.href = domainName + '/' + lang + '/option/' + value;
-//   return false;
-// })
 
 
 // SWIPER
