@@ -153,9 +153,7 @@ class WebPagesOthersController extends AbstractController
             $template = 'web_pages_others/fr/product.html.twig';
         else
             $template = 'web_pages_others/en/product.html.twig';
-
-        $contactForm = $this->createForm(ContactFormType::class);
-        $contactForm->handleRequest($request);
+            
         return $this->render($template, [
             'controller_name' => 'WebPagesOthersController',
             'product' => $product,
