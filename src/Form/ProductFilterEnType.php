@@ -6,17 +6,16 @@ use App\Classes\ProductsSearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProductFilterType extends AbstractType
+class ProductFilterEnType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('filter_capacity', ChoiceType::class, [
                 'choices'  => [
-                    'Toutes les capacités' => "",
+                    'Every capacities' => "",
                     "Monoplace" => "Monoplace",
                     'Biplace' => 'Biplace',
                 ],
@@ -25,7 +24,7 @@ class ProductFilterType extends AbstractType
             ])
             ->add('filter_wing', ChoiceType::class, [
                 'choices'  => [
-                    'Tous types d\'ailes' => "",
+                    'Every wings types' => "",
                     "iFun 13" => "IFun",
                     "iFun 16" => "iFun 16",
                     "iFun XL" => "iFun XL",
@@ -38,7 +37,7 @@ class ProductFilterType extends AbstractType
             ])
             ->add('filter_tricycle', ChoiceType::class, [
                 'choices'  => [
-                    'Tous types de tricycles' => "",
+                    'Every tricycles types' => "",
                     "Pixel" => "Pixel",
                     "Skypper Bush" => "Skypper Bush",
                     "Skypper Evo" => "Skypper Evo",
