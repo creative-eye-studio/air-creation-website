@@ -126,9 +126,14 @@ class WebPagesOthersController extends AbstractController
     // --------------------------------------------------------------------
     public function CallProductPage(int $lang, Request $request, ManagerRegistry $doctrine, string $product_slug, ProductsFunctions $products_function, FormsManager $formsManager, MailerInterface $mailer): Response{        
         $headerType = 'header-base';
+        if ($lang == 0) {
+            $productLang = 'fr';
+        } else {
+            $productLang = 'en';
+        }
 
         // Récupération du produit
-        $product = $products_function->getProduct($doctrine, $product_slug, $lang);
+        $product = $products_function->getProduct($doctrine, $product_slug, $productLang);
         $entityManager = $doctrine->getManager();
         $image = $entityManager->getRepository(ProductsImages::class)->findBy(["image_product" => $product]);
 
