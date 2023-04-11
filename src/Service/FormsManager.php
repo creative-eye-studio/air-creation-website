@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Classes\ProductsSearch;
 use App\Classes\DocSearch;
 use App\Entity\DocProducts;
 use App\Form\NewsletterFormType;
@@ -9,6 +10,8 @@ use App\Form\ContactFormType;
 use App\Form\ContactFormEnType;
 use App\Form\DocFilterType;
 use App\Form\DocFilterEnType;
+use App\Form\ProductFilterType;
+use App\Form\ProductFilterEnType;
 use Doctrine\Persistence\ManagerRegistry;
 use Mailjet\Client;
 use Mailjet\Resources;
@@ -84,6 +87,20 @@ class FormsManager extends AbstractController{
         if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) 
             $documents = $doctrine->getRepository(DocProducts::class)->findDocWithSearch($docFilter);
         return $docFilterForm;
+    }
+
+    public function ProductFilterForm(Request $request, ManagerRegistry $doctrine, int $lang){
+        $productFilter = new ProductsSearch();
+        if ($lang == 0) 
+            $filterForm = $this->createForm(ProductFilterType::class, $productFilter);
+        else
+            $filterForm = $this->createForm(ProductFilterEnType::class, $productFilter);
+        
+        $filterForm->handleRequest($request);
+        if ($filterForm->isSubmitted() && $filterForm->isValid())
+            $products = $doctrine->getRepository(Products::class)->findWithSearch($productFilter);
+        
+        return $filterForm;
     }
 
 }
