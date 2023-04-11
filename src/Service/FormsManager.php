@@ -46,9 +46,7 @@ class FormsManager extends AbstractController{
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-            
             $data = $contactForm->getData();
-            
             $emailForm = (new Email())
                 ->from($data['mail'])
                 ->to('contact@aircreation.com')
@@ -72,7 +70,6 @@ class FormsManager extends AbstractController{
                 throw $e;
             }
         }
-
         return $contactForm;
     }
 
