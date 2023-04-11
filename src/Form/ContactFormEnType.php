@@ -12,58 +12,61 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContactFormType extends AbstractType
+class ContactFormEnType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('gender', ChoiceType::class, [
                 'choices'  => [
-                    'Madame' => 'Madame',
-                    'Monsieur' => 'Monsieur',
+                    'Madam' => 'Madam',
+                    'Sir' => 'Sir',
                 ],
-                'label' => 'Civilité',
+                'label' => 'Civility',
                 'expanded' => true
             ])
             ->add('lname', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'Last Name',
+                'attr' => [
+                    'id' => 'contact_form_lname'
+                ]
             ])
             ->add('fname', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'First Name',
             ])
             ->add('phone', TelType::class, [
-                'label' => 'Téléphone',
+                'label' => 'Phone',
             ])
             ->add('mail', EmailType::class, [
-                'label' => 'Adresse E-Mail',
+                'label' => 'Email adress',
             ])
             ->add('customer_type', ChoiceType::class, [
                 'choices'  => [
-                    'Client' => 'Client',
-                    'Distributeur France' => 'Distributeur France',
-                    'Distributeur International' => 'Distributeur International',
+                    'Customer' => 'Client',
+                    'France Distributor' => 'Distributeur France',
+                    'International Distributor' => 'Distributeur International',
                 ],
-                'label' => 'Vous êtes',
+                'label' => 'You are',
                 'expanded' => true
             ])
             ->add('subject', ChoiceType::class, [
                 'choices' => [
-                    'Catégorie de la demande' => "",
-                    'Contacter le service commercial' => "Demande auprès du service commercial",
-                    'Contacter le SAV' => "Demande de SAV",
-                    'Autre' => "Message depuis le site Internet",
+                    'Request' => "",
+                    'Contact Marketing Service' => "Demande auprès du service commercial",
+                    'Contact SAV Service' => "Demande de SAV",
+                    'Other' => "Message depuis le site Internet",
                 ],
                 'label' => false
             ])
             ->add('message', TextareaType::class, [
                 'label' => false,
                 'attr' => [
-                    'placeholder' => 'Détails de la demande',
-                    'aria-label' => 'Détails de la demande'
+                    'placeholder' => 'Request details',
+                    'aria-label' => 'Request details'
                 ]
             ])
             ->add('submit_button', SubmitType::class, [
-                'label' => 'Envoyer',
+                'label' => 'Send',
                 'attr' => [
                     'class' => 'rounded'
                 ]
