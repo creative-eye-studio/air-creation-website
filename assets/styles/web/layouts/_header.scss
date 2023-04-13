@@ -33,6 +33,7 @@ header{
         width: $header-ht;
         height: $header-ht;
         padding: 0 1.25rem;
+        line-height: 0%;
         cursor: pointer;
         .bar{
             &::before,
