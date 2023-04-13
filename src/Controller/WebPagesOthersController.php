@@ -185,10 +185,7 @@ class WebPagesOthersController extends AbstractController
     // --------------------------------------------------------------------
     public function CallArticlePage(int $lang, ManagerRegistry $doctrine, string $post_slug, Request $request, FormsManager $formsManager, MailerInterface $mailer){
         $post = $doctrine->getRepository(PostsList::class)->findOneBy(["post_url" => $post_slug]);
-        $contactForm = $this->createForm(ContactFormType::class);
-        $contactForm->handleRequest($request);
-        $newsForm = $this->createForm(NewsletterFormType::class);
-        $newsForm->handleRequest($request);
+        
         $headerType = 'header-second';
         $page = '';
         $langHtml = '';
