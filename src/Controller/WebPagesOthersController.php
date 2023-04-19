@@ -14,6 +14,8 @@ use App\Entity\Partners;
 use App\Entity\PostsList;
 use App\Entity\Products;
 use App\Entity\ProductsImages;
+use App\Form\ProductFilterType;
+use App\Form\ProductFilterEnType;
 use App\Service\FormsManager;
 use App\Service\ProductsFunctions;
 use Doctrine\Persistence\ManagerRegistry;
@@ -80,7 +82,21 @@ class WebPagesOthersController extends AbstractController
         // Contact Form
         $contactForm = $formsManager->ContactForm($mailer, $request, $lang);
         // Formulaire de filtrage produits
-        $filterForm = $formsManager->ProductFilterForm($request, $doctrine, $lang);
+        $productFilter = new ProductsSearch();
+        if ($lang == 0) 
+            $filterForm = $this->createForm(ProductFilterType::class, $productFilter);
+        else
+            $filterForm = $this->createForm(ProductFilterEnType::class, $productFilter);
+        $filterForm->handleRequest($request);
+
+        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
+            try {
+                $products = $doctrine->getRepository(Products::class)->findWithSearch($productFilter);
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+        }
+        
         // Formulaire de filtrage documents
         $docFilterForm = $formsManager->DocFilterForm($request, $doctrine, $lang);
 

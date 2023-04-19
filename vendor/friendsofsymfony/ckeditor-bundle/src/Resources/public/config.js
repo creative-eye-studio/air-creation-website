@@ -4,14 +4,7 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	config.language = 'fr';
-	config.extraPlugins = 'codemirror,filebrowser';
-	// config.startupMode = 'source';
-	config.allowedContent = true;
-	config.extraAllowedContent = 'i';
-	config.entities = false;
-	config.baseHref = '/';
-	config.contentsCss = '../../' + json.entrypoints.app.css[0];
-	config.height = 300;
-	config.bodyClass = 'no-js';
+	// Define changes to default configuration here. For example:
+	// config.language = 'fr';
+	// config.uiColor = '#AADC6E';
 };
