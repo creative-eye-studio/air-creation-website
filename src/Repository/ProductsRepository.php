@@ -136,13 +136,6 @@ class ProductsRepository extends ServiceEntityRepository
             ;
         }
 
-        if (!empty($search->filter_name)) {
-            $query = $query
-                ->andWhere('p.product_name IN (:filter_name)')
-                ->setParameter('filter_name', $search->filter_name)
-            ;
-        }
-
         return $query->getQuery()->getResult();
     }
 
