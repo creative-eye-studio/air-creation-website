@@ -68,9 +68,9 @@ class WebPagesOthersController extends AbstractController
         $chronoPionniers = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'pionniers'], ['chronologie_date' => 'ASC']);
         $chronoActual = $doctrine->getRepository(Chronologie::class)->findBy(['chronologie_type' => 'air-creation'], ['chronologie_date' => 'ASC']);
         // Cartes
-        $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0]);
-        $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1]);
-        $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2]);
+        $resellers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 0], ['name' => 'ASC']);
+        $trainers = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 1], ['name' => 'ASC']);
+        $techs = $doctrine->getRepository(Partners::class)->findBy(['partner_cat' => 2], ['name' => 'ASC']);
         // Documents
         $documents = $doctrine->getRepository(DocProducts::class)->findAll();
         // Produits
