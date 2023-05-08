@@ -18,6 +18,7 @@
                 {{ model.modelname }}
             </p>
             <ul>
+                <li><a href="{{ path('option_page_fr', {option_slug: model.modelurl}) }}" target="_blank" rel="noopener">Voir</a></li>
                 <li><a href="{{ path('admin_options_models_delete', {model_id: model.id}) }}">Supprimer</a></li>
             </ul>
         </div>
