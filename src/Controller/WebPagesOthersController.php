@@ -301,6 +301,7 @@ class WebPagesOthersController extends AbstractController
             'newsForm' => $newsForm->createView(),
             'headerType' => $headerType,
             'lang' => $langHtml,
+            'model' => $model->getModelUrl(),
             'models' => $models,
             'modelName' => $model->getModelName(),
             'modelMetaTitle' => $model->getModelMetaTitle(),
