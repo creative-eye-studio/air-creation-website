@@ -20,6 +20,8 @@
         @include coverImage("4-3");
     }
     @media screen and (min-width: 1024px) {
+        justify-content: inherit;
+        column-gap: 1.325rem;
         padding: $marges-d-y $marges-d-x calc(#{$marges-d-y} - 2rem);
         .img-option-button-container{
             width: calc(25% - 1rem);
