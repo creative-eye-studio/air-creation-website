@@ -38,7 +38,12 @@
 		</ul>
 		</li>
 		<li class="nav-item"><span class="toggle-contact">Nous contacter</span></li>
-		<li class="nav-item">{% if page_slug is defined %} <a href="{{ path('web_pages_en', {page_slug: page_slug }) }}">EN</a> {% elseif post_url is defined %} <a href="{{ path('post_page_en', {post_slug: post_url }) }}">EN</a> {% elseif product_slug is defined %} <a href="{{ path('product_pages_en', {product_slug: product_slug }) }}">EN</a> {% endif %}</li>
+		<li class="nav-item">
+		{% if page_slug is defined %} <a href="{{ path('web_pages_en', {page_slug: page_slug }) }}">EN</a> 
+		{% elseif post_url is defined %} <a href="{{ path('post_page_en', {post_slug: post_url }) }}">EN</a> 
+		{% elseif product_slug is defined %} <a href="{{ path('product_pages_en', {product_slug: product_slug }) }}">EN</a> 
+		{% elseif models is defined %} <a href="{{ path('option_page_en', {option_slug: model}) }}">EN</a> 
+		{% endif %}</li>
 	</ul>
 	</nav>
 </header>
