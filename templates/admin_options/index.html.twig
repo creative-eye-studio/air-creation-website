@@ -7,10 +7,11 @@
         <a class="btn-link float-right margin" href="{{ path('admin_options_models') }}">Ajouter un modèle</a>
         <a class="btn-link float-right" href="{{ path('admin_options_add') }}">Ajouter une option</a>
         <h2>Liste des options</h2>
-        {% for option in options %}
+        {% for option in options|sort((a, b) => a.optionmodel <=> b.optionmodel) %}
         <div class="line">
             <p>
-                {{ option.optionnamefr }}
+                {{ option.optionmodel.modelname }}<br />
+                <strong>{{ option.optionnamefr }}</strong>
             </p>
             <ul>
                 <li><a href="{{ path('admin_options_modify', {option_id: option.id}) }}">Modifier</a></li>
