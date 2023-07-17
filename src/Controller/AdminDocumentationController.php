@@ -51,6 +51,7 @@ class AdminDocumentationController extends AbstractController
         if ($docForm->isSubmitted() && $docForm->isValid()) {
             $slugify = new Slugify();
             $files = $docForm->get('files')->getData();
+            $locale = $docForm->get('locale')->getData();
 
             foreach ($files as $file) {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -64,6 +65,7 @@ class AdminDocumentationController extends AbstractController
                     $docFile = new DocFiles();
                     $docFile->setDocName($newFilename);
                     $docFile->setDocModel($selectCat);
+                    $docFile->setDocLocal($locale);
                     $entityManager->persist($docFile);
                     $entityManager->flush();
                 } catch (\Throwable $th) {

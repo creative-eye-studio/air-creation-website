@@ -3,16 +3,25 @@
 {% block title %}Documents de la catégorie{% endblock %}
 
 {% block body %}
-    <section class="block">
+    <section class="block tab-container">
         <a class="btn-link float-right" href="{{ path('app_admin_documentation') }}">Retour à la liste des catégories</a>
         <h2>Documents de la catégorie</h2>
         {{ form_start(docForm) }}
             <p>{{ form_label(docForm.files)}}<br/>
             {{ form_widget(docForm.files)}}</p>
+            <p>{{ form_label(docForm.locale)}}<br/>
+            {{ form_widget(docForm.locale)}}</p>
             <p>{{ form_label(docForm.submit)}}</p>
         {{ form_end(docForm) }}
         <hr />
+        <ul class="tabs-btn tabs">
+            <li><a class="tab active">Français</a></li>
+            <li><a class="tab">English</a></li>
+        </ul>
+        <div class="tab-panes">
+        <section class="tab-pane active">
         {% for file in files %}
+            {% if file.doclocal == 0 %}
             <div class="line">
                 <p>
                     {{ file.docname }} 
@@ -21,6 +30,24 @@
                     <li><a href="{{ path('admin_doc_file_delete', {selectcatslug: catname, id: file.id}) }}">Supprimer</a></li>
                 </ul>
             </div>
+            {% endif %}
         {% endfor %}
+        </section>
+        <section class="tab-pane">
+        {% for file in files %}
+            {% if file.doclocal == 1 %}
+            <div class="line">
+                <p>
+                    {{ file.docname }} 
+                </p>
+                <ul> 
+                    <li><a href="{{ path('admin_doc_file_delete', {selectcatslug: catname, id: file.id}) }}">Supprimer</a></li>
+                </ul>
+            </div>
+            {% endif %}
+        {% endfor %}
+        </section>
+       
+        </div>
     </section>
 {% endblock %}

@@ -19,6 +19,9 @@ class DocFiles
     #[ORM\ManyToOne(inversedBy: 'docFiles')]
     private ?DocProducts $doc_model = null;
 
+    #[ORM\Column]
+    private ?int $DocLocal = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class DocFiles
     public function setDocModel(?DocProducts $doc_model): self
     {
         $this->doc_model = $doc_model;
+
+        return $this;
+    }
+
+    public function getDocLocal(): ?int
+    {
+        return $this->DocLocal;
+    }
+
+    public function setDocLocal(int $DocLocal): self
+    {
+        $this->DocLocal = $DocLocal;
 
         return $this;
     }
