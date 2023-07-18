@@ -28,7 +28,7 @@ class ProductFilterType extends AbstractType
                     "iFun 13" => "IFun",
                     "iFun 16" => "iFun 16",
                     "iFun XL" => "iFun XL",
-                    "BioniX 15" => "BioniX 15",
+                    "BioniX² 15" => "BioniX 15",
                     "BioniX²" => "BioniX²",
                     "NuviX" => "NuviX",
                 ],
@@ -40,8 +40,8 @@ class ProductFilterType extends AbstractType
                     'Tous types de tricycles' => "",
                     "Pixel" => "Pixel",
                     "Skypper Bush" => "Skypper Bush",
-                    "Skypper Evo" => "Skypper Evo",
-                    "Tanarg Néo" => "Tanarg Néo"
+                    "Skypper evo" => "Skypper Evo",
+                    "Tanarg néo" => "Tanarg Néo"
                 ],
                 'label' => false,
                 'required' => false
