@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Classes\DocSearch;
 use App\Entity\DocFiles;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -37,6 +38,26 @@ class DocFilesRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * Requète pour récupérer les produits selon la recherche
+     */
+    public function findDocWithSearch(DocSearch $search)
+    {
+        $query = $this
+            ->createQueryBuilder('p')
+            ->select('p')
+        ;
+
+        if (!empty($search->product_type)) {
+            $query = $query
+                ->andWhere('p.product_type IN (:product_type)')
+                ->setParameter(':product_type', $search->product_type)
+            ;
+        }
+
+        return $query->getQuery()->getResult();
     }
 
 //    /**

@@ -84,8 +84,11 @@ class FormsManager extends AbstractController{
             $docFilterForm = $this->createForm(DocFilterEnType::class, $docFilter);
 
         $docFilterForm->handleRequest($request);
-        if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) 
+        
+        if ($docFilterForm->isSubmitted() && $docFilterForm->isValid()) {
             $documents = $doctrine->getRepository(DocProducts::class)->findDocWithSearch($docFilter);
+        }
+        
         return $docFilterForm;
     }
 
@@ -98,7 +101,7 @@ class FormsManager extends AbstractController{
         
         $filterForm->handleRequest($request);
         if ($filterForm->isSubmitted() && $filterForm->isValid())
-            $products = $doctrine->getRepository(Products::class)->findWithSearch($productFilter);
+            $products = $doctrine->getRepository(DocProducts::class)->findWithSearch($productFilter);
         
         return $filterForm;
     }
