@@ -38,6 +38,7 @@ class DocFilterType extends AbstractType
             // Configure your form options here
             'data_class' => DocSearch::class,
             'method' => 'GET',
+            'id' => 'product-filter-form',
             'csrf_protection' => false
         ]);
     }

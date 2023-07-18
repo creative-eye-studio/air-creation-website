@@ -8,8 +8,9 @@
 </section>
 <!-- Fonctions filtrage -->
 
-<div class="filters doc-form">{{ form_start(docFilterForm) }}
-<div class="input-block">{{ form_row(docFilterForm.product_type) }}</div>
+<div class="filters doc-form">
+{{ form_start(docFilterForm, {'attr': {'id': 'product-filter-form'}}) }}
+	<div class="input-block">{{ form_row(docFilterForm.product_type) }}</div>
 {{ form_end(docFilterForm) }}</div>
 
 <section class="doc-container">
