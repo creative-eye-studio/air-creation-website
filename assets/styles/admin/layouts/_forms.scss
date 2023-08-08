@@ -5,6 +5,7 @@ label{
 input{
     &[type=text],
     &[type=email],
+    &[type=number],
     &[type=password]{
         width: 100%;
         padding: .5rem;
@@ -16,6 +17,32 @@ input{
 
 select{
     padding: .5rem;
+}
+
+select{
+    margin-top: .25rem;
+    padding: .5rem;
+}
+
+fieldset{
+    &:not(:last-child){
+        margin-bottom: 1rem;
+    }
+}
+
+legend{
+    font-weight: 600;
+    padding: 0 1rem;
+    margin: 1rem 0;
+}
+
+label{
+    &.required{
+        &::after{
+            content: '*';
+            margin-left: .2rem;
+        }
+    }
 }
 
 textarea{

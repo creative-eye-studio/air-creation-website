@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CommonBlocksService extends AbstractController {
 
-    function BlockManager(Request $request, String $filePath){
+    function BlockManager(Request $request, String $filePath, String $filePathEn){
         $form = $this->createForm(CommonBlockFormType::class);
         $form->handleRequest($request);
 
@@ -18,13 +18,17 @@ class CommonBlocksService extends AbstractController {
             $data = $form->getData();
 
             $filesystem = new Filesystem();
-            $filesystem->remove([$filePath]);
-            $file = fopen($filePath, 'w');
-            fwrite($file, $data['common_block']);
+
+            // FR
+            $filesystem->dumpFile($filePath, $data['common_block']);
+
+            // EN
+            $filesystem->dumpFile($filePathEn, $data['common_block_en']);
         }
 
         return $form;
     }
+<<<<<<< HEAD
 
     function BlockManagerEn(Request $request, String $filePath){
         $form = $this->createForm(CommonBlockFormTypeEn::class);
@@ -41,4 +45,6 @@ class CommonBlocksService extends AbstractController {
 
         return $form;
     }
+=======
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 }

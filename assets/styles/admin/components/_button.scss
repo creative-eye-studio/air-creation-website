@@ -1,18 +1,17 @@
+button{
+    @include btn-design(true);
+    // height: 100%;
+}
+
 .btn-link{
-    color: white;
-    background-color: $p-color;
-    padding: 1rem;
-    display: inline-block;
+    @include btn-design(true);
     text-decoration: none;
     &.margin{
         margin-left: 1rem;
     }
 }
 
-button{
-    color: white;
-    background-color: $p-color;
-    padding: 1rem;
-    border: none;
-    font-size: 1em;
+.btn-link-2{
+    @include btn-design(false);
+    text-decoration: none;
 }

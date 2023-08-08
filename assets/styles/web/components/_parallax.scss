@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .parallax{
     display: none;
     @media screen and (min-width: 1200px) {
@@ -9,4 +10,29 @@
             object-fit: cover;
         }
     }
+=======
+.parallax-section {
+    position: relative;
+    padding-top: 35%;
+    overflow: hidden;
+	margin-bottom: 15vh;
+	background-color: lightcoral;
+}
+
+.parallax-element{
+	position: absolute;
+	width: 100%;
+	height: calc(100% * 1.5);
+	top: 0;
+	left: 0;
+	img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		// z-index: -1;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 }

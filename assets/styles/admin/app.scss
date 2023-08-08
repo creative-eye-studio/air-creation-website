@@ -9,6 +9,7 @@
 // LAYOUTS
 @import "./layouts/navigation";
 @import "./layouts/forms";
+@import "./layouts/footer";
 
 // COMPONENTS
 @import "./components/blocks";
@@ -19,4 +20,9 @@
 
 // PAGES
 @import "./pages/home";
+<<<<<<< HEAD
 @import "./pages/_documentation";
+=======
+@import "./pages/login-page";
+@import "./pages/nav-manager";
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b

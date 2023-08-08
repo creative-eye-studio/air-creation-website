@@ -31,6 +31,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+<<<<<<< HEAD
         - { path: ^/admin/pages, roles: [ROLE_USER, ROLE_ADMIN], requires_channel: https }
         - { path: ^/admin/posts, roles: [ROLE_USER, ROLE_ADMIN], requires_channel: https }
         - { path: ^/admin/header, roles: [ROLE_USER, ROLE_ADMIN], requires_channel: https }
@@ -38,6 +39,15 @@ security:
         - { path: ^/admin, roles: [ROLE_USER, ROLE_ADMIN], requires_channel: https }
         - { path: '^/', requires_channel: https }
         # - { path: ^/profile, roles: ROLE_USER }
+=======
+        - { path: ^/admin, roles: [ROLE_USER] }
+        - { path: ^/admin/users, roles: [ROLE_EDITOR] }
+        - { path: ^/admin/settings, roles: [ROLE_ADMIN] }
+    role_hierarchy:
+        ROLE_CONTRIBUTOR: ROLE_USER
+        ROLE_EDITOR: ROLE_CONTRIBUTOR
+        ROLE_ADMIN: ROLE_EDITOR
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 
 when@test:
     security:

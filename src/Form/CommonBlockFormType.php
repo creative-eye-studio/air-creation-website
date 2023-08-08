@@ -41,6 +41,9 @@ class CommonBlockFormTypeEn extends AbstractType
                 'label' => false,
                 'required' => false,
             ])
+            ->add('common_block_en', CKEditorType::class, [
+                'label' => false
+            ])
 
             ->add('common_submit', SubmitType::class, [
                 'label' => 'Envoyer'

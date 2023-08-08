@@ -9,6 +9,7 @@
             <li><a class="tab active">Français</a></li>
             <li><a class="tab">English</a></li>
         </ul>
+<<<<<<< HEAD
         <div class="tab-panes">
             <div class="tab-pane active">
                 {{ form_start(form) }}
@@ -27,5 +28,24 @@
                 {{ form_end(form_en) }}
             </div>
         </div>
+=======
+        {{ form_start(form) }}
+            <div class="tab-panes">
+                <div class="tab-pane active">
+                    <p>{{ form_label(form.common_block, "En-tête du site (FR)") }}<br />
+                    {{ form_widget(form.common_block, {
+                        'value': content
+                    }) }}</p>
+                </div>
+                <div class="tab-pane">
+                    <p>{{ form_label(form.common_block_en, "En-tête du site (EN)") }}<br />
+                    {{ form_widget(form.common_block_en, {
+                        'value': content_en
+                    }) }}</p>
+                </div>
+            </div>
+            {{ form_row(form.common_submit) }}
+        {{ form_end(form) }}
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
     </section>
 {% endblock %}

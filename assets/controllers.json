@@ -5,7 +5,11 @@
                 "enabled": true,
                 "fetch": "eager",
                 "autoimport": {
+<<<<<<< HEAD
                     "@symfony/ux-dropzone/src/style.css": true
+=======
+                    "@symfony/ux-dropzone/dist/style.min.css": true
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
                 }
             }
         },
@@ -14,6 +18,15 @@
                 "enabled": true,
                 "fetch": "eager"
             }
+<<<<<<< HEAD
+=======
+        },
+        "@symfony/ux-vue": {
+            "vue": {
+                "enabled": true,
+                "fetch": "eager"
+            }
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         }
     },
     "entrypoints": []

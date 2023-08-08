@@ -22,8 +22,13 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('app-admin', './assets/app-admin.js')
+<<<<<<< HEAD
     .addEntry('googlemaps', './assets/google-maps.js')
     .addEntry('fontawesome', './assets/fontawesome.min.js')
+=======
+    .addEntry('modernizr', './assets/modernizr.js')
+    .addEntry('grapesjs', './node_modules/grapesjs/dist/grapes.min.js')
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -58,13 +63,16 @@ Encore
         config.corejs = 3;
     })
 
-    .enableVueLoader()
+    // uncomment if you use VueJS
+    .enableVueLoader(() => {}, {
+        useJsx: true
+    })
 
     // enables Sass/SCSS support
     .enableSassLoader()
 
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    .enableTypeScriptLoader()
 
     // uncomment if you use React
     //.enableReactPreset()

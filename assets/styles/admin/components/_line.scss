@@ -2,11 +2,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+<<<<<<< HEAD
     padding: .5rem 0;
+=======
+    &:hover{
+        background-color: rgba($color: #000000, $alpha: .05);
+    }
+    &:not(:last-child){
+        border-bottom: .0625rem solid lightgray;
+    }
+    p{
+        margin-bottom: 0;
+    }
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
     ul{
         list-style-type: none;
-        padding-left: 0;
-        margin: 0;
         display: flex;
     }
     li{
@@ -14,8 +24,17 @@
     }
     a{
         color: black;
+        @include ext-tab(black);
+        &[target='_blank']{
+            margin: 0 2rem 0 0rem;
+            &::after{
+                top: 0.4rem;
+            }
+        }
     }
-    &:not(:last-child){
-        border-bottom: .0625rem solid lightgray;
-    }
+}
+
+.subitems{
+    background-color: rgba($color: #000000, $alpha: .05);
+    margin-left: 1rem;
 }

@@ -11,11 +11,18 @@ return [
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
-    Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     FOS\CKEditorBundle\FOSCKEditorBundle::class => ['all' => true],
     Symfony\UX\Dropzone\DropzoneBundle::class => ['all' => true],
+<<<<<<< HEAD
     Artgris\Bundle\FileManagerBundle\ArtgrisFileManagerBundle::class => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
     FM\ElfinderBundle\FMElfinderBundle::class => ['all' => true],
+=======
+    FM\ElfinderBundle\FMElfinderBundle::class => ['all' => true],
+    SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle::class => ['all' => true],
+    SymfonyCasts\Bundle\VerifyEmail\SymfonyCastsVerifyEmailBundle::class => ['all' => true],
+    Symfony\UX\Swup\SwupBundle::class => ['all' => true],
+    Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 ];

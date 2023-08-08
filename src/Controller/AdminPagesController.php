@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\MenuLink;
 use App\Entity\PagesList;
 use App\Services\PagesService;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,10 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminPagesController extends AbstractController
 {
     #[Route('/admin/pages', name: 'admin_pages')]
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(EntityManagerInterface $em): Response
     {
-        $entityManager = $doctrine->getManager();
-        $pagesRepo = $entityManager->getRepository(PagesList::class);
+        $pagesRepo = $em->getRepository(PagesList::class);
         $pages = $pagesRepo->findAll();
 
         return $this->render('pages/index.html.twig', [
@@ -28,15 +29,21 @@ class AdminPagesController extends AbstractController
     ------------------------------------------------------- */
     #[Route('/admin/pages/ajouter', name: 'admin_pages_add')]
     public function add_page(PagesService $pageService, ManagerRegistry $doctrine, Request $request) {
+<<<<<<< HEAD
 
+=======
+        
+        $title = "Ajouter une page";
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         $form = $pageService->PageManager($doctrine, $request, true);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->redirectToRoute('admin_pages');
         }
 
-        return $this->render('pages/add-page.html.twig', [
-            'form' => $form->createView()
+        return $this->render('pages/page-manager.html.twig', [
+            'title' => $title,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -45,43 +52,65 @@ class AdminPagesController extends AbstractController
     #[Route('/admin/pages/modifier/{page_id}', name: 'admin_pages_modify')]
     public function modify_page(PagesService $pageService, ManagerRegistry $doctrine, Request $request, String $page_id) {
 
+<<<<<<< HEAD
         // Récupération du contenu de la page
         $pageContent = file_get_contents("../templates/webpages/pages/fr/" . $page_id . ".html.twig");
         $pageContentEn = file_get_contents("../templates/webpages/pages/en/" . $page_id . ".html.twig");
 
         $form = $pageService->PageManager($doctrine, $request, false, $page_id);
 
+=======
+        // Récupération du lien de la page
+        $entityManager = $doctrine->getManager();
+        $page = $entityManager->getRepository(PagesList::class)->findOneBy(['page_id' => $page_id]);
+        $link = $page->getPageUrl();
+
+        // Mise à jour du contenu
+        $title = "Modifier une page";
+        $form = $pageService->PageManager($doctrine, $request, false, $page_id);   
+
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->redirectToRoute('admin_pages_modify', [
                 'page_id' => $page_id
             ]);
         }
 
-        return $this->render('pages/modify-page.html.twig', [
+        return $this->render('pages/page-manager.html.twig', [
+            'title' => $title,
             'form' => $form->createView(),
+<<<<<<< HEAD
             'pageContent' => $pageContent,
             'pageContentEn' => $pageContentEn,
+=======
+            'link' => $link,
+            'name_fr' => $page->getPageName()[0],
+            'metaTitle_fr' => $page->getPageMetaTitle()[0],
+            'metaDesc_fr' => $page->getPageMetaDesc()[0],
+            'pageContent_fr' => htmlspecialchars_decode($page->getPageContent()[0]),
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         ]);
     }
 
     /* SUPPRIMER UNE PAGE
     ------------------------------------------------------- */
     #[Route('/admin/pages/supprimer/{page_id}', name: 'admin_pages_delete')]
-    public function delete_page(ManagerRegistry $doctrine, String $page_id) {
-        $entityManager = $doctrine->getManager();
-        $page = $entityManager->getRepository(PagesList::class)->findOneBy(['page_id' => $page_id]);
+    public function delete_page(ManagerRegistry $doctrine, string $page_id) {
+        $em = $doctrine->getManager();
+        $page = $em->getRepository(PagesList::class)->findOneBy(['page_id' => $page_id]);
+        $menuLink = $em->getRepository(MenuLink::class)->findBy(['page' => $page]);
 
-        if(!$page) {
-            throw $this->createNotFoundException(
-                "Aucune page n'a été trouvée"
-            );
+        if($page) {
+            if ($menuLink) {
+                foreach($menuLink as $link){
+                    $em->remove($link);
+                }
+            }
+            $em->remove($page);
+            $em->flush();
+        } else {
+            throw $this->createNotFoundException("Aucune page n'a été trouvée");
         }
-
-        $entityManager->remove($page);
-        $entityManager->flush();
-
-        // Suppression du fichier
-        unlink("../templates/webpages/pages/" . $page_id . ".html.twig");
 
         return $this->redirectToRoute('admin_pages');
     }

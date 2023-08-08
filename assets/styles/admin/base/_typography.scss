@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @include fontFace(200, 'Roboto-Thin');
 @include fontFace(200, 'Roboto-ThinItalic', italic);
 
@@ -27,14 +28,21 @@
 
 h1{
     font: 300 2em/1.2em "Roboto";
+=======
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+
+h1{
+    font: 300 2.25em/1.2em $font;
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
     margin: 0 0 3rem;
 }
 
 h2{
-    font: 300 1.75em/1.2em "Roboto";
+    font: 300 1.75em/1.2em $font;
     margin: 0 0 2rem;
 }
 
+<<<<<<< HEAD
 h3{
     font: 300 1.5em/1.2em "Roboto";
     margin: 2rem 0;
@@ -42,4 +50,8 @@ h3{
 
 p, span, a{
     font: 300 1em/1.5em "Roboto";
+=======
+p{
+    margin-top: 0;
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 }

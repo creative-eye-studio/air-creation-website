@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     box-sizing: border-box;
 }
@@ -51,4 +52,18 @@ a{
 
 .home-hidden-text{
     display: none;
+=======
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.scroll-content{
+    @media screen and (min-width: 1200px) {
+        height: 100vh;
+    }
+>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 }
