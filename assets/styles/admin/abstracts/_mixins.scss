@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @mixin fontFace($fontWeight, $fontFamily, $fontStyle: normal) {
     @font-face {
         font-family: $font;
@@ -24,7 +23,10 @@
              url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.woff') format('woff'), /* Pretty Modern Browsers */
              url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.ttf')  format('truetype'), /* Safari, Android, iOS */
              url('../../../../public/uploads/fonts/roboto-condensed/' + $fontFamily + '.svg#svgFontName') format('svg'); /* Legacy iOS */
-=======
+
+    }
+}
+
 @mixin btn-design($baseStyle){
     padding: 1rem 2rem;
     border: .0625rem solid $p-color;
@@ -64,6 +66,5 @@
             border-left: 2px solid $color;
             border-bottom: 2px solid $color;
         }
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
     }
 }
