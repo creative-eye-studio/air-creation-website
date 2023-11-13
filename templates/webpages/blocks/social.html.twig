@@ -1,0 +1,29 @@
+<!-- Community Block -->
+<section class="social">
+    <!-- Dernières actualités -->
+    <div class="posts swiper">
+        <h2>{{ 'lasts_news'|trans }}</h2>
+        <div class="container swiper-wrapper">{% for post in posts %}
+            <article class="post-block swiper-slide">
+                <div class="image">
+                    <a href="{{ path('post_page', {post_slug: post.posturl}) }}">
+                        <img alt="{{ post.postname }}" src="/uploads/images/posts/{{ post.photofilename }}" />
+                    </a>
+                </div>
+                <h3 class="text">
+                    <a href="{{ path('post_page', {post_slug: post.posturl}) }}">{{ post.postmetatitle }}<br />
+                        Posté le {{ post.createdat|format_date('short', locale='fr') }}
+                    </a>
+                </h3>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Instagram -->
+    <div class="instagram-container">
+        <h2>{{ 'follow_us'|trans }} #aircreationtrike</h2>
+        {# <script src=https://apps.elfsight.com/p/platform.js defer></script>
+        <div class="elfsight-app-33387d6f-0c42-46c3-8c83-6ac8c19a7c44"></div> #}
+    </div>
+</section>

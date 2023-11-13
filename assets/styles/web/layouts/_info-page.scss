@@ -31,7 +31,11 @@
         padding: $marges-m
     }
     .image{
-        @include coverImage('4-3');
+        // @include coverImage('4-3');
+        img{
+            width: 100%;
+            height: auto;
+        }
         svg{
             position: absolute;
             top: 50%;

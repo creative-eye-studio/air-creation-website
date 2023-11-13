@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="PqqbLcG" resname="contact_btn">
+        <source>contact_btn</source>
+        <target>Nous contacter</target>
+      </trans-unit>
+      <trans-unit id="0_aslz1" resname="lasts_news">
+        <source>lasts_news</source>
+        <target>Dernières actualités</target>
+      </trans-unit>
+      <trans-unit id="mdMiYXx" resname="follow_us">
+        <source>follow_us</source>
+        <target>Identifiez nous</target>
+      </trans-unit>
+      <trans-unit id="6dL9KSN" resname="doctitle">
+        <source>doctitle</source>
+        <target>Toute la documentation de nos produits</target>
+      </trans-unit>
+      <trans-unit id="xI3QZ2c" resname="doc_filter_1">
+        <source>doc_filter_1</source>
+        <target>Toute la documentation</target>
+      </trans-unit>
+      <trans-unit id="RkG.F7Q" resname="doc_filter_2">
+        <source>doc_filter_2</source>
+        <target>Bulletin d'alerte</target>
+      </trans-unit>
+      <trans-unit id="oHabmA8" resname="doc_filter_3">
+        <source>doc_filter_3</source>
+        <target>Notre catalogue</target>
+      </trans-unit>
+      <trans-unit id="4kkajyV" resname="doc_filter_4">
+        <source>doc_filter_4</source>
+        <target>Nos ailes (catalog)</target>
+      </trans-unit>
+      <trans-unit id="7tQM9vO" resname="doc_filter_5">
+        <source>doc_filter_5</source>
+        <target>Nos tricycles (catalog)</target>
+      </trans-unit>
+      <trans-unit id="w8HTNrF" resname="doc_filter_6">
+        <source>doc_filter_6</source>
+        <target>Nos anciens modèles</target>
+      </trans-unit>
+      <trans-unit id="I_C6nEj" resname="doc_filter_7">
+        <source>doc_filter_7</source>
+        <target>Nos ailes (old models)</target>
+      </trans-unit>
+      <trans-unit id="gYUqlXG" resname="doc_filter_8">
+        <source>doc_filter_8</source>
+        <target>Nos tricycles (old models)</target>
+      </trans-unit>
+      <trans-unit id="PVH5GUx" resname="doc_title">
+        <source>doc_title</source>
+        <target>Toute la documentation de nos produits</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

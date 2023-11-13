@@ -1,0 +1,24 @@
+<section class="posts-container">
+    <h1>Actualités</h1>
+    <div class="posts-list">
+    {% if posts %}
+        {% for post in posts %}
+            <article class="post-block">
+                <div class="image">
+                    <a href="/fr/blog/{{ post.posturl }}">
+                        <img alt="{{ post.postname }}" src="../uploads/images/posts/{{ post.photofilename }}" />
+                    </a>
+                </div>
+                <h3 class="text">
+                    <a href="/fr/blog/{{ post.posturl }}">
+                        {{ post.postmetatitle }}<br />
+                        Posté le {{ post.createdat|format_date('short', locale='fr') }}
+                    </a>
+                </h3>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p>Il n'y a pas encore d'articles</p>
+    {% endif %}
+    </div>
+</section>
