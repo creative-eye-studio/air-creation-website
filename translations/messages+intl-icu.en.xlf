@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="PVH5GUx" resname="doc_title">
+        <source>doc_title</source>
+        <target>Every documentation of our products</target>
+      </trans-unit>
+      <trans-unit id="LGjBquW" resname="input.default">
+        <source>input.default</source>
+        <target>__input.default</target>
+      </trans-unit>
+      <trans-unit id="K_.1t1m" resname="button.save">
+        <source>button.save</source>
+        <target>__button.save</target>
+      </trans-unit>
+      <trans-unit id="JkGAZ_V" resname="folder.add.success">
+        <source>folder.add.success</source>
+        <target>__folder.add.success</target>
+      </trans-unit>
+      <trans-unit id="KPBc2r2" resname="folder.add.danger">
+        <source>folder.add.danger</source>
+        <target>__folder.add.danger</target>
+      </trans-unit>
+      <trans-unit id="7VDw_TL" resname="file.renamed.unauthorized">
+        <source>file.renamed.unauthorized</source>
+        <target>__file.renamed.unauthorized</target>
+      </trans-unit>
+      <trans-unit id="Vvy.pNV" resname="file.renamed.success">
+        <source>file.renamed.success</source>
+        <target>__file.renamed.success</target>
+      </trans-unit>
+      <trans-unit id="J.mT97." resname="file.renamed.danger">
+        <source>file.renamed.danger</source>
+        <target>__file.renamed.danger</target>
+      </trans-unit>
+      <trans-unit id="HDlTUtf" resname="file.renamed.nochanged">
+        <source>file.renamed.nochanged</source>
+        <target>__file.renamed.nochanged</target>
+      </trans-unit>
+      <trans-unit id="0_aslz1" resname="lasts_news">
+        <source>lasts_news</source>
+        <target>Lasts news</target>
+      </trans-unit>
+      <trans-unit id="mdMiYXx" resname="follow_us">
+        <source>follow_us</source>
+        <target>Follow us</target>
+      </trans-unit>
+      <trans-unit id="PqqbLcG" resname="contact_btn">
+        <source>contact_btn</source>
+        <target>Contact us</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

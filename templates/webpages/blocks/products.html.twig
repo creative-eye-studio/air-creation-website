@@ -1,0 +1,32 @@
+<!-- Fonctions filtrage -->
+<div class="filters">
+    {{ form_start(productFilterForm, {'attr': {'id': 'product-filter-form'}}) }}
+        <div class="input-block">{{ form_row(productFilterForm.filter_capacity) }}</div>
+        <div class="input-block">{{ form_row(productFilterForm.filter_wing) }}</div>
+        <div class="input-block">{{ form_row(productFilterForm.filter_tricycle) }}</div>
+    {{ form_end(productFilterForm) }}
+</div>
+
+<!-- Liste des produits -->
+<section class="products-list">
+    <div class="products-list-container">
+        {% for product in products %} 
+            {% if product.productlang == 'fr' %}
+                <article class="product-block">
+                    <div class="image"><a href="{{ path('product_pages', {product_slug: product.productslug}) }}"><img alt="{{ product.productname }} Modèle 3D" src="../uploads/images/products/thumbs/{{ product.productsecondthumb }}" /> <img alt="{{ product.productname }}" class="thumb-hover" src="../uploads/images/products/thumbs/{{ product.productmainthumb }}" /> </a></div>
+                    <div class="logos"><a href="{{ path('product_pages', {product_slug: product.productslug}) }}"><img src="../../uploads/images/products/logos/{{ product.productlogomain }}" style="text-align: center;" /> </a></div>
+                    <div class="logos" style="text-align: center;"><span class="and-icon"><strong><em>&amp;</em></strong></span></div>
+                    <div class="logos"><a href="{{ path('product_pages', {product_slug: product.productslug}) }}"><img src="../../uploads/images/products/logos/{{ product.productlogosecond }}" style="text-align: center;" /> </a></div>
+                </article>
+            {% endif %} 
+        {% endfor %}
+    </div>
+    <!--<div style="padding: 6.25rem 0;">
+        <p class="center">
+        Pour en savoir plus sur les spécificités de nos ULM, nous vous invitons à consulter notre page <strong>"Options"</strong>
+        </p>
+        <p class="center">
+        <a class="btn" href="{{ path('web_page', {page_slug: 'nos-options'}) }}">Voir les options de nos produits</a>
+        </p>
+    </div>-->
+</section>

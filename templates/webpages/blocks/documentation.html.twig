@@ -1,0 +1,28 @@
+<!-- Fonctions filtrage -->
+<div class="filters doc-form">
+{{ form_start(docFilterForm, {'attr': {'id': 'product-filter-form'}}) }}
+    <div class="input-block">{{ form_row(docFilterForm.product_type) }}</div>
+{{ form_end(docFilterForm) }}
+</div>
+
+<section class="doc-container">
+    <h2 class="center">{{ 'doc_title'|trans }}</h2>
+    <div class="products-docs-list">
+        {% for docCategory in docCategories %}
+        <div class="cat-block">
+            <h3>{{ docCategory.productname }}</h3>
+            <ul>
+                {% if docCategory.docfiles %}
+                    {% for document in docCategory.docfiles %} 
+                        {% if document.doclocal == lang %}
+                            <li><a download="" href="../uploads/documentation/{{ document.docname }}">{{ document.docname }}</a></li>
+                        {% endif %} 
+                    {% endfor %}
+                {% else %}
+                    <p>Les documents ne sont pas encore disponibles</p>  
+                {% endif %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>
