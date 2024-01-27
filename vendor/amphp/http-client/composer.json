@@ -33,12 +33,12 @@
         "amphp/http": "^1.6",
         "amphp/socket": "^1",
         "amphp/sync": "^1.3",
-        "league/uri": "^6",
-        "psr/http-message": "^1"
+        "league/uri": "^6 | ^7",
+        "psr/http-message": "^1 | ^2"
     },
     "require-dev": {
         "ext-json": "*",
-        "amphp/file": "^1 || ^0.3 || ^0.2",
+        "amphp/file": "^0.2 || ^0.3 || ^1 || ^2",
         "amphp/phpunit-util": "^1.1",
         "amphp/php-cs-fixer-config": "dev-master",
         "phpunit/phpunit": "^7 || ^8 || ^9",
@@ -46,7 +46,7 @@
         "kelunik/link-header-rfc5988": "^1.0",
         "clue/socks-react": "^1.0",
         "amphp/react-adapter": "^2.1",
-        "vimeo/psalm": "^3.9@dev",
+        "vimeo/psalm": "^5",
         "laminas/laminas-diactoros": "^2.3"
     },
     "suggest": {
@@ -68,7 +68,7 @@
         }
     },
     "conflict": {
-        "amphp/file": "<0.2"
+        "amphp/file": "<0.2 || >=3"
     },
     "scripts": {
         "check": [

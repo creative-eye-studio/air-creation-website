@@ -29,9 +29,10 @@
         "php": ">=7.1"
     },
     "require-dev": {
-        "amphp/php-cs-fixer-config": "dev-master",
+        "amphp/php-cs-fixer-config": "^2",
         "http2jp/hpack-test-case": "^1",
-        "phpunit/phpunit": "^6 | ^7"
+        "phpunit/phpunit": "^7 | ^8 | ^9",
+        "nikic/php-fuzzer": "^0.0.10"
     },
     "autoload": {
         "psr-4": {

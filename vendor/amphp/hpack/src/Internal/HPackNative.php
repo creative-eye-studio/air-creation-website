@@ -1,10 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Amp\Http\Internal;
 
+use Amp\Http\HPack;
 use Amp\Http\HPackException;
 
-/** @internal */
+/**
+ * @internal
+ * @psalm-import-type HeaderArray from HPack
+ */
 final class HPackNative
 {
     private const HUFFMAN_CODE = [
@@ -179,8 +183,8 @@ final class HPackNative
         for ($off = 7; $off > 0; $off--) {
             foreach ($terminals[$off] as [$key, $next]) {
                 foreach ($encodingAccess[$next] as $k => $v) {
-                    if (\strlen($k) !== 1) {
-                        $encodingAccess[$next][$memoize[$k] ?? $memoize[$k] = \chr(\bindec($k))] = $v;
+                    if (\strlen((string) $k) !== 1) {
+                        $encodingAccess[$next][$memoize[$k] ?? $memoize[$k] = \chr(\bindec((string) $k))] = $v;
                         unset($encodingAccess[$next][$k]);
                     }
                 }
@@ -195,7 +199,6 @@ final class HPackNative
     }
 
     /**
-     * @param string $input
      *
      * @return string|null Returns null if decoding fails.
      */
@@ -369,7 +372,7 @@ final class HPackNative
         ["link", ""],
         ["location", ""],
         ["max-forwards", ""],
-        ["proxy-authentication", ""],
+        ["proxy-authenticate", ""],
         ["proxy-authorization", ""],
         ["range", ""],
         ["referer", ""],
@@ -402,6 +405,10 @@ final class HPackNative
 
             $c = \ord($input[$off++]);
             $int += ($c & 0x7f) << (++$i * 7);
+
+            if ($int > 2147483647) {
+                throw new HPackException('Invalid integer, too large');
+            }
         }
 
         return $int;
@@ -419,7 +426,6 @@ final class HPackNative
      * Sets the upper limit on table size. Dynamic table updates requesting a size above this size will result in a
      * decoding error (i.e., returning null from decode()).
      *
-     * @param int $maxSize
      */
     public function setTableSizeLimit(int $maxSize) /* : void */
     {
@@ -429,7 +435,6 @@ final class HPackNative
     /**
      * Resizes the table to the given size, removing old entries as per section 4.4 if necessary.
      *
-     * @param int|null $size
      */
     public function resizeTable(int $size = null) /* : void */
     {
@@ -609,17 +614,16 @@ final class HPackNative
     private static function encodeDynamicInteger(int $int): string
     {
         $out = "";
-        for ($i = 0; ($int >> $i) > 0x80; $i += 7) {
+        for ($i = 0; ($int >> $i) >= 0x80; $i += 7) {
             $out .= \chr(0x80 | (($int >> $i) & 0x7f));
         }
         return $out . \chr($int >> $i);
     }
 
     /**
-     * @param string[][] $headers
+     * @param HeaderArray $headers
      * @param int $compressionThreshold Compress strings whose length is at least the number of bytes given.
      *
-     * @return string
      */
     public function encode(array $headers, int $compressionThreshold = self::DEFAULT_COMPRESSION_THRESHOLD): string
     {
@@ -627,6 +631,9 @@ final class HPackNative
         $output = "";
 
         foreach ($headers as [$name, $value]) {
+            $name = (string) $name;
+            $value = (string) $value;
+
             if (isset(self::$indexMap[$name])) {
                 $index = self::$indexMap[$name];
                 if ($index < 0x10) {

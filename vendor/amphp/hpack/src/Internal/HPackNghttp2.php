@@ -1,15 +1,15 @@
-<?php
-
-/** @noinspection PhpUndefinedMethodInspection */
-
-/** @noinspection PhpUndefinedClassInspection */
+<?php declare(strict_types=1);
 
 namespace Amp\Http\Internal;
 
+use Amp\Http\HPack;
 use Amp\Http\HPackException;
 use FFI;
 
-/** @internal */
+/**
+ * @internal
+ * @psalm-import-type HeaderArray from HPack
+ */
 final class HPackNghttp2
 {
     private const FLAG_NO_INDEX = 0x01;
@@ -69,10 +69,21 @@ final class HPackNghttp2
 
         $header = \file_get_contents(__DIR__ . '/amp-hpack.h');
 
-        try {
-            self::$ffi = FFI::cdef($header, 'libnghttp2.so');
-        } catch (\Throwable $exception) {
-            self::$ffi = FFI::cdef($header, 'libnghttp2.dylib');
+        $files = ['libnghttp2.so.14', 'libnghttp2.so', 'libnghttp2.dylib', '/opt/homebrew/lib/libnghttp2.dylib'];
+        $error = null;
+
+        foreach ($files as $file) {
+            try {
+                self::$ffi = FFI::cdef($header, $file);
+                $error = null;
+                break;
+            } catch (\Throwable $exception) {
+                $error = $error ?? $exception;
+            }
+        }
+
+        if ($error) {
+            throw $error;
         }
 
         self::$deflatePtrType = self::$ffi->type('nghttp2_hd_deflater*');
@@ -90,11 +101,14 @@ final class HPackNghttp2
         self::$decodeFlagsPtr = FFI::addr(self::$decodeFlags);
     }
 
-    private static function createBufferFromString(string $value)
+    private static function createBufferFromString(string $value): ?FFI\CData
     {
         $length = \strlen($value);
+        if (!$length) {
+            return null;
+        }
 
-        $buffer = FFI::new(FFI::arrayType(self::$uint8Type, [$length]));
+        $buffer = self::$ffi->new(FFI::arrayType(self::$uint8Type, [$length]));
         FFI::memcpy($buffer, $value, $length);
 
         return $buffer;
@@ -126,7 +140,7 @@ final class HPackNghttp2
 
     /**
      * @param string $input Encoded headers.
-     * @param int    $maxSize Maximum length of the decoded header string.
+     * @param int $maxSize Maximum length of the decoded header string.
      *
      * @return string[][]|null Returns null if decoding fails or if $maxSize is exceeded.
      */
@@ -143,9 +157,12 @@ final class HPackNghttp2
 
         $bufferLength = \strlen($input);
         $buffer = self::createBufferFromString($input);
+        if ($buffer === null) {
+            return [];
+        }
 
         $offset = 0;
-        $bufferPtr = FFI::cast(self::$uint8PtrType, $buffer);
+        $bufferPtr = $ffi->cast(self::$uint8PtrType, $buffer);
 
         $headers = [];
 
@@ -193,7 +210,7 @@ final class HPackNghttp2
     }
 
     /**
-     * @param string[][] $headers
+     * @param HeaderArray $headers
      *
      * @return string Encoded headers.
      */
@@ -212,15 +229,18 @@ final class HPackNghttp2
         foreach ($headers as $index => [$name, $value]) {
             \assert($index === $current);
 
+            $name = (string) $name;
+            $value = (string) $value;
+
             $pair = $pairs[$current];
 
             $nameBuffer = self::createBufferFromString($name);
             $valueBuffer = self::createBufferFromString($value);
 
-            $pair->name = FFI::cast(self::$uint8PtrType, $nameBuffer);
+            $pair->name = $ffi->cast(self::$uint8PtrType, $nameBuffer);
             $pair->namelen = \strlen($name);
 
-            $pair->value = FFI::cast(self::$uint8PtrType, $valueBuffer);
+            $pair->value = $ffi->cast(self::$uint8PtrType, $valueBuffer);
             $pair->valuelen = \strlen($value);
 
             $pair->flags = self::SENSITIVE_HEADERS[$name] ?? self::FLAG_NO_COPY;
@@ -232,7 +252,7 @@ final class HPackNghttp2
         }
 
         $bufferLength = $ffi->nghttp2_hd_deflate_bound($this->deflatePtr, $pairs, $headerCount);
-        $buffer = FFI::new(FFI::arrayType(self::$uint8Type, [$bufferLength]));
+        $buffer = $ffi->new(FFI::arrayType(self::$uint8Type, [$bufferLength]));
 
         $bufferLength = $ffi->nghttp2_hd_deflate_hd($this->deflatePtr, $buffer, $bufferLength, $pairs, $headerCount);
 

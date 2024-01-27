@@ -38,7 +38,13 @@ final class FollowRedirects implements ApplicationInterceptor
         }
 
         if ($locationUri->getScheme() !== '' || $locationUri->getHost() !== '') {
-            return $locationUri->withPath(self::removeDotSegments($locationUri->getPath()));
+            $resultUri = $locationUri->withPath(self::removeDotSegments($locationUri->getPath()));
+
+            if ($locationUri->getScheme() === '') {
+                $resultUri = $resultUri->withScheme($baseUri->getScheme());
+            }
+
+            return $resultUri;
         }
 
         $baseUri = $baseUri->withQuery($locationUri->getQuery());
@@ -262,7 +268,10 @@ final class FollowRedirects implements ApplicationInterceptor
         }
 
         try {
-            $locationUri = Uri\Http::createFromString($response->getHeader('location'));
+            $location = $response->getHeader('location');
+            \assert($location !== null);
+
+            $locationUri = Uri\Http::createFromString($location);
         } catch (\Exception $e) {
             return null;
         }
