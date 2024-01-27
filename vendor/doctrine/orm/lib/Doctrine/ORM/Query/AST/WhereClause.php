@@ -11,17 +11,17 @@ namespace Doctrine\ORM\Query\AST;
  */
 class WhereClause extends Node
 {
-    /** @var ConditionalExpression|ConditionalTerm */
+    /** @var ConditionalExpression|Phase2OptimizableConditional */
     public $conditionalExpression;
 
-    /** @param ConditionalExpression $conditionalExpression */
+    /** @param ConditionalExpression|Phase2OptimizableConditional $conditionalExpression */
     public function __construct($conditionalExpression)
     {
         $this->conditionalExpression = $conditionalExpression;
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function dispatch($sqlWalker)
     {

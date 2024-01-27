@@ -3,11 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PagesListRepository;
-<<<<<<< HEAD
-=======
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -30,24 +27,6 @@ class PagesList
 
     #[ORM\Column]
     private ?bool $blocked_page = null;
-<<<<<<< HEAD
-
-    #[ORM\Column]
-    private ?int $page_model = null;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $page_meta_title;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $page_meta_desc = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $page_meta_title_en = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $page_meta_desc_en = null;
-=======
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 
     #[ORM\Column]
     private ?bool $status = null;
@@ -110,21 +89,6 @@ class PagesList
         return $this;
     }
 
-<<<<<<< HEAD
-    public function getPageMetaTitle(): ?string
-    {
-        return $this->page_meta_title;
-    }
-
-    public function setPageMetaTitle(string $page_meta_title): self
-    {
-        $this->page_meta_title = $page_meta_title;
-
-        return $this;
-    }
-
-=======
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
     public function isBlockedPage(): ?bool
     {
         return $this->blocked_page;
@@ -137,9 +101,6 @@ class PagesList
         return $this;
     }
 
-<<<<<<< HEAD
-    public function getPageMetaDesc(): ?string
-=======
     public function isStatus(): ?bool
     {
         return $this->status;
@@ -177,32 +138,17 @@ class PagesList
     }
 
     public function getPageMetaDesc(): array
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
     {
         return $this->page_meta_desc;
     }
 
-<<<<<<< HEAD
-    public function setPageMetaDesc(?string $page_meta_desc): self
-=======
     public function setPageMetaDesc(array $page_meta_desc): static
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
     {
         $this->page_meta_desc = $page_meta_desc;
 
         return $this;
     }
 
-<<<<<<< HEAD
-    public function getPageModel(): ?int
-    {
-        return $this->page_model;
-    }
-
-    public function setPageModel(int $page_model): self
-    {
-        $this->page_model = $page_model;
-=======
     /**
      * @return Collection<int, MenuLink>
      */
@@ -217,33 +163,10 @@ class PagesList
             $this->menuLinks->add($menuLink);
             $menuLink->setPage($this);
         }
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 
         return $this;
     }
 
-<<<<<<< HEAD
-    public function getPageMetaTitleEn(): ?string
-    {
-        return $this->page_meta_title_en;
-    }
-
-    public function setPageMetaTitleEn(?string $page_meta_title_en): self
-    {
-        $this->page_meta_title_en = $page_meta_title_en;
-
-        return $this;
-    }
-
-    public function getPageMetaDescEn(): ?string
-    {
-        return $this->page_meta_desc_en;
-    }
-
-    public function setPageMetaDescEn(?string $page_meta_desc_en): self
-    {
-        $this->page_meta_desc_en = $page_meta_desc_en;
-=======
     public function removeMenuLink(MenuLink $menuLink): static
     {
         if ($this->menuLinks->removeElement($menuLink)) {
@@ -252,7 +175,6 @@ class PagesList
                 $menuLink->setPage(null);
             }
         }
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 
         return $this;
     }

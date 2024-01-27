@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\ORM\Tools\Console\Command;
 
+use Doctrine\ORM\Tools\Console\CommandCompatibility;
 use Doctrine\ORM\Tools\Console\MetadataFilter;
 use InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -26,9 +27,9 @@ use function sprintf;
  */
 class GenerateProxiesCommand extends AbstractEntityManagerCommand
 {
-    /**
-     * {@inheritdoc}
-     */
+    use CommandCompatibility;
+
+    /** @return void */
     protected function configure()
     {
         $this->setName('orm:generate-proxies')
@@ -40,12 +41,7 @@ class GenerateProxiesCommand extends AbstractEntityManagerCommand
              ->setHelp('Generates proxy classes for entity classes.');
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return int
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    private function doExecute(InputInterface $input, OutputInterface $output): int
     {
         $ui = (new SymfonyStyle($input, $output))->getErrorStyle();
 

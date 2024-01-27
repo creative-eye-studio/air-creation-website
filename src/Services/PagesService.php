@@ -69,25 +69,6 @@ class PagesService extends AbstractController{
             // Envoi des données vers la BDD
             $entityManager->persist($page);
             $entityManager->flush();
-<<<<<<< HEAD
-
-            // Création / Modification du fichier TWIG
-            if ($newPage) {
-                $file = fopen("../templates/webpages/pages/fr/" . $slugName . '.html.twig', 'w');
-                $file_en = fopen("../templates/webpages/pages/en/" . $slugName . '.html.twig', 'w');
-            } else {
-                $pageFileName = $page->getPageId() . '.html.twig';
-                unlink("../templates/webpages/pages/fr/" . $pageFileName);
-                unlink("../templates/webpages/pages/en/" . $pageFileName);
-                $file = fopen("../templates/webpages/pages/fr/" . $pageFileName, 'w');
-                $file_en = fopen("../templates/webpages/pages/en/" . $pageFileName, 'w');
-            }
-            fwrite($file, $form->get('page_content')->getData());
-            fclose($file);
-            fwrite($file_en, $form->get('page_content_en')->getData());
-            fclose($file_en);
-=======
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         }
 
         return $form;

@@ -74,7 +74,7 @@ class FormLoginAuthenticator extends AbstractLoginFormAuthenticator
     {
         return ($this->options['post_only'] ? $request->isMethod('POST') : true)
             && $this->httpUtils->checkRequestPath($request, $this->options['check_path'])
-            && ($this->options['form_only'] ? 'form' === (method_exists(Request::class, 'getContentTypeFormat') ? $request->getContentTypeFormat() : $request->getContentType()) : true);
+            && ($this->options['form_only'] ? 'form' === $request->getContentTypeFormat() : true);
     }
 
     public function authenticate(Request $request): Passport
@@ -130,6 +130,10 @@ class FormLoginAuthenticator extends AbstractLoginFormAuthenticator
         $credentials['username'] = trim($credentials['username']);
 
         $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $credentials['username']);
+
+        if (!\is_string($credentials['password']) && (!\is_object($credentials['password']) || !method_exists($credentials['password'], '__toString'))) {
+            throw new BadRequestHttpException(sprintf('The key "%s" must be a string, "%s" given.', $this->options['password_parameter'], \gettype($credentials['password'])));
+        }
 
         return $credentials;
     }

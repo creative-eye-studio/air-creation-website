@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Doctrine\ORM\Tools\Console\Command;
 
+use Doctrine\ORM\Tools\Console\CommandCompatibility;
 use Doctrine\ORM\Tools\Console\MetadataFilter;
 use Doctrine\ORM\Tools\EntityRepositoryGenerator;
 use InvalidArgumentException;
@@ -27,9 +28,9 @@ use function sprintf;
  */
 class GenerateRepositoriesCommand extends AbstractEntityManagerCommand
 {
-    /**
-     * {@inheritdoc}
-     */
+    use CommandCompatibility;
+
+    /** @return void */
     protected function configure()
     {
         $this->setName('orm:generate-repositories')
@@ -41,12 +42,7 @@ class GenerateRepositoriesCommand extends AbstractEntityManagerCommand
              ->setHelp('Generate repository classes from your mapping information.');
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return int
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    private function doExecute(InputInterface $input, OutputInterface $output): int
     {
         $ui = (new SymfonyStyle($input, $output))->getErrorStyle();
         $ui->warning('Command ' . $this->getName() . ' is deprecated and will be removed in Doctrine ORM 3.0.');

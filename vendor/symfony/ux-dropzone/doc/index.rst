@@ -10,7 +10,7 @@ having to browse their computer for a file.
 Installation
 ------------
 
-Before you start, make sure you have `Symfony UX configured in your app`_.
+Before you start, make sure you have `StimulusBundle configured in your app`_.
 
 Then, install this bundle using Composer and Symfony Flex:
 
@@ -18,16 +18,17 @@ Then, install this bundle using Composer and Symfony Flex:
 
     $ composer require symfony/ux-dropzone
 
-    # Don't forget to install the JavaScript dependencies as well and compile
+If you're using WebpackEncore, install your assets and restart Encore (not
+needed if you're using AssetMapper):
+
+.. code-block:: terminal
+
     $ npm install --force
     $ npm run watch
 
     # or use yarn
     $ yarn install --force
     $ yarn watch
-
-Also make sure you have at least version 3.0 of
-`@symfony/stimulus-bridge`_ in your ``package.json`` file.
 
 Usage
 -----
@@ -80,6 +81,7 @@ switching the ``@symfony/ux-dropzone/src/style.css`` autoimport to
     }
 
 .. note::
+
    *Note*: you should put the value to ``false`` and not remove the line
    so that Symfony Flex won’t try to add the line again in the future.
 
@@ -154,5 +156,4 @@ the Symfony framework:
 https://symfony.com/doc/current/contributing/code/bc.html
 
 .. _`the Symfony UX initiative`: https://symfony.com/ux
-.. _`@symfony/stimulus-bridge`: https://github.com/symfony/stimulus-bridge
-.. _`Symfony UX configured in your app`: https://symfony.com/doc/current/frontend/ux.html
+.. _StimulusBundle configured in your app: https://symfony.com/bundles/StimulusBundle/current/index.html

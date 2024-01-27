@@ -14,6 +14,7 @@ namespace Symfony\Bundle\WebProfilerBundle\Twig;
 use Symfony\Component\VarDumper\Cloner\Data;
 use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 use Twig\Environment;
+use Twig\Extension\EscaperExtension;
 use Twig\Extension\ProfilerExtension;
 use Twig\Profiler\Profile;
 use Twig\TwigFunction;
@@ -68,7 +69,7 @@ class WebProfilerExtension extends ProfilerExtension
         ];
     }
 
-    public function dumpData(Environment $env, Data $data, int $maxDepth = 0)
+    public function dumpData(Environment $env, Data $data, int $maxDepth = 0): string
     {
         $this->dumper->setCharset($env->getCharset());
         $this->dumper->dump($data, null, [
@@ -82,14 +83,14 @@ class WebProfilerExtension extends ProfilerExtension
         return str_replace("\n</pre", '</pre', rtrim($dump));
     }
 
-    public function dumpLog(Environment $env, string $message, Data $context = null)
+    public function dumpLog(Environment $env, string $message, Data $context = null): string
     {
-        $message = twig_escape_filter($env, $message);
+        $message = self::escape($env, $message);
         $message = preg_replace('/&quot;(.*?)&quot;/', '&quot;<b>$1</b>&quot;', $message);
 
         $replacements = [];
         foreach ($context ?? [] as $k => $v) {
-            $k = '{'.twig_escape_filter($env, $k).'}';
+            $k = '{'.self::escape($env, $k).'}';
             if (str_contains($message, $k)) {
                 $replacements[$k] = $v;
             }
@@ -106,8 +107,18 @@ class WebProfilerExtension extends ProfilerExtension
         return '<span class="dump-inline">'.strtr($message, $replacements).'</span>';
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'profiler';
+    }
+
+    private static function escape(Environment $env, string $s): string
+    {
+        if (method_exists(EscaperExtension::class, 'escape')) {
+            return EscaperExtension::escape($env, $s);
+        }
+
+        // to be removed when support for Twig 3 is dropped
+        return twig_escape_filter($env, $s);
     }
 }

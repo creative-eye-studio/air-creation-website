@@ -11,8 +11,10 @@ use function ksort;
 
 /**
  * Represents a native SQL query.
+ *
+ * @final
  */
-final class NativeQuery extends AbstractQuery
+class NativeQuery extends AbstractQuery
 {
     /** @var string */
     private $sql;
@@ -40,7 +42,7 @@ final class NativeQuery extends AbstractQuery
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function _doExecute()
     {

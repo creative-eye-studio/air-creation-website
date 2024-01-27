@@ -4,23 +4,20 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-<<<<<<< HEAD
-   fly_gallery_directory: '%kernel.project_dir%/public/uploads/images/products/carousels/fly'
-   lifestyle_gallery_directory: '%kernel.project_dir%/public/uploads/images/products/carousels/lifestyle'
-   workshop_gallery_directory: '%kernel.project_dir%/public/uploads/images/products/carousels/workshop'
-   dims_directory: '%kernel.project_dir%/public/uploads/images/products/dimensions'
-   logos_directory: '%kernel.project_dir%/public/uploads/images/products/logos'
-   motors_directory: '%kernel.project_dir%/public/uploads/images/products/motors'
-   thumbs_directory: '%kernel.project_dir%/public/uploads/images/products/thumbs'
-   posts_directory: '%kernel.project_dir%/public/uploads/images/posts'
-   docs_directory: '%kernel.project_dir%/public/uploads/documentation'
-   options_directory: '%kernel.project_dir%/public/uploads/images/options'
-   mailjet_public: '8d5a09810a8c3e6118b42e219de4f54e'
-   mailjet_private: 'b44d9b538724e0fa9f74a26ffdacd070'
-=======
+    fly_gallery_directory: '%kernel.project_dir%/public/uploads/images/products/carousels/fly'
+    lifestyle_gallery_directory: '%kernel.project_dir%/public/uploads/images/products/carousels/lifestyle'
+    workshop_gallery_directory: '%kernel.project_dir%/public/uploads/images/products/carousels/workshop'
+    dims_directory: '%kernel.project_dir%/public/uploads/images/products/dimensions'
+    logos_directory: '%kernel.project_dir%/public/uploads/images/products/logos'
+    motors_directory: '%kernel.project_dir%/public/uploads/images/products/motors'
+    thumbs_directory: '%kernel.project_dir%/public/uploads/images/products/thumbs'
+    posts_directory: '%kernel.project_dir%/public/uploads/images/posts'
+    docs_directory: '%kernel.project_dir%/public/uploads/documentation'
+    options_directory: '%kernel.project_dir%/public/uploads/images/options'
+    mailjet_public: '8d5a09810a8c3e6118b42e219de4f54e'
+    mailjet_private: 'b44d9b538724e0fa9f74a26ffdacd070'
     app.jwtsecret: '%env(JWT_SECRET)%'
     posts_img_directory: '%kernel.project_dir%/public/uploads/images/posts'
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 
 services:
     # default configuration for services in *this* file

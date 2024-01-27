@@ -12,7 +12,7 @@ bringing the complexity of a React/Vue/Angular application.
 Installation
 ------------
 
-Before you start, make sure you have `Symfony UX configured in your app`_.
+Before you start, make sure you have `StimulusBundle configured in your app`_.
 
 Then install the bundle using Composer and Symfony Flex:
 
@@ -20,16 +20,17 @@ Then install the bundle using Composer and Symfony Flex:
 
     $ composer require symfony/ux-swup
 
-    # Don't forget to install the JavaScript dependencies as well and compile
+If you're using WebpackEncore, install your assets and restart Encore (not
+needed if you're using AssetMapper):
+
+.. code-block:: terminal
+
     $ npm install --force
     $ npm run watch
 
     # or use yarn
     $ yarn install --force
     $ yarn watch
-
-Also make sure you have at least version 3.0 of
-`@symfony/stimulus-bridge`_ in your ``package.json`` file.
 
 Usage
 -----
@@ -43,7 +44,7 @@ this swap, it is therefore able to animate a transition between pages.
 The main usage of Symfony UX Swup is to use its Stimulus controller to
 initialize Swup:
 
-.. code-block:: twig
+.. code-block:: html+twig
 
     <html lang="en">
         <head>
@@ -64,7 +65,7 @@ initialize Swup:
 
 .. note::
 
-    The ``stimulus_controller()`` function comes from `WebpackEncoreBundle v1.10`_.
+    The ``stimulus_controller()`` function comes from `StimulusBundle`_.
 
 That's it! Swup now reacts to a link click and run the default fade-in
 transition.
@@ -74,7 +75,7 @@ it will only swap the content of this container from one page to
 another. If you wish, you can configure additional containers, for
 instance to have a navigation menu that updates when changing pages:
 
-.. code-block:: twig
+.. code-block:: html+twig
 
     <html lang="en">
         <head>
@@ -105,7 +106,7 @@ You can configure several other options using values on the controller.
 Most of these correspond to `Swup Options`_, but there are a few extra
 added:
 
-.. code-block:: twig
+.. code-block:: html+twig
 
     <html lang="en">
         <head>
@@ -143,6 +144,7 @@ Stimulus controller:
     // assets/controllers/myswup_controller.js
 
     import { Controller } from '@hotwired/stimulus';
+    import SwupProgressPlugin from '@swup/progress-plugin';
 
     export default class extends Controller {
         connect() {
@@ -159,6 +161,7 @@ Stimulus controller:
         _onPreConnect(event) {
             // Swup has not been initialized - options can be changed
             console.log(event.detail.options); // Options that will be used to initialize Swup
+            event.detail.options.plugins.push(new SwupProgressPlugin()); // Adding the progress bar plugin
         }
 
         _onConnect(event) {
@@ -170,16 +173,15 @@ Stimulus controller:
 
 Then in your template, add your controller to the HTML attribute:
 
-.. code-block:: twig
+.. code-block:: html+twig
 
     <html lang="en">
         <head>
             <title>Swup</title>
             {# ... #}
         </head>
-        <body {{ stimulus_controller({
-            myswup: {},
-            'symfony/ux-swup/swup': {}
+        <body {{ stimulus_controller('myswup')|stimulus_controller('symfony/ux-swup/swup', {
+            // ... options
         }) }}>
             {# ... #}
         </body>
@@ -199,7 +201,6 @@ https://symfony.com/doc/current/contributing/code/bc.html
 
 .. _`Swup`: https://swup.js.org/
 .. _`the Symfony UX initiative`: https://symfony.com/ux
-.. _`@symfony/stimulus-bridge`: https://github.com/symfony/stimulus-bridge
-.. _`WebpackEncoreBundle v1.10`: https://github.com/symfony/webpack-encore-bundle
+.. _`StimulusBundle`: https://symfony.com/bundles/StimulusBundle/current/index.html
 .. _`Swup Options`: https://swup.js.org/options
-.. _`Symfony UX configured in your app`: https://symfony.com/doc/current/frontend/ux.html
+.. _StimulusBundle configured in your app: https://symfony.com/bundles/StimulusBundle/current/index.html

@@ -2,7 +2,7 @@
     "name": "symfony/web-profiler-bundle",
     "type": "symfony-bundle",
     "description": "Provides a development tool that gives detailed information about the execution of any request",
-    "keywords": [],
+    "keywords": ["dev"],
     "homepage": "https://symfony.com",
     "license": "MIT",
     "authors": [
@@ -18,8 +18,8 @@
     "require": {
         "php": ">=8.1",
         "symfony/config": "^5.4|^6.0",
-        "symfony/framework-bundle": "^5.4|^6.0",
-        "symfony/http-kernel": "^6.1",
+        "symfony/framework-bundle": "^5.4|^6.0,<6.4",
+        "symfony/http-kernel": "^6.3",
         "symfony/routing": "^5.4|^6.0",
         "symfony/twig-bundle": "^5.4|^6.0",
         "twig/twig": "^2.13|^3.0.4"

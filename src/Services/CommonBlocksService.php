@@ -28,23 +28,4 @@ class CommonBlocksService extends AbstractController {
 
         return $form;
     }
-<<<<<<< HEAD
-
-    function BlockManagerEn(Request $request, String $filePath){
-        $form = $this->createForm(CommonBlockFormTypeEn::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $filesystem = new Filesystem();
-            $filesystem->remove([$filePath]);
-            $file = fopen($filePath, 'w');
-            fwrite($file, $data['common_block']);
-        }
-
-        return $form;
-    }
-=======
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 }

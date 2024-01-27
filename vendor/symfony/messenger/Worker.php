@@ -13,6 +13,8 @@ namespace Symfony\Component\Messenger;
 
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Clock\Clock;
+use Symfony\Component\Clock\ClockInterface;
 use Symfony\Component\Messenger\Event\WorkerMessageFailedEvent;
 use Symfony\Component\Messenger\Event\WorkerMessageHandledEvent;
 use Symfony\Component\Messenger\Event\WorkerMessageReceivedEvent;
@@ -20,6 +22,7 @@ use Symfony\Component\Messenger\Event\WorkerRateLimitedEvent;
 use Symfony\Component\Messenger\Event\WorkerRunningEvent;
 use Symfony\Component\Messenger\Event\WorkerStartedEvent;
 use Symfony\Component\Messenger\Event\WorkerStoppedEvent;
+use Symfony\Component\Messenger\Exception\DelayedMessageHandlingException;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\Exception\RejectRedeliveredMessageException;
 use Symfony\Component\Messenger\Exception\RuntimeException;
@@ -40,30 +43,26 @@ use Symfony\Component\RateLimiter\LimiterInterface;
  */
 class Worker
 {
-    private array $receivers;
-    private MessageBusInterface $bus;
-    private ?EventDispatcherInterface $eventDispatcher;
-    private ?LoggerInterface $logger;
     private bool $shouldStop = false;
     private WorkerMetadata $metadata;
     private array $acks = [];
     private \SplObjectStorage $unacks;
-    private ?array $rateLimiters;
 
     /**
      * @param ReceiverInterface[] $receivers Where the key is the transport name
      */
-    public function __construct(array $receivers, MessageBusInterface $bus, EventDispatcherInterface $eventDispatcher = null, LoggerInterface $logger = null, array $rateLimiters = null)
-    {
-        $this->receivers = $receivers;
-        $this->bus = $bus;
-        $this->logger = $logger;
-        $this->eventDispatcher = $eventDispatcher;
+    public function __construct(
+        private array $receivers,
+        private MessageBusInterface $bus,
+        private ?EventDispatcherInterface $eventDispatcher = null,
+        private ?LoggerInterface $logger = null,
+        private ?array $rateLimiters = null,
+        private ClockInterface $clock = new Clock(),
+    ) {
         $this->metadata = new WorkerMetadata([
             'transportNames' => array_keys($receivers),
         ]);
         $this->unacks = new \SplObjectStorage();
-        $this->rateLimiters = $rateLimiters;
     }
 
     /**
@@ -95,7 +94,7 @@ class Worker
 
         while (!$this->shouldStop) {
             $envelopeHandled = false;
-            $envelopeHandledStart = microtime(true);
+            $envelopeHandledStart = $this->clock->now();
             foreach ($this->receivers as $transportName => $receiver) {
                 if ($queueNames) {
                     $envelopes = $receiver->getFromQueues($queueNames);
@@ -119,6 +118,8 @@ class Worker
                 // this should prevent multiple lower priority receivers from
                 // blocking too long before the higher priority are checked
                 if ($envelopeHandled) {
+                    gc_collect_cycles();
+
                     break;
                 }
             }
@@ -130,8 +131,8 @@ class Worker
             if (!$envelopeHandled) {
                 $this->eventDispatcher?->dispatch(new WorkerRunningEvent($this, true));
 
-                if (0 < $sleep = (int) ($options['sleep'] - 1e6 * (microtime(true) - $envelopeHandledStart))) {
-                    usleep($sleep);
+                if (0 < $sleep = (int) ($options['sleep'] - 1e6 * ($this->clock->now()->format('U.u') - $envelopeHandledStart->format('U.u')))) {
+                    $this->clock->sleep($sleep / 1e6);
                 }
             }
         }
@@ -188,7 +189,7 @@ class Worker
                     $receiver->reject($envelope);
                 }
 
-                if ($e instanceof HandlerFailedException) {
+                if ($e instanceof HandlerFailedException || ($e instanceof DelayedMessageHandlingException && null !== $e->getEnvelope())) {
                     $envelope = $e->getEnvelope();
                 }
 

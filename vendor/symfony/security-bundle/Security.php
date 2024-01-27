@@ -56,10 +56,16 @@ class Security extends LegacySecurity
      * @param UserInterface $user              The user to authenticate
      * @param string|null   $authenticatorName The authenticator name (e.g. "form_login") or service id (e.g. SomeApiKeyAuthenticator::class) - required only if multiple authenticators are configured
      * @param string|null   $firewallName      The firewall name - required only if multiple firewalls are configured
+     *
+     * @return Response|null The authenticator success response if any
      */
-    public function login(UserInterface $user, string $authenticatorName = null, string $firewallName = null): void
+    public function login(UserInterface $user, string $authenticatorName = null, string $firewallName = null): ?Response
     {
         $request = $this->container->get('request_stack')->getCurrentRequest();
+        if (null === $request) {
+            throw new LogicException('Unable to login without a request context.');
+        }
+
         $firewallName ??= $this->getFirewallConfig($request)?->getName();
 
         if (!$firewallName) {
@@ -69,7 +75,8 @@ class Security extends LegacySecurity
         $authenticator = $this->getAuthenticator($authenticatorName, $firewallName);
 
         $this->container->get('security.user_checker')->checkPreAuth($user);
-        $this->container->get('security.authenticator.managers_locator')->get($firewallName)->authenticateUser($user, $authenticator, $request);
+
+        return $this->container->get('security.authenticator.managers_locator')->get($firewallName)->authenticateUser($user, $authenticator, $request);
     }
 
     /**
@@ -83,14 +90,17 @@ class Security extends LegacySecurity
      */
     public function logout(bool $validateCsrfToken = true): ?Response
     {
+        $request = $this->container->get('request_stack')->getMainRequest();
+        if (null === $request) {
+            throw new LogicException('Unable to logout without a request context.');
+        }
+
         /** @var TokenStorageInterface $tokenStorage */
         $tokenStorage = $this->container->get('security.token_storage');
 
         if (!($token = $tokenStorage->getToken()) || !$token->getUser()) {
             throw new LogicException('Unable to logout as there is no logged-in user.');
         }
-
-        $request = $this->container->get('request_stack')->getMainRequest();
 
         if (!$firewallConfig = $this->container->get('security.firewall.map')->getFirewallConfig($request)) {
             throw new LogicException('Unable to logout as the request is not behind a firewall.');

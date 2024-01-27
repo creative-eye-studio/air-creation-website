@@ -29,12 +29,8 @@ class AdminPagesController extends AbstractController
     ------------------------------------------------------- */
     #[Route('/admin/pages/ajouter', name: 'admin_pages_add')]
     public function add_page(PagesService $pageService, ManagerRegistry $doctrine, Request $request) {
-<<<<<<< HEAD
-
-=======
         
         $title = "Ajouter une page";
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         $form = $pageService->PageManager($doctrine, $request, true);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,14 +48,6 @@ class AdminPagesController extends AbstractController
     #[Route('/admin/pages/modifier/{page_id}', name: 'admin_pages_modify')]
     public function modify_page(PagesService $pageService, ManagerRegistry $doctrine, Request $request, String $page_id) {
 
-<<<<<<< HEAD
-        // Récupération du contenu de la page
-        $pageContent = file_get_contents("../templates/webpages/pages/fr/" . $page_id . ".html.twig");
-        $pageContentEn = file_get_contents("../templates/webpages/pages/en/" . $page_id . ".html.twig");
-
-        $form = $pageService->PageManager($doctrine, $request, false, $page_id);
-
-=======
         // Récupération du lien de la page
         $entityManager = $doctrine->getManager();
         $page = $entityManager->getRepository(PagesList::class)->findOneBy(['page_id' => $page_id]);
@@ -69,7 +57,6 @@ class AdminPagesController extends AbstractController
         $title = "Modifier une page";
         $form = $pageService->PageManager($doctrine, $request, false, $page_id);   
 
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->redirectToRoute('admin_pages_modify', [
                 'page_id' => $page_id
@@ -79,16 +66,11 @@ class AdminPagesController extends AbstractController
         return $this->render('pages/page-manager.html.twig', [
             'title' => $title,
             'form' => $form->createView(),
-<<<<<<< HEAD
-            'pageContent' => $pageContent,
-            'pageContentEn' => $pageContentEn,
-=======
             'link' => $link,
             'name_fr' => $page->getPageName()[0],
             'metaTitle_fr' => $page->getPageMetaTitle()[0],
             'metaDesc_fr' => $page->getPageMetaDesc()[0],
             'pageContent_fr' => htmlspecialchars_decode($page->getPageContent()[0]),
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         ]);
     }
 

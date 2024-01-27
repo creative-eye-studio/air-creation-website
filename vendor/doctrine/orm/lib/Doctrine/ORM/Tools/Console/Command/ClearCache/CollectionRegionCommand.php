@@ -6,6 +6,7 @@ namespace Doctrine\ORM\Tools\Console\Command\ClearCache;
 
 use Doctrine\ORM\Cache;
 use Doctrine\ORM\Tools\Console\Command\AbstractEntityManagerCommand;
+use Doctrine\ORM\Tools\Console\CommandCompatibility;
 use InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -20,9 +21,9 @@ use function sprintf;
  */
 class CollectionRegionCommand extends AbstractEntityManagerCommand
 {
-    /**
-     * {@inheritdoc}
-     */
+    use CommandCompatibility;
+
+    /** @return void */
     protected function configure()
     {
         $this->setName('orm:clear-cache:region:collection')
@@ -60,12 +61,7 @@ EOT
              );
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return int
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    private function doExecute(InputInterface $input, OutputInterface $output): int
     {
         $ui = (new SymfonyStyle($input, $output))->getErrorStyle();
 

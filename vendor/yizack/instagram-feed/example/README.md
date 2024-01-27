@@ -45,7 +45,9 @@ foreach($feed->getFeed() as $value) {
     }
 
 ?>
-    <li class="glide__slide"><?= post($username, $permalink, $caption, $timestamp); ?></li>
+    <li class="glide__slide">
+        <div class="instagram-wrapper"><?= post($username, $permalink, $caption, $timestamp); ?></div>
+    </li>
 <?php
 }
 ?>
@@ -82,13 +84,14 @@ Page and **Glide.js** arrows CSS styling in `<head>`.
     -webkit-tap-highlight-color: transparent;
   }
   
-  iframe {
-    min-width: 0;
-    margin: auto!important;
-  }
-
-  .glide {
-    margin-top: -62.6px;
+  .instagram-wrapper {
+    background: white;
+    border-radius: 11px;
+    border: 1px solid rgb(219, 219, 219);
+    overflow: hidden;
+    width: 90%;
+    margin: auto;
+    max-height: 100%;
   }
 
   .glide__arrow {
@@ -118,6 +121,19 @@ Page and **Glide.js** arrows CSS styling in `<head>`.
   .glide__arrow--left {
     top: 300px;
     left: 0px;
+  }
+  
+  .instagram-media {
+    border-radius: 3px!important;
+    border: 0!important;
+    box-shadow: none!important;
+    display: block!important;
+    min-width: 0!important;
+    margin: auto!important;
+    margin-bottom: -54px!important;
+    width: 100%!important;
+    position: relative;
+    top: -54px;
   }
 </style>
 ```

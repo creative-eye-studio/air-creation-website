@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Doctrine\ORM\Tools\Console\Command;
 
-use Doctrine\Common\Util\Debug;
+use Doctrine\ORM\Tools\Console\CommandCompatibility;
+use Doctrine\ORM\Tools\Debug;
 use LogicException;
 use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -27,9 +28,9 @@ use function strtoupper;
  */
 class RunDqlCommand extends AbstractEntityManagerCommand
 {
-    /**
-     * {@inheritdoc}
-     */
+    use CommandCompatibility;
+
+    /** @return void */
     protected function configure()
     {
         $this->setName('orm:run-dql')
@@ -60,12 +61,7 @@ EOT
              );
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @return int
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    private function doExecute(InputInterface $input, OutputInterface $output): int
     {
         $ui = new SymfonyStyle($input, $output);
 
@@ -120,7 +116,7 @@ EOT
 
         $resultSet = $query->execute([], constant($hydrationMode));
 
-        $ui->text(Debug::dump($resultSet, (int) $input->getOption('depth'), true, false));
+        $ui->text(Debug::dump($resultSet, (int) $input->getOption('depth')));
 
         return 0;
     }

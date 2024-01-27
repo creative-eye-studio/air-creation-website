@@ -1,10 +1,7 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-<<<<<<< HEAD
-    cache: false
-=======
     globals:
-        site_name: "Nom du site"
+        site_name: "Air Création"
         version: "2.0"
         date_update: "05/08/2023"
         google_maps: ""
@@ -13,7 +10,6 @@ twig:
         mailjet_public: ''
         mailjet_private: ''
         posts_img_directory: '/uploads/images/posts'
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
 
 when@test:
     twig:

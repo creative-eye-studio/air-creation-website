@@ -29,7 +29,7 @@ trait NotificationAssertionsTrait
 
     public static function assertQueuedNotificationCount(int $count, string $transportName = null, string $message = ''): void
     {
-        self::assertThat(self::getMessageMailerEvents(), new NotifierConstraint\NotificationCount($count, $transportName, true), $message);
+        self::assertThat(self::getNotificationEvents(), new NotifierConstraint\NotificationCount($count, $transportName, true), $message);
     }
 
     public static function assertNotificationIsQueued(MessageEvent $event, string $message = ''): void
@@ -91,8 +91,8 @@ trait NotificationAssertionsTrait
     public static function getNotificationEvents(): NotificationEvents
     {
         $container = static::getContainer();
-        if ($container->has('notifier.logger_notification_listener')) {
-            return $container->get('notifier.logger_notification_listener')->getEvents();
+        if ($container->has('notifier.notification_logger_listener')) {
+            return $container->get('notifier.notification_logger_listener')->getEvents();
         }
 
         static::fail('A client must have Notifier enabled to make notifications assertions. Did you forget to require symfony/notifier?');

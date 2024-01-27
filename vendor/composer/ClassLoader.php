@@ -429,12 +429,7 @@ class ClassLoader
     public function loadClass($class)
     {
         if ($file = $this->findFile($class)) {
-<<<<<<<< HEAD:vendor/composer/ClassLoader.php
             (self::$includeFile)($file);
-========
-            $includeFile = self::$includeFile;
-            $includeFile($file);
->>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b:.matomo/vendor/composer/ClassLoader.php
 
             return true;
         }
@@ -565,14 +560,7 @@ class ClassLoader
         return false;
     }
 
-<<<<<<<< HEAD:vendor/composer/ClassLoader.php
     private static function initializeIncludeClosure(): void
-========
-    /**
-     * @return void
-     */
-    private static function initializeIncludeClosure()
->>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b:.matomo/vendor/composer/ClassLoader.php
     {
         if (self::$includeFile !== null) {
             return;
@@ -586,14 +574,8 @@ class ClassLoader
          * @param  string $file
          * @return void
          */
-<<<<<<<< HEAD:vendor/composer/ClassLoader.php
         self::$includeFile = static function($file) {
             include $file;
         };
-========
-        self::$includeFile = \Closure::bind(static function($file) {
-            include $file;
-        }, null, null);
->>>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b:.matomo/vendor/composer/ClassLoader.php
     }
 }

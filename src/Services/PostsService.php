@@ -7,7 +7,6 @@ use App\Form\PostsAdminFormType;
 use Cocur\Slugify\Slugify;
 use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
-use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,12 +35,8 @@ class PostsService extends AbstractController{
         $form = $this->createForm(PostsAdminFormType::class, $post);
         $form->handleRequest($request);
 
-<<<<<<< HEAD
-        // Soumission du formulaire
-=======
         // ENVOI DU FORMULAIRE
         // --------------------------------------------------------
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupération des données du formulaire
             $post = $form->getData();
@@ -100,74 +95,10 @@ class PostsService extends AbstractController{
                     throw $th;
                 }
             }
-<<<<<<< HEAD
-
-            // Création de l'image
-            $imgPost = $form->get('photo_filename')->getData();
-            if ($imgPost) {
-                $originalThumbName = pathinfo($imgPost->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeThumbName = $slugify->slugify($originalThumbName);
-                $image = $safeThumbName . '.' . $imgPost->guessExtension();
-                try {
-                    $imgPost->move(
-                        $this->getParameter('posts_directory'),
-                        $image
-                    );
-                    $post->setPhotoFilename($image);
-                } catch (\Throwable $th) {
-                    throw $th;
-                }
-            } else {
-                if (!$newPost) {
-                    $imgPost = $post->getPhotoFilename();
-                    $post->setPhotoFilename($imgPost);
-                }
-                
-            }
-
-            // Création de la date du post
-            if ($newPost) {
-                if ($form->get('created_at')->getData()) {
-                    $date = $form->get('created_at')->getData();
-                } else {
-                    $date = new DateTimeImmutable();
-                }
-            } else {
-                if (!$form->get('created_at')->getData()){
-                    $date = $post->getCreatedAt();
-                } else {
-                    $date = $form->get('created_at')->getData();
-                }
-            }
-            $date->format('d/m/Y');
-            $post->setCreatedAt($date);
-            
-
-            // Envoi des données vers la BDD
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($post);
-            $entityManager->flush();
-
-            // Création du fichier TWIG
-            if ($newPost) {
-                $file = fopen("../templates/webpages/posts/fr/" . $slugName . '.html.twig', 'w');
-                $file_en = fopen("../templates/webpages/posts/en/" . $slugName . '.html.twig', 'w');
-            } else {
-                unlink("../templates/webpages/posts/fr/" . $postFileName);
-                unlink("../templates/webpages/posts/en/" . $postFileName);
-                $file = fopen("../templates/webpages/posts/fr/" . $postFileName, 'w');
-                $file_en = fopen("../templates/webpages/posts/en/" . $postFileName, 'w');
-            }
-            fwrite($file, $form->get('post_content')->getData());
-            fclose($file);
-            fwrite($file_en, $form->get('post_content_en')->getData());
-            fclose($file_en);
-=======
             
             // Envoi des données vers la BDD
             $em->persist($post);
             $em->flush();
->>>>>>> 1a15b9c39befc6b3acd191ed526c9da49bb6664b
         }
 
         return $form;

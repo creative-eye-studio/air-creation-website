@@ -15,6 +15,7 @@ use function func_num_args;
 use function get_debug_type;
 use function gettype;
 use function implode;
+use function is_scalar;
 use function method_exists;
 use function reset;
 use function spl_object_id;
@@ -22,6 +23,8 @@ use function sprintf;
 
 /**
  * Contains exception messages for all invalid lifecycle state exceptions inside UnitOfWork
+ *
+ * @psalm-import-type AssociationMapping from ClassMetadata
  */
 class ORMInvalidArgumentException extends InvalidArgumentException
 {
@@ -80,8 +83,8 @@ class ORMInvalidArgumentException extends InvalidArgumentException
     }
 
     /**
-     * @param array[][]|object[][] $newEntitiesWithAssociations non-empty an array
-     *                                                              of [array $associationMapping, object $entity] pairs
+     * @psalm-param non-empty-list<array{AssociationMapping, object}> $newEntitiesWithAssociations non-empty an array
+     *                                                                of [array $associationMapping, object $entity] pairs
      *
      * @return ORMInvalidArgumentException
      */
@@ -109,7 +112,7 @@ class ORMInvalidArgumentException extends InvalidArgumentException
 
     /**
      * @param object $entry
-     * @psalm-param array<string, string> $associationMapping
+     * @psalm-param AssociationMapping $associationMapping
      *
      * @return ORMInvalidArgumentException
      */
@@ -120,7 +123,7 @@ class ORMInvalidArgumentException extends InvalidArgumentException
 
     /**
      * @param object $entry
-     * @psalm-param array<string, string> $assoc
+     * @psalm-param AssociationMapping $assoc
      *
      * @return ORMInvalidArgumentException
      */
@@ -220,8 +223,8 @@ EXCEPTION
     }
 
     /**
-     * @param mixed[] $assoc
-     * @param mixed   $actualValue
+     * @param AssociationMapping $assoc
+     * @param mixed              $actualValue
      *
      * @return self
      */
@@ -259,6 +262,32 @@ EXCEPTION
         return new self(sprintf('Entity name must be a string, %s given', get_debug_type($entityName)));
     }
 
+    /** @param mixed $value */
+    public static function invalidAutoGenerateMode($value): self
+    {
+        return new self(sprintf('Invalid auto generate mode "%s" given.', is_scalar($value) ? (string) $value : get_debug_type($value)));
+    }
+
+    public static function missingPrimaryKeyValue(string $className, string $idField): self
+    {
+        return new self(sprintf('Missing value for primary key %s on %s', $idField, $className));
+    }
+
+    public static function proxyDirectoryRequired(): self
+    {
+        return new self('You must configure a proxy directory. See docs for details');
+    }
+
+    public static function proxyNamespaceRequired(): self
+    {
+        return new self('You must configure a proxy namespace');
+    }
+
+    public static function proxyDirectoryNotWritable(string $proxyDirectory): self
+    {
+        return new self(sprintf('Your proxy directory "%s" must be writable', $proxyDirectory));
+    }
+
     /**
      * Helper method to show an object as string.
      *
@@ -271,7 +300,7 @@ EXCEPTION
 
     /**
      * @param object $entity
-     * @psalm-param array<string,string> $associationMapping
+     * @psalm-param AssociationMapping $associationMapping
      */
     private static function newEntityFoundThroughRelationshipMessage(array $associationMapping, $entity): string
     {
