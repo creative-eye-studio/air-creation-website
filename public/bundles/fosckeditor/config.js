@@ -6,12 +6,12 @@
 CKEDITOR.editorConfig = function( config ) {
 	config.language = 'fr';
 	config.extraPlugins = 'codemirror,filebrowser,powrmediagallery';
-	// config.startupMode = 'source';
+	config.startupMode = 'source';
 	config.allowedContent = true;
 	config.extraAllowedContent = 'i';
 	config.entities = false;
 	config.baseHref = '/';
-	config.contentsCss = '../build/app.5f10ce6e.css';
+	config.contentsCss = '../build/app.bd538bb8.css';
 	config.height = 300;
 	config.bodyClass = 'no-js header-second';
 };
